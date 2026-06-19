@@ -1,0 +1,6 @@
+{
+    "plantuml.commandArgs": [
+    ],
+    "plantuml.server": "http://www.plantuml.com/plantuml",
+    "plantuml.render": "PlantUMLServer",
+}
