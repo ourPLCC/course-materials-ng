@@ -6,5 +6,6 @@ This is the style guide for this textbook.
 - Capitalize only the first word except if the word is a proper name
 - Avoid unnecessary empty lines and trailing spaces
 - Format paragraphs in 80 columns
-- Let markdown applications autonumber items in ordered lists
+- Explicitly number items in ordered lists (i.e., do let markdown applications
+  do that work for you)
 - Use PlantUML for drawings
