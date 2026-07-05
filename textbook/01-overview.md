@@ -11,12 +11,12 @@ program is called an **interpreter**.
 PLCC, first mentioned in the previous chapter, is a powerful tool that can
 generate such an interpreter. PLCC generates an interpreter based on a textual
 description of the programming language we wish to design. We refer to the
-textual description as a grammar.
+textual description as a specification.
 
 The diagram below depicts the relationships among language designers,
-programmers, and PLCC. Language designers write a grammar for the language they
+programmers, and PLCC. Language designers write a specification for the language they
 are designing. They use PLCC to generate an interpreter for the language from
-its grammar. Then programmers write programs in this language and use the
+its specification. Then programmers write programs in this language and use the
 generated interpreter to run these programs.
 
 ```plantuml
@@ -24,24 +24,24 @@ generated interpreter to run these programs.
 actor designer
 actor programmer
 
-artifact grammar [
-    grammar<sub>lang</sub>
+artifact specification [
+    specification
 ]
 
 storage plcc
 
 storage interpreter [
-    interpreter<sub>lang</sub>
+    interpreter
 ]
 
 artifact program [
-    program<sub>lang</sub>
+    program
 ]
 
 label behavior
 
-designer .> grammar : writes
-grammar -> plcc
+designer .> specification : writes
+specification -> plcc
 plcc ..> interpreter :generates
 program -> interpreter
 interpreter -> behavior
@@ -51,9 +51,9 @@ programmer .> program : writes
 
 In the course of this textbook, we will take on the role of a language designer.
 
-## Grammar
+## Language Specification
 
-Most interpreters are built around three successive phases: lexical analysis, 
+Most interpreters are built around three successive phases: lexical analysis,
 syntactic analysis, and semantic analysis.
 
 ```plantuml
@@ -76,18 +76,18 @@ stop
 @enduml
 ```
 
-The composition of the grammar read by PLCC reflects the typical interpreter's 
-organization. As we can see in the figure below, the grammar is broken up in
+The composition of the specification read by PLCC reflects the typical interpreter's
+organization. As we can see in the figure below, the specification is broken up in
 three parts: lexical specification, syntactical specification, and semantic
 specification. The next three chapters will go over each of these parts in
 greater detail.
 
 ```plantuml
 @startuml
-file grammar {
-    artifact lexspec as "lexical specification (regex)"
-    artifact synspec as "syntactical specification (BNF)"
-    artifact semspec as "semantic specification (e.g., Python)"
+file "Specification File" {
+    artifact lexspec as "lexical specification"
+    artifact synspec as "syntactical specification"
+    artifact semspec as "semantic specification"
 }
 
 file source
@@ -125,7 +125,4 @@ must perform lexical analysis, syntactic analysis, and semantic analysis. Such
 programs include compilers, interpreters, and static analyzers (i.e., linters).
 So the concepts described in this chapter apply to all such tools.
 
-We will see that the programming language specification articulated in a grammar
-is itself a small programming language. We could, in principle, write a
-grammar for the PLCC specification and ask PLCC to generate an alternate version
-of itself.
+We will see that the language we use to define these specifications is itself a small programming language. We could, in principle, write a specification for the PLCC tool in its own language and ask PLCC to generate an alternate version of itself.
