@@ -31,7 +31,7 @@ unrecognized character sequence.
 
 Here are some pertinent facts about a valid PLCC lexical specification.
 
-* The lexical specification consists of comments and token definitions.
+* The lexical specification consists of comments and lexical rules.
 
 * Comments begin with `#` and ends at the end of the line.
 
