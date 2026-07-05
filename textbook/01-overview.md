@@ -24,7 +24,7 @@ generated interpreter to run these programs.
 actor designer
 actor programmer
 
-artifact specificiation [
+artifact specification [
     specification
 ]
 
