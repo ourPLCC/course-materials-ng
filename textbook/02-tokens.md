@@ -149,6 +149,8 @@ token WORD '\w+'
 Now, for the same string, `from now on`, `FROM` would be emitted, which is more
 likely what we want.
 
+Blah blah.
+
 ## References
 
 * "Lexical Specification," PLCC-ng, version 0.65,
