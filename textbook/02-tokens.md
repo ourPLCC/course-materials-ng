@@ -194,3 +194,5 @@ this abstraction.**
 * Douglas Thain, "Scanning," chap. 3 in *Introduction to Compilers and Language
   Design,* 2nd ed., (Self-published, 2023),
   https://dthain.github.io/books/compiler/chapter3.pdf
+
+* New reading ....
