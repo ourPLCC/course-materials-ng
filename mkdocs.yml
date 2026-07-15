@@ -3,6 +3,7 @@ site_url: https://ourplcc.github.io/course-materials-ng/
 repo_url: https://github.com/ourPLCC/course-materials-ng
 repo_name: ourPLCC/course-materials-ng
 docs_dir: textbook
+strict: true
 
 copyright: >
   Textbook content licensed under

@@ -30,6 +30,6 @@ jobs:
       - name: Deploy dev
         run: |
           mike deploy --push dev
-          if ! mike list 2>/dev/null | grep -qw 'latest'; then
+          if ! mike list 2>/dev/null | grep -q '\[latest\]'; then
             mike set-default --push dev
           fi
