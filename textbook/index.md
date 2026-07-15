@@ -7,4 +7,4 @@ Compiler. We study languages by building interpreters for them.
 Use the version selector in the header to switch between the in-progress
 `dev` version and named editions your course may pin to.
 
-Start with the [Introduction](00-introduction.md).
+Start with the [Introduction][introduction].
