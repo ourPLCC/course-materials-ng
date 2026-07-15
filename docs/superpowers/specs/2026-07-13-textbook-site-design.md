@@ -32,7 +32,8 @@ Single repository. `textbook/` is the sole source of the published site.
 ```
 course-materials-ng/
 ├── mkdocs.yml              # site config, docs_dir: textbook
-├── requirements.txt        # pinned: mkdocs-material, mike, kroki, autorefs
+├── requirements.txt        # pinned: mkdocs-material, mike,
+│                           #   mkdocs-kroki-plugin, mkdocs-autorefs
 ├── Makefile                # make install / serve / build
 ├── style-guide.md          # author-facing; moved out of textbook/
 ├── REUSE.toml              # annotates textbook/** as CC-BY-SA-4.0
@@ -67,11 +68,14 @@ Mirrors plcc-ng with the deltas this repo needs:
   - `kroki` — renders PlantUML fenced code blocks into SVGs at build time.
     Requires network access to kroki.io during builds; same trade-off plcc-ng
     already accepted.
-  - `autorefs` — authors give headings stable ids
-    (`## Environments {#environments}`) and link by id from anywhere
-    (`[environments][]`). Links survive file moves and renames; only changing
-    the id itself requires a search-and-replace. "Link by anchor id, not by
-    path" becomes a style-guide rule.
+  - `autorefs` — resolves id-based cross-references (`[environments][]`) to
+    whatever page the anchor currently lives on. Links survive file moves
+    and renames; only changing the id itself requires a search-and-replace.
+    "Link by anchor id, not by path" becomes a style-guide rule.
+- **Markdown extensions:** `attr_list` — provides the explicit heading-id
+  syntax (`## Environments {#environments}`) that gives autorefs stable
+  anchors to resolve; without it, anchors are slugified from heading text
+  and break when headings are reworded.
 - **Nav:** explicit `nav:` listing chapters in order; hand-maintained.
 - **Strict builds:** `mkdocs build --strict` fails on broken internal links,
   missing nav entries, and orphaned pages. CI and `make build` both use it.
