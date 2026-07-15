@@ -1,0 +1,21 @@
+{
+	"name": "Course Materials Dev Container",
+	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+	"features": {
+		"ghcr.io/devcontainers/features/python:1": {}
+	},
+
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"plantuml.server": "https://www.plantuml.com/plantuml",
+				"plantuml.render": "PlantUMLServer"
+			},
+			"extensions": [
+				"jebbs.plantuml"
+			]
+		}
+	},
+
+	"postStartCommand": "make install"
+}

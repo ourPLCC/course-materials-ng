@@ -55,7 +55,7 @@ git checkout main && git pull && git checkout -b mkdocs-scaffolding
 mkdocs==1.6.1
 mkdocs-material==9.6.15
 mike==2.1.3
-mkdocs-kroki-plugin==1.6.0
+mkdocs-kroki-plugin==1.3.1
 mkdocs-autorefs==1.4.2
 ```
 
@@ -71,6 +71,7 @@ site_url: https://ourplcc.github.io/course-materials-ng/
 repo_url: https://github.com/ourPLCC/course-materials-ng
 repo_name: ourPLCC/course-materials-ng
 docs_dir: textbook
+strict: true
 
 copyright: >
   Textbook content licensed under
@@ -160,7 +161,7 @@ Compiler. We study languages by building interpreters for them.
 Use the version selector in the header to switch between the in-progress
 `dev` version and named editions your course may pin to.
 
-Start with the [Introduction](00-introduction.md).
+Start with the [Introduction][introduction].
 ```
 
 Move the style guide and add the linking rule (spec: "Link by anchor id, not by path" becomes a style-guide rule):
@@ -173,6 +174,9 @@ cat >> style-guide.md <<'EOF'
   file path. Ids survive file moves and renames.
 EOF
 ```
+
+Give the landing-page link a target: in `textbook/00-introduction.md`, change
+the first line `# Introduction` to `# Introduction {#introduction}`.
 
 (This task adds no `.gitignore` entries: the existing root `.gitignore` already ignores `.venv` and `/site`. The branch's separate chore commit ignoring `.claude/worktrees/` and `.superpowers/` is session bookkeeping, not part of this task.)
 
@@ -197,7 +201,7 @@ Expected: svg count ≥ 3 (the overview chapter has three PlantUML fences; 03-sy
 - [ ] **Step 8: Commit**
 
 ```bash
-git add mkdocs.yml requirements.txt Makefile textbook/index.md style-guide.md
+git add mkdocs.yml requirements.txt Makefile textbook/index.md textbook/00-introduction.md style-guide.md
 git commit -m "feat: add MkDocs scaffolding for textbook site"
 ```
 
@@ -333,7 +337,7 @@ jobs:
       - name: Deploy dev
         run: |
           mike deploy --push dev
-          if ! mike list 2>/dev/null | grep -qw 'latest'; then
+          if ! mike list 2>/dev/null | grep -q '\[latest\]'; then
             mike set-default --push dev
           fi
 ```
@@ -374,6 +378,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Validate edition name
+        env:
+          EDITION: ${{ inputs.edition }}
+        run: |
+          if ! [[ "$EDITION" =~ ^[0-9]{4}\.[0-9]{2}$ ]]; then
+            echo "Edition must match YYYY.MM, e.g. 2026.09 (got: $EDITION)" >&2
+            exit 1
+          fi
       - name: Deploy edition
         env:
           EDITION: ${{ inputs.edition }}

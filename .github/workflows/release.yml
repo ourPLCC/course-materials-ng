@@ -31,6 +31,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Validate edition name
+        env:
+          EDITION: ${{ inputs.edition }}
+        run: |
+          if ! [[ "$EDITION" =~ ^[0-9]{4}\.[0-9]{2}$ ]]; then
+            echo "Edition must match YYYY.MM, e.g. 2026.09 (got: $EDITION)" >&2
+            exit 1
+          fi
       - name: Deploy edition
         env:
           EDITION: ${{ inputs.edition }}
