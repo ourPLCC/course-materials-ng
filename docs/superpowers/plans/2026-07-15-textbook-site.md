@@ -31,7 +31,7 @@ Work item 1. **Done before plan execution began** (verified 2026-07-15): the `te
 
 ### Task 2: MkDocs scaffolding
 
-Work item 2. Branch: `mkdocs-scaffolding`. After this task, `make install && make build` produces a strict-clean site rendering all three chapters with PlantUML diagrams.
+Work item 2. Branch: `mkdocs-scaffolding`. After this task, `make install && make build` produces a strict-clean site rendering all four chapters with PlantUML diagrams.
 
 **Files:**
 - Create: `mkdocs.yml`
@@ -173,7 +173,7 @@ cat >> style-guide.md <<'EOF'
 EOF
 ```
 
-(`.gitignore` needs no changes: the existing root `.gitignore` already ignores `.venv` and `/site`.)
+(This task adds no `.gitignore` entries: the existing root `.gitignore` already ignores `.venv` and `/site`. The branch's separate chore commit ignoring `.claude/worktrees/` and `.superpowers/` is session bookkeeping, not part of this task.)
 
 - [ ] **Step 6: Verify — install and strict build**
 
