@@ -55,7 +55,7 @@ git checkout main && git pull && git checkout -b mkdocs-scaffolding
 mkdocs==1.6.1
 mkdocs-material==9.6.15
 mike==2.1.3
-mkdocs-kroki-plugin==1.6.0
+mkdocs-kroki-plugin==1.3.1
 mkdocs-autorefs==1.4.2
 ```
 
