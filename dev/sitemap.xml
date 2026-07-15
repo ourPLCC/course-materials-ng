@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://ourplcc.github.io/course-materials-ng/dev/</loc>
+         <lastmod>2026-07-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ourplcc.github.io/course-materials-ng/dev/00-introduction/</loc>
+         <lastmod>2026-07-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ourplcc.github.io/course-materials-ng/dev/01-overview/</loc>
+         <lastmod>2026-07-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ourplcc.github.io/course-materials-ng/dev/02-tokens/</loc>
+         <lastmod>2026-07-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ourplcc.github.io/course-materials-ng/dev/03-syntax/</loc>
+         <lastmod>2026-07-15</lastmod>
+    </url>
+</urlset>

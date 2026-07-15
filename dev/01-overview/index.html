@@ -1,0 +1,671 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ourplcc.github.io/course-materials-ng/dev/01-overview/">
+      
+      
+        <link rel="prev" href="../00-introduction/">
+      
+      
+        <link rel="next" href="../02-tokens/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Overview - Programming Languages with PLCC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Programming Languages with PLCC" class="md-header__button md-logo" aria-label="Programming Languages with PLCC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Programming Languages with PLCC
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ourPLCC/course-materials-ng
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00-introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introduction
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02-tokens/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tokens
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03-syntax/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Syntax
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Programming Languages with PLCC" class="md-nav__button md-logo" aria-label="Programming Languages with PLCC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Programming Languages with PLCC
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ourPLCC/course-materials-ng
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#interpreter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpreter
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      PLCC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#language-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Language Specification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#going-beyond" class="md-nav__link">
+    <span class="md-ellipsis">
+      Going beyond
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-tokens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tokens
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-syntax/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Syntax
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="overview">Overview</h1>
+<h2 id="interpreter">Interpreter</h2>
+<p>A practical way to study a programming language is to build a program that can
+run programs written in that language. Such a program that reads and evaluates a
+program is called an <strong>interpreter</strong>.</p>
+<h2 id="plcc">PLCC</h2>
+<p>PLCC, first mentioned in the previous chapter, is a powerful tool that can
+generate such an interpreter. PLCC generates an interpreter based on a textual
+description of the programming language we wish to design. We refer to the
+textual description as a specification.</p>
+<p>The diagram below depicts the relationships among language designers,
+programmers, and PLCC. Language designers write a specification for the language they
+are designing. They use PLCC to generate an interpreter for the language from
+its specification. Then programmers write programs in this language and use the
+generated interpreter to run these programs.</p>
+<div><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" data-diagram-type="DESCRIPTION" height="248px" preserveAspectRatio="xMaxYMax meet" style="width:512px;height:248px;background:#FFFFFF;" version="1.1" viewBox="0 0 512 248" width="512px" zoomAndPan="magnify" id="Kroki"><defs /><g><g class="entity" data-qualified-name="designer" data-source-line="1" id="ent0001"><ellipse cx="60.0362" cy="14" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;" /><path d="M60.0362,22 L60.0362,49 M47.0362,30 L73.0363,30 M60.0362,49 L47.0362,64 M60.0362,49 L73.0363,64" fill="none" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60.8125" x="29.63" y="78.4951">designer</text></g><g class="entity" data-qualified-name="programmer" data-source-line="2" id="ent0002"><ellipse cx="50.0371" cy="167.29" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;" /><path d="M50.0371,175.29 L50.0371,202.29 M37.0371,183.29 L63.0371,183.29 M50.0371,202.29 L37.0371,217.29 M50.0371,202.29 L63.0371,217.29" fill="none" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="88.0742" x="6" y="231.7851">programmer</text></g><g class="entity" data-qualified-name="specification" data-source-line="4" id="ent0003"><rect fill="#F1F1F1" height="39.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="118.293" x="165.89" y="24" /><polygon fill="#F1F1F1" points="267.183,29,267.183,43,279.183,43,279.183,35,273.183,29,267.183,29" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;" /><line style="stroke:#181818;stroke-width:0.5;" x1="273.183" x2="273.183" y1="29" y2="35" /><line style="stroke:#181818;stroke-width:0.5;" x1="279.183" x2="273.183" y1="35" y2="35" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="88.293" x="175.89" y="49.9951">specification</text></g><g class="entity" data-qualified-name="plcc" data-source-line="8" id="ent0004"><rect fill="#F1F1F1" height="36.2969" rx="35" ry="35" style="stroke:#181818;stroke-width:0.5;" width="48.1709" x="318.95" y="25.5" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28.1709" x="328.95" y="48.4951">plcc</text></g><g class="entity" data-qualified-name="interpreter" data-source-line="10" id="ent0005"><rect fill="#F1F1F1" height="36.2969" rx="35" ry="35" style="stroke:#181818;stroke-width:0.5;" width="95.7354" x="295.17" y="178.79" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="75.7354" x="305.17" y="201.7851">interpreter</text></g><g class="entity" data-qualified-name="program" data-source-line="14" id="ent0006"><rect fill="#F1F1F1" height="39.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="90.0674" x="170" y="177.29" /><polygon fill="#F1F1F1" points="243.0674,182.29,243.0674,196.29,255.0674,196.29,255.0674,188.29,249.0674,182.29,243.0674,182.29" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;" /><line style="stroke:#181818;stroke-width:0.5;" x1="249.0674" x2="249.0674" y1="182.29" y2="188.29" /><line style="stroke:#181818;stroke-width:0.5;" x1="255.0674" x2="249.0674" y1="188.29" y2="188.29" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60.0674" x="180" y="203.2851">program</text></g><g class="entity" data-qualified-name="behavior" data-source-line="18" id="ent0007"><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="61.4482" x="436.31" y="201.7851">behavior</text></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0003" data-link-type="dependency" data-source-line="20" id="lnk8"><path d="M90.69,43.64 C111.65,43.64 135.14,43.64 160.49,43.64" fill="none" id="designer-to-specification" style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;" /><polygon fill="#181818" points="165.49,43.64,156.49,39.64,160.49,43.64,156.49,47.64,165.49,43.64" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39.457" x="108.67" y="36.7069">writes</text></g><g class="link" data-entity-1="ent0003" data-entity-2="ent0004" data-link-type="dependency" data-source-line="21" id="lnk9"><path d="M284.5,43.64 C295.93,43.64 302.36,43.64 313.8,43.64" fill="none" id="specification-to-plcc" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="318.8,43.64,309.8,39.64,313.8,43.64,309.8,47.64,318.8,43.64" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0004" data-entity-2="ent0005" data-link-type="dependency" data-source-line="22" id="lnk10"><path d="M343.04,62 C343.04,91.03 343.04,144.12 343.04,173.32" fill="none" id="plcc-to-interpreter" style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;" /><polygon fill="#181818" points="343.04,178.32,347.04,169.32,343.04,173.32,339.04,169.32,343.04,178.32" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="65.6665" x="344.04" y="124.8569">generates</text></g><g class="link" data-entity-1="ent0006" data-entity-2="ent0005" data-link-type="dependency" data-source-line="23" id="lnk11"><path d="M260.54,196.94 C271.92,196.94 278.31,196.94 289.7,196.94" fill="none" id="program-to-interpreter" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="294.7,196.94,285.7,192.94,289.7,196.94,285.7,200.94,294.7,196.94" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0005" data-entity-2="ent0007" data-link-type="dependency" data-source-line="24" id="lnk12"><path d="M390.99,196.94 C402.67,196.94 409.36,196.94 421.04,196.94" fill="none" id="interpreter-to-behavior" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="426.04,196.94,417.04,192.94,421.04,196.94,417.04,200.94,426.04,196.94" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0002" data-entity-2="ent0006" data-link-type="dependency" data-source-line="25" id="lnk13"><path d="M94.25,196.94 C117.55,196.94 141.07,196.94 164.55,196.94" fill="none" id="programmer-to-program" style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;" /><polygon fill="#181818" points="169.55,196.94,160.55,192.94,164.55,196.94,160.55,200.94,169.55,196.94" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39.457" x="112.54" y="190.0069">writes</text></g></g></svg></div>
+
+<p>In the course of this textbook, we will take on the role of a language designer.</p>
+<h2 id="language-specification">Language Specification</h2>
+<p>Most interpreters are built around three successive phases: lexical analysis,
+syntactic analysis, and semantic analysis.</p>
+<div><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" data-diagram-type="ACTIVITY" height="444px" preserveAspectRatio="xMaxYMax meet" style="width:206px;height:444px;background:#FFFFFF;" version="1.1" viewBox="0 0 206 444" width="206px" zoomAndPan="magnify" id="Kroki"><defs /><g><ellipse cx="101.4189" cy="25" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1;" /><rect fill="none" height="318.2178" style="stroke:#000000;stroke-width:1.5;" width="170.8379" x="16" y="45" /><path d="M101.7354,45 L101.7354,54.2969 L91.7354,64.2969 L16,64.2969" fill="none" style="stroke:#000000;stroke-width:1.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="75.7354" x="19" y="58.9951">interpreter</text><rect fill="none" height="196.7417" style="stroke:#000000;stroke-width:1.5;" width="150.8379" x="26" y="81.2969" /><path d="M80.8848,81.2969 L80.8848,90.5938 L70.8848,100.5938 L26,100.5938" fill="none" style="stroke:#000000;stroke-width:1.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="44.8848" x="29" y="95.292">parser</text><rect fill="none" height="82.2656" style="stroke:#000000;stroke-width:1.5;" width="130.8379" x="36" y="110.5938" /><path d="M101.6855,110.5938 L101.6855,119.8906 L91.6855,129.8906 L36,129.8906" fill="none" style="stroke:#000000;stroke-width:1.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="55.6855" x="39" y="124.5889">scanner</text><rect fill="#F1F1F1" height="33.9688" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="110.8379" x="46" y="146.8906" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="90.8379" x="56" y="168.0293">lexical analysis</text><rect fill="#F1F1F1" height="33.9688" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="126.6523" x="38.0928" y="232.0698" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="106.6523" x="48.0928" y="253.2085">syntactic analysis</text><rect fill="#F1F1F1" height="33.9688" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="127.3203" x="37.7588" y="317.249" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="107.3203" x="47.7588" y="338.3877">semantic analysis</text><ellipse cx="101.4189" cy="413.4282" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1;" /><ellipse cx="101.4189" cy="413.4282" fill="#222222" rx="6" ry="6" style="stroke:#222222;stroke-width:1;" /><line style="stroke:#181818;stroke-width:1;" x1="101.4189" x2="101.4189" y1="180.8594" y2="232.0698" /><polygon fill="#181818" points="97.4189,222.0698,101.4189,232.0698,105.4189,222.0698,101.4189,226.0698" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="36.8833" x="105.4189" y="210.5698">tokens</text><line style="stroke:#181818;stroke-width:1;" x1="101.4189" x2="101.4189" y1="266.0386" y2="317.249" /><polygon fill="#181818" points="97.4189,307.249,101.4189,317.249,105.4189,307.249,101.4189,311.249" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="56.6113" x="105.4189" y="295.749">parse tree</text><line style="stroke:#181818;stroke-width:1;" x1="101.4189" x2="101.4189" y1="35" y2="146.8906" /><polygon fill="#181818" points="97.4189,136.8906,101.4189,146.8906,105.4189,136.8906,101.4189,140.8906" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="31.5767" x="105.4189" y="79.3511">string</text><line style="stroke:#181818;stroke-width:1;" x1="101.4189" x2="101.4189" y1="351.2178" y2="402.4282" /><polygon fill="#181818" points="97.4189,392.4282,101.4189,402.4282,105.4189,392.4282,101.4189,396.4282" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="56.8638" x="105.4189" y="380.9282">(behavior)</text></g></svg></div>
+
+<p>The composition of the specification read by PLCC reflects the typical interpreter's
+organization. As we can see in the figure below, the specification is broken up in
+three parts: lexical specification, syntactical specification, and semantic
+specification. The next three chapters will go over each of these parts in
+greater detail.</p>
+<div><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" data-diagram-type="DESCRIPTION" height="614px" preserveAspectRatio="xMaxYMax meet" style="width:559px;height:614px;background:#FFFFFF;" version="1.1" viewBox="0 0 559 614" width="559px" zoomAndPan="magnify" id="Kroki"><defs /><g><g class="cluster" data-qualified-name="Specification File" data-source-line="1" id="ent0001"><path d="M6,186.29 L6,522.18 A2.5,2.5 0 0 0 8.5,524.68 L233.5,524.68 A2.5,2.5 0 0 0 236,522.18 L236,193.79 L226,183.79 L8.5,183.79 A2.5,2.5 0 0 0 6,186.29" fill="none" style="stroke:#181818;stroke-width:1;" /><path d="M226,183.79 L226,191.29 A2.5,2.5 0 0 0 228.5,193.79 L236,193.79" fill="none" style="stroke:#181818;stroke-width:1;" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthAdjust="spacing" textLength="135.9395" x="53.0303" y="198.7851">Specification File</text></g><g class="cluster" data-qualified-name="interpreter" data-source-line="9" id="ent0006"><polygon fill="none" points="260,99.29,270,89.29,534,89.29,534,518.18,524,528.18,260,528.18,260,99.29" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /><line style="stroke:#181818;stroke-width:1;" x1="524" x2="534" y1="99.29" y2="89.29" /><line style="stroke:#181818;stroke-width:1;" x1="260" x2="524" y1="99.29" y2="99.29" /><line style="stroke:#181818;stroke-width:1;" x1="524" x2="524" y1="99.29" y2="528.18" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthAdjust="spacing" textLength="87.3701" x="349.3149" y="115.2851">interpreter</text></g><g class="cluster" data-qualified-name="interpreter.parser" data-source-line="10" id="ent0007"><rect fill="none" height="265.6" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1;" width="226" x="284" y="137.29" /><rect fill="none" height="10" style="stroke:#181818;stroke-width:1;" width="15" x="490" y="142.29" /><rect fill="none" height="2" style="stroke:#181818;stroke-width:1;" width="4" x="488" y="144.29" /><rect fill="none" height="2" style="stroke:#181818;stroke-width:1;" width="4" x="488" y="148.29" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthAdjust="spacing" textLength="51.1055" x="371.4473" y="163.2851">parser</text></g><g class="cluster" data-qualified-name="interpreter.parser.scanner" data-source-line="11" id="ent0008"><rect fill="none" height="97.3" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1;" width="178" x="308" y="180.29" /><rect fill="none" height="10" style="stroke:#181818;stroke-width:1;" width="15" x="466" y="185.29" /><rect fill="none" height="2" style="stroke:#181818;stroke-width:1;" width="4" x="464" y="187.29" /><rect fill="none" height="2" style="stroke:#181818;stroke-width:1;" width="4" x="464" y="191.29" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthAdjust="spacing" textLength="62.4121" x="365.7939" y="206.2851">scanner</text></g><g class="entity" data-qualified-name="Specification File.lexspec" data-source-line="2" id="ent0002"><rect fill="#F1F1F1" height="39.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="167.5869" x="48.21" y="218.79" /><polygon fill="#F1F1F1" points="198.7969,223.79,198.7969,237.79,210.7969,237.79,210.7969,229.79,204.7969,223.79,198.7969,223.79" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;" /><line style="stroke:#181818;stroke-width:0.5;" x1="204.7969" x2="204.7969" y1="223.79" y2="229.79" /><line style="stroke:#181818;stroke-width:0.5;" x1="210.7969" x2="204.7969" y1="229.79" y2="229.79" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137.5869" x="58.21" y="244.7851">lexical specification</text></g><g class="entity" data-qualified-name="Specification File.synspec" data-source-line="3" id="ent0003"><rect fill="#F1F1F1" height="39.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="198.5059" x="21.75" y="344.09" /><polygon fill="#F1F1F1" points="203.2559,349.09,203.2559,363.09,215.2559,363.09,215.2559,355.09,209.2559,349.09,203.2559,349.09" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;" /><line style="stroke:#181818;stroke-width:0.5;" x1="209.2559" x2="209.2559" y1="349.09" y2="355.09" /><line style="stroke:#181818;stroke-width:0.5;" x1="215.2559" x2="209.2559" y1="355.09" y2="355.09" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="168.5059" x="31.75" y="370.0851">syntactical specification</text></g><g class="entity" data-qualified-name="Specification File.semspec" data-source-line="4" id="ent0004"><rect fill="#F1F1F1" height="39.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="186.8164" x="31.59" y="469.39" /><polygon fill="#F1F1F1" points="201.4064,474.39,201.4064,488.39,213.4064,488.39,213.4064,480.39,207.4064,474.39,201.4064,474.39" style="stroke:#181818;stroke-width:0.5;stroke-linejoin:miter;stroke-miterlimit:10;" /><line style="stroke:#181818;stroke-width:0.5;" x1="207.4064" x2="207.4064" y1="474.39" y2="480.39" /><line style="stroke:#181818;stroke-width:0.5;" x1="213.4064" x2="207.4064" y1="480.39" y2="480.39" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="156.8164" x="41.59" y="495.3851">semantic specification</text></g><g class="entity" data-qualified-name="interpreter.seman" data-source-line="16" id="ent0011"><rect fill="#F1F1F1" height="46.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="165.207" x="290.4" y="465.89" /><rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="435.607" y="470.89" /><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="433.607" y="472.89" /><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="433.607" y="476.89" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="125.207" x="305.4" y="498.8851">semantic analysis</text></g><g class="entity" data-qualified-name="interpreter.parser.synan" data-source-line="14" id="ent0010"><rect fill="#F1F1F1" height="46.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="176.8965" x="299.55" y="340.59" /><rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="456.4465" y="345.59" /><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="454.4465" y="347.59" /><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="454.4465" y="351.59" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="136.8965" x="314.55" y="373.5851">syntactical analysis</text></g><g class="entity" data-qualified-name="interpreter.parser.scanner.lexan" data-source-line="12" id="ent0009"><rect fill="#F1F1F1" height="46.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="145.9775" x="324.01" y="215.29" /><rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="449.9875" y="220.29" /><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="447.9875" y="222.29" /><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="447.9875" y="226.29" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="105.9775" x="339.01" y="248.2851">lexical analysis</text></g><g class="entity" data-qualified-name="source" data-source-line="7" id="ent0005"><path d="M363.6,8.5 L363.6,39.7969 A2.5,2.5 0 0 0 366.1,42.2969 L427.8988,42.2969 A2.5,2.5 0 0 0 430.3988,39.7969 L430.3988,16 L420.3988,6 L366.1,6 A2.5,2.5 0 0 0 363.6,8.5" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;" /><path d="M420.3988,6 L420.3988,13.5 A2.5,2.5 0 0 0 422.8988,16 L430.3988,16" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46.7988" x="373.6" y="28.9951">source</text></g><g class="entity" data-qualified-name="behavior" data-source-line="19" id="ent0012"><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="61.4482" x="342.28" y="598.1751">behavior</text></g><g class="link" data-entity-1="ent0002" data-entity-2="ent0009" data-link-type="dependency" data-source-line="21" id="lnk13"><path d="M216.11,238.44 C251.91,238.44 282.71,238.44 318.51,238.44" fill="none" id="lexspec-to-lexan" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="323.51,238.44,314.51,234.44,318.51,238.44,314.51,242.44,323.51,238.44" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0003" data-entity-2="ent0010" data-link-type="dependency" data-source-line="22" id="lnk14"><path d="M220.6,363.74 C246.76,363.74 267.91,363.74 294.07,363.74" fill="none" id="synspec-to-synan" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="299.07,363.74,290.07,359.74,294.07,363.74,290.07,367.74,299.07,363.74" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0004" data-entity-2="ent0011" data-link-type="dependency" data-source-line="23" id="lnk15"><path d="M218.48,489.03 C242.33,489.03 261.17,489.03 285.01,489.03" fill="none" id="semspec-to-seman" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="290.01,489.03,281.01,485.03,285.01,489.03,281.01,493.03,290.01,489.03" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0005" data-entity-2="ent0009" data-link-type="dependency" data-source-line="28" id="lnk18"><path d="M397,42.52 C397,80.84 397,167.59 397,210.11" fill="none" id="source-to-lexan" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="397,215.11,401,206.11,397,210.11,393,206.11,397,215.11" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0009" data-entity-2="ent0010" data-link-type="dependency" data-source-line="29" id="lnk19"><path d="M395.35,262.06 C393.73,284.3 391.6239,313.0833 390.0039,335.2833" fill="none" id="lexan-to-synan" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="389.64,340.27,394.2844,331.585,390.0039,335.2833,386.3056,331.0027,389.64,340.27" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="43.5894" x="394.04" y="306.6569">tokens</text></g><g class="link" data-entity-1="ent0010" data-entity-2="ent0011" data-link-type="dependency" data-source-line="30" id="lnk20"><path d="M385.25,387.35 C382.54,409.6 379.0339,438.4066 376.3339,460.5966" fill="none" id="synan-to-seman" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="375.73,465.56,380.7878,457.109,376.3339,460.5966,372.8464,456.1428,375.73,465.56" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26.438" x="382.4" y="431.9569">tree</text></g><g class="link" data-entity-1="ent0011" data-entity-2="ent0012" data-link-type="dependency" data-source-line="31" id="lnk21"><path d="M373,512.48 C373,531.19 373,552.46 373,569.68" fill="none" id="seman-to-behavior" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="373,574.68,377,565.68,373,569.68,369,565.68,373,574.68" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g></g></svg></div>
+
+<h2 id="going-beyond">Going beyond</h2>
+<p>Any program processing any input expressed in a text-based programming language
+must perform lexical analysis, syntactic analysis, and semantic analysis. Such
+programs include compilers, interpreters, and static analyzers (i.e., linters).
+So the concepts described in this chapter apply to all such tools.</p>
+<p>We will see that the language we use to define these specifications is itself a small programming language. We could, in principle, write a specification for the PLCC tool in its own language and ask PLCC to generate an alternate version of itself.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Textbook content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "content.tabs", "content.tabs.link"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>
