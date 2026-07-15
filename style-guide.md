@@ -10,3 +10,6 @@ This is the style guide for this textbook.
   do that work for you)
 - Use PlantUML for drawings
 - Format references according to the Chicago Manual of Style
+- Give every heading you link to an explicit id (`## Environments {#environments}`)
+  and link to it by id (`[environments][]` or `[text][environments]`), never by
+  file path. Ids survive file moves and renames.
