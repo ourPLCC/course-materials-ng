@@ -1,32 +1,17 @@
-A Programming Languages Course using PLCC
-=========================================
+# course-materials-ng
 
-This repository contains course notes, example languages, and sample homework
-assignments for an upper-level CS Programming Languages course using PLCC --
-a Programming Languages Compiler Compiler.
+Course materials for an upper-level programming languages course using
+[PLCC](https://github.com/ourPLCC/plcc). The centerpiece is a collaboratively
+written textbook in `textbook/`; the other directories hold reference
+materials the authors draw from.
 
-Set 1a of the course notes serves as a reference manual for PLCC. It describes
-the format of a language 'grammar' file that PLCC translates into Java classes
-to implement a scanner, parser, and interpreter for the language.
+- **Read the textbook:** <https://ourplcc.github.io/course-materials-ng/>
+- **Contribute:** see [CONTRIBUTING.md](CONTRIBUTING.md)
 
-In particular, `JNotes/` and `JNotes-src/` are organized as follows:
+## Licensing
 
-
-Slide Set | Contents
---------- | --------
-0         | Syntax and semantics; Tokens
-1         | Induction, recursion, and scope
-1a        | PLCC (reference manual)
-2         | Specifying data; Environments
-3         | Expression-based languages
-3a        | Parameter passing and mutation
-4         | Typed languages
-5         | Object-oriented languages
-6         | Infix expressions and arrays
-7         | Logic languages
-8         | Continuations, parallelism, exception handling, and concurrency
-
-The ABC language (see the Code directory) is an implementation of ABCDatalog
-(see http://abcdatalog.seas.harvard.edu/), a Prolog-like language that
-implements first-order logic. The implementation uses the ABCDatalog logic
-engine.
+Textbook content (`textbook/`) is licensed under
+[CC-BY-SA-4.0](LICENSES/CC-BY-SA-4.0.txt) (see `REUSE.toml`). Other
+directories carry their own licenses: the repository's root
+[LICENSE](LICENSE) (GPL-3.0) and per-directory annotations such as
+`Jackson/REUSE.toml` remain in force for their content.
