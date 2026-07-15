@@ -375,8 +375,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
       - name: Deploy edition
+        env:
+          EDITION: ${{ inputs.edition }}
         run: |
-          mike deploy --push --update-aliases "${{ inputs.edition }}" latest
+          mike deploy --push --update-aliases "$EDITION" latest
           mike set-default --push latest
 ```
 
