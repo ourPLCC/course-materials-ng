@@ -52,6 +52,7 @@ git checkout main && git pull && git checkout -b mkdocs-scaffolding
 - [ ] **Step 2: Write `requirements.txt`**
 
 ```
+mkdocs==1.6.1
 mkdocs-material==9.6.15
 mike==2.1.3
 mkdocs-kroki-plugin==1.6.0
@@ -229,6 +230,9 @@ name: Checks
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Strict build
@@ -371,8 +375,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
       - name: Deploy edition
+        env:
+          EDITION: ${{ inputs.edition }}
         run: |
-          mike deploy --push --update-aliases "${{ inputs.edition }}" latest
+          mike deploy --push --update-aliases "$EDITION" latest
           mike set-default --push latest
 ```
 
