@@ -40,9 +40,10 @@ See [style-guide.md](style-guide.md).
 
 Every merge to `main` republishes the `dev` version. Named editions
 (e.g. `2026.09`) are cut by a maintainer via the **Release edition** workflow
-(Actions → Release edition → Run workflow); readers land on the newest
-edition (`latest`) by default, and instructors can pin courses to a specific
-edition via the site's version selector.
+(Actions → Release edition → Run workflow). Once the first edition has been
+cut, readers land on the newest edition (`latest`) by default — until then
+the default is the in-progress `dev` version — and instructors can pin
+courses to a specific edition via the site's version selector.
 
 ## Everything else
 
