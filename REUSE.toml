@@ -1,0 +1,10 @@
+version = 1
+SPDX-PackageName = "course-materials-ng"
+SPDX-PackageSupplier = "PLCC Community <https://discord.gg/EVtNSxS9E2>"
+SPDX-PackageDownloadLocation = "https://github.com/ourPLCC/course-materials-ng"
+
+[[annotations]]
+path = "textbook/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "PLCC Community <https://discord.gg/EVtNSxS9E2>"
+SPDX-License-Identifier = "CC-BY-SA-4.0"
