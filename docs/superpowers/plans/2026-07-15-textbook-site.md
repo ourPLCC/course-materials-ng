@@ -52,6 +52,7 @@ git checkout main && git pull && git checkout -b mkdocs-scaffolding
 - [ ] **Step 2: Write `requirements.txt`**
 
 ```
+mkdocs==1.6.1
 mkdocs-material==9.6.15
 mike==2.1.3
 mkdocs-kroki-plugin==1.6.0
@@ -228,6 +229,9 @@ name: Checks
 
 on:
   pull_request:
+
+permissions:
+  contents: read
 
 jobs:
   build:
