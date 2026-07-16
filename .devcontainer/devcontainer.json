@@ -1,9 +1,6 @@
 {
 	"name": "Course Materials Dev Container",
-	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
-	"features": {
-		"ghcr.io/devcontainers/features/python:1": {}
-	},
+	"image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
 
 	"customizations": {
 		"vscode": {
