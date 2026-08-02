@@ -3,7 +3,7 @@
 This is the style guide for this textbook.
 
 - Use first-person plural ("we")
-- Capitalize only the first word except if the word is a proper name
+- Capitalize only the first word of titles except if the word is a proper name
 - Avoid unnecessary empty lines and trailing spaces
 - Format paragraphs in 80 columns
 - Explicitly number items in ordered lists (i.e., do let markdown applications
