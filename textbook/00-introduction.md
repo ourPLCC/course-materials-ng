@@ -14,7 +14,7 @@ Most programmers think they'll never design a new programming language. However,
 programming languages are one important tool of automation and abstraction. You
 may never need to create a full-fledged, general-purpose language, but you may
 need to design a special-purpose programming language (also called a
-domain-specific language) that eases solving a narrow class of problems.
+*domain-specific language*) that eases solving a narrow class of problems.
 
 ## Methodology
 
@@ -31,12 +31,12 @@ what a program does when we run it.
 
 The syntax of a language is the programmer's interface to a language. From this
 perspective, syntax is important. Poor syntax makes programming an onerous task.
-An better syntax can make a language less error prone, easier to type, easier
-to understand, and easier to maintain.
+Better syntax can make a language less error prone, easier to type, easier
+to read and understand, and easier to maintain.
 
 Semantics is the engine of a language. It establishes the expressive power of a
-language. It is where we decide if a language support iterative statements,
-conditional statements, exception handling, goto statements, functions,
+language. It is where we decide if a language supports iteration (loops),
+conditional statements (like `if`), exception handling, goto statements, functions,
 procedures, closures, type checking, classes and objects, out parameters, in-out
 parameters, passing parameters by reference, passing parameters by value,
 continuations, parallelism, side-effects, unification, etc.
