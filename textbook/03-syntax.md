@@ -7,24 +7,83 @@ in a given language. It is a process reminiscent of ensuring that the rules
 governing how words are arranged to create well-formed English sentences are
 being followed.
 
+```plantuml
+@startuml
+file grammar {
+    artifact lexspec as "lexical specification (regex)"
+    artifact synspec as "syntactical specification (BNF)" #Yellow
+    artifact semspec as "semantic specification (Python)"
+}
+
+file source
+
+node interpreter {
+    component parser {
+        component lexan as "lexical analysis"
+        component synan as "syntactical analysis"
+    }
+    component seman as "semantic analysis"
+}
+
+label behavior
+
+lexspec -> lexan
+synspec -> synan
+semspec -> seman
+
+lexspec -[hidden]-> synspec
+synspec -[hidden]-> semspec
+
+source --> lexan
+lexan --> synan : tokens
+synan --> seman : parse tree
+seman --> behavior
+@enduml
+```
+
 A language's **syntactic specification** defines the set of valid sentences for
 that language. The syntactic specification builds on top of the language's
 lexical specification by referring to its tokens. Here is our first example of a
-valid PLCC specification for a list of comma-separated numbers.
+valid PLCC specification for a list of comma-separated natural numbers.
 
 ```
-# Lexical specification for a list of comma-separated numbers
+# Lexical specification for a list of comma-separated natural numbers
 skip  WHITESPACE '\s+'
 token NUM        '\d+'
 token COMMA      ','
 
 %
 
-# Syntactic specification for a list of comma-separated numbers
-<List>     ::= <NUM> <ListTail>
-<ListTail> ::= COMMA <NUM> <ListTail>
-<ListTail> ::=
+# Syntactic specification for a list of comma-separated natural numbers
+<List>          ::= <NUM> <ListTail>
+<ListTail:Some> ::= COMMA <NUM> <ListTail>
+<ListTail:Zero> ::=
 ```
+
+If we save the text of this specification in a file called `spec.plcc` and run
+the command `echo 1, 2, 3 | plcc-parse` in the folder containing `spec.plcc`, we
+should get the following output:
+
+```
+List
+  NUM '1' [-:1:1]
+  Some
+    NUM '2' [-:1:4]
+    Some
+      NUM '3' [-:1:7]
+      Zero (empty)
+```
+
+Broadly, this output says that the parser produced by PLCC based on our
+specification recognized the input as a valid "program" (no error messages
+appear) and rendered, in plain text, the "program"'s parse tree. At the root of
+the tree, we find a `List`. This root node has two children: a number (`NUM`)
+and the list's remainder (`Some`, shown aligned with the previous `NUM`). `NUM`
+is a terminal symbol and therefore has no children. The first `Some`, on the
+other hand, is a non-terminal symbol that itself has two children (notice the
+recursion!), and so on.
+
+## A quick tour
 
 Let's go over this specification. At the top, we recognize the lexical
 specification described in the previous chapter. Below, after the percent
@@ -50,11 +109,10 @@ names a single *non-terminal* symbol (e.g., `List` or `ListTail`). The
 right-hand side (`RHS`) define the structure of that non-terminal symbol. The
 `RHS` may contain tokens (also known as *terminal* symbols) and non-terminals.
 Many of our symbols will be enclosed in a pair of angular brackets (`<` and
-`>`). Non-terminal symbols in this textbook follow the PascalCase writing
-format.
+`>`). Non-terminal symbols in this text follow the PascalCase writing format.
 
 For instance, the second line of our first example of a syntactic specification
-says that the non-terminal `ListTail` consists of a `COMMA` (a terminal symbol),
+says that the non-terminal `ListTail` may consist of a `COMMA` (a terminal symbol),
 followed by a `NUM` (a second terminal symbol), and ending with `ListTail` (a
 non-terminal symbol).
 
@@ -63,20 +121,22 @@ role in our specification. We call that non-terminal the *start symbol*.
 
 ### Alternatives
 
-It will soon become apparent that we must have the important capability to
-provide alternative definitions for a particular non-terminal symbol. Each
-alternative is defined on its own separate line with the same given non-terminal
-symbol appearing on the `LHS`.
+An important feature of grammars is the ability to define alternative rules,
+that is, to be able to have more than one rules with same `LHS`. However, PLCC
+requires that we disambiguate among rules with common `LHS` through distinct
+suffixes. A suffix follows the name of the non-terminal symbol separated with
+a colon (`:`).
 
 The last two lines of the example syntactic specification given at the beginning
 of this chapter provides an illustration: The non-terminal `ListTail` has two
-alternative definitions (one is empty, the other is not).
+alternative definitions (one is empty, the other is not), with two different
+suffixes (`Some` and `Zero`, respectively).
 
 ### One or more and the empty string
 
-Another important definition capability is allowing sentences of arbitrary
-length. We rely on recursion to provide this capability: The non-terminal on the
-`LHS` may appear on the `RHS` of its definition.
+Another important tool in the bag off language designers is allowing sentences
+of arbitrary length. BNF relies on recursion to provide this capability: The
+non-terminal on the `LHS` may appear on the `RHS` of its definition.
 
 The second line of the introductory example syntactic specification illustrates
 this concept: The non-terminal `ListTail` is defined in terms of itself (the
@@ -100,10 +160,10 @@ specification.
 
 ```
 # Syntactic specification for a list of possibly empty, comma-separated numbers
-<List>     ::= <NUM> <ListTail>
-<List>     ::=
-<ListTail> ::= COMMA <NUM> <ListTail>
-<ListTail> ::=
+<List:LSome>    ::= <NUM> <ListTail>
+<List:LZero>    ::=
+<ListTail:Some> ::= COMMA <NUM> <ListTail>
+<ListTail:Zero> ::=
 ```
 
 Again we make use of alternate definitions and an empty `RHS`.
@@ -118,7 +178,7 @@ below.
 
 ```
 # Syntactic specification for a list of possibly empty, comma-separated numbers
-<List>     **= <NUM> +COMMA
+<List> **= <NUM> +COMMA
 ```
 
 The `**=` metasymbol means zero or more; so it may match the empty string.
@@ -134,14 +194,14 @@ token is omitted.
 Consider the specification below.
 
 ```
-<List>     ::= <NUM>
-<List>     ::= <NUM> COMMA <List>
+<List:Only> ::= <NUM>
+<List:More> ::= <NUM> COMMA <List>
 ```
 
-It appears to be a valid specification for a non-empty, comma-separated list of
+At first glance, it appears to be a valid specification for a non-empty, comma-separated list of
 numbers. Unfortunately, PLCC will not accept this specification. The stated
 reason is that this specification is not an *LL(1)* grammar and PLCC can only
-generate LL(1) parsers. It is not the purpose of this textbook to explore
+generate LL(1) parsers. It is not the purpose of this text to explore
 the different types of grammars and parsing theory. Suffice to say that LL(1)
 implies parsers processing input from **L**eft to right, performing
 **L**eftmost derivation with a single (**1**) token lookahead. You can find
@@ -179,7 +239,7 @@ extended notation, the definition of the non-terminal `List` can be rewritten
 as shown below where the metasymbol `ε` means the empty string.
 
 ```
-<List>     ::= <NUM> <ListTail> | ε
+<List> ::= <NUM> <ListTail> | ε
 ```
 
 ### Parser generators

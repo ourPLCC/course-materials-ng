@@ -5,18 +5,70 @@ a *scanner*. Its role is to break the source text into a sequence of *tokens*.
 It is a process reminiscent of breaking English sentences into sequences of
 words.
 
+```plantuml
+@startuml
+file grammar {
+    artifact lexspec as "lexical specification (regex)" #Yellow
+    artifact synspec as "syntactical specification (BNF)"
+    artifact semspec as "semantic specification (Python)"
+}
+
+file source
+
+node interpreter {
+    component parser {
+        component lexan as "lexical analysis"
+        component synan as "syntactical analysis"
+    }
+    component seman as "semantic analysis"
+}
+
+label behavior
+
+lexspec -> lexan
+synspec -> synan
+semspec -> seman
+
+lexspec -[hidden]-> synspec
+synspec -[hidden]-> semspec
+
+source --> lexan
+lexan --> synan : tokens
+synan --> seman : parse tree
+seman --> behavior
+@enduml
+```
+
 A language's **lexical specification** defines the set of legal tokens for that
 language. Here is our first example of a valid PLCC specification consisting of only a
 lexical specification.
 
 ```
-# Lexical specification for a list of comma-separated numbers
+# Lexical specification for a list of comma-separated natural numbers
 skip  WHITESPACE '\s+'
 token NUM        '\d+'
 token COMMA      ','
 ```
 
-Let's go over this specification line by line.
+If we save the text of this specification in a file called `spec.plcc` and run
+the command `echo 1, 2, 3 | plcc-scan` in the folder containing `spec.plcc`, we
+should get the following output:
+
+```
+-:1:1 NUM '1'
+-:1:2 COMMA ','
+-:1:4 NUM '2'
+-:1:5 COMMA ','
+-:1:7 NUM '3'
+```
+
+Broadly, this output says that the scanner produced by PLCC based on our
+specification recognized, in the input text (i.e., "1, 2, 3"), two kinds of
+patterns (i.e., tokens): (1) numbers (`NUM`) and (2) commas (`COMMA`).
+
+## A quick tour
+
+Let's go over the above specification line by line.
 
 1. The first line is a comment.
 2. The second line tells the scanner to recognize whitespace characters, but the
@@ -56,7 +108,7 @@ established language for specifying patterns that match sequences of characters.
 To familiarize ourselves with regular expressions, let's complete interactive
 lessons 1 through 9 from [RegexOne](https://regexone.com/).
 
-The remainder of this textbook assumes that we can easily read and write simple
+The remainder of this text assumes that we can easily read and write simple
 regular expressions. In particular, we should be clear on
 
 * the meanings of the following shorthand patterns: `\s`, `\S`, `\d`, `\D`,
