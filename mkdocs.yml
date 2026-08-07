@@ -12,8 +12,11 @@ copyright: >
 theme:
   name: material
   features:
-    - navigation.tabs
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
     - navigation.sections
+    - navigation.tracking
     - toc.integrate
     - search.suggest
     - content.tabs
@@ -44,6 +47,9 @@ nav:
   - Overview: 01-overview.md
   - Tokens: 02-tokens.md
   - Syntax: 03-syntax.md
+  - Semantics: 04-semantic.md
+  - V0: 05-v0.md
+  - Environments: 06-environments.md
 
 extra:
   version:
