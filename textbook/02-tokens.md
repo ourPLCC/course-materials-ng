@@ -3,7 +3,7 @@
 The first component in any of the interpreters that PLCC builds for us is called
 a *scanner*. Its role is to break the source text into a sequence of *tokens*.
 It is a process reminiscent of breaking English sentences into sequences of
-words.
+words and punctuation symbols.
 
 ```plantuml
 @startuml
@@ -87,7 +87,7 @@ Here are some pertinent facts about a valid PLCC lexical specification.
 
 * Comments begin with `#` and ends at the end of the line.
 
-* A lexical rule (whether token or skip) consists of exactly three parts separated by whitespace.
+* A lexical rule (whether `token` or `skip`) consists of exactly three parts separated by whitespace.
 
 * The three parts are (1) a keyword, (2) a token name, and (3) a quoted regular
   expression.
@@ -105,7 +105,7 @@ The third part of a token definition consists of a quoted pattern called a
 *regular expression* (regex for short). Regular expressions are a well
 established language for specifying patterns that match sequences of characters.
 
-To familiarize ourselves with regular expressions, let's complete interactive
+To familiarize ourselves with regular expressions, you should complete interactive
 lessons 1 through 9 from [RegexOne](https://regexone.com/).
 
 The remainder of this text assumes that we can easily read and write simple
@@ -129,8 +129,8 @@ the scanner scans the stream from left to right.
 3. If multiple patterns match, select the longest match.
 4. If there are multiple longest matches, select the one whose definition
    appears first in the specification.
-5. If the match is a token, emit it (do not emit if it is a skip).
-6. Remove the match from the front (left side) of the input, and repeat starting
+5. If the match is a token, emit it. (That means that the scanner not emit if it is a skip.)
+6. Remove the matched characters from the front (left side) of the input, and repeat starting
    from step 1.
 
 Here is the same algorithm in a Python-like pseudo-code.
@@ -163,7 +163,8 @@ token ANY  '.+'
 token HI   'hi'
 ```
 
-And suppose our scanner is trying to match the front of `hi there`.
+Suppose our scanner is trying to match the front of `hi there`.
+(NOTE! There are no `skip`s defined.)
 
 All three patterns match. `WORD` and `HI` both match `hi`, but `ANY` matches
 `hi there`. Since `ANY` is the longest match, it wins, and an `ANY` token is
@@ -184,14 +185,19 @@ token FROM 'from'
 And suppose our scanner is considering the string `from now on`.
 
 In this case both `WORD` and `FROM` match `from`, and their matches are equal in
-length. So they are both equally longest matches. To break the tie, the scanner
+length. So they are both longest matches. To break the tie, the scanner
 selects the match from the definition that appears first in the specification.
 So, in this case, a `WORD` token is emitted containing the lexeme `from`.
 
 Notice that, in this specification, `WORD` will *always win*, and `FROM` will never be
-emitted. This is probably not our intention. This is a common problem that can
+emitted. This is probably not our intention.
+It is more likely that we meant `FROM` to be a special (*reserved*) word, and `WORD`
+to define "any non-reserved word".
+
+This is a common problem that can
 be avoided by placing patterns with `+` and `*` quantifiers after patterns
-without quantifiers. If we rewrote our example specification as follows:
+with literal letters and punctuation symbols.
+If we rewrote our example specification as follows:
 
 ```
 token FROM 'from'
@@ -212,7 +218,7 @@ likely what we want.
 ## Going beyond
 
 In defining a new programming language, we must first specify the *lexical*
-(from a Greek word meaning "word") structure of the language: the symbols used
+(from the Greek word λέξη meaning "word") structure of the language: the symbols used
 to construct a program in the language. These symbols are called *tokens*.
 *Lexical analysis* is the process of applying these rules by reading program
 input and  isolating its tokens. Tokens comprise the "atomic structure" of a
@@ -221,9 +227,8 @@ program.
 Lexical analysis is also called *scanning*. Programming language tokens normally
 consist of things such as numbers (e.g., `23` or `54.7`), identifiers (e.g.,
 `foo` or `x`), reserved words (also called keywords, e.g., `for`, `while`), and
-punctuation symbols (`., `[`). Every programming language has rules that define
-the tokens in the language (these rules differ from one programming language to
-another) that are part of the programming language specification.
+punctuation symbols (`.`, `[`). Every programming language's specification
+has its own distinct rules that define the tokens in the language.
 
 A *lexical analyzer* is a program or procedure that carries out lexical analysis
 for a particular language. Such a program is also called a *scanner*,
@@ -234,8 +239,8 @@ a language is defined by the lexical specification of the language.
 The string of input characters that makes up a token is called a *lexeme*. For
 example, when you read a word (token) from printed text on a page, the
 particular collection of characters that make up the word is its lexeme. In this
-paragraph, the first lexeme is "the" (ignoring case), consisting of the
-individual letters 't', 'h', and 'e'. This lexeme is an instance of an English
+paragraph, the first lexeme is "The", consisting of the
+individual letters 'T', 'h', and 'e'. This lexeme is an instance of an English
 part of speech called an "article". In this case, "article" is the token and
 "the" is the instance. The other instances of the "article" token (in English)
 are "a" and "an". **A token is an abstraction, and a lexeme is an instance of
