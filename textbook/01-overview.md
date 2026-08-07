@@ -14,9 +14,9 @@ description of the programming language we wish to design. We refer to the
 textual description as a specification.
 
 The diagram below depicts the relationships among language designers,
-programmers, and PLCC. Language designers write a specification for the language they
-are designing. They use PLCC to generate an interpreter for the language from
-its specification. Then programmers write programs in this language and use the
+programmers, and PLCC. Language designers write a specification for the new language they
+are designing. They use PLCC to generate an interpreter for the new language from
+its specification. Then programmers write programs in this new language and use the
 generated interpreter to run these programs.
 
 ```plantuml
