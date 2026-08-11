@@ -2,38 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ourplcc.github.io/course-materials-ng/dev/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-11</lastmod>
     </url>
     <url>
          <loc>https://ourplcc.github.io/course-materials-ng/dev/00-introduction/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-11</lastmod>
     </url>
     <url>
          <loc>https://ourplcc.github.io/course-materials-ng/dev/01-overview/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-11</lastmod>
     </url>
     <url>
          <loc>https://ourplcc.github.io/course-materials-ng/dev/02-tokens/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-11</lastmod>
     </url>
     <url>
          <loc>https://ourplcc.github.io/course-materials-ng/dev/03-syntax/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-11</lastmod>
     </url>
     <url>
          <loc>https://ourplcc.github.io/course-materials-ng/dev/04-semantic/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-11</lastmod>
     </url>
     <url>
          <loc>https://ourplcc.github.io/course-materials-ng/dev/05-v0/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-11</lastmod>
     </url>
     <url>
          <loc>https://ourplcc.github.io/course-materials-ng/dev/06-environments/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-11</lastmod>
     </url>
     <url>
          <loc>https://ourplcc.github.io/course-materials-ng/dev/07-v1/</loc>
-         <lastmod>2026-08-10</lastmod>
+         <lastmod>2026-08-11</lastmod>
+    </url>
+    <url>
+         <loc>https://ourplcc.github.io/course-materials-ng/dev/08-v2/</loc>
+         <lastmod>2026-08-11</lastmod>
     </url>
 </urlset>
