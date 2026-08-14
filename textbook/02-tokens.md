@@ -1,7 +1,7 @@
 # Tokens
 
 The first component in any of the interpreters that PLCC builds for us is called
-a *scanner*. Its role is to break the source text into a sequence of *tokens*.
+a *lexical analyzer*, often just referred to as a *scanner*. Its role is to break the source text into a sequence of *tokens*.
 It is a process reminiscent of breaking English sentences into sequences of
 words and punctuation marks.
 
@@ -75,6 +75,13 @@ Let's go over the above specification line by line.
    `skip` keyword says not to emit them as a token.
 3. The third line defines the `NUM` token as a sequence of one or more digits.
 4. The fourth line defines the `COMMA` token as the single character `,`.
+
+Tokens and skips definitions rely on the power and convenience of regular
+expressions (abbreviated regexes) which we will cover in greater details soon.
+
+We refer to *whitespace* as any character sequence that can be used as a
+divider. These sequences can include the conventional space but also any
+characters rendered as white space on the screen such as the horizontal tab.
 
 The generated scanner will raise a lexical error when it encounters any
 unrecognized character sequence.
@@ -214,6 +221,9 @@ likely what we want.
 
 * "Snake case," Wikipedia, last modified April 9, 2026,
   https://en.wikipedia.org/wiki/Snake_case
+
+* "Whitespace character," Wikipedia, last modified August 13, 2026,
+  https://en.wikipedia.org/wiki/Whitespace_character
 
 ## Going beyond
 
