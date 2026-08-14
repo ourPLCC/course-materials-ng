@@ -84,6 +84,32 @@ is a terminal symbol and therefore has no children. The first `Some`, on the
 other hand, is a non-terminal symbol that itself has two children and so on.
 (Notice the recursion!)
 
+Below is a diagram depicting that same output highlighting the arborescent
+structure more strikingly.
+
+```plantuml
+@startuml
+object List
+object "Num@1"
+object "Some@1"
+object "Num@2"
+object "Some@2"
+object "Num@3"
+object "Zero"
+
+"Num@1" : num = 1
+"Num@2" : num = 2
+"Num@3" : num = 3
+
+List -- "Num@1"
+List -- "Some@1"
+"Some@1" -- "Num@2"
+"Some@1" -- "Some@2"
+"Some@2" -- "Num@3"
+"Some@2" -- "Zero"
+@enduml
+```
+
 ## A quick tour
 
 Let's go over this specification. At the top, we recognize the lexical
