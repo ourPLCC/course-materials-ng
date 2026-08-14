@@ -80,7 +80,7 @@ Tokens and skips definitions rely on the power and convenience of regular
 expressions (abbreviated regexes) which we will cover in greater details soon.
 
 We refer to *whitespace* as any character sequence that can be used as a
-divider. These sequences can include the conventional space but also any
+separator. These sequences can include the conventional space but also any
 characters rendered as white space on the screen such as the horizontal tab.
 
 The generated scanner will raise a lexical error when it encounters any
