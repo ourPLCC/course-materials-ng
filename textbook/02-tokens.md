@@ -261,3 +261,8 @@ this abstraction.**
 * Douglas Thain, "Scanning," chap. 3 in *Introduction to Compilers and Language
   Design,* 2nd ed., (Self-published, 2023),
   https://dthain.github.io/books/compiler/chapter3.pdf
+
+### Suggested resource
+
+Regex101 (https://regex101.com/) is a convenient website to experiment with and
+test regular expressions.
