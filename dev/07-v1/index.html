@@ -526,7 +526,7 @@ def evalRands(self, env):
     return [e.eval(env) for e in self.expList]
 
 def __str__(self):
-    return &quot;,&quot;.join(str(e) for e in self.expList)
+    return ",".join(str(e) for e in self.expList)
 %%%
 </code></pre></div>
 <p>The <code>evalRands</code> method returns a list of <code>Val</code>s.</p>
@@ -545,7 +545,7 @@ def eval(self, env):
     return self.prim.apply(args)
 
 def __str__(self):
-    return f&quot;{self.prim}({self.rands})&quot;
+    return f"{self.prim}({self.rands})"
 %%%
 </code></pre></div>
 <p>In summary, to evaluate a primitive application expression (a <code>PrimappExp</code>), we
@@ -569,11 +569,11 @@ specification for the <code>AddPrim</code> class.</p>
 <div class="highlight"><pre><span></span><code>AddPrim
 %%%
 def __str__(self):
-    return &quot;+&quot;
+    return "+"
 
 def apply(self, args):
     if len(args) != 2:
-        raise LanguageError(&quot;two arguments expected&quot;)
+        raise LanguageError("two arguments expected")
     i0 = args[0].intVal().val
     i1 = args[1].intVal().val
     return IntVal(i0 + i1)
@@ -595,11 +595,11 @@ passed as element zero of the <code>args</code> list.</p>
 <div class="highlight"><pre><span></span><code>Add1Prim
 %%%
 def __str__(self):
-    return &quot;add1&quot;
+    return "add1"
 
 def apply(self, args):
     if len(args) != 1:
-        raise LanguageError(&quot;one argument expected&quot;)
+        raise LanguageError("one argument expected")
     i0 = args[0].intVal().val
     return IntVal(i0 + 1)
 %%%

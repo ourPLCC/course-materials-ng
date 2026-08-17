@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://ourplcc.github.io/course-materials-ng/dev/08-v2/">
+        <link rel="canonical" href="https://ourplcc.github.io/course-materials-ng/dev/03-plcc/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Language V2 - Programming Languages with PLCC</title>
+        <title>Interlude: PLCC invocation - Programming Languages with PLCC</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#language-v2" class="md-skip">
+        <a href="#interlude-plcc-invocation" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Language V2
+              Interlude: PLCC invocation
             
           </span>
         </div>
@@ -448,124 +448,156 @@
   
 
 
-<h1 id="language-v2">Language V2</h1>
-<p>Language <code>V2</code> is the same as Language <code>V1</code>, with the addition of the syntax and
-semantics of an <code>if</code> expression.</p>
-<h2 id="quick-overview">Quick overview</h2>
-<p>The <code>if</code> expression (not to be confused with the <code>if</code> statement) returns one of
-two values depending on the result of the evaluation of a third expression.</p>
-<p>The relevant grammar rule and abstract syntax representation of the <code>if</code>
-expression are shown below.</p>
-<div class="highlight"><pre><span></span><code>&lt;Exp:IfExp&gt;      ::= IF &lt;Exp:testExp&gt; THEN &lt;Exp:trueExp&gt; ELSE &lt;Exp:falseExp&gt;
-
-__init__(self, testExp, trueExp, falseExp)
+<h1 id="interlude-plcc-invocation">Interlude: PLCC invocation</h1>
+<h2 id="quick-tour">Quick tour</h2>
+<p>PLCC comes with the three main commands summarized in the following table.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plcc-scan</code></td>
+<td>Scan the given input</td>
+</tr>
+<tr>
+<td><code>plcc-parse</code></td>
+<td>Parse the given input</td>
+</tr>
+<tr>
+<td><code>plcc-rep</code></td>
+<td>Evaluate the given input</td>
+</tr>
+</tbody>
+</table>
+<p>If you have come to this chapter having read chapters sequentially, you may only
+be familiar with the first command. Please be patient; explanations about the
+other two commands will come soon enough. This chapter focuses on <em>how</em> to
+invoke these commands, not <em>what</em> they accomplish. This chapter mentions all
+three commands because they share the same invocation scheme.</p>
+<h2 id="installation">Installation</h2>
+<p>This chapter assumes that PLCC is installed in your environment. To install PLCC
+in your environment, please consult the official
+<a href="https://ourplcc.github.io/plcc-ng/latest/installation/">documentation</a>.</p>
+<h2 id="three-invocation-modes">Three invocation modes</h2>
+<p>All three commands listed at the beginning of this chapter read some input and
+produces some output depending on their role. In addition to the regular input,
+all commands also read a specification file that will affect how that regular
+input is processed. By default, these commands look for a file named
+<code>spec.plcc</code>. You can override this choice with a command-line argument. A
+subsequent section will give more details.</p>
+<p>The regular input can be fed into these commands in one of three ways:</p>
+<ul>
+<li>Through a file</li>
+<li>Interactively</li>
+<li>Input redirection</li>
+</ul>
+<p>For the rest of this chapter, we use the command <code>plcc-scan</code> as an example and
+we assume that the lines</p>
+<div class="highlight"><pre><span></span><code># Lexical specification for a list of comma-separated natural numbers
+skip  WHITESPACE '\s+'
+token NUM        '\d+'
+token COMMA      ','
 </code></pre></div>
-<p>Notice that we need to add token names <code>IF</code>, <code>THEN</code>, and <code>ELSE</code> to our lexical
-specification, along with their obvious definitions.</p>
-<p>Assuming the current working directory is <code>Python</code> of the appropriate language
-specification, the following interaction log shows the evaluation of a simple
-<code>if</code> expression.</p>
-<div class="highlight"><pre><span></span><code>$ echo "if 0 then 1 else 2" | plcc-rep
-2
+<p>are contained in a file named <code>spec.plcc</code> and that we wish to process the input</p>
+<div class="highlight"><pre><span></span><code>1, 2, 3
 </code></pre></div>
-<h2 id="if-expression"><code>if</code> expression</h2>
-<p>The <code>RHS</code> of the <code>IfExp</code> grammar rule has three occurrences of the <code>Exp</code>
-non-terminal. We disambiguate these occurrences with the suffixes <code>testExp</code>,
-<code>trueExp</code>, and <code>falseExp</code>, respectively. Note that PLCC relies on these suffixes
-to name the three attributes associated with <code>IfExp</code> class. Each of these
-objects refers to an instance of the <code>Exp</code> base class.</p>
-<p>To evaluate an <code>if</code> expression with a given environment, we first evaluate the
-<code>testExp</code> expression. If it evaluates to true, we evaluate the <code>trueExp</code>
-expression and return its result as the value of the entire expression. If it
-evaluates to false, we evaluate the <code>falseExp</code> expression and return its result.
-Each of these expressions is evaluated in the given environment.</p>
-<h3 id="what-is-false">What is false?</h3>
-<p>Since all instances of <code>Val</code> are really <code>IntVal</code>s (for the time being), we
-regard the <code>IntVal</code> object corresponding to <code>0</code> to be false and all others to be
-true. Correspondingly, we define an <code>isTrue</code> method for an <code>IntVal</code> object as
-follows.</p>
-<div class="highlight"><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="nf">isTrue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">!=</span> <span class="mi">0</span> <span class="c1"># nonzero is true, zero is false</span>
+<p>The principles exposed here will apply to all three commands equally.</p>
+<h3 id="through-a-file">Through a file</h3>
+<p>Assuming the input is stored in file called <code>prog</code>, we can then invoke the
+command as follows:</p>
+<div class="highlight"><pre><span></span><code>plcc-scan<span class="w"> </span>prog
 </code></pre></div>
-<p>This code is part of the <code>IntVal</code> class.</p>
-<h3 id="eval"><code>eval</code></h3>
-<p>Observe that the <code>eval</code> method in the <code>IfExp</code> class applies the <code>isTrue</code>
-method to a <code>Val</code> object, so we must include a definition for the <code>isTrue</code>
-method in the <code>Val</code> base class. Since we currently treat any <code>Val</code> object as
-true if it’s not an <code>IntVal</code> of zero, our default <code>isTrue</code> method in the <code>Val</code>
-class defaults to returning true.</p>
-<div class="highlight"><pre><span></span><code>Val
-%%%
-class Val:
-
-    def isTrue(self):
-        return True
-%%%
+<p>Then the output should look as follows:</p>
+<div class="highlight"><pre><span></span><code>prog:1:1 NUM '1'
+prog:1:2 COMMA ','
+prog:1:4 NUM '2'
+prog:1:5 COMMA ','
+prog:1:7 NUM '3'
 </code></pre></div>
-<p>Below is the definition for the <code>eval</code> method of the <code>IfExp</code> class.</p>
-<div class="highlight"><pre><span></span><code>IfExp
-%%%
-def eval(self, env):
-    if self.testExp.eval(env).isTrue():
-        return self.trueExp.eval(env)
-    else:
-        return self.falseExp.eval(env)
-%%%
+<p>Specifically for the scanner, assuming no errors, each line of output consists
+of the name of the input file that was processed, followed by a pair of numbers
+separated with colons, the identified token name, and extracted lexeme enclosed
+in a pair of single quotes. The numbers identifies the line and column where the
+lexeme was located in the input file.</p>
+<h3 id="interactively">Interactively</h3>
+<p>If we just type the command</p>
+<div class="highlight"><pre><span></span><code>plcc-scan
 </code></pre></div>
-<p>The <code>isTrue</code> boolean method applies to any instance of <code>Val</code>. It is a Python
-helper method used only to implement the semantics of the <code>if</code> expression; it is
-not part of the source language. On the other hand, <code>zero?</code> is a primitive in
-the source language (starting with Language <code>V1</code>), not a method in Python. The
-<code>zero?</code> primitive applies only to integer values in the source language. We
-define the semantics of the <code>zero?</code> primitive using the <code>apply</code> method in the
-<code>ZeropPrim</code> class. </p>
-<h3 id="special-form">Special form</h3>
-<p>Observe that the <code>eval</code> method in the <code>IfExp</code> class evaluates only one of the
-<code>trueExp</code> or <code>falseExp</code> expressions, never both. This is a semantic feature, not
-a syntax feature, of the definition of <code>eval</code> for an <code>if</code> expression. The term
-<em>special form</em> refers to semantic structures that look like expressions but
-that, when evaluated, don’t evaluate all of their constituent parts. An <code>if</code>
-expression is an example of a special form.</p>
-<h3 id="examples">Examples</h3>
-<p>Examples of <code>if</code> expressions are shown below.</p>
-<div class="highlight"><pre><span></span><code>$ echo "if 1 then 3 else 4" | plcc-rep
-3
+<p>then it will print a welcome message and a prompt, and wait for some input to be
+typed:</p>
+<div class="highlight"><pre><span></span><code>Enter input. Press ^D (EOF) when done.
+&gt;&gt;&gt;
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>$ echo "if if 1 then 0 else 11 then 42 else 15" | plcc-rep
-15
+<p>At the prompt, we can then enter our input:</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; 1, 2, 3
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>$ echo "+(3, if -(x,x) then /(5,0) else 8)" | plcc-rep
-11
+<p>If we then type the enter key, the command will produce the now familiar output
+followed by another prompt:</p>
+<div class="highlight"><pre><span></span><code>-:1:1 NUM '1'
+-:1:2 COMMA ','
+-:1:4 NUM '2'
+-:1:5 COMMA ','
+-:1:7 NUM '3'
+&gt;&gt;&gt;
 </code></pre></div>
-<p>Note that, in the last example, the expression <code>/(5,0)</code> is not evaluated.</p>
-<h2 id="discussion">Discussion</h2>
-<p>An <code>if</code> expression <em>is</em> an expression and therefore it evaluates to a value. It
-is entirely unlike <code>if</code> statements in imperative languages such as C, Java, or
-Python, where the purpose of an <code>if</code> statement is to <em>do</em> one thing or another,
-not to return a value. Also observe that an <code>if</code> expression in our defined
-languages must have <em>both</em> a <code>then</code> part and an <code>else</code> part, even though only
-one of these expressions ends up being evaluated.</p>
-<p><code>if</code> expressions are central to functional languages such as Lisp
-(<code>(if nil 1 2)</code>), Scheme (<code>(if #f 1 2)</code>), or Haskell (<code>if False then 1 else 2</code>).</p>
-<p>Some imperative languages do support <code>if</code> expressions. For instance, C or C++
-can express our <code>if</code> expression running example as <code>0 ? 1 : 2</code>.</p>
-<p>The early implementations of the C programming language did not have a Boolean
-type. Instead, it relied on the integer type (<code>int</code>) much as our language 'V2'.
-Any context demanding a true or false value (e.g., <code>if</code> or <code>while</code>) expects an
-expression whose type is an integer. The C language then defined false when that
-expression yields <code>0</code>, true otherwise. The language is more restrictive as to
-the integer values produced by boolean expressions (e.g., <code>==</code> or <code>&amp;&amp;</code>). Indeed,
-if the boolean expression yields false, the corresponding integer value is <code>0</code>
-(as before); if it yields true, the corresponding integer value must be <code>1</code>. In
-other words, the C language is permissive in what it considers a true value, but
-conservative in the integer value it produces as a result of evaluating a true
-expression.</p>
+<p>Instead of a file name, each line of output now starts with the hyphen-minus
+character indicating that the input was entered interactively.</p>
+<p>We can enter another string of characters to process, followed by the enter key
+or finish our interaction with the command by pressing <code>d</code> while holding the
+control key (denoted <code>^D</code> or Control-D).</p>
+<h3 id="input-redirection">Input redirection</h3>
+<p>The third way to process some input is to use input redirection. If we type the
+command</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">"1, 2, 3"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>plcc-scan
+</code></pre></div>
+<p>then the following output will appear:</p>
+<div class="highlight"><pre><span></span><code>-:1:1 NUM '1'
+-:1:2 COMMA ','
+-:1:4 NUM '2'
+-:1:5 COMMA ','
+-:1:7 NUM '3'
+</code></pre></div>
+<p>Again each line starts with the hyphen-minus because the input was not read from
+a file.</p>
+<h2 id="text-convention">Text convention</h2>
+<p>Most examples in this text will specify the input and give the output without
+assuming a particular invocation style.</p>
+<h2 id="common-command-line-arguments">Common command-line arguments</h2>
+<p>The three commands accept the command-line argument listed in the following
+table.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Short form</th>
+<th>Long form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Show the help message</td>
+<td><code>-h</code></td>
+<td><code>--help</code></td>
+</tr>
+<tr>
+<td>Indicate the specification file</td>
+<td><code>-s &lt;path&gt;</code></td>
+<td><code>--spec=&lt;path&gt;</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="exercises">Exercises</h2>
 <h3 id="exercise-1">Exercise 1</h3>
-<p>Suppose we replace the occurrence of <code>IF</code> with <code>&lt;IF&gt;</code> in the grammar rule
-defining an <code>if</code> expression. Without experimenting directly with PLCC, what do
-you suppose will happen if you try to evaluate an expression? Then, verify your
-hypothesis by running PLCC.</p>
+<p>Invoke the scanner using all three invocation modes.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>"plcc-scan," PLCC Command Line Interface, version 2.0,
+  https://ourplcc.github.io/plcc-ng/2.0/cli/commands/plcc-scan/</li>
+</ul>
 
 
 
