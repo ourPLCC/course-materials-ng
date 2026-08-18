@@ -1,6 +1,6 @@
 # Interlude: PLCC invocation
 
-## Quick tour
+## A quick tour
 
 PLCC comes with the three main commands summarized in the following table.
 
@@ -143,10 +143,52 @@ then the following output will appear:
 Again each line starts with the hyphen-minus because the input was not read from
 a file.
 
+### Typical usage
+
+What situation calls for a particular invocation style? Here are some
+suggestions.
+
+If you are running the same test repeatedly, perhaps during a debugging
+session, then you will probably want to use the "through a file" method (e.g.,
+`plcc-scan in1.txt`).
+
+If you conducting some manual testing, perhaps checking the behavior of a new
+feature, then you will probably want to use the "interactive" method.
+
+You might reserve the "redirection" method either for a small test (e.g.,
+`echo "1, 2, 3" | plcc-scan`) or when needing to string two or more commands
+together (e.g., `cat in1.txt in2.txt | plcc-scan`).
+
 ## Text convention
 
 Most examples in this text will specify the input and give the output without
 assuming a particular invocation style.
+
+For instance, using our running example, the text will simply say that scanning
+the input
+
+```
+1, 2, 3
+```
+
+with the specification
+
+```
+# Lexical specification for a list of comma-separated natural numbers
+skip  WHITESPACE '\s+'
+token NUM        '\d+'
+token COMMA      ','
+```
+
+produces the following output
+
+```
+-:1:1 NUM '1'
+-:1:2 COMMA ','
+-:1:4 NUM '2'
+-:1:5 COMMA ','
+-:1:7 NUM '3'
+```
 
 ## Common command-line arguments
 
