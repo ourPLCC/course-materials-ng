@@ -29,7 +29,7 @@ produces some output depending on their role. In addition to the regular input,
 all commands also read a specification file that will affect how that regular
 input is processed. By default, these commands look for a file named
 `spec.plcc`. You can override this choice with a command-line argument. A
-subsequent section will give more details.
+subsequent section gives more details.
 
 The regular input can be fed into these commands in one of three ways:
 
