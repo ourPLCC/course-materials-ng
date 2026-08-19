@@ -47,10 +47,14 @@ nav:
   - Introduction: 00-introduction.md
   - Overview: 01-overview.md
   - Tokens: 02-tokens.md
-  - Syntax: 03-syntax.md
-  - Semantics: 04-semantic.md
-  - V0: 05-v0.md
-  - Environments: 06-environments.md
+  - PLCC-ng: 03-plcc.md
+  - Syntax: 04-syntax.md
+  - Semantics: 05-semantic.md
+  - V0: 06-v0.md
+  - Environments: 07-environments.md
+  - V1: 08-v1.md
+  - V2: 09-v2.md
+  - V3: 10-v3.md
 
 extra:
   version:
