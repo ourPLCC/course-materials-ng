@@ -88,9 +88,8 @@ def eval(self):
 %%%
 ```
 
-If we save the text of this specification in a file called `spec.plcc` and run
-the command `echo 1, 2, 3 | plcc-reg` in the folder containing `spec.plcc`, we
-should get the following output:
+If, with this specification, we run the command `plcc-rep` on our now familiar
+input `1, 2, 3`, we should get the following output:
 
 ```
 6

@@ -60,8 +60,7 @@ token COMMA      ','
 <ListTail:Zero> ::=
 ```
 
-If we save the text of this specification in a file called `spec.plcc` and run
-the command `echo 1, 2, 3 | plcc-parse` in the folder containing `spec.plcc`, we
+If, with this specification, we then run `plcc-parse` on input `1, 2, 3`, we
 should get the following output:
 
 ```
