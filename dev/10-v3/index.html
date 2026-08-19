@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="https://ourplcc.github.io/course-materials-ng/dev/10-v3/" rel="canonical"/>
+<link href="../09-v2/" rel="prev"/>
+<link href="../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.6.15" name="generator"/>
+<title>V3 - Programming Languages with PLCC</title>
+<link href="../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#language-v3">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<div data-md-color-scheme="default" data-md-component="outdated" hidden="">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Programming Languages with PLCC" class="md-header__button md-logo" data-md-component="logo" href=".." title="Programming Languages with PLCC">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Programming Languages with PLCC
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              V3
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    ourPLCC/course-materials-ng
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--integrated" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Programming Languages with PLCC" class="md-nav__button md-logo" data-md-component="logo" href=".." title="Programming Languages with PLCC">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Programming Languages with PLCC
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    ourPLCC/course-materials-ng
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+<span class="md-ellipsis">
+    Home
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../00-introduction/">
+<span class="md-ellipsis">
+    Introduction
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../01-overview/">
+<span class="md-ellipsis">
+    Overview
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../02-tokens/">
+<span class="md-ellipsis">
+    Tokens
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../03-plcc/">
+<span class="md-ellipsis">
+    PLCC-ng
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../04-syntax/">
+<span class="md-ellipsis">
+    Syntax
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../05-semantic/">
+<span class="md-ellipsis">
+    Semantics
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../06-v0/">
+<span class="md-ellipsis">
+    V0
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../07-environments/">
+<span class="md-ellipsis">
+    Environments
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../08-v1/">
+<span class="md-ellipsis">
+    V1
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../09-v2/">
+<span class="md-ellipsis">
+    V2
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    V3
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    V3
+    
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#quick-overview">
+<span class="md-ellipsis">
+      Quick overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#let-expression">
+<span class="md-ellipsis">
+      let expression
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#examples">
+<span class="md-ellipsis">
+      Examples
+    </span>
+</a>
+<nav aria-label="Examples" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eval">
+<span class="md-ellipsis">
+      eval
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scope">
+<span class="md-ellipsis">
+      Scope
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#discussion">
+<span class="md-ellipsis">
+      Discussion
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#references">
+<span class="md-ellipsis">
+      References
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="language-v3"><span class="enumerate-headings-plugin enumerate-heading-plugin">12.</span> Language V3</h1>
+<p>In Language <code>V3</code>, we add the concept of <code>let</code> expressions.</p>
+<h2 id="quick-overview"><span class="enumerate-headings-plugin enumerate-heading-plugin">12.1</span> Quick overview</h2>
+<p>The purpose of a <code>let</code> expression is to create an environment with new variable
+bindings and to evaluate an expression using these variable bindings.</p>
+<p>The relevant grammar rules and abstract syntax representations are shown below.</p>
+<div class="highlight"><pre><span></span><code>&lt;Exp:LetExp&gt;     ::= LET &lt;LetDecls&gt; IN &lt;Exp&gt;
+__init__(self, letDecls, exp)
+
+&lt;LetDecls&gt;       **= &lt;IDENT&gt; EQUALS &lt;Exp&gt;
+__init__(self, symbolList, expList)
+</code></pre></div>
+<p>The lexical section adds the obvious definitions for the tokens <code>LET</code>, <code>IN</code>, and
+<code>EQUALS</code>.</p>
+<p>As an example, the evaluation of the program</p>
+<div class="highlight"><pre><span></span><code>let
+  three = 2
+  four = 5
+in
+  +(three, four)
+</code></pre></div>
+<p>produces the output <code>7</code>.</p>
+<h2 id="let-expression"><span class="enumerate-headings-plugin enumerate-heading-plugin">12.2</span> <code>let</code> expression</h2>
+<p>The <code>let</code> expression consists of a series of declarations (<code>LetDecls</code>),
+following the <code>let</code> keyword, and a body (<code>Exp</code>), following the <code>in</code> keyword.</p>
+<p>To evaluate a <code>let</code> expression, we perform the following steps:</p>
+<ol>
+<li>
+<p>Create a set of local bindings by binding each of the identifiers to the
+   values of their corresponding expressions in the declarations part of the
+   construct, where the expressions to the right of the equal signs are all
+   evaluated in the enclosing environment;</p>
+</li>
+<li>
+<p>Extend the enclosing environment with these local bindings to create a new
+   environment; and</p>
+</li>
+<li>
+<p>Use this new environment to evaluate the expression in the body of the
+   construct, and return that value as the value of the <code>let</code> expression.</p>
+</li>
+</ol>
+<p>Remember that <em>a <code>let</code> expression is an expression, and as such, it evaluates
+to something!</em></p>
+<h2 id="examples"><span class="enumerate-headings-plugin enumerate-heading-plugin">12.3</span> Examples</h2>
+<p>Now that we can define our own environments, we will remove our initial
+environment with bindings for Roman numerals.</p>
+<p>In the first example, shown below, a new environment is created binding <code>x</code> to
+<code>3</code> and <code>y</code> to <code>8</code>, so that the <code>+(x,y)</code> expression evaluates to <code>11</code>.</p>
+<div class="highlight"><pre><span></span><code>let
+  x = 3
+  y = 8
+in
+  +(x,y)
+</code></pre></div>
+<p>In the second example, seen below, a new environment is created binding <code>x</code> to
+<code>10</code>. The body of this <code>let</code> expression is itself a <code>let</code> expression with
+bindings of <code>z</code> to <code>3</code> and <code>y</code> to <code>8</code>. The environment of the inner <code>let</code>
+<em>extends</em> the environment of the outer <code>let</code>, so that the <code>x</code> in the expression
+<code>+(x,y)</code> is bound to <code>10</code>. The entire expression therefore evaluates to <code>18</code>.</p>
+<div class="highlight"><pre><span></span><code>let
+  x = 10
+in
+  let
+    z = 3
+    y = 8
+  in
+    +(x,y)
+</code></pre></div>
+<p>In the third example below, two new environments are created. The outer <code>let</code>
+binds <code>x</code> to <code>3</code>. The inner let binds <code>x</code> to the value of <code>add1(x)</code> and <code>y</code> to
+the value of <code>add1(x)</code>. Both <code>add1(x)</code> expressions in the inner let, are
+evaluated <em>using the outer (enclosing) environment</em> which has <code>x</code> bound to <code>3</code>.
+Thus <code>add1(x)</code> evaluates to <code>4</code> <em>in both cases</em>. Thus, in the inner environment,
+<code>x</code> is bound to <code>4</code> <em>and</em> <code>y</code> is bound to <code>4</code>, so that the <code>+(x,y)</code> expression
+evaluates to <code>8</code>.</p>
+<div class="highlight"><pre><span></span><code>let
+  x = 3
+in
+  let
+    x = add1(x)
+    y = add1(x)
+  in
+    +(x,y)
+</code></pre></div>
+<p>Observe also that the <code>add1</code> primitive is <em>not</em> side-effecting. What this means
+is that the expression <code>add1(x)</code> does not modify the value bound to <code>x</code>.</p>
+<h3 id="eval"><span class="enumerate-headings-plugin enumerate-heading-plugin">12.3.1</span> <code>eval</code></h3>
+<p>The code for <code>eval</code> in the <code>LetExp</code> class is straight-forward.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
+    <span class="n">nenv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">letDecls</span><span class="o">.</span><span class="n">addBindings</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">nenv</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>addBindings</code> method returns an environment object that extends the
+environment parameter (<code>env</code>) by adding the bindings given in the <code>let</code>
+declarations. We use this extended environment to evaluate the body of the <code>let</code>
+expression.</p>
+<p>A <code>LetDecls</code> object has two attributes: <code>identList</code> is a list of <code>Token</code> objects
+representing the <code>IDENT</code> part of the BNF grammar rule and <code>expList</code> is a list
+of expressions representing the <code>Exp</code> part of the BNF grammar rule.</p>
+<p>Our plan for defining the <code>addBindings</code> method in the <code>LetDecls</code> class involves
+evaluating each of the expressions in <code>expList</code> in the enclosing environment and
+binding these values to their corresponding lexemes in <code>varList</code>. We then
+use these bindings to extend the enclosing environment given by the <code>env</code>
+parameter, and we return this new environment to the <code>eval</code> method in the
+<code>LetExp</code> class.</p>
+<p>By coincidence, the <code>Rands</code> object already has an <code>evalRands</code> method that
+evaluates each of the expressions in its <code>expList</code> attribute, so we simply reuse
+the <code>Rands</code> class and its <code>evalRands</code> method here.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">addBindings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
+    <span class="n">valList</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">env</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">expList</span><span class="p">]</span>
+    <span class="n">bindings</span> <span class="o">=</span> <span class="n">Bindings</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">identList</span><span class="p">,</span> <span class="n">valList</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="n">extendEnv</span><span class="p">(</span><span class="n">bindings</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>LetDecls</code> initializer throws and exception if it finds duplicate
+identifiers in its <code>varList</code>. This means that a <code>let</code> expression cannot have two
+instances of the same LHS identifier. The code to check for duplicates is
+inserted into the <code>LetDecls</code> class initializer using the <code>:init</code> hook.</p>
+<div class="highlight"><pre><span></span><code>LetDecls:init
+%%%
+Env.checkDuplicates(self.identList, " in let LHS identifiers")
+%%%
+</code></pre></div>
+<h3 id="scope"><span class="enumerate-headings-plugin enumerate-heading-plugin">12.3.2</span> Scope</h3>
+<p>The languages we have discussed do not allow mutation of variables, although you
+might be tempted to think that this Language <code>V3</code> program is doing something
+akin to mutation:</p>
+<div class="highlight"><pre><span></span><code>let
+  x = 3
+in
+  let
+    x = add1(x)
+  in
+    +(x, x)
+</code></pre></div>
+<p>This program evaluates to <code>8</code> (which is not surprising), but in the scope of the
+outer <code>let</code>, the variable <code>x</code> is still bound to <code>3</code> as illustrated in the
+following figure.</p>
+<div><svg contentstyletype="text/css" data-diagram-type="CLASS" height="154px" id="Kroki" preserveaspectratio="xMaxYMax meet" style="width:312px;height:154px;background:#FFFFFF;" version="1.1" viewbox="0 0 312 154" width="312px" xmlns="http://www.w3.org/2000/svg" zoomandpan="magnify"><defs></defs><g><g class="entity" data-qualified-name="EmptyEnv" data-source-line="1" id="ent0001"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="58.9121" x="240" y="7"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="44.9121" x="247" y="21.9951">empty</text></g><g class="entity" data-qualified-name="OuterBindings" data-source-line="4" id="ent0002"><rect fill="#F1F1F1" height="40.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="74.1973" x="132" y="99"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="60.1973" x="139" y="113.9951">Bindings</text><line style="stroke:#181818;stroke-width:1;" x1="132" x2="206.1973" y1="119.2969" y2="119.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="8.2852" x="137" y="134.292">x</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="8.9072" x="155.2852" y="134.292">3</text><line style="stroke:#181818;stroke-width:1;" x1="150.2852" x2="150.2852" y1="119.2969" y2="139.5938"></line></g><g class="entity" data-qualified-name="OuterEnv" data-source-line="8" id="ent0003"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="51.2969" x="137.5" y="7"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="37.2969" x="144.5" y="21.9951">outer</text></g><g class="entity" data-qualified-name="InnerBindings" data-source-line="14" id="ent0006"><rect fill="#F1F1F1" height="40.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="74.1973" x="7" y="99"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="60.1973" x="14" y="113.9951">Bindings</text><line style="stroke:#181818;stroke-width:1;" x1="7" x2="81.1973" y1="119.2969" y2="119.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="8.2852" x="12" y="134.292">x</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="8.9072" x="30.2852" y="134.292">4</text><line style="stroke:#181818;stroke-width:1;" x1="25.2852" x2="25.2852" y1="119.2969" y2="139.5938"></line></g><g class="entity" data-qualified-name="InnerEnv" data-source-line="18" id="ent0007"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="50.0049" x="30" y="7"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="36.0049" x="37" y="21.9951">inner</text></g><g class="link" data-entity-1="ent0003" data-entity-2="ent0001" data-link-type="dependency" data-source-line="11" id="lnk4"><path codeline="11" d="M196.12,17 C208.18,17 215.23,17 227.28,17" fill="none" id="OuterEnv-to-EmptyEnv" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="232.28,17,223.28,13,227.28,17,223.28,21,232.28,17" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0003" data-entity-2="ent0002" data-link-type="dependency" data-source-line="12" id="lnk5"><path codeline="12" d="M164.02,34.96 C165.01,51.57 166.2406,71.979 167.3406,90.319" fill="none" id="OuterEnv-to-OuterBindings" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="167.64,95.31,171.094,86.0867,167.3406,90.319,163.1083,86.5656,167.64,95.31" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0007" data-entity-2="ent0003" data-link-type="dependency" data-source-line="21" id="lnk8"><path codeline="21" d="M87.91,17 C101.79,17 110.68,17 124.56,17" fill="none" id="InnerEnv-to-OuterEnv" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="129.56,17,120.56,13,124.56,17,120.56,21,129.56,17" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0007" data-entity-2="ent0006" data-link-type="dependency" data-source-line="22" id="lnk9"><path codeline="22" d="M53.13,34.96 C51.31,51.57 49.0547,71.9998 47.0447,90.3398" fill="none" id="InnerEnv-to-InnerBindings" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="46.5,95.31,51.4567,86.7993,47.0447,90.3398,43.5043,85.9278,46.5,95.31" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g></g></svg></div>
+<p>To see clarify this point, consider the following variant of the preceding
+program:</p>
+<div class="highlight"><pre><span></span><code>let
+  x = 3
+in
+  +(let x = add1(x) in x, x)
+</code></pre></div>
+<p>Observe first that the figure above is still an accurate illustrations of the
+various environments involved for this variant. However, the value resulting
+from the variant's execution is different.</p>
+<p>The last occurrence of <code>x</code> in the expression evaluates to <code>3</code> because the
+variable <code>x</code> in the inner <code>let</code> has scope only through the inner <code>let</code>
+expression body. Outside of the inner <code>let</code> expression body, the binding of <code>x</code>
+to <code>3</code> remains unchanged. Thus the entire expression evaluates to <code>7</code>.</p>
+<p>Here is another important observation. In the <code>LetDecls</code> rule, each <code>IDENT</code>
+token is called the <em>left-hand side</em> (LHS) of the binding and the corresponding
+<code>Exp</code> is called its <em>right-hand side</em> (RHS). (Don’t confuse these definitions
+with the <code>LHS</code> and <code>RHS</code> of the grammar rule itself.) All of the RHS expressions
+in a <code>LetDecls</code> are evaluated in the enclosing environment. <em>The LHS <code>IDENT</code>
+variables become bound to their corresponding RHS expression values </em><em>after</em><em>
+all of the RHS expressions have been evaluated</em>. Thus the following expression</p>
+<div class="highlight"><pre><span></span><code>let
+  p = 4
+in
+  let
+    p = 42
+    x = p
+  in
+    x
+</code></pre></div>
+<p>evaluates to 4.</p>
+<h2 id="discussion"><span class="enumerate-headings-plugin enumerate-heading-plugin">12.4</span> Discussion</h2>
+<p>Scope is a very important concept in programming languages. Scoping rules will
+vary from one programming language to another. For instance, the C language
+supports <em>block scope</em> which creates a new scope for each embedding of a new
+block. Therefore, the following function definition is valid.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This function returns <code>2</code> regardless of the value passed as its argument. In
+contrast, Python does not support block scope.</p>
+<p>The <code>let</code> expression was first introduced in the Programming language for
+Computable Functions (PCF) and adopted in most functional programming languages
+since.</p>
+<p>As we have seen earlier in this chapter, our <code>add1(x)</code> primitive operator does
+not modify the value of <code>x</code>. In this respect, it does not behave the same way
+as <code>++x</code> does in languages such as C and Java.</p>
+<p>It is useful to avoid viewing bindings introduced in this chapter as variable
+assignments. It is more profitable to regard them as <em>naming</em> computed values.
+Indeed, once named, our values cannot be modified. Contrast this situation with
+assignments in C or Python. The content of variables in these languages can
+(almost) always be modified after initialization.</p>
+<h2 id="references"><span class="enumerate-headings-plugin enumerate-heading-plugin">12.5</span> References</h2>
+<ul>
+<li>
+<p>"Let expression," Wikipedia, last modified January 20, 2026,
+  https://en.wikipedia.org/wiki/Let_expression</p>
+</li>
+<li>
+<p>"Scope (computer programming)," Wikipedia, last modified June 3, 2026,
+  https://en.wikipedia.org/wiki/Scope_(computer_programming)</p>
+</li>
+</ul>
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Textbook content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<div class="md-progress" data-md-component="progress" role="progressbar"></div>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.sections", "navigation.tracking", "toc.integrate", "search.suggest", "content.tabs", "content.tabs.link"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+<script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+</body>
+</html>

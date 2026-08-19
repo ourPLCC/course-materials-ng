@@ -5,9 +5,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://ourplcc.github.io/course-materials-ng/dev/04-semantic/" rel="canonical"/>
-<link href="../03-syntax/" rel="prev"/>
-<link href="../05-v0/" rel="next"/>
+<link href="https://ourplcc.github.io/course-materials-ng/dev/05-semantic/" rel="canonical"/>
+<link href="../04-syntax/" rel="prev"/>
+<link href="../06-v0/" rel="next"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.15" name="generator"/>
 <title>Semantics - Programming Languages with PLCC</title>
@@ -166,7 +166,15 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../03-syntax/">
+<a class="md-nav__link" href="../03-plcc/">
+<span class="md-ellipsis">
+    PLCC-ng
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../04-syntax/">
 <span class="md-ellipsis">
     Syntax
     
@@ -297,7 +305,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../05-v0/">
+<a class="md-nav__link" href="../06-v0/">
 <span class="md-ellipsis">
     V0
     
@@ -305,9 +313,33 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../06-environments/">
+<a class="md-nav__link" href="../07-environments/">
 <span class="md-ellipsis">
     Environments
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../08-v1/">
+<span class="md-ellipsis">
+    V1
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../09-v2/">
+<span class="md-ellipsis">
+    V2
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../10-v3/">
+<span class="md-ellipsis">
+    V3
     
   </span>
 </a>
@@ -319,7 +351,7 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="semantic"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.</span> Semantic</h1>
+<h1 id="semantic"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.</span> Semantic</h1>
 <p>So far, we have learned how to write a lexical specification using regular
 expressions from which PLCC generates a scanner that reads a string and produces
 a sequence of tokens. We have also learned to write a syntactic specification in
@@ -371,12 +403,11 @@ def eval(self):
     return 0
 %%%
 </code></pre></div>
-<p>If we save the text of this specification in a file called <code>spec.plcc</code> and run
-the command <code>echo 1, 2, 3 | plcc-reg</code> in the folder containing <code>spec.plcc</code>, we
-should get the following output:</p>
+<p>If, with this specification, we run the command <code>plcc-rep</code> on our now familiar
+input <code>1, 2, 3</code>, we should get the following output:</p>
 <div class="highlight"><pre><span></span><code>6
 </code></pre></div>
-<h2 id="a-quick-tour"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.1</span> A quick tour</h2>
+<h2 id="a-quick-tour"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.1</span> A quick tour</h2>
 <p>Let's go over the above specification. Recall that PLCC uses the single percent
 sign (<code>%</code>) as a separator between sections of the specification. The first two
 sections (lexical and syntactical) should look familiar by now.</p>
@@ -398,7 +429,7 @@ non-empty list remainder, we extract the actual value of the next number saving
 it in variable <code>n</code>, we process the rest of the list adding the returned value to
 <code>n</code>, and we conclude by returning the sum. Likewise, for an empty list
 remainder, having no more numbers to process, we return zero.</p>
-<h2 id="plcc-semantic-specification"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2</span> PLCC semantic specification</h2>
+<h2 id="plcc-semantic-specification"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2</span> PLCC semantic specification</h2>
 <p>The semantic section of a PLCC specification starts after the second percent
 sign (<code>%</code>) appearing on its own line. If we do not want to provide a semantic
 section, we can omit the second percent sign (as we have seen in previous
@@ -419,7 +450,7 @@ corresponds to each of rules defined in the syntactic section). Each
 association consists of the type name (e.g., <code>List</code>) on its own line followed by
 zero or more Python method definitions enclosed in a pair of three percent
 signs (<code>%%%</code>).</p>
-<h3 id="interpreter-code-organization"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.1</span> Interpreter code organization</h3>
+<h3 id="interpreter-code-organization"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.1</span> Interpreter code organization</h3>
 <p>PLCC creates a class (or subclass) for each of the rules defined in the
 syntactical section of the specification. Generally, the name of the created
 class is the same as the name of the non-terminal appearing in the <code>LHS</code> of the
@@ -444,7 +475,7 @@ following conventions:</p>
   <code>&lt;ListTail&gt;</code> becomes the attribute <code>listTail</code>).</p>
 </li>
 </ul>
-<h3 id="attribute-access-and-conversions"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.2</span> Attribute access and conversions</h3>
+<h3 id="attribute-access-and-conversions"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.2</span> Attribute access and conversions</h3>
 <p>All functions defined in the semantic section become attribute methods. PLCC
 will include these methods in the pertinent class definitions associated with
 each the syntactic rules. Therefore, all these functions must take an instance
@@ -468,18 +499,18 @@ then can just use the output of the string conversion (e.g., <code>str(self.num)
 are of a type corresponding to the class PLCC creates for each non-terminal.
 We can then access methods defined for these classes using the usual dot
 notation (e.g., <code>self.listTail.eval()</code>).</p>
-<h3 id="start-symbol"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.3</span> Start symbol</h3>
+<h3 id="start-symbol"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.3</span> Start symbol</h3>
 <p>Remember that the <code>LHS</code> of the first rule defined in the syntactic section of a
 specification becomes the start symbol (i.e., the root of the parse tree). The
 semantic associated with that node must define a method with the following
 signature: <code>_run(self)</code>.</p>
-<h3 id="alternatives"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.4</span> Alternatives</h3>
+<h3 id="alternatives"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.4</span> Alternatives</h3>
 <p>As stated earlier, PLCC generally names created classes based on the name of the
 corresponding non-terminal symbol appearing in the <code>LHS</code> of a rule. An
 exception to this rule occurs when a specification has more than one rule with
 the same <code>LHS</code> symbol. In this case, PLCC bases the name of the class on the
 associated suffix.</p>
-<h3 id="repetition"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.5</span> Repetition</h3>
+<h3 id="repetition"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.5</span> Repetition</h3>
 <p>Suppose we define our list of natural numbers using the repetition metasymbol
 introduced in the previous chapter:</p>
 <div class="highlight"><pre><span></span><code>&lt;List&gt; **= &lt;NUM&gt; +COMMA
@@ -501,7 +532,7 @@ then walk through this list as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">numList</span><span class="p">:</span>
     <span class="nb">sum</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
 </code></pre></div>
-<h3 id="repeated-symbols-in-rhs"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.6</span> Repeated symbols in RHS</h3>
+<h3 id="repeated-symbols-in-rhs"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.6</span> Repeated symbols in RHS</h3>
 <p>Our semantic specification must be able to distinguish among repeated symbols
 appearing in the <code>RHS</code> of syntactic rules. Again PLCC relies on suffixes,
 separated from the symbol's name with a colon (<code>:</code>), to achieve disambiguation.</p>
@@ -527,7 +558,7 @@ plcc-validate-syntactic: spec.plcc:9:1: error: duplicate RHS symbol name 'num' â
 </code></pre></div>
 <p>Note that the semantic associated with Python format strings implicitly calls
 <code>str</code> on its arguments.</p>
-<h3 id="additional-code"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.7</span> Additional code</h3>
+<h3 id="additional-code"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.7</span> Additional code</h3>
 <p>As we have seen earlier in this chapter, PLCC creates classes for each of the
 non-terminal symbols appearing in our grammar. We will want the ability to add
 code unrelated to these automatically created class. If PLCC encounters an entry
@@ -544,7 +575,7 @@ source files to augment the semantic of the defined language. In this situation,
 there is no automatically generated class templates, so the Python code must be
 a complete Python source file, not just a method. We will see this feature in
 action in subsequent chapters.</p>
-<h3 id="include"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.8</span> Include</h3>
+<h3 id="include"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.8</span> Include</h3>
 <p>An include directive allows a PLCC language specification file to include the
 contents of other files, making them part of a single specification. In this
 way, separately created files can be combined together to form one language
@@ -556,9 +587,9 @@ example taken from a specification that we will study in a subsequent chapter:</
 %include prim
 %include val
 </code></pre></div>
-<h2 id="references"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.3</span> References</h2>
-<h2 id="going-beyond"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.4</span> Going beyond</h2>
-<h3 id="suggested-readings"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.4.1</span> Suggested readings</h3>
+<h2 id="references"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.3</span> References</h2>
+<h2 id="going-beyond"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.4</span> Going beyond</h2>
+<h3 id="suggested-readings"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.4.1</span> Suggested readings</h3>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

@@ -5,8 +5,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://ourplcc.github.io/course-materials-ng/dev/06-environments/" rel="canonical"/>
-<link href="../05-v0/" rel="prev"/>
+<link href="https://ourplcc.github.io/course-materials-ng/dev/07-environments/" rel="canonical"/>
+<link href="../06-v0/" rel="prev"/>
+<link href="../08-v1/" rel="next"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.15" name="generator"/>
 <title>Environments - Programming Languages with PLCC</title>
@@ -22,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#variables-bindings-environments">
+<a class="md-skip" href="#interlude-variables-bindings-environments">
           Skip to content
         </a>
 </div>
@@ -165,7 +166,15 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../03-syntax/">
+<a class="md-nav__link" href="../03-plcc/">
+<span class="md-ellipsis">
+    PLCC-ng
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../04-syntax/">
 <span class="md-ellipsis">
     Syntax
     
@@ -173,7 +182,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../04-semantic/">
+<a class="md-nav__link" href="../05-semantic/">
 <span class="md-ellipsis">
     Semantics
     
@@ -181,7 +190,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../05-v0/">
+<a class="md-nav__link" href="../06-v0/">
 <span class="md-ellipsis">
     V0
     
@@ -233,6 +242,30 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../08-v1/">
+<span class="md-ellipsis">
+    V1
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../09-v2/">
+<span class="md-ellipsis">
+    V2
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../10-v3/">
+<span class="md-ellipsis">
+    V3
+    
+  </span>
+</a>
+</li>
 </ul>
 </nav>
 </div>
@@ -240,7 +273,7 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="variables-bindings-environments"><span class="enumerate-headings-plugin enumerate-heading-plugin">8.</span> Variables, Bindings, Environments</h1>
+<h1 id="interlude-variables-bindings-environments"><span class="enumerate-headings-plugin enumerate-heading-plugin">9.</span> Interlude: Variables, bindings, environments</h1>
 <p><code>VO</code> is nice and good but we would like the semantics associated with our
 languages to be able to do more than just pretty-print the input program.
 Specifically, we would like to evaluate primitive expressions written in <code>V0</code> to
@@ -250,7 +283,7 @@ the symbols that can appear in those expressions. How should these symbols be
 evaluated?</p>
 <p>To solve this issue with an eye towards flexibility, we introduce the concepts
 of variables, bindings, and environments.</p>
-<h2 id="variables"><span class="enumerate-headings-plugin enumerate-heading-plugin">8.1</span> Variables</h2>
+<h2 id="variables"><span class="enumerate-headings-plugin enumerate-heading-plugin">9.1</span> Variables</h2>
 <p>A <em>variable</em> in a program is a symbol that has an associated value at runtime.
 We wish to store values of different types. One approach to achieve this
 flexibility is through abstract classes. The base class (<code>Val</code>) represents a
@@ -258,7 +291,7 @@ generic value. Derived classes represent the different types of values we need
 to support. For now, let's just worry about integer values (<code>IntVal</code>). The
 figure below illustrates this hierarchy.</p>
 <div><svg contentstyletype="text/css" data-diagram-type="CLASS" height="210px" id="Kroki" preserveaspectratio="xMaxYMax meet" style="width:113px;height:210px;background:#FFFFFF;" version="1.1" viewbox="0 0 113 210" width="113px" xmlns="http://www.w3.org/2000/svg" zoomandpan="magnify"><defs></defs><g><g class="entity" data-qualified-name="Val" data-source-line="2" id="ent0001"><rect fill="#F1F1F1" height="48" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="54.0459" x="25.64" y="7"></rect><ellipse cx="40.64" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M43.6088,28.6406 Q43.0306,28.9375 42.39,29.0781 Q41.7494,29.2344 41.0463,29.2344 Q38.5463,29.2344 37.2181,27.5938 Q35.9056,25.9375 35.9056,22.8125 Q35.9056,19.6875 37.2181,18.0313 Q38.5463,16.375 41.0463,16.375 Q41.7494,16.375 42.39,16.5313 Q43.0463,16.6875 43.6088,16.9844 L43.6088,19.7031 Q42.9838,19.125 42.39,18.8594 Q41.7963,18.5781 41.1713,18.5781 Q39.8275,18.5781 39.14,19.6563 Q38.4525,20.7188 38.4525,22.8125 Q38.4525,24.9063 39.14,25.9844 Q39.8275,27.0469 41.1713,27.0469 Q41.7963,27.0469 42.39,26.7813 Q42.9838,26.5 43.6088,25.9219 L43.6088,28.6406 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="22.0459" x="54.64" y="27.8467">Val</text><line style="stroke:#181818;stroke-width:0.5;" x1="26.64" x2="78.6859" y1="39" y2="39"></line><line style="stroke:#181818;stroke-width:0.5;" x1="26.64" x2="78.6859" y1="47" y2="47"></line></g><g class="entity" data-qualified-name="IntVal" data-source-line="5" id="ent0002"><rect fill="#F1F1F1" height="80.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="91.3174" x="7" y="115"></rect><ellipse cx="30.4511" cy="131" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M33.4199,136.6406 Q32.8417,136.9375 32.2011,137.0781 Q31.5605,137.2344 30.8574,137.2344 Q28.3574,137.2344 27.0292,135.5938 Q25.7167,133.9375 25.7167,130.8125 Q25.7167,127.6875 27.0292,126.0313 Q28.3574,124.375 30.8574,124.375 Q31.5605,124.375 32.2011,124.5313 Q32.8574,124.6875 33.4199,124.9844 L33.4199,127.7031 Q32.7949,127.125 32.2011,126.8594 Q31.6074,126.5781 30.9824,126.5781 Q29.6386,126.5781 28.9511,127.6563 Q28.2636,128.7188 28.2636,130.8125 Q28.2636,132.9063 28.9511,133.9844 Q29.6386,135.0469 30.9824,135.0469 Q31.6074,135.0469 32.2011,134.7813 Q32.7949,134.5 33.4199,133.9219 L33.4199,136.6406 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="40.5371" x="46.3292" y="135.8467">IntVal</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="97.3174" y1="147" y2="147"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="52.623" x="13" y="163.9951">val : int</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="97.3174" y1="171.2969" y2="171.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="79.3174" x="13" y="188.292">__init__(int)</text></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0002" data-link-type="extension" data-source-line="6" id="lnk3"><path d="M52.66,73.29 C52.66,90.06 52.66,95.09 52.66,114.73" fill="none" id="Val-backto-IntVal" style="stroke:#181818;stroke-width:1;"></path><polygon fill="none" points="52.66,55.29,46.66,73.29,58.66,73.29,52.66,55.29" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g></g></svg></div>
-<h2 id="bindings"><span class="enumerate-headings-plugin enumerate-heading-plugin">8.2</span> Bindings</h2>
+<h2 id="bindings"><span class="enumerate-headings-plugin enumerate-heading-plugin">9.2</span> Bindings</h2>
 <p>At any instance in time, the value associated with a variable is called a
 <em>binding</em> of the variable to the value. Building upon the class definitions
 described in the previous section, we can define a binding with a pair of
@@ -273,7 +306,7 @@ design. The class <code>Bindings</code> consists of a single attribute collectin
 bindings and provides two methods, one to look up a binding based on a variable
 name and another to add to the existing collection of bindings.</p>
 <div><svg contentstyletype="text/css" data-diagram-type="CLASS" height="259px" id="Kroki" preserveaspectratio="xMaxYMax meet" style="width:473px;height:259px;background:#FFFFFF;" version="1.1" viewbox="0 0 473 259" width="473px" xmlns="http://www.w3.org/2000/svg" zoomandpan="magnify"><defs></defs><g><g class="entity" data-qualified-name="Bindings" data-source-line="2" id="ent0001"><rect fill="#F1F1F1" height="96.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="186.665" x="7" y="7"></rect><ellipse cx="65.9839" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M68.9526,28.6406 Q68.3745,28.9375 67.7339,29.0781 Q67.0933,29.2344 66.3901,29.2344 Q63.8901,29.2344 62.562,27.5938 Q61.2495,25.9375 61.2495,22.8125 Q61.2495,19.6875 62.562,18.0313 Q63.8901,16.375 66.3901,16.375 Q67.0933,16.375 67.7339,16.5313 Q68.3901,16.6875 68.9526,16.9844 L68.9526,19.7031 Q68.3276,19.125 67.7339,18.8594 Q67.1401,18.5781 66.5151,18.5781 Q65.1714,18.5781 64.4839,19.6563 Q63.7964,20.7188 63.7964,22.8125 Q63.7964,24.9063 64.4839,25.9844 Q65.1714,27.0469 66.5151,27.0469 Q67.1401,27.0469 67.7339,26.7813 Q68.3276,26.5 68.9526,25.9219 L68.9526,28.6406 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="60.1973" x="86.4839" y="27.8467">Bindings</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="192.665" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="174.665" x="13" y="55.9951">bindingList : list[Binding]</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="192.665" y1="63.2969" y2="63.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="154.9365" x="13" y="80.292">lookup(str) -&gt; Binding</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="152.3867" x="13" y="96.5889">add(Binding) -&gt; None</text></g><g class="entity" data-qualified-name="Binding" data-source-line="8" id="ent0002"><rect fill="#F1F1F1" height="96.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="122.5508" x="229.06" y="7"></rect><ellipse cx="261.0014" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M263.9701,28.6406 Q263.392,28.9375 262.7514,29.0781 Q262.1107,29.2344 261.4076,29.2344 Q258.9076,29.2344 257.5795,27.5938 Q256.267,25.9375 256.267,22.8125 Q256.267,19.6875 257.5795,18.0313 Q258.9076,16.375 261.4076,16.375 Q262.1107,16.375 262.7514,16.5313 Q263.4076,16.6875 263.9701,16.9844 L263.9701,19.7031 Q263.3451,19.125 262.7514,18.8594 Q262.1576,18.5781 261.5326,18.5781 Q260.1889,18.5781 259.5014,19.6563 Q258.8139,20.7188 258.8139,22.8125 Q258.8139,24.9063 259.5014,25.9844 Q260.1889,27.0469 261.5326,27.0469 Q262.1576,27.0469 262.7514,26.7813 Q263.3451,26.5 263.9701,25.9219 L263.9701,28.6406 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="52.9033" x="278.7661" y="27.8467">Binding</text><line style="stroke:#181818;stroke-width:0.5;" x1="230.06" x2="350.6108" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="44.9326" x="235.06" y="55.9951">id : str</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="56.417" x="235.06" y="72.292">val : Val</text><line style="stroke:#181818;stroke-width:0.5;" x1="230.06" x2="350.6108" y1="79.5938" y2="79.5938"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="110.5508" x="235.06" y="96.5889">__init__(str, Val)</text></g><g class="entity" data-qualified-name="Val" data-source-line="14" id="ent0003"><rect fill="#F1F1F1" height="48" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="54.0459" x="386.31" y="31.44"></rect><ellipse cx="401.31" cy="47.44" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M404.2788,53.0806 Q403.7006,53.3775 403.06,53.5181 Q402.4194,53.6744 401.7163,53.6744 Q399.2163,53.6744 397.8881,52.0338 Q396.5756,50.3775 396.5756,47.2525 Q396.5756,44.1275 397.8881,42.4713 Q399.2163,40.815 401.7163,40.815 Q402.4194,40.815 403.06,40.9713 Q403.7163,41.1275 404.2788,41.4244 L404.2788,44.1431 Q403.6538,43.565 403.06,43.2994 Q402.4663,43.0181 401.8413,43.0181 Q400.4975,43.0181 399.81,44.0963 Q399.1225,45.1588 399.1225,47.2525 Q399.1225,49.3463 399.81,50.4244 Q400.4975,51.4869 401.8413,51.4869 Q402.4663,51.4869 403.06,51.2213 Q403.6538,50.94 404.2788,50.3619 L404.2788,53.0806 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="22.0459" x="415.31" y="52.2867">Val</text><line style="stroke:#181818;stroke-width:0.5;" x1="387.31" x2="439.3559" y1="63.44" y2="63.44"></line><line style="stroke:#181818;stroke-width:0.5;" x1="387.31" x2="439.3559" y1="71.44" y2="71.44"></line></g><g class="entity" data-qualified-name="IntVal" data-source-line="17" id="ent0004"><rect fill="#F1F1F1" height="80.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="91.3174" x="367.67" y="163.89"></rect><ellipse cx="391.1211" cy="179.89" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M394.0899,185.5306 Q393.5117,185.8275 392.8711,185.9681 Q392.2305,186.1244 391.5274,186.1244 Q389.0274,186.1244 387.6992,184.4838 Q386.3867,182.8275 386.3867,179.7025 Q386.3867,176.5775 387.6992,174.9213 Q389.0274,173.265 391.5274,173.265 Q392.2305,173.265 392.8711,173.4213 Q393.5274,173.5775 394.0899,173.8744 L394.0899,176.5931 Q393.4649,176.015 392.8711,175.7494 Q392.2774,175.4681 391.6524,175.4681 Q390.3086,175.4681 389.6211,176.5463 Q388.9336,177.6088 388.9336,179.7025 Q388.9336,181.7963 389.6211,182.8744 Q390.3086,183.9369 391.6524,183.9369 Q392.2774,183.9369 392.8711,183.6713 Q393.4649,183.39 394.0899,182.8119 L394.0899,185.5306 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="40.5371" x="406.9992" y="184.7367">IntVal</text><line style="stroke:#181818;stroke-width:0.5;" x1="368.67" x2="457.9874" y1="195.89" y2="195.89"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="52.623" x="373.67" y="212.8851">val : int</text><line style="stroke:#181818;stroke-width:0.5;" x1="368.67" x2="457.9874" y1="220.1869" y2="220.1869"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="79.3174" x="373.67" y="237.182">__init__(int)</text></g><g class="link" data-entity-1="ent0003" data-entity-2="ent0004" data-link-type="extension" data-source-line="18" id="lnk5"><path d="M413.33,97.69 C413.33,120.16 413.33,136.64 413.33,163.46" fill="none" id="Val-backto-IntVal" style="stroke:#181818;stroke-width:1;"></path><polygon fill="none" points="413.33,79.69,407.33,97.69,419.33,97.69,413.33,79.69" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0002" data-link-type="composition" data-source-line="22" id="lnk6"><path codeline="22" d="M205.85,55.44 C217.53,55.44 217.22,55.44 228.9,55.44" fill="none" id="Bindings-backto-Binding" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="193.85,55.44,199.85,59.44,205.85,55.44,199.85,51.44,193.85,55.44" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon><text fill="#000000" font-family="sans-serif" font-size="13" lengthadjust="spacing" textlength="6.5" x="214.6762" y="51.5538">*</text></g><g class="link" data-entity-1="ent0002" data-entity-2="ent0003" data-link-type="composition" data-source-line="23" id="lnk7"><path codeline="23" d="M363.83,55.44 C375.2,55.44 374.57,55.44 385.95,55.44" fill="none" id="Binding-backto-Val" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="351.83,55.44,357.83,59.44,363.83,55.44,357.83,51.44,351.83,55.44" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g></g></svg></div>
-<h2 id="environments"><span class="enumerate-headings-plugin enumerate-heading-plugin">8.3</span> Environments</h2>
+<h2 id="environments"><span class="enumerate-headings-plugin enumerate-heading-plugin">9.3</span> Environments</h2>
 <p>Our languages will eventually need a hierarchy of bindings. We achieve this
 flexibility with a concept of an environment built from a series of nodes linked
 together. The figure below illustrates the concept.</p>

@@ -5,9 +5,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://ourplcc.github.io/course-materials-ng/dev/03-syntax/" rel="canonical"/>
-<link href="../02-tokens/" rel="prev"/>
-<link href="../04-semantic/" rel="next"/>
+<link href="https://ourplcc.github.io/course-materials-ng/dev/04-syntax/" rel="canonical"/>
+<link href="../03-plcc/" rel="prev"/>
+<link href="../05-semantic/" rel="next"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.15" name="generator"/>
 <title>Syntax - Programming Languages with PLCC</title>
@@ -165,6 +165,14 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../03-plcc/">
+<span class="md-ellipsis">
+    PLCC-ng
+    
+  </span>
+</a>
+</li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
@@ -289,7 +297,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../04-semantic/">
+<a class="md-nav__link" href="../05-semantic/">
 <span class="md-ellipsis">
     Semantics
     
@@ -297,7 +305,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../05-v0/">
+<a class="md-nav__link" href="../06-v0/">
 <span class="md-ellipsis">
     V0
     
@@ -305,9 +313,33 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../06-environments/">
+<a class="md-nav__link" href="../07-environments/">
 <span class="md-ellipsis">
     Environments
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../08-v1/">
+<span class="md-ellipsis">
+    V1
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../09-v2/">
+<span class="md-ellipsis">
+    V2
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../10-v3/">
+<span class="md-ellipsis">
+    V3
     
   </span>
 </a>
@@ -319,7 +351,7 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="syntax"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.</span> Syntax</h1>
+<h1 id="syntax"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.</span> Syntax</h1>
 <p>Assuming a proper specification is provided, the second component included in
 our generated interpreters is called a <em>parser</em>. Its role is to verify that the
 sequence of tokens produced by the scanner forms a syntactically valid sentence
@@ -343,8 +375,7 @@ token COMMA      ','
 &lt;ListTail:Some&gt; ::= COMMA &lt;NUM&gt; &lt;ListTail&gt;
 &lt;ListTail:Zero&gt; ::=
 </code></pre></div>
-<p>If we save the text of this specification in a file called <code>spec.plcc</code> and run
-the command <code>echo 1, 2, 3 | plcc-parse</code> in the folder containing <code>spec.plcc</code>, we
+<p>If, with this specification, we then run <code>plcc-parse</code> on input <code>1, 2, 3</code>, we
 should get the following output:</p>
 <div class="highlight"><pre><span></span><code>List
   NUM '1' [-:1:1]
@@ -366,7 +397,7 @@ other hand, is a non-terminal symbol that itself has two children and so on.
 <p>Below is a diagram depicting that same output highlighting the arborescent
 structure more strikingly.</p>
 <div><svg contentstyletype="text/css" data-diagram-type="CLASS" height="372px" id="Kroki" preserveaspectratio="xMaxYMax meet" style="width:292px;height:372px;background:#FFFFFF;" version="1.1" viewbox="0 0 292 372" width="292px" xmlns="http://www.w3.org/2000/svg" zoomandpan="magnify"><defs></defs><g><g class="entity" data-qualified-name="List" data-source-line="1" id="ent0001"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="38.4727" x="79.22" y="7"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="24.4727" x="86.22" y="21.9951">List</text><line style="stroke:#181818;stroke-width:0.5;" x1="80.22" x2="116.6927" y1="27.2969" y2="27.2969"></line></g><g class="entity" data-qualified-name="Num.1" data-source-line="2" id="ent0002"><rect fill="#F1F1F1" height="44.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="72.9219" x="7" y="103.3"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="55.8906" x="15.5156" y="118.2951">Num@1</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="78.9219" y1="123.5969" y2="123.5969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="60.9219" x="13" y="140.592">num = 1</text></g><g class="entity" data-qualified-name="Some.1" data-source-line="3" id="ent0003"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="76.6104" x="115.16" y="107.45"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="62.6104" x="122.16" y="122.4451">Some@1</text><line style="stroke:#181818;stroke-width:0.5;" x1="116.16" x2="190.7704" y1="127.7469" y2="127.7469"></line></g><g class="entity" data-qualified-name="Num.2" data-source-line="4" id="ent0004"><rect fill="#F1F1F1" height="44.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="72.9219" x="62" y="207.89"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="55.8906" x="70.5156" y="222.8851">Num@2</text><line style="stroke:#181818;stroke-width:0.5;" x1="63" x2="133.9219" y1="228.1869" y2="228.1869"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="60.9219" x="68" y="245.182">num = 2</text></g><g class="entity" data-qualified-name="Some.2" data-source-line="5" id="ent0005"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="76.6104" x="170.16" y="212.04"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="62.6104" x="177.16" y="227.0351">Some@2</text><line style="stroke:#181818;stroke-width:0.5;" x1="171.16" x2="245.7704" y1="232.3369" y2="232.3369"></line></g><g class="entity" data-qualified-name="Num.3" data-source-line="6" id="ent0006"><rect fill="#F1F1F1" height="44.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="72.9219" x="124" y="312.49"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="55.8906" x="132.5156" y="327.4851">Num@3</text><line style="stroke:#181818;stroke-width:0.5;" x1="125" x2="195.9219" y1="332.7869" y2="332.7869"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="60.9219" x="130" y="349.782">num = 3</text></g><g class="entity" data-qualified-name="Zero" data-source-line="7" id="ent0007"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="46.5254" x="232.2" y="316.63"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="32.5254" x="239.2" y="331.6251">Zero</text><line style="stroke:#181818;stroke-width:0.5;" x1="233.2" x2="277.7254" y1="336.9269" y2="336.9269"></line></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0002" data-link-type="association" data-source-line="13" id="lnk8"><path codeline="13" d="M88.63,43.75 C79.36,60.34 65.44,85.25 55.51,103.03" fill="none" id="List-Num@1" style="stroke:#181818;stroke-width:1;"></path></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0003" data-link-type="association" data-source-line="14" id="lnk9"><path codeline="14" d="M108.29,43.75 C118.3,61.67 133.73,89.28 143.71,107.15" fill="none" id="List-Some@1" style="stroke:#181818;stroke-width:1;"></path></g><g class="link" data-entity-1="ent0003" data-entity-2="ent0004" data-link-type="association" data-source-line="15" id="lnk10"><path codeline="15" d="M144.13,144 C134.75,161.49 120.27,188.51 110.14,207.41" fill="none" id="Some@1-Num@2" style="stroke:#181818;stroke-width:1;"></path></g><g class="link" data-entity-1="ent0003" data-entity-2="ent0005" data-link-type="association" data-source-line="16" id="lnk11"><path codeline="16" d="M162.79,144 C172.9,162.86 188.95,192.8 199.09,211.7" fill="none" id="Some@1-Some@2" style="stroke:#181818;stroke-width:1;"></path></g><g class="link" data-entity-1="ent0005" data-entity-2="ent0006" data-link-type="association" data-source-line="17" id="lnk12"><path codeline="17" d="M200.32,248.59 C192.13,266.09 179.5,293.1 170.65,312" fill="none" id="Some@2-Num@3" style="stroke:#181818;stroke-width:1;"></path></g><g class="link" data-entity-1="ent0005" data-entity-2="ent0007" data-link-type="association" data-source-line="18" id="lnk13"><path codeline="18" d="M216.43,248.59 C225.08,267.46 238.79,297.4 247.45,316.29" fill="none" id="Some@2-Zero" style="stroke:#181818;stroke-width:1;"></path></g></g></svg></div>
-<h2 id="a-quick-tour"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.1</span> A quick tour</h2>
+<h2 id="a-quick-tour"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.1</span> A quick tour</h2>
 <p>Let's go over this specification. At the top, we recognize the lexical
 specification described in the previous chapter. Below, after the percent
 symbol, we find a syntactic specification described in a dialect of Backus-Naur
@@ -375,8 +406,8 @@ second comment, says that a list of numbers consists of a number followed by the
 rest of list. The next two lines say that the rest of the list is either empty
 (the third line) or at least one more number, preceded by a comma and
 followed by the rest of the list (the second line).</p>
-<h2 id="plcc-syntactic-specification"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.2</span> PLCC syntactic specification</h2>
-<h3 id="basic-rules"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.2.1</span> Basic rules</h3>
+<h2 id="plcc-syntactic-specification"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2</span> PLCC syntactic specification</h2>
+<h3 id="basic-rules"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.1</span> Basic rules</h3>
 <p>As stated in the introduction of this chapter, syntactic specifications are
 commonly written in BNF, a common notation system for specifying the syntax of
 programming languages. This section describes PLCC's dialect of BNF. A BNF
@@ -395,7 +426,7 @@ followed by a <code>NUM</code> (a second terminal symbol), and ending with <code
 non-terminal symbol).</p>
 <p>The non-terminal on the <code>LHS</code> of the <em>first</em> syntactic rule plays an important
 role in our specification. We call that non-terminal the <em>start symbol</em>.</p>
-<h3 id="alternatives"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.2.2</span> Alternatives</h3>
+<h3 id="alternatives"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.2</span> Alternatives</h3>
 <p>An important feature of grammars is the ability to define alternative rules,
 that is, to be able to have more than one rules with same <code>LHS</code>. However, PLCC
 requires that we disambiguate among rules with common <code>LHS</code> through distinct
@@ -411,7 +442,7 @@ non-terminal is acceptable. But because of some issues that will be covered
 in the chapter on the semantic section, we need distinct names for each choice
 so that they can be distinguished in code generated by PLCC for the semantic
 analyzer.</p>
-<h3 id="one-or-more-and-the-empty-string"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.2.3</span> One or more and the empty string</h3>
+<h3 id="one-or-more-and-the-empty-string"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.3</span> One or more and the empty string</h3>
 <p>Another important tool in the bag of language designers is allowing
 sentences/programs
 of arbitrary length. BNF relies on recursion to provide this capability: The
@@ -429,7 +460,7 @@ nothing. That is, we can satisfy <code>ListTail</code> by matching no symbol at 
 by matching the empty string).</p>
 <p>This recursive capability stresses the importance of being able to provide
 alternative definitions.</p>
-<h3 id="zero-or-more"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.2.4</span> Zero or more</h3>
+<h3 id="zero-or-more"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.4</span> Zero or more</h3>
 <p>What if we want to allow our list of numbers to be empty? Below is a possible
 specification.</p>
 <div class="highlight"><pre><span></span><code># Syntactic specification for a list of possibly empty, comma-separated numbers
@@ -439,7 +470,7 @@ specification.</p>
 &lt;ListTail:Zero&gt; ::=
 </code></pre></div>
 <p>Again we make use of alternate definitions and an empty <code>RHS</code>.</p>
-<h3 id="repetition-and-separator-syntactic-sugar"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.2.5</span> Repetition and separator: syntactic sugar</h3>
+<h3 id="repetition-and-separator-syntactic-sugar"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.5</span> Repetition and separator: syntactic sugar</h3>
 <p>Repetition (e.g., a list of things), possibly separated by a punctuation or
 separator (e.g., comma-separated lists), is so common that PLCC's BNF notation
 provides some <em>syntactic sugar</em> for expressing sequences. We can replace the
@@ -455,7 +486,7 @@ the reader.</p>
 following the <code>+</code> metasymbol. If there is no <code>+</code> and token provided, then
 the parser will look for a sequence of the given token with no separator
 between the tokens.</p>
-<h3 id="ll1"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.2.6</span> LL(1)</h3>
+<h3 id="ll1"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2.6</span> LL(1)</h3>
 <p>Consider the specification below.</p>
 <div class="highlight"><pre><span></span><code>&lt;List:Only&gt; ::= &lt;NUM&gt;
 &lt;List:More&gt; ::= &lt;NUM&gt; COMMA &lt;List&gt;
@@ -473,7 +504,7 @@ between the two alternatives when encountering a number. The fact that both
 alternatives start with the same token, <code>NUM</code>, and that the parser can only
 look a single token ahead leads to an ambiguity where the parser cannot choose
 the appropriate alternative based on the information at hand.</p>
-<h2 id="references"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.3</span> References</h2>
+<h2 id="references"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.3</span> References</h2>
 <ul>
 <li>
 <p>"Backus–Naur form," last modified July 5, 2026,
@@ -492,8 +523,8 @@ the appropriate alternative based on the information at hand.</p>
   https://en.wikipedia.org/wiki/Syntactic_sugar</p>
 </li>
 </ul>
-<h2 id="going-beyond"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.4</span> Going beyond</h2>
-<h3 id="backus-naur-form"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.4.1</span> Backus-Naur form</h3>
+<h2 id="going-beyond"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.4</span> Going beyond</h2>
+<h3 id="backus-naur-form"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.4.1</span> Backus-Naur form</h3>
 <p>There exists variations on BNF form that PLCC does not use but you may encounter
 in your reading. These variations may be referred to as Extended BNF, or simply
 EBNF. For example, instead of writing alternatives on separate lines as
@@ -504,14 +535,14 @@ as shown below where the metasymbol <code>ε</code> means the empty string.</p>
 </code></pre></div>
 <p>PLCC could not be made to accept this form because each choice of a <code>RHS</code> for
 a non-terminal must have its own name.</p>
-<h3 id="parser-generators"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.4.2</span> Parser generators</h3>
+<h3 id="parser-generators"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.4.2</span> Parser generators</h3>
 <p>PLCC is not the only tool capable of generating parsers. <em>Yacc</em> (Yet another
 compiler-compiler) is an early
 example of such a tool. It was distributed as a standard utility with some
 distributions of the Unix operating system. <em>GNU Bison</em> is another parser
 generator that is part of the GNU Project. In some ways Bison is compatible
 with Yacc. Refer to the suggested readings for more information.</p>
-<h3 id="suggested-readings"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.4.3</span> Suggested readings</h3>
+<h3 id="suggested-readings"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.4.3</span> Suggested readings</h3>
 <ul>
 <li>
 <p>Douglas Thain, "Parsing," chap. 4 in <em>Introduction to Compilers and Language

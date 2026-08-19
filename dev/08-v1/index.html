@@ -5,12 +5,12 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://ourplcc.github.io/course-materials-ng/dev/00-introduction/" rel="canonical"/>
-<link href=".." rel="prev"/>
-<link href="../01-overview/" rel="next"/>
+<link href="https://ourplcc.github.io/course-materials-ng/dev/08-v1/" rel="canonical"/>
+<link href="../07-environments/" rel="prev"/>
+<link href="../09-v2/" rel="next"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.15" name="generator"/>
-<title>Introduction - Programming Languages with PLCC</title>
+<title>V1 - Programming Languages with PLCC</title>
 <link href="../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#introduction">
+<a class="md-skip" href="#language-v1">
           Skip to content
         </a>
 </div>
@@ -49,7 +49,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Introduction
+              V1
             
           </span>
 </div>
@@ -141,43 +141,13 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    Introduction
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../00-introduction/">
 <span class="md-ellipsis">
     Introduction
     
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#why-study-programming-languages">
-<span class="md-ellipsis">
-      Why study programming languages?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#methodology">
-<span class="md-ellipsis">
-      Methodology
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../01-overview/">
@@ -235,13 +205,64 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../08-v1/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    V1
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     V1
     
   </span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#litexp">
+<span class="md-ellipsis">
+      LitExp
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#varexp">
+<span class="md-ellipsis">
+      VarExp
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#primappexp">
+<span class="md-ellipsis">
+      PrimappExp
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prim">
+<span class="md-ellipsis">
+      Prim
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#program">
+<span class="md-ellipsis">
+      Program
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../09-v2/">
@@ -266,47 +287,197 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="introduction"><span class="enumerate-headings-plugin enumerate-heading-plugin">2.</span> Introduction</h1>
-<p>Programming languages are fundamental tools for software developers. Their
-design shapes the way we think about problems, express solutions, and organize
-programs into maintainable systems.</p>
-<h2 id="why-study-programming-languages"><span class="enumerate-headings-plugin enumerate-heading-plugin">2.1</span> Why study programming languages?</h2>
-<p>Every programmer needs a deep understanding of programming languages to learn
-them more easily, to use them more effectively, to evaluate their strengths and
-weaknesses (particularly when assessing a new language), and to design new ones.</p>
-<p>Most programmers think they'll never design a new programming language. However,
-programming languages are one important tool of automation and abstraction. You
-may never need to create a full-fledged, general-purpose language, but you may
-need to design a special-purpose programming language (also called a
-<em>domain-specific language</em>) that eases solving a narrow class of problems.</p>
-<h2 id="methodology"><span class="enumerate-headings-plugin enumerate-heading-plugin">2.2</span> Methodology</h2>
-<p>To deepen our understanding of programming languages, we are going to devise
-some. We will start with a very simple language, and incrementally build on that
-language to study increasingly more sophisticated ones. As we do, we will
-explore core concepts that appear in many modern and classic programming
-languages.</p>
-<p>A programming language consists of two parts: syntax and semantics. <strong>Syntax</strong>
-describes the notation we use to write programs in a particular language.
-<strong>Semantics</strong> defines the meaning of programs written in a language; that is,
-what a program does when we run it.</p>
-<p>The syntax of a language is the programmer's interface to a language. From this
-perspective, syntax is important. Poor syntax makes programming an onerous task.
-Better syntax can make a language less error prone, easier to type, easier
-to read and understand, and easier to maintain.</p>
-<p>Semantics is the engine of a language. It establishes the expressive power of a
-language. It is where we decide if a language supports iteration (loops),
-conditional statements (like <code>if</code>), exception handling, goto statements, functions,
-procedures, closures, type checking, classes and objects, out parameters, in-out
-parameters, passing parameters by reference, passing parameters by value,
-continuations, parallelism, side-effects, unification, etc.</p>
-<p>Because semantics embodies the core of a programming language, it is where we
-want to spend most our time in this course. We are going to build many, rather
-ugly, languages. But these languages will support important and powerful
-features!</p>
-<p>To ease this process, we are going to rely on a tool: <strong>PLCC - Programming
-Languages Compiler Compiler</strong>. It will allow us to simplify the process of
-building languages by automating the generation of their parsers, allowing us to
-focus our efforts on implementing their semantics.</p>
+<h1 id="language-v1"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.</span> Language V1</h1>
+<p><code>V1</code> from <code>V0</code> only in its semantic specification. In the previous chapter, we
+saw how a parse tree for <code>V0</code> can print itself. Let’s show now how a parse tree
+can <em>evaluate itself</em>.</p>
+<p>As an example, the command <code>plcc-rep</code> on input <code>add1(+(2, 3))</code> produces the
+following output:</p>
+<div class="highlight"><pre><span></span><code>6
+</code></pre></div>
+<p>The term <em>evaluate</em> can have many meanings (one of which is to produce a string
+representation of the input), but for our purposes, to evaluate an arithmetic
+expression such as <code>add1(+(2, 3))</code> means to produce the integer value <code>6</code>. In
+other words, the value of an arithmetic expression is its numeric value using
+usual rules for arithmetic.</p>
+<p>(Remember that we are abstracting the notion of <em>value</em> to refer to an instance
+of the <code>Val</code> class. In this setting, a numeric value is an instance of the
+<code>IntVal</code> subclass of <code>Val</code>.)</p>
+<p>If an expression involves an identifier, we need to determine the value bound to
+that identifier to evaluate the expression. For example, suppose the identifier
+"x" is bound to the integer value <code>10</code>, then the expression <code>sub1(x)</code> would
+evaluate to <code>9</code>.</p>
+<p><em>The interpreter evaluates every expression in some environment. This
+environment determines how to obtain the values bound to the identifiers that
+occur in the expression</em>.</p>
+<p>Subclasses of the <code>Exp</code> class are the appropriate places to declare evaluation
+behavior, which we implement using a common method called <code>eval</code>. Three classes
+extend the <code>Exp</code> class: <code>LitExp</code>, <code>VarExp</code>, and <code>PrimappExp</code>.</p>
+<h2 id="litexp"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.1</span> <code>LitExp</code></h2>
+<p>We’ll start with <code>LitExp</code>. Below is the semantic specification that defines the
+behavior of a <code>LitExp</code> object. The <code>eval</code> method coexists with the
+<code>__str__</code> behavior that we defined in <code>V0</code>.</p>
+<div class="highlight"><pre><span></span><code>LitExp
+%%%
+def eval(self, env):
+    return IntVal(self.lit.lexeme)
+
+def __str__(self):
+    return self.lit.lexeme
+%%%
+</code></pre></div>
+<p>Remember that a <code>LitExp</code> instance has a <code>Token</code> field named <code>lit</code>. When we apply
+the <code>__str__</code> method to this field, we get the string of decimal digits that
+comes from the part of the program text we are parsing. The <code>IntVal</code> initializer
+converts this string into a real Python integer that becomes part of the
+<code>IntVal</code> instance. Obviously an environment bears no influence on the value of a
+numeric literal, the literal <code>10</code> evaluates to the integer value <code>10</code> no matter
+which environment, so the <code>eval</code> method for an instance of <code>LitExp</code> simply
+returns the appropriate <code>IntVal</code> object.</p>
+<h2 id="varexp"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.2</span> <code>VarExp</code></h2>
+<p>Next we consider <code>VarExp</code>. Below is the semantic specification that defines the
+the <code>eval</code> method of a <code>VarExp</code> object.</p>
+<div class="highlight"><pre><span></span><code>VarExp
+%%%
+def eval(self, env):
+    return env.applyEnv(self.symbol.lexeme)
+
+def __str__(self):
+    return self.symbol.lexeme
+%%%
+</code></pre></div>
+<p>A <code>VarExp</code> object has a <code>var</code> attribute of type <code>Token</code>. Given an environment,
+the value bound to <code>var</code> is precisely the value returned by <code>applyEnv</code>, which in
+turn is the value of the expression.</p>
+<p><em>The value of an expression consisting of an identifier is the value bound to
+that identifier in the environment in which the expression is evaluated, as
+determined by the application of <code>applyEnv</code></em>.</p>
+<h2 id="primappexp"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.3</span> <code>PrimappExp</code></h2>
+<p>Finally we consider <code>PrimappExp</code>. A <code>PrimappExp</code> object has two attributes: a
+<code>Prim</code> object named <code>prim</code> and a <code>Rands</code> object named <code>rands</code>. To evaluate such
+an expression, we need to apply the given primitive operation (the <code>prim</code>
+object) to the values of the expressions in the <code>rands</code> object.</p>
+<p>An object of type <code>Rands</code> has an attribute, named <code>expList</code>, whose type is a
+list of <code>Exp</code>. To perform the operation determined by the <code>prim</code> object, we need
+first to evaluate each of the expressions in <code>expList</code>. A utility method named
+<code>evalRands</code> in the <code>Rands</code> class does that work. Of course, this method needs to
+know what environment is being used to evaluate the expressions, so an <code>Env</code>
+object is a parameter to this method.</p>
+<div class="highlight"><pre><span></span><code>Rands
+%%%
+def evalRands(self, env):
+    return [e.eval(env) for e in self.expList]
+
+def __str__(self):
+    return ",".join(str(e) for e in self.expList)
+%%%
+</code></pre></div>
+<p>The <code>evalRands</code> method returns a list of <code>Val</code>s.</p>
+<p><em>The expressions appearing in an application of a primitive are called its
+</em><em>operands</em><em> also called </em><em>actual parameters</em><em>; the values of these expressions
+are called its </em><em>arguments</em><em>.</em></p>
+<p>Careful readers will have observed that the class name <code>Rands</code> is derived from
+the word <strong>operands</strong>, and that the name <code>args</code> in the <code>evalRands</code> method is
+derived from the word <strong>arguments</strong>.</p>
+<p>We now have the pieces necessary to define the <code>eval</code> method in the <code>PrimappExp</code>
+class:</p>
+<div class="highlight"><pre><span></span><code>PrimappExp
+%%%
+def eval(self, env):
+    args = self.rands.evalRands(env)
+    return self.prim.apply(args)
+
+def __str__(self):
+    return f"{self.prim}({self.rands})"
+%%%
+</code></pre></div>
+<p>In summary, to evaluate a primitive application expression (a <code>PrimappExp</code>), we
+evaluate the operands (a <code>Rands</code> object) in the given environment and pass the
+resulting argument list to the <code>apply</code> method of the primitive (a <code>Prim</code>)
+object, which returns the appropriate value.</p>
+<h2 id="prim"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.4</span> <code>Prim</code></h2>
+<p>We are left to define the behavior of the <code>apply</code> methods in the various <code>Prim</code>
+subclasses. Observe that by the time a <code>Prim</code> object gets its list of arguments,
+the environment no longer plays a role, since we have already evaluated all of
+the operand expressions: only values remain.</p>
+<p>A <code>Prim</code> object (there are now seven instances of this class) has no instance
+variables. However, we can endow these objects with behavior, so that an
+<code>AddPrim</code> object knows how to add things, a <code>SubPrim</code> object knows how to
+subtract things, and so forth.</p>
+<p>Four of the <code>Prim</code> objects need two arguments (for <code>+</code>, <code>-</code>, <code>*</code>, and <code>/</code>), and
+two of them need one argument (for <code>add1</code> and <code>sub1</code>). Since <code>args</code> is a list of
+<code>Val</code> arguments, we can grab the appropriate items from this list, one or two of
+them, depending on the operation, to evaluate the result. Below is the semantic
+specification for the <code>AddPrim</code> class.</p>
+<div class="highlight"><pre><span></span><code>AddPrim
+%%%
+def __str__(self):
+    return "+"
+
+def apply(self, args):
+    if len(args) != 2:
+        raise LanguageError("two arguments expected")
+    i0 = args[0].intVal().val
+    i1 = args[1].intVal().val
+    return IntVal(i0 + i1)
+%%%
+</code></pre></div>
+<p>The <code>intVal</code> method calls shown in this specification convert <code>Val</code> objects
+(such as <code>args[0]</code>) into <code>IntVal</code> objects, essentially like "downcasting". These
+objects, in turn, have <code>int</code> attributes named <code>val</code>. So both <code>i0</code> and <code>i1</code> are
+legitimate Python integers that can be added together to return the resulting
+<code>IntVal</code> object. The <code>Val</code> class also defines the <code>intVal</code> method: an attempt to
+apply the <code>intVal</code> method to a <code>Val</code> object that is not an <code>IntVal</code> throws an
+exception.</p>
+<p>The definitions of <code>apply</code> for the classes <code>SubPrim</code>, <code>MulPrim</code>, and <code>DivPrim</code>
+(the latter two are added in V1) have obvious implementations, except that in
+<code>DivPrim</code>, the <code>apply</code> method throws an exception if it detects a division by
+zero.</p>
+<p>For the <code>Add1Prim</code> class, the <code>apply</code> method expects only one value, which is
+passed as element zero of the <code>args</code> list.</p>
+<div class="highlight"><pre><span></span><code>Add1Prim
+%%%
+def __str__(self):
+    return "add1"
+
+def apply(self, args):
+    if len(args) != 1:
+        raise LanguageError("one argument expected")
+    i0 = args[0].intVal().val
+    return IntVal(i0 + 1)
+%%%
+</code></pre></div>
+<p>Again, the definition of apply for the <code>Sub1Prim</code> class is entirely similar. The
+definition of apply for the <code>ZeropPrim</code> class returns an <code>IntVal</code> of <code>1</code> (true)
+for a zero argument and an <code>IntVal</code> of <code>0</code> (false) for a nonzero argument.</p>
+<h2 id="program"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.5</span> <code>Program</code></h2>
+<p>In our final implementation step, we will define the <code>_run</code> method of a
+<code>Program</code> object that returns the value of its expression.</p>
+<div class="highlight"><pre><span></span><code>Program
+%%%
+env = Env.initEnv()
+
+def _run(self):
+    return str(self.exp.eval(Program.env))
+%%%
+</code></pre></div>
+<p>An empty environment would only allow for integer expressions with no variables,
+since every variable would be unbound. To test <code>V1</code>, we create an initial
+environment <code>initEnv</code> specific to this language that has the following variable
+bindings (think Roman numerals!):</p>
+<div class="highlight"><pre><span></span><code>  i =&gt; 1
+  v =&gt; 5
+  x =&gt; 10
+  l =&gt; 50
+  c =&gt; 100
+  d =&gt; 500
+  m =&gt; 1000
+</code></pre></div>
+<p>For <code>V1</code>, this environment can be obtained by a call to <code>Env.initEnv</code>. These
+bindings give us some variables to play with, though, as we will see, we
+will dispense with them later.</p>
+<p>To test <code>V1</code>, run the <code>plcc-rep</code> command in the Python subdirectory and enter
+expressions at the prompt.</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

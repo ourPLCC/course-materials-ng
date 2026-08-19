@@ -5,12 +5,12 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://ourplcc.github.io/course-materials-ng/dev/00-introduction/" rel="canonical"/>
-<link href=".." rel="prev"/>
-<link href="../01-overview/" rel="next"/>
+<link href="https://ourplcc.github.io/course-materials-ng/dev/09-v2/" rel="canonical"/>
+<link href="../08-v1/" rel="prev"/>
+<link href="../10-v3/" rel="next"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.15" name="generator"/>
-<title>Introduction - Programming Languages with PLCC</title>
+<title>V2 - Programming Languages with PLCC</title>
 <link href="../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#introduction">
+<a class="md-skip" href="#language-v2">
           Skip to content
         </a>
 </div>
@@ -49,7 +49,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Introduction
+              V2
             
           </span>
 </div>
@@ -141,43 +141,13 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    Introduction
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../00-introduction/">
 <span class="md-ellipsis">
     Introduction
     
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#why-study-programming-languages">
-<span class="md-ellipsis">
-      Why study programming languages?
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#methodology">
-<span class="md-ellipsis">
-      Methodology
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../01-overview/">
@@ -243,13 +213,100 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../09-v2/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    V2
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     V2
     
   </span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#quick-overview">
+<span class="md-ellipsis">
+      Quick overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#if-expression">
+<span class="md-ellipsis">
+      if expression
+    </span>
+</a>
+<nav aria-label="if expression" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-is-false">
+<span class="md-ellipsis">
+      What is false?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eval">
+<span class="md-ellipsis">
+      eval
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#special-form">
+<span class="md-ellipsis">
+      Special form
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#examples">
+<span class="md-ellipsis">
+      Examples
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#discussion">
+<span class="md-ellipsis">
+      Discussion
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exercises">
+<span class="md-ellipsis">
+      Exercises
+    </span>
+</a>
+<nav aria-label="Exercises" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exercise-1">
+<span class="md-ellipsis">
+      Exercise 1
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../10-v3/">
@@ -266,47 +323,135 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="introduction"><span class="enumerate-headings-plugin enumerate-heading-plugin">2.</span> Introduction</h1>
-<p>Programming languages are fundamental tools for software developers. Their
-design shapes the way we think about problems, express solutions, and organize
-programs into maintainable systems.</p>
-<h2 id="why-study-programming-languages"><span class="enumerate-headings-plugin enumerate-heading-plugin">2.1</span> Why study programming languages?</h2>
-<p>Every programmer needs a deep understanding of programming languages to learn
-them more easily, to use them more effectively, to evaluate their strengths and
-weaknesses (particularly when assessing a new language), and to design new ones.</p>
-<p>Most programmers think they'll never design a new programming language. However,
-programming languages are one important tool of automation and abstraction. You
-may never need to create a full-fledged, general-purpose language, but you may
-need to design a special-purpose programming language (also called a
-<em>domain-specific language</em>) that eases solving a narrow class of problems.</p>
-<h2 id="methodology"><span class="enumerate-headings-plugin enumerate-heading-plugin">2.2</span> Methodology</h2>
-<p>To deepen our understanding of programming languages, we are going to devise
-some. We will start with a very simple language, and incrementally build on that
-language to study increasingly more sophisticated ones. As we do, we will
-explore core concepts that appear in many modern and classic programming
-languages.</p>
-<p>A programming language consists of two parts: syntax and semantics. <strong>Syntax</strong>
-describes the notation we use to write programs in a particular language.
-<strong>Semantics</strong> defines the meaning of programs written in a language; that is,
-what a program does when we run it.</p>
-<p>The syntax of a language is the programmer's interface to a language. From this
-perspective, syntax is important. Poor syntax makes programming an onerous task.
-Better syntax can make a language less error prone, easier to type, easier
-to read and understand, and easier to maintain.</p>
-<p>Semantics is the engine of a language. It establishes the expressive power of a
-language. It is where we decide if a language supports iteration (loops),
-conditional statements (like <code>if</code>), exception handling, goto statements, functions,
-procedures, closures, type checking, classes and objects, out parameters, in-out
-parameters, passing parameters by reference, passing parameters by value,
-continuations, parallelism, side-effects, unification, etc.</p>
-<p>Because semantics embodies the core of a programming language, it is where we
-want to spend most our time in this course. We are going to build many, rather
-ugly, languages. But these languages will support important and powerful
-features!</p>
-<p>To ease this process, we are going to rely on a tool: <strong>PLCC - Programming
-Languages Compiler Compiler</strong>. It will allow us to simplify the process of
-building languages by automating the generation of their parsers, allowing us to
-focus our efforts on implementing their semantics.</p>
+<h1 id="language-v2"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.</span> Language V2</h1>
+<p>Language <code>V2</code> is the same as Language <code>V1</code>, with the addition of the syntax and
+semantics of an <code>if</code> expression.</p>
+<h2 id="quick-overview"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.1</span> Quick overview</h2>
+<p>The <code>if</code> expression (not to be confused with the <code>if</code> statement) returns one of
+two values depending on the result of the evaluation of a third expression.</p>
+<p>The relevant grammar rule and abstract syntax representation of the <code>if</code>
+expression are shown below.</p>
+<div class="highlight"><pre><span></span><code>&lt;Exp:IfExp&gt;      ::= IF &lt;Exp:testExp&gt; THEN &lt;Exp:trueExp&gt; ELSE &lt;Exp:falseExp&gt;
+
+__init__(self, testExp, trueExp, falseExp)
+</code></pre></div>
+<p>Notice that we need to add token names <code>IF</code>, <code>THEN</code>, and <code>ELSE</code> to our lexical
+specification, along with their obvious definitions.</p>
+<p>As an example, running <code>plcc-rep</code> on input <code>if 0 then 1 else 2</code> produces the
+following output:</p>
+<div class="highlight"><pre><span></span><code>2
+</code></pre></div>
+<h2 id="if-expression"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.2</span> <code>if</code> expression</h2>
+<p>The <code>RHS</code> of the <code>IfExp</code> grammar rule has three occurrences of the <code>Exp</code>
+non-terminal. We disambiguate these occurrences with the suffixes <code>testExp</code>,
+<code>trueExp</code>, and <code>falseExp</code>, respectively. Note that PLCC relies on these suffixes
+to name the three attributes associated with <code>IfExp</code> class. Each of these
+objects refers to an instance of the <code>Exp</code> base class.</p>
+<p>To evaluate an <code>if</code> expression with a given environment, we first evaluate the
+<code>testExp</code> expression. If it evaluates to true, we evaluate the <code>trueExp</code>
+expression and return its result as the value of the entire expression. If it
+evaluates to false, we evaluate the <code>falseExp</code> expression and return its result.
+Each of these expressions is evaluated in the given environment.</p>
+<h3 id="what-is-false"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.2.1</span> What is false?</h3>
+<p>Since all instances of <code>Val</code> are really <code>IntVal</code>s (for the time being), we
+regard the <code>IntVal</code> object corresponding to <code>0</code> to be false and all others to be
+true. Correspondingly, we define an <code>isTrue</code> method for an <code>IntVal</code> object as
+follows.</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="nf">isTrue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">!=</span> <span class="mi">0</span> <span class="c1"># nonzero is true, zero is false</span>
+</code></pre></div>
+<p>This code is part of the <code>IntVal</code> class.</p>
+<h3 id="eval"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.2.2</span> <code>eval</code></h3>
+<p>Observe that the <code>eval</code> method in the <code>IfExp</code> class applies the <code>isTrue</code>
+method to a <code>Val</code> object, so we must include a definition for the <code>isTrue</code>
+method in the <code>Val</code> base class. Since we currently treat any <code>Val</code> object as
+true if it’s not an <code>IntVal</code> of zero, our default <code>isTrue</code> method in the <code>Val</code>
+class defaults to returning true.</p>
+<div class="highlight"><pre><span></span><code>Val
+%%%
+class Val:
+
+    def isTrue(self):
+        return True
+%%%
+</code></pre></div>
+<p>Below is the definition for the <code>eval</code> method of the <code>IfExp</code> class.</p>
+<div class="highlight"><pre><span></span><code>IfExp
+%%%
+def eval(self, env):
+    if self.testExp.eval(env).isTrue():
+        return self.trueExp.eval(env)
+    else:
+        return self.falseExp.eval(env)
+%%%
+</code></pre></div>
+<p>The <code>isTrue</code> boolean method applies to any instance of <code>Val</code>. It is a Python
+helper method used only to implement the semantics of the <code>if</code> expression; it is
+not part of the source language. On the other hand, <code>zero?</code> is a primitive in
+the source language (starting with Language <code>V1</code>), not a method in Python. The
+<code>zero?</code> primitive applies only to integer values in the source language. We
+define the semantics of the <code>zero?</code> primitive using the <code>apply</code> method in the
+<code>ZeropPrim</code> class. </p>
+<h3 id="special-form"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.2.3</span> Special form</h3>
+<p>Observe that the <code>eval</code> method in the <code>IfExp</code> class evaluates only one of the
+<code>trueExp</code> or <code>falseExp</code> expressions, never both. This is a semantic feature, not
+a syntax feature, of the definition of <code>eval</code> for an <code>if</code> expression. The term
+<em>special form</em> refers to semantic structures that look like expressions but
+that, when evaluated, don’t evaluate all of their constituent parts. An <code>if</code>
+expression is an example of a special form.</p>
+<h3 id="examples"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.2.4</span> Examples</h3>
+<p>The table below shows examples of <code>if</code> expressions and their evaluations.</p>
+<table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Evaluation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>if 1 then 3 else 4</code></td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td><code>if if 1 then 0 else 11 then 42 else 15</code></td>
+<td><code>15</code></td>
+</tr>
+<tr>
+<td><code>+(3, if -(x,x) then /(5,0) else 8)</code></td>
+<td><code>11</code></td>
+</tr>
+</tbody>
+</table>
+<p>Note that, in the last example, the expression <code>/(5,0)</code> is not evaluated.</p>
+<h2 id="discussion"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.3</span> Discussion</h2>
+<p>An <code>if</code> expression <em>is</em> an expression and therefore it evaluates to a value. It
+is entirely unlike <code>if</code> statements in imperative languages such as C, Java, or
+Python, where the purpose of an <code>if</code> statement is to <em>do</em> one thing or another,
+not to return a value. Also observe that an <code>if</code> expression in our defined
+languages must have <em>both</em> a <code>then</code> part and an <code>else</code> part, even though only
+one of these expressions ends up being evaluated.</p>
+<p><code>if</code> expressions are central to functional languages such as Lisp
+(<code>(if nil 1 2)</code>), Scheme (<code>(if #f 1 2)</code>), or Haskell (<code>if False then 1 else 2</code>).</p>
+<p>Some imperative languages do support <code>if</code> expressions. For instance, C or C++
+can express our <code>if</code> expression running example as <code>0 ? 1 : 2</code>.</p>
+<p>The early implementations of the C programming language did not have a Boolean
+type. Instead, it relied on the integer type (<code>int</code>) much as our language 'V2'.
+Any context demanding a true or false value (e.g., <code>if</code> or <code>while</code>) expects an
+expression whose type is an integer. The C language then defined false when that
+expression yields <code>0</code>, true otherwise. The language is more restrictive as to
+the integer values produced by boolean expressions (e.g., <code>==</code> or <code>&amp;&amp;</code>). Indeed,
+if the boolean expression yields false, the corresponding integer value is <code>0</code>
+(as before); if it yields true, the corresponding integer value must be <code>1</code>. In
+other words, the C language is permissive in what it considers a true value, but
+conservative in the integer value it produces as a result of evaluating a true
+expression.</p>
+<h2 id="exercises"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.4</span> Exercises</h2>
+<h3 id="exercise-1"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.4.1</span> Exercise 1</h3>
+<p>Suppose we replace the occurrence of <code>IF</code> with <code>&lt;IF&gt;</code> in the grammar rule
+defining an <code>if</code> expression. Without experimenting directly with PLCC, what do
+you suppose will happen if you try to evaluate an expression? Then, verify your
+hypothesis by running PLCC.</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
