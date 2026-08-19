@@ -1,4 +1,4 @@
-# Variables, Bindings, Environments
+# Interlude: Variables, bindings, environments
 
 `VO` is nice and good but we would like the semantics associated with our
 languages to be able to do more than just pretty-print the input program.

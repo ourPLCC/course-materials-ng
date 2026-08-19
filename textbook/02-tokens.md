@@ -50,9 +50,8 @@ token NUM        '\d+'
 token COMMA      ','
 ```
 
-If we save the text of this specification in a file called `spec.plcc` and run
-the command `echo 1, 2, 3 | plcc-scan` in the folder containing `spec.plcc`, we
-should get the following output:
+If we then run the command `plcc-scan`, with this specification, on input
+`1, 2, 3`, then we should get the following output:
 
 ```
 -:1:1 NUM '1'
@@ -65,6 +64,9 @@ should get the following output:
 Broadly, this output says that the scanner produced by PLCC based on our
 specification recognized, in the input text (i.e., "1, 2, 3"), two kinds of
 patterns (i.e., tokens): (1) numbers (`NUM`) and (2) commas (`COMMA`).
+
+(For an overview of how to run PLCC command, please take a detour and read
+the chapter entitled "Interlude: PLCC invocation.)
 
 ## A quick tour
 
