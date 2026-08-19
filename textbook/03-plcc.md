@@ -25,9 +25,17 @@ in your environment, please consult the official
 ## Three invocation modes
 
 All three commands listed at the beginning of this chapter read some input and
-produces some output depending on their role. In addition to the regular input,
-all commands also read a specification file that will affect how that regular
-input is processed. By default, these commands look for a file named
+produce some output depending on their role.
+That input is, in general, a piece of code in a language *you* are designing.
+When you run the command, you are likely doing one or both of the following things.
+
+1. Is the specification for the design of your programming language correct?
+2. Is the program you wrote in that designed language correct?
+
+In addition to the regular input,
+all commands also read the specification file for your programming language's
+design. That is, it will affect how that regular input above is processed.
+By default, these commands look for a specification file named
 `spec.plcc`. You can override this choice with a command-line argument. A
 subsequent section gives more details.
 
@@ -77,7 +85,7 @@ prog:1:7 NUM '3'
 Specifically for the scanner, assuming no errors, each line of output consists
 of the name of the input file that was processed, followed by a pair of numbers
 separated with colons, the identified token name, and extracted lexeme enclosed
-in a pair of single quotes. The numbers identifies the line and column where the
+in a pair of single quotes. The numbers identify the line and column where the
 lexeme was located in the input file.
 
 ### Interactively
@@ -114,7 +122,7 @@ followed by another prompt:
 >>>
 ```
 
-Instead of a file name, each line of output now starts with the hyphen-minus
+Instead of a file name, each line of output now starts with the hyphen (minus sign)
 character indicating that the input was entered interactively.
 
 We can enter another string of characters to process, followed by the enter key
@@ -140,7 +148,7 @@ then the following output will appear:
 -:1:7 NUM '3'
 ```
 
-Again each line starts with the hyphen-minus because the input was not read from
+Again each line starts with the hyphen because the input was not read from
 a file.
 
 ### Typical usage
@@ -158,6 +166,11 @@ feature, then you will probably want to use the "interactive" method.
 You might reserve the "redirection" method either for a small test (e.g.,
 `echo "1, 2, 3" | plcc-scan`) or when needing to string two or more commands
 together (e.g., `cat in1.txt in2.txt | plcc-scan`).
+
+Another advantage of the "through a file" and "redirection" methods is that
+your command shell likely has a command *history*. That means you can use
+the up-arrow on your keyboard to locate an old command and then re-execute it
+by hitting the enter key.
 
 ## Text convention
 
@@ -190,6 +203,9 @@ produces the following output
 -:1:7 NUM '3'
 ```
 
+You just have to remember that if you use the "through a file" method the
+hyphen would be replaced by your file's name.
+
 ## Common command-line arguments
 
 The three commands accept the command-line argument listed in the following
@@ -198,7 +214,7 @@ table.
 Function                        | Short form  | Long form
 -|-|-
 Show the help message           | `-h`        | `--help`
-Indicate the specification file | `-s <path>` | `--spec=<path>`
+Indicate the specification file | `-s <filename>` | `--spec=<filename>`
 
 ## Exercises
 
