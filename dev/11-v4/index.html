@@ -562,15 +562,15 @@ means to give the function the proper number of parameters and to receive its
 result. <em>Formal parameters</em> refer to the list of parameters appearing in a
 function definition. <em>Actual parameters</em> refer to the list of parameters
 appearing in a function application.</p>
-<p>Using mathematical notation, we can define a function $f$ by</p>
-<p>$$
+<p>Using mathematical notation, we can define a function <span class="arithmatex">\(f\)</span> by</p>
+<div class="arithmatex">\[
 f(x) = x + 3
-$$</p>
-<p>and we can apply the function $f$ by</p>
-<p>$$
+\]</div>
+<p>and we can apply the function <span class="arithmatex">\(f\)</span> by</p>
+<div class="arithmatex">\[
 f(5)
-$$</p>
-<p>The result of this particular application is $8$.</p>
+\]</div>
+<p>The result of this particular application is <span class="arithmatex">\(8\)</span>.</p>
 <h3 id="procval"><code>ProcVal</code></h3>
 <p>In Language V4, functions are treated as values just like integers. In
 particular, we create a <code>ProcVal</code> class that extends the <code>Val</code> class. This
@@ -827,6 +827,10 @@ def eval(self, env):
     
     
       <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
