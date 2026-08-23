@@ -13,3 +13,8 @@ This is the style guide for this textbook.
 - Give every heading you link to an explicit id (`## Environments {#environments}`)
   and link to it by id (`[environments][]` or `[text][environments]`), never by
   file path. Ids survive file moves and renames.
+- Associate "class", "attribute", and "method" with the implementation language
+- Favor "function" over "procedure", "parameter" over "argument" or "input
+  value" when describing defined languages
+- Make links to defined languages (i.e., languages-ng) be to a specific version
+  of this resource (i.e., not "latest")
