@@ -380,9 +380,17 @@ in your environment, please consult the official
 <a href="https://ourplcc.github.io/plcc-ng/latest/installation/">documentation</a>.</p>
 <h2 id="three-invocation-modes"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.3</span> Three invocation modes</h2>
 <p>All three commands listed at the beginning of this chapter read some input and
-produces some output depending on their role. In addition to the regular input,
-all commands also read a specification file that will affect how that regular
-input is processed. By default, these commands look for a file named
+produce some output depending on their role.
+That input is, in general, a piece of code in a language <em>you</em> are designing.
+When you run the command, you are likely doing one or both of the following things.</p>
+<ol>
+<li>Is the specification for the design of your programming language correct?</li>
+<li>Is the program you wrote in that designed language correct?</li>
+</ol>
+<p>In addition to the regular input,
+all commands also read the specification file for your programming language's
+design. That is, it will affect how that regular input above is processed.
+By default, these commands look for a specification file named
 <code>spec.plcc</code>. You can override this choice with a command-line argument. A
 subsequent section gives more details.</p>
 <p>The regular input can be fed into these commands in one of three ways:</p>
@@ -417,7 +425,7 @@ prog:1:7 NUM '3'
 <p>Specifically for the scanner, assuming no errors, each line of output consists
 of the name of the input file that was processed, followed by a pair of numbers
 separated with colons, the identified token name, and extracted lexeme enclosed
-in a pair of single quotes. The numbers identifies the line and column where the
+in a pair of single quotes. The numbers identify the line and column where the
 lexeme was located in the input file.</p>
 <h3 id="interactively"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.3.2</span> Interactively</h3>
 <p>If we just type the command</p>
@@ -440,7 +448,7 @@ followed by another prompt:</p>
 -:1:7 NUM '3'
 &gt;&gt;&gt;
 </code></pre></div>
-<p>Instead of a file name, each line of output now starts with the hyphen-minus
+<p>Instead of a file name, each line of output now starts with the hyphen (minus sign)
 character indicating that the input was entered interactively.</p>
 <p>We can enter another string of characters to process, followed by the enter key
 or finish our interaction with the command by pressing <code>d</code> while holding the
@@ -457,7 +465,7 @@ command</p>
 -:1:5 COMMA ','
 -:1:7 NUM '3'
 </code></pre></div>
-<p>Again each line starts with the hyphen-minus because the input was not read from
+<p>Again each line starts with the hyphen because the input was not read from
 a file.</p>
 <h3 id="typical-usage"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.3.4</span> Typical usage</h3>
 <p>What situation calls for a particular invocation style? Here are some
@@ -470,6 +478,10 @@ feature, then you will probably want to use the "interactive" method.</p>
 <p>You might reserve the "redirection" method either for a small test (e.g.,
 <code>echo "1, 2, 3" | plcc-scan</code>) or when needing to string two or more commands
 together (e.g., <code>cat in1.txt in2.txt | plcc-scan</code>).</p>
+<p>Another advantage of the "through a file" and "redirection" methods is that
+your command shell likely has a command <em>history</em>. That means you can use
+the up-arrow on your keyboard to locate an old command and then re-execute it
+by hitting the enter key.</p>
 <h2 id="text-convention"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.4</span> Text convention</h2>
 <p>Most examples in this text will specify the input and give the output without
 assuming a particular invocation style.</p>
@@ -490,6 +502,8 @@ token COMMA      ','
 -:1:5 COMMA ','
 -:1:7 NUM '3'
 </code></pre></div>
+<p>You just have to remember that if you use the "through a file" method the
+hyphen would be replaced by your file's name.</p>
 <h2 id="common-command-line-arguments"><span class="enumerate-headings-plugin enumerate-heading-plugin">5.5</span> Common command-line arguments</h2>
 <p>The three commands accept the command-line argument listed in the following
 table.</p>
@@ -509,8 +523,8 @@ table.</p>
 </tr>
 <tr>
 <td>Indicate the specification file</td>
-<td><code>-s &lt;path&gt;</code></td>
-<td><code>--spec=&lt;path&gt;</code></td>
+<td><code>-s &lt;filename&gt;</code></td>
+<td><code>--spec=&lt;filename&gt;</code></td>
 </tr>
 </tbody>
 </table>
