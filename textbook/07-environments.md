@@ -10,7 +10,7 @@ the symbols that can appear in those expressions. How should these symbols be
 evaluated?
 
 To solve this issue with an eye towards flexibility, we introduce the concepts
-of variables, bindings, and environments.
+of *variables*, *bindings*, and *environments*.
 
 ## Variables
 
@@ -37,7 +37,7 @@ class IntVal extends Val {
 
 ## Bindings
 
-At any instance in time, the value associated with a variable is called a
+At any instant in time, the value associated with a variable is called a
 *binding* of the variable to the value. Building upon the class definitions
 described in the previous section, we can define a binding with a pair of
 attributes as shown below. The first attribute (`id`) is a symbol representing a
@@ -106,8 +106,9 @@ Binding *- Val
 ## Environments
 
 Our languages will eventually need a hierarchy of bindings. We achieve this
-flexibility with a concept of an environment built from a series of nodes linked
-together. The figure below illustrates the concept.
+flexibility with the concept of an environment, which contains a single `Bindings`
+object. The hierarchy is created by making the `Environment` class a node that
+points to its parent environment. The figure below illustrates the concept.
 
 Do not worry too much, if upon first reading, you are left daunted by the
 complexity of this data structure. We will see this organization in action in
@@ -115,15 +116,20 @@ subsequent chapters. Hopefully the usefulness and power of this arrangement
 will soon make complete sense.
 
 The environment's base class (`Env`) defines a method (`extendEnv`) to extend an
-existing environment with an initial set of bindings. From this base, we define
-two alternative derived classes: `EnvNull` and `EnvNode`. You can think of the
-former as a default, unadorned environment. It contains no bindings at all and
-if we try to look up a variable, it will return nothing. The other derived
-class, `EnvNode`, defines two attributes (`bindings` and `env`) and one key
+existing environment with a new *child* environment containing an initial set of
+bindings. From this base, we define
+two alternative derived classes: `EnvNull` and `EnvNode`.
+The class `EnvNode` defines two attributes (`bindings` and `env`) and one key
 method (`applyEnv`). The attributes hold bindings for this node and a pointer
 to the next environment node in the hierarchy, respectively. `applyEnv` attempts
-to resolve a variable to a value. The method first looks up this node's
-bindings. If unsuccessful, it checks the next environment node in the hierarchy.
+to look up a variable, i.e., resolve a variable to its value.
+The method first looks up the variable in this node's
+bindings. If unsuccessful, it passes the request up to the next environment
+node in the hierarchy.
+You can think of the class `EnvNull` as representing
+a default, unadorned environment. It contains no bindings at all and
+if we try to look up a variable, it will fail. It is used as the root
+of the hierarchy to terminate an (unsuccessful) search.
 
 ```plantuml
 @startuml
