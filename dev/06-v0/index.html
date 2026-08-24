@@ -294,8 +294,11 @@ We are now in a position to start exploring important ideas in programming
 language concepts. To do so, we will start with a very simple language, <code>VO</code>,
 and, in the course of several chapters, gradually add to its power.</p>
 <p><code>V0</code> is a limited language that allows us to write rudimentary arithmetic
-expressions. Its lexical and syntactical specification is reproduced below. Its
-full Python specification is available
+expressions. The only semantics associated with the language is to echo back its input
+in a standard format.
+We are focusing on the syntax of <code>V0</code> in this chapter.
+Its lexical and syntactical specification is reproduced below.
+Its full semantic specification in Python is available
 <a href="https://github.com/ourPLCC/languages-ng/blob/v1.0.0/src/V0/python/spec.plcc">elsewhere</a>.</p>
 <div class="highlight"><pre><span></span><code># Language V0
 # primitive expressions
@@ -325,6 +328,8 @@ token SYMBOL '[A-Za-z]\w*'
 simply echoes back the input:</p>
 <div class="highlight"><pre><span></span><code>add1(+(2,3))
 </code></pre></div>
+<p>The action of <code>V0</code> can be thought of as a pretty-printer: It outputs the
+original program in some consistently applied formatting rules.</p>
 <h2 id="a-quick-tour"><span class="enumerate-headings-plugin enumerate-heading-plugin">8.1</span> A quick tour</h2>
 <p>As expressed by the first BNF rule of our specification, a <code>V0</code> program
 (<code>Program</code>) consists of an expression (<code>Exp</code>). In turn, an expression can be one
@@ -333,13 +338,14 @@ of three things: a whole number literal (i.e., the terminal <code>LIT</code>), a
 operands following the operator as a comma-separated list enclosed in a pair of
 parentheses.</p>
 <h2 id="examples"><span class="enumerate-headings-plugin enumerate-heading-plugin">8.2</span> Examples</h2>
-<p>Example "programs" in this language include the following "sentences":</p>
-<div class="highlight"><pre><span></span><code>3
-x
-+(3, x)
-add1( +(3, x) )
-+(4, -(5, 2))
-</code></pre></div>
+<p>Example "programs" in this language include the following:</p>
+<ul>
+<li><code>3</code></li>
+<li><code>x</code></li>
+<li><code>+(3, x)</code></li>
+<li><code>add1( +(3, x) )</code></li>
+<li><code>+(4, -(5, 2))</code></li>
+</ul>
 <h2 id="discussion"><span class="enumerate-headings-plugin enumerate-heading-plugin">8.3</span> Discussion</h2>
 <p>Observe first that <code>V0</code> writes expressions in <em>prefix form</em>, where the operator
 (such as <code>+</code> or <code>-</code>) precedes its operands. We would normally write the <code>V0</code>
@@ -351,13 +357,12 @@ and other languages (such as Haskell) have a special notation to use infix
 operators in prefix form.</p>
 <h2 id="semantics"><span class="enumerate-headings-plugin enumerate-heading-plugin">8.4</span> Semantics</h2>
 <p>The semantic specification of <code>V0</code> (not shown above but available
-<a href="https://github.com/ourPLCC/languages-ng/blob/main/src/V0/python/spec.plcc">elsewhere</a>),
-simply outputs its input in a regular format. For instance, the command
-<code>echo "add1(   +(2, 3))" | plcc-rep</code> will output <code>add1(+(2,3))</code>, without any
-whitespace as it were. We are not going to discuss the semantic section further
+<a href="https://github.com/ourPLCC/languages-ng/blob/v1.0.0/src/V0/python/spec.plcc">elsewhere</a>),
+simply outputs its input in a regular format. For instance,
+running <code>plcc-rep</code> on <code>add1(   +(2, 3))</code>
+will output <code>add1(+(2,3))</code>, without any
+whitespace. We are not going to discuss the semantic section further
 here, instead encouraging our readers to take some time to study it.</p>
-<p>The action of <code>V0</code> can we thought of as a pretty-printer: It outputs the
-original program in some consistently-applied formatting rules.</p>
 <h2 id="references"><span class="enumerate-headings-plugin enumerate-heading-plugin">8.5</span> References</h2>
 <ul>
 <li>
