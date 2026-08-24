@@ -18,3 +18,9 @@ This is the style guide for this textbook.
   value" when describing defined languages
 - Make links to defined languages (i.e., languages-ng) be to a specific version
   of this resource (i.e., not "latest")
+- Use *italics* for conceptual terms, especially when first introduced
+- Use **bold** for file names
+- Use `fixed-width font` for anything related to code
+- Use "`1, 2, 3`" for inlined input
+- Use ***italics bold**** for calling out something that must be really
+  understood
