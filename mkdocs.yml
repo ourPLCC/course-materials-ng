@@ -47,7 +47,7 @@ nav:
   - Introduction: 00-introduction.md
   - Overview: 01-overview.md
   - Tokens: 02-tokens.md
-  - PLCC-ng: 03-plcc.md
+  - PLCC: 03-plcc.md
   - Syntax: 04-syntax.md
   - Semantics: 05-semantic.md
   - V0: 06-v0.md
@@ -55,6 +55,9 @@ nav:
   - V1: 08-v1.md
   - V2: 09-v2.md
   - V3: 10-v3.md
+  - V4: 11-v4.md
+  - V5: 12-v5.md
+  - V6: 13-v6.md
 
 extra:
   version:
