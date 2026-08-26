@@ -540,7 +540,7 @@
 <p>So far our languages do not allow for anything like repetition. In an
 expression-based language (ours fall into this category), repetition is
 typically accomplished by recursion, and recursion depends on the ability to
-apply function recursively. So we need the ability to define and to call
+apply function recursively. So we need the ability to define and to apply
 functions.</p>
 <p>As a starting example, consider the following <code>V4</code> program.</p>
 <div class="highlight"><pre><span></span><code>let
@@ -551,135 +551,237 @@ in
 <p>Using <code>V4</code>'s specification, this program evaluates to <code>8</code>.</p>
 <h2 id="a-quick-tour">A quick tour</h2>
 <p>The declaration in the <code>let</code> expression defines a function using the <code>proc</code>
-keyword and assigns it a name (i.e., <code>f</code>). The <code>let</code> body applies the function
-using the dot character (<code>.</code>) with a single parameter (i.e., <code>5</code>).</p>
+keyword and binds it to a name (i.e., <code>f</code>). The <code>let</code> body applies the function
+using the dot character (<code>.</code>) followed with a single parameter (i.e., <code>5</code>).</p>
 <h2 id="functions">Functions</h2>
-<p>Think of a function as a "black box" that, when given zero or more input
-parameters, returns a single result value. The number of parameters that a
-function accepts is called its <em>arity</em>.</p>
+<p>A function is a reusable unit of computation. It consists of parameters, an
+expression (the computation), and an environment (more on this later).</p>
 <p>To <em>define</em> a function means to describe how it behaves. To <em>apply</em> a function
 means to give the function the proper number of parameters and to receive its
 result. <em>Formal parameters</em> refer to the list of parameters appearing in a
 function definition. <em>Actual parameters</em> refer to the list of parameters
-appearing in a function application.</p>
-<p>Using mathematical notation, we can define a function <span class="arithmatex">\(f\)</span> by</p>
-<div class="arithmatex">\[
-f(x) = x + 3
-\]</div>
-<p>and we can apply the function <span class="arithmatex">\(f\)</span> by</p>
-<div class="arithmatex">\[
-f(5)
-\]</div>
-<p>The result of this particular application is <span class="arithmatex">\(8\)</span>.</p>
-<h3 id="procval"><code>ProcVal</code></h3>
-<p>In Language V4, functions are treated as values just like integers. In
-particular, we create a <code>ProcVal</code> class that extends the <code>Val</code> class. This
-implies that a <code>ProcVal</code> object can occur anywhere a <code>Val</code> object is expected.</p>
-<h3 id="observations">Observations</h3>
-<p>It is possible to define and to apply a function in one expression, such as</p>
-<div class="highlight"><pre><span></span><code>.proc(x) +(x, 3) (5)
+appearing in a function application. The number of parameters that a function
+accepts is called its <em>arity</em>. A function can have zero parameters in which
+case the function acts as a constant.</p>
+<p>The parameters enable the computation to operate on dynamic input. When applied
+with a matching set of actual parameters, the function returns the value
+obtained by evaluating the expression in its body given the values of the
+parameters and the environment.</p>
+<p>In the function definition given in the introductory example <code>x</code> is the single
+formal parameter and <code>+(x, 3)</code> is the body.</p>
+<p>It may be useful to think of a function as a "black box" that, when given zero
+or more parameters, returns a single result value.</p>
+<p>A function must be defined before it can be applied.</p>
+<h2 id="syntax">Syntax</h2>
+<h3 id="function-definition">Function definition</h3>
+<p>In <code>V4</code>, a function definition is just another kind of expression called
+<code>ProcExp</code>. Such expressions have the following syntax:</p>
+<div class="highlight"><pre><span></span><code>&lt;Exp:ProcExp&gt;    ::= &lt;Proc&gt;
+&lt;Proc&gt;           ::= PROC LPAREN &lt;Formals&gt; RPAREN &lt;Exp&gt;
+&lt;Formals&gt;        **= &lt;SYMBOL&gt; +COMMA
 </code></pre></div>
-<p>The evaluation of both this expression and the program defined at the beginning
-of this chapter return the same value, namely the integer <code>8</code>.</p>
-<p>Notice, too, that <code>proc(x) +(x, 3)</code> also returns a value, but the value is a
-function, not an integer. (One’s intent when defining a function is eventually
-to apply it, although this is not a requirement.)</p>
-<h3 id="examples">Examples</h3>
-<p>Below are several <code>V4</code> programs using functions.</p>
-<p>The following program</p>
+<p>The table below shows several examples function definitions:</p>
+<table>
+<thead>
+<tr>
+<th>Definition</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>proc () 3</code></td>
+<td>When applied, evaluates to 3</td>
+</tr>
+<tr>
+<td><code>proc (x) *(x, 2)</code></td>
+<td>Doubles the argument it is applied to</td>
+</tr>
+<tr>
+<td><code>proc (a, b, c) +(a, +(b, c))</code></td>
+<td>Sums its three arguments</td>
+</tr>
+</tbody>
+</table>
+<p>As all expressions do, each of the above function expressions evaluates to a
+value. They evaluate to another specialization of <code>Val</code> called <code>ProcVal</code>. This
+fact implies that a <code>ProcVal</code> can occur anywhere a <code>Val</code> is expected. Each
+<code>ProcVal</code> represents the defined function and contains everything it needs
+to be applied to some parameters. A <code>ProcVal</code> consists of the formal parameters
+(a list of identifiers), an expression (the body), and an environment (more on
+this later; honest).</p>
+<p>The figure below illustrates the content of the <code>ProcVal</code> associated with the
+function definition appearing in the introductory example.</p>
+<div><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" data-diagram-type="CLASS" height="97px" preserveAspectRatio="xMaxYMax meet" style="width:128px;height:97px;background:#FFFFFF;" version="1.1" viewBox="0 0 128 97" width="128px" zoomAndPan="magnify" id="Kroki"><defs /><g><g class="entity" data-qualified-name="ProcVal" data-source-line="1" id="ent0001"><rect fill="#F1F1F1" height="77.1875" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="108.9883" x="7" y="7" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52.5068" x="35.2407" y="21.9951">ProcVal</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="114.9883" y1="27.2969" y2="27.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74.5527" x="13" y="44.292">formals : x</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="96.9883" x="13" y="60.5889">body : +(x, 3)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="25.7715" x="13" y="76.8857">env</text></g></g></svg></div>
+
+<p>You may have noticed that <code>ProcExp</code> does not provide a name for the function.
+The defined function is <em>anonymous</em>. But, because <code>ProcExp</code> evaluate to a
+<code>ProcVal</code>, we can bind a <code>ProcVal</code> to an identifier:</p>
 <div class="highlight"><pre><span></span><code>let
-  f = proc(x, y) +(x, y)
+  three = proc () 3
+  double = proc (x) *(x, 2)
+  sum_three = proc (a, b, c) +(a +(b, c))
 in
-  .f(3, 8)
+  ...
 </code></pre></div>
-<p>evaluates to <code>11</code>.</p>
-<p>The second program</p>
+<h3 id="function-application">Function application</h3>
+<p>Our explanations so far have focused on function definitions. We turn our
+attention now to applying a function. The application of a function is another
+kind of expression:</p>
+<div class="highlight"><pre><span></span><code>&lt;Exp:AppExp&gt;     ::= DOT &lt;Exp&gt; LPAREN &lt;Rands&gt; RPAREN
+</code></pre></div>
+<p>Below is a full example:</p>
 <div class="highlight"><pre><span></span><code>let
-  f = proc(z, y) +(10, y)
+  three = proc () 3
+  double = proc (x) *(x, 2)
+  sum_three = proc (a, b, c) +(a +(b, c))
 in
-  .f(3, 8)
+  .sum_three(.three(), .double(5), 7)
 </code></pre></div>
-<p>returns <code>18</code>.</p>
-<p>Finally, this program</p>
+<p>This example evaluates to <code>20</code>.</p>
+<p>The dot (the <code>.</code> character corresponding to the <code>DOT</code> token) indicates that we
+want to apply a function definition. The dot must be followed by an expression
+that must evaluate to a <code>ProcVal</code>, the function we want to apply. In the above
+examples, each of these expressions are <code>VarExp</code> that lookup the identifier in
+the current environment to find the <code>ProcVal</code> bound to that identifier. Inside
+the parentheses are the operands (<code>Rands</code>), just as with the application of
+primitive operators (<code>PrimappExp</code>). These operands (expressions) are evaluated
+in the current environment to produce actual values. These values are bound to
+the formal parameters (identifiers) and the environment that the <code>ProcVal</code>
+contains is extended with these bindings, forming a new environment. The
+function body (an expression) is evaluated in this new environment. The result
+of evaluation is the result of the <code>AppExp</code>.</p>
+<p>We do not have to bind a <code>ProcVal</code> to an identifier before we apply it to some
+arguments. Recall that an <code>AppExp</code> has the following syntax:</p>
+<div class="highlight"><pre><span></span><code>&lt;Exp:AppExp&gt;     ::= DOT &lt;Exp&gt; LPAREN &lt;Rands&gt; RPAREN
+</code></pre></div>
+<p>Notice the expression after the dot must evaluate to a <code>ProcVal</code>. And that
+<code>ProcVal</code> is what is applied to the passed parameters. In all the examples so
+far, we have always used <code>VarExp</code> in this position, which looks up a <code>ProcVal</code>
+in our current environment. However, this <code>Exp</code> can be <strong><em>any</em></strong> expression, as
+long as it evaluates to a <code>ProcVal</code>.</p>
+<p>Well, a <code>ProcExp</code> is an expression that evaluates to a <code>ProcVal</code>! Let us try
+defining the function we want and immediately applying it!</p>
+<div class="highlight"><pre><span></span><code>.proc(x) *(2, x) (3)
+</code></pre></div>
+<p>Here we have an <code>AppExp</code> whose <code>Exp</code> clause is a <code>ProcExp</code>. Recall, the <code>Exp</code> is
+evaluated first to get the <code>ProcVal</code> to apply. So the <code>ProcExp</code> is evaluated
+giving us a <code>ProcVal</code>. Then we apply it to <code>3</code>. The entire expression evaluates
+to <code>6</code>.</p>
+<h2 id="first-class-or-higher-order-functions">First-class or higher-order functions</h2>
+<p>A language that allows functions to be passed as parameters to other functions
+or to be returned from functions is said to support <em>first-class functions</em> or
+<em>higher-order functions</em>.</p>
+<p><code>V4</code> is such a programming language. Below is an example of a function that
+takes a function as a parameter:</p>
 <div class="highlight"><pre><span></span><code>let
-  x = 10
+  double = proc (x) *(2, x)
 in
   let
-    x = 7
-    f = proc(y) +(x, y)
+    call_and_add_4 = proc(f, y) +(.f(y), 4))
   in
-    .f(8)
+    .call_and_add_4(double, 2)
 </code></pre></div>
-<p>also returns <code>18</code>.</p>
-<p>In this third example, name <code>x</code> in the <code>proc</code> definition refers to the enclosing
-<code>x</code> (which is bound to <code>10</code>), not to the inner name <code>x</code> (which is bound to
-<code>7</code>). Remember the rules for evaluating the declarations in <code>let</code> expression!</p>
-<p>Now consider the next three examples, all of which evaluate to <code>5</code>:</p>
+<p>Evaluation of this program yields <code>8</code>.</p>
+<p>Here we pass <code>double</code> into <code>call_and_add_4</code> as <code>f</code>. <code>double</code> applies <code>f</code> to its
+second argument <code>y</code>, and then adds <code>4</code> to it. Notice that <code>call_and_add_4</code>
+does not know what function it is being passed. It just has to know how many and
+what type of arguments to pass it.</p>
+<p>Not only can we pass a function as a parameter, but we can also define a
+function that returns another function as a value. Below is a program where
+function <code>add2</code> returns a unary function defined by passing only one of the two
+required parameters to a binary function (<code>add</code>). This program evaluates to <code>5</code>.</p>
 <div class="highlight"><pre><span></span><code>let
-  app = proc(f, x) .f(x)
-  add2 = proc(y) add1(add1(y))
+  add = proc(x, y) +(x, y)
 in
-  .app(add2, 3)
+  let
+    add2 = proc(y) .add(2, y)
+  in
+    .add2(3)
 </code></pre></div>
+<p>First-class functions gives us a powerful tool for compositions of functions.
+Functional composition, here we come!</p>
+<h2 id="bound-and-free-variables">Bound and free variables</h2>
+<p>So far, all the functions we have written only reference identifiers in their
+formal parameter list, which is often called its <em>local scope</em>. These
+identifiers are all <em>bound variables</em>. What happens if a function tries to
+reference an identifier that is not in its local scope? For example, consider
+the following definition:</p>
+<div class="highlight"><pre><span></span><code>proc(x) +(x, y)
+</code></pre></div>
+<p>Within the function's local scope <code>x</code> is bound, but <code>y</code> is not. <code>y</code> is said to
+be <em>free</em>. A programming language can either disallow free variables, or provide
+a mechanism for resolving them when the function is applied.</p>
+<p>We want to allow free variables in our functions, so let us figure out how to
+resolve them.</p>
+<h3 id="static-versus-dynamic-scoping">Static versus dynamic scoping</h3>
+<p>If functions can be passed around, then when they are applied, what environment
+should they extend when creating their local environment? There are two choices:</p>
+<ul>
+<li>
+<p>The defining environment: the environment within which the function was
+  defined</p>
+</li>
+<li>
+<p>The calling environment: the environment within which the function is being
+  applied</p>
+</li>
+</ul>
+<p>Notice that if we choose to extend the defining environment, there is only one
+such environment since each function is defined only once. In fact, the defining
+environment for a function can be determined statically, without running the
+program. This is called <em>static scoping</em>.</p>
+<p>Alternatively, if we choose to extend the calling environment, we can only
+determine this environment at runtime. Why? Because a function is a value and
+can be passed into and out of functions and could be called from anywhere;
+even in environments that have not yet been created. This is called
+<em>dynamic scoping</em>.</p>
+<p>What is the difference? Consider the following program:</p>
 <div class="highlight"><pre><span></span><code>let
-  app = proc(f,x) .f(x)
+  x = 3
 in
-  .app(proc(y) add1(add1(y)), 3)
+  let
+    f = proc() x
+  in
+    let
+      x = 5
+    in
+      .f()
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>.proc(f, x) .f(x) (proc(y) add1(add1(y)), 3)
-</code></pre></div>
-<p>In the first of these three examples, observe that we can pass a function (in
-this case <code>add2</code>) as a parameter to another function. This <code>app</code> function takes
-two parameters and returns the result of applying the first actual parameter to
-the second. Of course, the first parameter had better be bound to a function for
-this to work. (If it is not, an attempt to apply it throws an exception.)</p>
-<p>In the second example, we have eliminated the identifier <code>add2</code> and instead
-simply replaced <code>add2</code> in the application <code>.app(add2, 3)</code> with the nameless
-function <code>proc(y) add1(add1(y))</code> that used to be called <code>add2</code>.</p>
-<p>In the third example, we have even eliminated the name <code>app</code>.</p>
-<p>Finally consider the following example, which evaluates to <code>120</code>:</p>
-<div class="highlight"><pre><span></span><code>let
-  fact = proc(f, x)
-    if x
-    then *(x, .f(f, sub1(x)))
-    else 1
-in
-  .fact(fact, 5)
-</code></pre></div>
-<p>This example, quite a bit more subtle than the previous ones, shows how you can
-achieve recursion — factorial, in this case — using our simple language (which
-does not yet support direct recursion!).</p>
-<h3 id="syntax">Syntax</h3>
-<p>We are now prepared to add syntax and semantics to support functions. First
-we add grammar rules for function definition and application, and display their
-corresponding abstract syntax classes:</p>
-<div class="highlight"><pre><span></span><code>&lt;Exp:ProcExp&gt;    ::= &lt;Proc&gt;
-def __init__(self, proc)
-&lt;Proc&gt;           ::= PROC LPAREN &lt;Formals&gt; RPAREN &lt;Exp&gt;
-def __init__(self, formals, exp)
-&lt;Formals&gt;        **= &lt;SYMBOL&gt; +COMMA
-def __init__(self, symbolList)
-&lt;Exp:AppExp&gt;     ::= DOT &lt;Exp&gt; LPAREN &lt;Rands&gt; RPAREN
-def __init__(self, exp, rands)
-</code></pre></div>
-<p>Obviously, appropriate definitions of <code>PROC</code> and <code>DOT</code> tokens must accompany
-these rules.</p>
-<h3 id="procval_1"><code>ProcVal</code></h3>
-<p>Before we can go any further, we need to tackle the definition of a <code>ProcVal</code>,
-which is what we should get when we evaluate a <code>ProcExp</code> expression.</p>
-<p>A <code>ProcVal</code> object must capture the formal parameters as an instance of the
-<code>Formals</code> class, and it must remember its function <em>body</em> as an instance of
-<code>Exp</code>. But what environment should we use to evaluate the function body when the
-function is applied? To conform to our notion of <em>static scope rules</em>, we want
-to evaluate the function body <em>using the environment in which the function is
-defined</em>. So any variables in the function body which are <em>not</em> among the formal
-parameters – in other words, the variables that <em>occur free</em> in the function
-body – are bound to their values in the environment in which the function is
-defined.</p>
+<p>Should its evaluation yield <code>3</code> or <code>5</code>? If we implement dynamic scoping and
+extend the calling environment, then the above will evaluate to <code>5</code>. If,
+instead, we support static scoping and extend the defining environment, then the
+above will evaluate to <code>3</code>.</p>
+<p>We will implement static scoping for the same reason most popular, modern
+languages do. The behavior of code written in such languages is easier to
+predict than code written in a language with dynamic scoping. That is because in
+dynamic scoping introduces hidden dependencies between the caller and the
+function. Changing the value of a variable in the caller can unexpectedly change
+the behavior of the call. For example, if you call <code>foo</code>, there is nothing that
+would indicate that this call makes use of a value bound to your <code>x</code>. So if you
+change what <code>x</code> is bound to, and then call <code>foo</code> again, you would expect <code>foo</code>
+to behave exactly as it does before. But if <code>foo</code> makes use of your <code>x</code>,
+unexpectedly it may behave differently!</p>
+<p>So how do we implement static scoping?</p>
+<p>We already have part of the solution in the form of our existing environment
+mechanism. To complete the implementation, when we evaluate a <code>ProcExp</code>, we will
+capture the environment active when this function is being defined, what we have
+referred to the <em>defining environment</em> at the beginning of this section. We will
+capture this environment by saving it with the <code>ProcVal</code> that is created by the
+evaluation of <code>ProcExp</code>. We call it the <em>captured environment</em>.</p>
+<p>When we apply a function, we extend its captured environment with its parameter
+bindings. Thus, any free variables referred to in the function will be resolved
+in the defining environment.</p>
 <p>In programming languages terminology, the term <em>closure</em> refers to an entity
 that captures all of the ingredients necessary to apply a function. In Language
 V4 <code>ProcVal</code> objects are closures.</p>
-<p>The attributes of the <code>ProcVal</code> class appear here:</p>
+<h2 id="semantics">Semantics</h2>
+<h3 id="function-definition_1">Function definition</h3>
+<p>Let us now examine the detailed semantics of a <code>ProcExp</code>, which is used to
+define a function.</p>
+<p>A <code>ProcVal</code> closure is constructed with attributes consisting of the list of
+formal parameters (a <code>Formals</code> object), the function body (an <code>Exp</code> object), and
+the environment in which the function is defined (an <code>Env</code> object).</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ProcVal</span><span class="p">(</span><span class="n">Val</span><span class="p">):</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formals</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
@@ -687,10 +789,22 @@ V4 <code>ProcVal</code> objects are closures.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">body</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
 </code></pre></div>
-<p>Recall that we can do two things with a function: define it and apply it. We
-will discuss function definition shortly, but first we give the semantics of
-function application.</p>
-<h3 id="function-application">Function application</h3>
+<p>The <code>makeClosure</code> method in the <code>Proc</code> class creates a <code>ProcVal</code> object given an
+environment:</p>
+<div class="highlight"><pre><span></span><code>Proc
+%%%
+def makeClosure(self, env):
+    return ProcVal(self.formals, self.exp, env)
+%%%
+</code></pre></div>
+<p>The semantics of the <code>eval</code> method in the <code>ProcExp</code> class is now trivial:</p>
+<div class="highlight"><pre><span></span><code>ProcExp
+%%%
+def eval(self, env):
+    return self.proc.makeClosure(env)
+%%%
+</code></pre></div>
+<h3 id="function-application_1">Function application</h3>
 <p>The method <code>eval</code> in the <code>AppExp</code> class defines the semantics of function
 application.</p>
 <div class="highlight"><pre><span></span><code>AppExp
@@ -706,8 +820,8 @@ def eval(self, env):
    <code>ProcVal</code> object (a closure) with attributes consisting of the list o
    formals parameter, the function body, and the captured environment.</li>
 <li>Evaluate <code>rands</code> (the <em>actual parameter</em> expressions) in the current
-   environment to get a list of <code>Val</code>s (the parameters). [Note: we did exactly
-   the same thing when evaluating the <code>rands</code> of a <code>PrimappExp</code>.]</li>
+   environment to get a list of <code>Val</code>s (the parameters). Note that we did
+   exactly the same thing when evaluating the <code>rands</code> of a <code>PrimappExp</code>.</li>
 <li>Evaluate the body of the function with the current environment and actual
    arguments computed in the previous step.</li>
 </ol>
@@ -744,28 +858,202 @@ exception for anything but a <code>ProcVal</code>:</p>
    function.</li>
 <li>Evaluate the body of the function in the (extended) environment (<code>nenv</code>).</li>
 </ol>
-<h3 id="function-definition">Function definition</h3>
-<p>Let us now examine the detailed semantics of a <code>ProcExp</code>, which is used to
-define a function.</p>
-<p>As noted earlier, a <code>ProcVal</code> closure is constructed with instance attributes
-consisting of the list of formal parameters (a <code>Formals</code> object), the function
-body (an <code>Exp</code> object), and the environment in which the function is defined (an
-<code>Env</code> object).</p>
-<p>The <code>makeClosure</code> method in the <code>Proc</code> class creates a <code>ProcVal</code> object given an
-environment:</p>
-<div class="highlight"><pre><span></span><code>Proc
-%%%
-def makeClosure(self, env):
-    return ProcVal(self.formals, self.exp, env)
-%%%
+<h2 id="equivalence-of-appexp-procexp-and-letexp">Equivalence of <code>AppExp</code> + <code>ProcExp</code> and <code>LetExp</code></h2>
+<p>Interestingly, an inlined <code>ProcExp</code> is functionally equivalent with a <code>LetExp</code>!</p>
+<div class="highlight"><pre><span></span><code>.proc(x) *(2, x) (3)
 </code></pre></div>
-<p>The semantics of the <code>eval</code> method in the <code>ProcExp</code> class is now trivial:</p>
-<div class="highlight"><pre><span></span><code>ProcExp
+<p>is the same as</p>
+<div class="highlight"><pre><span></span><code>let x = 3 in *(2, x)
+</code></pre></div>
+<p>Notice both extend the current environment with <code>x</code> bound to <code>3</code>, then evaluate
+the expression <code>*(2, x)</code> which yields <code>6</code>.</p>
+<p>In fact, we can generalize this relationship as follows.</p>
+<div class="highlight"><pre><span></span><code>.proc(V1, V2, ..., Vn) B (E1, E2, ..., En)
+</code></pre></div>
+<p>is functionally equivalent to</p>
+<div class="highlight"><pre><span></span><code>let
+    V1 = E1
+    V2 = E2
+    ...
+    Vn = En
+in
+    B
+</code></pre></div>
+<p>This equivalence means that with <code>AppExp</code> and <code>ProcApp</code> we no longer need
+<code>LetExp</code>. But we hope the reader will agree that the <code>let</code> notation is much
+easier to read. So let's keep the <code>LetExp</code>!</p>
+<p>However, we cannot eliminate <code>AppExp</code> and <code>ProcApp</code>. They give us something more
+than the <code>let</code> expression. <strong><em>They give us closures</em></strong>. <code>let</code> expressions do
+not.</p>
+<h2 id="recursion">Recursion</h2>
+<p>The language does not yet natively support recursion. Why?</p>
+<p>Consider the following program.</p>
+<div class="highlight"><pre><span></span><code>let
+  fact = proc(x)
+           if zero?(x)
+           then 1
+           else *(x, . fact(-(x, 1))
+in
+  .fact(4)
+</code></pre></div>
+<p>This program does not work in V4. The problem is that the reference to <code>fact</code> in
+the body of the proc is <em>free</em>. Remember, at the time <code>ProcExp</code> is evaluated it
+captures the same environment that the <code>LetExp</code> is evaluated within. And that
+environment does not contain the binding of the <code>ProcVal</code> to the identifier
+<code>fact</code>.</p>
+<p>So the language does not natively support recursion.</p>
+<p>That is a huge loss. If we don't have recursion, how can we have repetition?
+Because if we do not have repetition, we do not have a Turing-complete language.
+And if we do not have a Turing-complete language, then we cannot solve any
+computable problem.</p>
+<p>Do not despair. Because the language has higher-order functions, we can simulate
+recursion. We do so by passing the <code>ProcVal</code> to itself as an argument.</p>
+<div class="highlight"><pre><span></span><code>let
+  fact = proc(f, x)
+           if zero?(x)
+           then 1
+           else *(x, . f(f, -(x, 1))
+in
+  .fact(fact, 4)
+</code></pre></div>
+<p>When we define the function, we declare that it takes an extra parameter <code>f</code>.
+When applying the <code>ProcVal</code>, the caller will pass the same <code>ProcVal</code> as <code>f</code>.
+Inside the ProcVal, we assume <code>f</code> is the same <code>ProcVal</code> we are currently
+applying. This strategy allows us to apply <code>f</code> and pass <code>f</code> to itself.</p>
+<p>Now, as long as the initial caller passes the same <code>ProcVal</code> it wants to apply,
+we effectively have recursion. Of course, the caller could make a mistake and
+pass the wrong <code>ProcVal</code>. Let us fix that by defining a bespoke <code>ProcVal</code> that
+knows how to call itself properly.</p>
+<div class="highlight"><pre><span></span><code>let
+  fact = proc(x)
+           let
+             f = proc(f, x)
+                   if zero?(x)
+                   then 1
+                   else *(x, . f(f, -(x, 1))
+           in
+             .f(f,x)
+in
+  .fact(4)
+</code></pre></div>
+<h2 id="expression-sequences">Expression sequences</h2>
+<p>Finally, Language V4 includes the ability to evaluate a sequence of expressions,
+returning the value of the last expression. The component expressions in a
+sequence expression are always evaluated left-to-right.</p>
+<p>Here are a couple of simple examples.</p>
+<p>The sequences</p>
+<div class="highlight"><pre><span></span><code>{ 1; 3; 5 }
+</code></pre></div>
+<p>and</p>
+<div class="highlight"><pre><span></span><code>{ 42 }
+</code></pre></div>
+<p>evaluates to <code>5</code> and <code>42</code> respectively</p>
+<h3 id="syntax_1">Syntax</h3>
+<p>The grammar specification defines a few required additional tokens (<code>LBRACE</code>,
+<code>RBRACE</code>, and <code>SEMI</code>). It also defines two BNF productions that should be
+self explanatory:</p>
+<div class="highlight"><pre><span></span><code>Exp:SeqExp&gt;     ::= LBRACE &lt;Exp&gt; &lt;SeqExps&gt; RBRACE
+&lt;SeqExps&gt;        **= SEMI &lt;Exp&gt;
+</code></pre></div>
+<h3 id="additional-examples">Additional examples</h3>
+<p>Two examples are shown in the table below.</p>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{ 3 }</code></td>
+<td>Must contain at least one expression</td>
+</tr>
+<tr>
+<td><code>{ 3; +(2, 3) }</code></td>
+<td>Expressions separated by ";"</td>
+</tr>
+</tbody>
+</table>
+<p>Each component in the sequence can be any expression:</p>
+<div class="highlight"><pre><span></span><code>{ x              % VarExp
+; 3              % LitExp
+; +(4, x)        % PrimappExp
+; let x = 4 in x % LetExp
+; proc (x) 4     % ProcExp
+; .f(5)          % AppExp
+; { 1; 3; 5 }    % SeqExp
+}
+</code></pre></div>
+<h3 id="semantics_1">Semantics</h3>
+<p>The following specification excerpt illustrates the semantics of the sequence
+operator.</p>
+<div class="highlight"><pre><span></span><code>SeqExp
 %%%
 def eval(self, env):
-    return self.proc.makeClosure(env)
-%%%
+    v = self.exp.eval(env)
+    for e in self.seqExps.expList:
+        v = e.eval(env)
+    return v
 </code></pre></div>
+<p>Evaluation of a sequence expression proceeds as follows:</p>
+<ol>
+<li>Evaluate the first expression in the containing environment</li>
+<li>Evaluate subsequent expressions, if any, in that same environment</li>
+<li>Return the result of the last expression in the sequence</li>
+</ol>
+<h3 id="use">Use</h3>
+<p>Until we have side-effects, sequence expressions are not very useful. Notice
+that the results of each expression except the last are simply ignored. Also
+notice that without side-effects, the expressions in the sequence cannot
+interfere with each other.</p>
+<p>However, we can now use sequence expressions to add curly braces around any
+expression without changing the meaning of that expression, possibly improving
+the readability of our programs.</p>
+<h2 id="going-beyond">Going beyond</h2>
+<h3 id="first-class-functions">First-class functions</h3>
+<p>Have first-class functions any practical use? Perhaps you have written a sorting
+function for a list of integers. Then perhaps you had to write another function
+to sort lists of strings, only to realize that they share almost the same code.
+You remark that the only difference is how comparison is performed. If the
+caller of your sorting function could provide a comparison function appropriate
+for the type of list's elements then you could write a single sort function
+parameterized with the comparison function. In fact, this feature would let you
+sort a list in ascending or descending order without changing the sort code!</p>
+<h3 id="sections">Sections</h3>
+<p>In functional programming (most notably in Haskell), a <em>section</em> is a partially
+applied binary function to create a new unary function. One of the earlier
+examples, reproduced below, illustrates this concept.</p>
+<div class="highlight"><pre><span></span><code>let
+  add = proc(x, y) +(x, y)
+in
+  let
+    add2 = proc(y) .add(2, y)
+  in
+    .add2(3)
+</code></pre></div>
+<p>In this example, function <code>add2</code> is defined by partially applying function
+<code>add</code>.</p>
+<h3 id="static-versus-dynamic-scoping_1">Static versus dynamic scoping</h3>
+<p>As stated earlier, most popular, modern programming languages implement static
+scoping because it is easier to reason about the behavior of programs written in
+these languages.</p>
+<p>As a counter example, <code>bash</code>, a popular Unix shell, uses dynamic scoping for its
+local variables.</p>
+<h3 id="lambda-functions">Lambda functions</h3>
+<p>Another name for an anonymous function is a <em>lambda function</em>. Originally
+introduced by mathematician Alonzo Church as a mechanism to reason about
+computability. It found its way into a programming languages when Lisp first
+adopted the concept. It continues to be a central feature of many functional
+programming languages. More recently, many imperative programming languages,
+such as C++, Java, and Python, have started to support this feature.</p>
+<h3 id="separator-versus-terminator">Separator versus terminator</h3>
+<p>In <code>V4</code>, a sequence uses the semicolon as a separator. Other languages use the
+semicolon as a special marker. In some languages, such as Algol and Pascal, the
+semicolon is used as a <em>separator</em> (much like <code>V4</code>). In those languages, having
+a semicolon after the last statement may be a syntax error.</p>
+<p>Other languages, such as C or C++, the semicolon is used as a <em>terminator</em>.
+Omitting a semicolon after the last statement is an error!</p>
 
 
 
