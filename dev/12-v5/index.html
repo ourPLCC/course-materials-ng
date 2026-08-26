@@ -1,542 +1,367 @@
 
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-      
-        <link rel="canonical" href="https://ourplcc.github.io/course-materials-ng/dev/12-v5/">
-      
-      
-      
-      
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
-    
-    
-      
-        <title>Language V5 - Programming Languages with PLCC</title>
-      
-    
-    
-      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
-      
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
-      
-      
+<!DOCTYPE html>
 
-
-    
-    
-      
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-      
-    
-    
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
-
-    
-    
-    
-  </head>
-  
-  
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
-  
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#language-v5" class="md-skip">
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="https://ourplcc.github.io/course-materials-ng/dev/12-v5/" rel="canonical"/>
+<link href="../11-v4/" rel="prev"/>
+<link href="../13-v6/" rel="next"/>
+<link href="../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.6.15" name="generator"/>
+<title>V5 - Programming Languages with PLCC</title>
+<link href="../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#language-v5">
           Skip to content
         </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
-        
-      </div>
-    
-    
-      
-
-  
-
+</div>
+<div data-md-component="announce">
+</div>
+<div data-md-color-scheme="default" data-md-component="outdated" hidden="">
+</div>
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Programming Languages with PLCC" class="md-header__button md-logo" aria-label="Programming Languages with PLCC" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Programming Languages with PLCC" class="md-header__button md-logo" data-md-component="logo" href=".." title="Programming Languages with PLCC">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
             Programming Languages with PLCC
           </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
             
-              Language V5
+              V5
             
           </span>
-        </div>
-      </div>
-    </div>
-    
-      
-        <form class="md-header__option" data-md-component="palette">
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
-      </label>
-    
-  
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
 </form>
-      
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
-    
-    
-    
-      
-      
-        <label class="md-header__button md-icon" for="__search">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        </label>
-        <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+<ol class="md-search-result__list" role="presentation"></ol>
 </div>
-      
-    
-    
-      <div class="md-header__source">
-        <a href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
-  </div>
-  <div class="md-source__repository">
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
     ourPLCC/course-materials-ng
   </div>
 </a>
-      </div>
-    
-  </nav>
-  
+</div>
+</nav>
 </header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-          
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-
-  
-
-<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Programming Languages with PLCC" class="md-nav__button md-logo" aria-label="Programming Languages with PLCC" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--integrated" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Programming Languages with PLCC" class="md-nav__button md-logo" data-md-component="logo" href=".." title="Programming Languages with PLCC">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
     Programming Languages with PLCC
   </label>
-  
-    <div class="md-nav__source">
-      <a href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
-  </div>
-  <div class="md-source__repository">
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
     ourPLCC/course-materials-ng
   </div>
 </a>
-    </div>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+<span class="md-ellipsis">
     Home
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../00-introduction/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../00-introduction/">
+<span class="md-ellipsis">
     Introduction
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../01-overview/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../01-overview/">
+<span class="md-ellipsis">
     Overview
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../02-tokens/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../02-tokens/">
+<span class="md-ellipsis">
     Tokens
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../03-plcc/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    PLCC-ng
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../03-plcc/">
+<span class="md-ellipsis">
+    PLCC
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../04-syntax/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../04-syntax/">
+<span class="md-ellipsis">
     Syntax
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05-semantic/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../05-semantic/">
+<span class="md-ellipsis">
     Semantics
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../06-v0/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../06-v0/">
+<span class="md-ellipsis">
     V0
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07-environments/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../07-environments/">
+<span class="md-ellipsis">
     Environments
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08-v1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../08-v1/">
+<span class="md-ellipsis">
     V1
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../09-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../09-v2/">
+<span class="md-ellipsis">
     V2
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../10-v3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../10-v3/">
+<span class="md-ellipsis">
     V3
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../11-v4/">
+<span class="md-ellipsis">
+    V4
     
-  </ul>
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    V5
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    V5
+    
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#a-quick-tour">
+<span class="md-ellipsis">
+      A quick tour
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#syntax">
+<span class="md-ellipsis">
+      Syntax
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#semantics">
+<span class="md-ellipsis">
+      Semantics
+    </span>
+</a>
+<nav aria-label="Semantics" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#order-matters">
+<span class="md-ellipsis">
+      Order matters
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#declarations">
+<span class="md-ellipsis">
+      Declarations
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example">
+<span class="md-ellipsis">
+      Example
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#body">
+<span class="md-ellipsis">
+      Body
+    </span>
+</a>
+</li>
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-          
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-
-  
-  
-
-
-<h1 id="language-v5">Language V5</h1>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mutual-recursion">
+<span class="md-ellipsis">
+      Mutual recursion
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exercises">
+<span class="md-ellipsis">
+      Exercises
+    </span>
+</a>
+<nav aria-label="Exercises" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exercise-1">
+<span class="md-ellipsis">
+      Exercise 1
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#going-beyond">
+<span class="md-ellipsis">
+      Going beyond
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../13-v6/">
+<span class="md-ellipsis">
+    V6
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="language-v5"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.</span> Language V5</h1>
 <p>We normally prefer to use direct recursion instead of relying on the contrived
 tricks described in the previous chapter. Specifically, we would like to write</p>
 <div class="highlight"><pre><span></span><code>let
@@ -563,20 +388,20 @@ in
   .fact(5)
 </code></pre></div>
 <p>Evaluation of this program with <code>V5</code> produces <code>120</code>.</p>
-<h2 id="a-quick-tour">A quick tour</h2>
+<h2 id="a-quick-tour"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.1</span> A quick tour</h2>
 <p>The syntax of a <code>letrec</code> expression is the same as its <code>let</code> counterpart. The
 difference lies in its semantics. Without going into details yet, the
 declarations are evaluated in such a way as to allow them to refer to each
 other. This evaluation strategy allows functions to call themselves recursively.
 Specifically, in the example above, the identifier <code>fact</code> in the right-hand
 side is bound to the same identifier in the left-hand side.</p>
-<h2 id="syntax">Syntax</h2>
+<h2 id="syntax"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.2</span> Syntax</h2>
 <p>We require a new token (<code>LETREC</code>) as well as a new grammar rule:</p>
 <div class="highlight"><pre><span></span><code>&lt;Exp:LetrecExp&gt;  ::= LETREC &lt;LetDecls&gt; IN &lt;Exp&gt;
 </code></pre></div>
 <p>This rule depends on two non-terminal symbols (<code>LetDecls</code> and <code>Exp</code>) which we
 have already defined in the context of the definition for <code>let</code> expressions.</p>
-<h2 id="semantics">Semantics</h2>
+<h2 id="semantics"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.3</span> Semantics</h2>
 <p>The right-hand side of the expressions appearing in the declaration are
 evaluated in the order in which they appear, using an environment where <em>all</em> of
 the previous bindings in the <code>letrec</code> are accessible. In addition, if the
@@ -591,7 +416,7 @@ can be evaluated in any order, which is sometimes called <em>parallel evaluation
 The only difference between the semantics of the <code>let</code> and <code>letrec</code> expression
 is in the way in which we build the environment capturing the bindings issued
 from the declarations.</p>
-<h3 id="order-matters">Order matters</h3>
+<h3 id="order-matters"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.3.1</span> Order matters</h3>
 <p>Because right-hand side expressions are evaluated in the same environment they
 update, the order in which declarations appear matters.</p>
 <p>The program</p>
@@ -605,7 +430,7 @@ in
 <p>The downside to <code>letrec</code> expressions is that declarations cannot be evaluated in
 parallel. So, ideally, <code>letrec</code> should only be used when you need to define a
 recursive function.</p>
-<h3 id="declarations">Declarations</h3>
+<h3 id="declarations"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.3.2</span> Declarations</h3>
 <p>To implement the recursive behavior of a <code>letrec</code> expression, we define a new
 method called <code>addLetrecBindings</code> in the <code>LetDecls</code> class.</p>
 <div class="highlight"><pre><span></span><code>LetDecls
@@ -641,7 +466,7 @@ following steps:</p>
 <p>Recall that the <code>LetDecls</code> initializer checks for duplicate left-hand side
 identifiers during parsing. Since the grammar rule for <code>letrec</code> reuses
 <code>LetDecls</code>, a <code>letrec</code> expression implicitly also makes this check.</p>
-<h3 id="example">Example</h3>
+<h3 id="example"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.3.3</span> Example</h3>
 <p>Consider the following program:</p>
 <div class="highlight"><pre><span></span><code>letrec
   x = 5
@@ -654,8 +479,7 @@ in
 <li>Create a new environment by extending the enclosing environment with an
    empty list of bindings.</li>
 </ol>
-<div><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" data-diagram-type="CLASS" height="158px" preserveAspectRatio="xMaxYMax meet" style="width:220px;height:158px;background:#FFFFFF;" version="1.1" viewBox="0 0 220 158" width="220px" zoomAndPan="magnify" id="Kroki"><defs /><g><g class="entity" data-qualified-name="Env" data-source-line="1" id="ent0001"><rect fill="#F1F1F1" height="44.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84.3145" x="7" y="7.3" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70.3145" x="14" y="22.2951">Env (new)</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.3145" y1="27.5969" y2="27.5969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59.4795" x="13" y="44.592">bindings</text></g><g class="entity" data-qualified-name="Prev" data-source-line="5" id="ent0002"><rect fill="#F1F1F1" height="44.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="71.4795" x="134.26" y="7" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26.0039" x="156.9978" y="21.9951">Env</text><line style="stroke:#181818;stroke-width:0.5;" x1="135.26" x2="204.7395" y1="27.2969" y2="27.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59.4795" x="140.26" y="44.292">bindings</text></g><g class="entity" data-qualified-name="Bindings" data-source-line="11" id="ent0004"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="74.1973" x="12" y="123.3" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60.1973" x="19" y="138.2951">Bindings</text></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0002" data-link-type="dependency" data-source-line="9" id="lnk3"><path codeLine="9" d="M98.63,29.3 C110.43,29.3 117.23,29.3 129.04,29.3" fill="none" id="Env-to-Prev" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="134.04,29.3,125.04,25.3,129.04,29.3,125.04,33.3,134.04,29.3" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0004" data-link-type="dependency" data-source-line="13" id="lnk5"><path codeLine="13" d="M92,39.3 C125.26,39.3 90.2539,85.1322 67.2039,111.8822" fill="none" id="Env-to-Bindings" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="63.94,115.67,72.8452,111.4631,67.2039,111.8822,66.7847,106.2409,63.94,115.67" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g></g></svg></div>
-
+<div><svg contentstyletype="text/css" data-diagram-type="CLASS" height="158px" id="Kroki" preserveaspectratio="xMaxYMax meet" style="width:220px;height:158px;background:#FFFFFF;" version="1.1" viewbox="0 0 220 158" width="220px" xmlns="http://www.w3.org/2000/svg" zoomandpan="magnify"><defs></defs><g><g class="entity" data-qualified-name="Env" data-source-line="1" id="ent0001"><rect fill="#F1F1F1" height="44.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84.3145" x="7" y="7.3"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="70.3145" x="14" y="22.2951">Env (new)</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.3145" y1="27.5969" y2="27.5969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="59.4795" x="13" y="44.592">bindings</text></g><g class="entity" data-qualified-name="Prev" data-source-line="5" id="ent0002"><rect fill="#F1F1F1" height="44.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="71.4795" x="134.26" y="7"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="26.0039" x="156.9978" y="21.9951">Env</text><line style="stroke:#181818;stroke-width:0.5;" x1="135.26" x2="204.7395" y1="27.2969" y2="27.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="59.4795" x="140.26" y="44.292">bindings</text></g><g class="entity" data-qualified-name="Bindings" data-source-line="11" id="ent0004"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="74.1973" x="12" y="123.3"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="60.1973" x="19" y="138.2951">Bindings</text></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0002" data-link-type="dependency" data-source-line="9" id="lnk3"><path codeline="9" d="M98.63,29.3 C110.43,29.3 117.23,29.3 129.04,29.3" fill="none" id="Env-to-Prev" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="134.04,29.3,125.04,25.3,129.04,29.3,125.04,33.3,134.04,29.3" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0004" data-link-type="dependency" data-source-line="13" id="lnk5"><path codeline="13" d="M92,39.3 C125.26,39.3 90.2539,85.1322 67.2039,111.8822" fill="none" id="Env-to-Bindings" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="63.94,115.67,72.8452,111.4631,67.2039,111.8822,66.7847,106.2409,63.94,115.67" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g></g></svg></div>
 <ol>
 <li>In the order in which the left-hand side identifiers appear, create a binding
    of the left-hand side identifier (<code>x</code> and then <code>f</code>) to the value of its
@@ -663,13 +487,12 @@ in
    where each right-hand side expression is evaluated in the extended
    environment — and add this binding to the extended environment.</li>
 </ol>
-<div><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" data-diagram-type="CLASS" height="211px" preserveAspectRatio="xMaxYMax meet" style="width:284px;height:211px;background:#FFFFFF;" version="1.1" viewBox="0 0 284 211" width="284px" zoomAndPan="magnify" id="Kroki"><defs /><g><g class="entity" data-qualified-name="ProcVal" data-source-line="1" id="ent0001"><rect fill="#F1F1F1" height="77.1875" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="100.8398" x="132" y="119.3" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52.5068" x="156.1665" y="134.2951">ProcVal</text><line style="stroke:#181818;stroke-width:0.5;" x1="133" x2="231.8398" y1="139.5969" y2="139.5969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="71.7568" x="138" y="156.592">formals : t</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="88.8398" x="138" y="172.8889">body : *(t, x)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="25.7715" x="138" y="189.1857">env</text></g><g class="entity" data-qualified-name="Bindings" data-source-line="7" id="ent0002"><rect fill="#F1F1F1" height="60.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="74.1973" x="7" y="127.8" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60.1973" x="14" y="142.7951">Bindings</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="80.1973" y1="148.0969" y2="148.0969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30.8096" x="13" y="165.092">x : 5</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.9287" x="13" y="181.3889">f</text></g><g class="entity" data-qualified-name="Env" data-source-line="12" id="ent0003"><rect fill="#F1F1F1" height="44.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84.3145" x="71" y="7.3" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70.3145" x="78" y="22.2951">Env (new)</text><line style="stroke:#181818;stroke-width:0.5;" x1="72" x2="154.3145" y1="27.5969" y2="27.5969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59.4795" x="77" y="44.592">bindings</text></g><g class="entity" data-qualified-name="Prev" data-source-line="16" id="ent0004"><rect fill="#F1F1F1" height="44.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="71.4795" x="198.26" y="7" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26.0039" x="220.9978" y="21.9951">Env</text><line style="stroke:#181818;stroke-width:0.5;" x1="199.26" x2="268.7395" y1="27.2969" y2="27.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59.4795" x="204.26" y="44.292">bindings</text></g><g class="link" data-entity-1="ent0003" data-entity-2="ent0004" data-link-type="dependency" data-source-line="20" id="lnk5"><path codeLine="20" d="M162.63,29.3 C174.43,29.3 181.23,29.3 193.04,29.3" fill="none" id="Env-to-Prev" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="198.04,29.3,189.04,25.3,193.04,29.3,189.04,33.3,198.04,29.3" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0003" data-entity-2="ent0002" data-link-type="dependency" data-source-line="22" id="lnk6"><path codeLine="22" d="M70,39.3 C35.11,39.3 34.1213,84.3313 38.0313,119.1013" fill="none" id="Env-to-Bindings" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="38.59,124.07,41.5592,114.6794,38.0313,119.1013,33.6093,115.5734,38.59,124.07" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0002" data-entity-2="ent0001" data-link-type="dependency" data-source-line="23" id="lnk7"><path codeLine="23" d="M82,175.8 C95.8,181.2 105.5112,183.3291 119.2612,183.0291" fill="none" id="Bindings-to-ProcVal" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="124.26,182.92,115.1749,179.1173,119.2612,183.0291,115.3494,187.1154,124.26,182.92" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0003" data-link-type="dependency" data-source-line="24" id="lnk8"><path codeLine="24" d="M131,183.3 C105.52,183.3 107.6629,103.5686 110.5929,60.2086" fill="none" id="ProcVal-to-Env" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="110.93,55.22,106.3323,63.9298,110.5929,60.2086,114.3141,64.4692,110.93,55.22" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g></g></svg></div>
-
+<div><svg contentstyletype="text/css" data-diagram-type="CLASS" height="211px" id="Kroki" preserveaspectratio="xMaxYMax meet" style="width:284px;height:211px;background:#FFFFFF;" version="1.1" viewbox="0 0 284 211" width="284px" xmlns="http://www.w3.org/2000/svg" zoomandpan="magnify"><defs></defs><g><g class="entity" data-qualified-name="ProcVal" data-source-line="1" id="ent0001"><rect fill="#F1F1F1" height="77.1875" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="100.8398" x="132" y="119.3"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="52.5068" x="156.1665" y="134.2951">ProcVal</text><line style="stroke:#181818;stroke-width:0.5;" x1="133" x2="231.8398" y1="139.5969" y2="139.5969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="71.7568" x="138" y="156.592">formals : t</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="88.8398" x="138" y="172.8889">body : *(t, x)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="25.7715" x="138" y="189.1857">env</text></g><g class="entity" data-qualified-name="Bindings" data-source-line="7" id="ent0002"><rect fill="#F1F1F1" height="60.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="74.1973" x="7" y="127.8"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="60.1973" x="14" y="142.7951">Bindings</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="80.1973" y1="148.0969" y2="148.0969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="30.8096" x="13" y="165.092">x : 5</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="4.9287" x="13" y="181.3889">f</text></g><g class="entity" data-qualified-name="Env" data-source-line="12" id="ent0003"><rect fill="#F1F1F1" height="44.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84.3145" x="71" y="7.3"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="70.3145" x="78" y="22.2951">Env (new)</text><line style="stroke:#181818;stroke-width:0.5;" x1="72" x2="154.3145" y1="27.5969" y2="27.5969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="59.4795" x="77" y="44.592">bindings</text></g><g class="entity" data-qualified-name="Prev" data-source-line="16" id="ent0004"><rect fill="#F1F1F1" height="44.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="71.4795" x="198.26" y="7"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="26.0039" x="220.9978" y="21.9951">Env</text><line style="stroke:#181818;stroke-width:0.5;" x1="199.26" x2="268.7395" y1="27.2969" y2="27.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="59.4795" x="204.26" y="44.292">bindings</text></g><g class="link" data-entity-1="ent0003" data-entity-2="ent0004" data-link-type="dependency" data-source-line="20" id="lnk5"><path codeline="20" d="M162.63,29.3 C174.43,29.3 181.23,29.3 193.04,29.3" fill="none" id="Env-to-Prev" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="198.04,29.3,189.04,25.3,193.04,29.3,189.04,33.3,198.04,29.3" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0003" data-entity-2="ent0002" data-link-type="dependency" data-source-line="22" id="lnk6"><path codeline="22" d="M70,39.3 C35.11,39.3 34.1213,84.3313 38.0313,119.1013" fill="none" id="Env-to-Bindings" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="38.59,124.07,41.5592,114.6794,38.0313,119.1013,33.6093,115.5734,38.59,124.07" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0002" data-entity-2="ent0001" data-link-type="dependency" data-source-line="23" id="lnk7"><path codeline="23" d="M82,175.8 C95.8,181.2 105.5112,183.3291 119.2612,183.0291" fill="none" id="Bindings-to-ProcVal" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="124.26,182.92,115.1749,179.1173,119.2612,183.0291,115.3494,187.1154,124.26,182.92" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0003" data-link-type="dependency" data-source-line="24" id="lnk8"><path codeline="24" d="M131,183.3 C105.52,183.3 107.6629,103.5686 110.5929,60.2086" fill="none" id="ProcVal-to-Env" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="110.93,55.22,106.3323,63.9298,110.5929,60.2086,114.3141,64.4692,110.93,55.22" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g></g></svg></div>
 <ol>
 <li>Once all of the bindings have been added to the extended environment, return
    the extended environment.</li>
 </ol>
-<h3 id="body">Body</h3>
+<h3 id="body"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.3.4</span> Body</h3>
 <p>We can now evaluate a <code>LetrecExp</code> object in exactly the same way as a <code>LetExp</code>
 object:</p>
 <div class="highlight"><pre><span></span><code>LetrecExp
@@ -689,7 +512,7 @@ Specifically:</p>
 <p>Evaluate the body in the extended environment.</p>
 </li>
 </ol>
-<h2 id="mutual-recursion">Mutual recursion</h2>
+<h2 id="mutual-recursion"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.4</span> Mutual recursion</h2>
 <p>The <code>letrec</code> construct allows us to define mutually recursive functions — two
 or more functions that call each other recursively. Here’s a classic example:</p>
 <div class="highlight"><pre><span></span><code>letrec
@@ -703,79 +526,45 @@ in
 functions to suggest that they should be considered predicates that return true
 (i.e., <code>1</code>) or false (i.e., <code>0</code>). We added this lexical feature to Languages V5
 and beyond.</p>
-<h2 id="exercises">Exercises</h2>
-<h3 id="exercise-1">Exercise 1</h3>
+<h2 id="exercises"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.5</span> Exercises</h2>
+<h3 id="exercise-1"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.5.1</span> Exercise 1</h3>
 <p>Can you define the <code>odd?</code>/<code>even?</code> mutually recursive functions in Language V4,
 that is, without <code>letrec</code>?</p>
-<h2 id="going-beyond">Going beyond</h2>
+<h2 id="going-beyond"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.6</span> Going beyond</h2>
 <p>The Scheme programming language introduced the <code>letrec</code> construct to enable the
 definition of mutually recursive functions.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-              </article>
-            </div>
-          
-          
-  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
-
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-        </div>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-    <div class="md-copyright__highlight">
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
       Textbook content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
 
     </div>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
       Material for MkDocs
     </a>
-  
 </div>
-      
-    </div>
-  </div>
+</div>
+</div>
 </footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    
-      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
-    
-    
-    
-      
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.sections", "navigation.tracking", "toc.integrate", "search.suggest", "content.tabs", "content.tabs.link"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
-    
-    
-      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
-      
-        <script src="../javascripts/mathjax.js"></script>
-      
-        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-    
-  </body>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<div class="md-progress" data-md-component="progress" role="progressbar"></div>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.sections", "navigation.tracking", "toc.integrate", "search.suggest", "content.tabs", "content.tabs.link"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+<script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+<script src="../javascripts/mathjax.js"></script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
 </html>
