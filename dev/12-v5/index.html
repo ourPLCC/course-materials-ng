@@ -376,7 +376,8 @@ expressions have been evaluated do we bind each of the left-hand side
 identifiers to the corresponding left-hand side results.</p>
 <p>The above function's body refers to the identifier <code>fact</code> which is free in the
 definition. Indeed the identifier <code>fact</code> does not appear in the function's
-formal parameter nor does it appear in the enclosing environment which is
+formal parameter list nor does it appear in the enclosing environment, which
+in this small program, is
 empty. Thus an attempt to apply the function fails because of an unbound
 identifier.</p>
 <p>To solve this problem, we create a new <code>let</code>-like expression that supports
@@ -405,7 +406,8 @@ have already defined in the context of the definition for <code>let</code> expre
 <p>The right-hand side of the expressions appearing in the declaration are
 evaluated in the order in which they appear, using an environment where <em>all</em> of
 the previous bindings in the <code>letrec</code> are accessible. In addition, if the
-right-hand side expression is a function, it captures the entire environment
+right-hand side expression is a function (i.e., a <code>ProcExp</code>),
+it captures the entire environment
 created by all of the bindings in the <code>letrec</code> expression. This evaluation
 strategy means that functions defined in a <code>letrec</code> expression can refer to each
 other. In particular, they can call themselves recursively.</p>
@@ -456,7 +458,7 @@ following steps:</p>
 <p>Evaluate each right-hand side expression in this new environment.</p>
 </li>
 <li>
-<p>Update the new environment with a new binding tying left-hand side
+<p>Update the new environment with a new binding tying the left-hand side
       identifier to the result of its corresponding right-hand side expression.</p>
 </li>
 <li>
@@ -465,7 +467,7 @@ following steps:</p>
 </ol>
 <p>Recall that the <code>LetDecls</code> initializer checks for duplicate left-hand side
 identifiers during parsing. Since the grammar rule for <code>letrec</code> reuses
-<code>LetDecls</code>, a <code>letrec</code> expression implicitly also makes this check.</p>
+<code>LetDecls</code>, a <code>letrec</code> expression will also make this check.</p>
 <h3 id="example"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.3.3</span> Example</h3>
 <p>Consider the following program:</p>
 <div class="highlight"><pre><span></span><code>letrec
@@ -513,7 +515,7 @@ Specifically:</p>
 </li>
 </ol>
 <h2 id="mutual-recursion"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.4</span> Mutual recursion</h2>
-<p>The <code>letrec</code> construct allows us to define mutually recursive functions — two
+<p>The <code>letrec</code> construct allows us to define <em>mutually recursive functions</em> — two
 or more functions that call each other recursively. Here’s a classic example:</p>
 <div class="highlight"><pre><span></span><code>letrec
   even? = proc(x) if zero?(x) then 1 else .odd?(sub1(x))
@@ -522,10 +524,13 @@ in
   .even?(11)
 </code></pre></div>
 <p>This program evaluates to <code>0</code> (i.e., false).</p>
-<p>Notice that we have used the character <code>?</code> in the variable names for the
-functions to suggest that they should be considered predicates that return true
-(i.e., <code>1</code>) or false (i.e., <code>0</code>). We added this lexical feature to Languages V5
-and beyond.</p>
+<p>Notice that we have established a convention. We use the character <code>?</code> at the
+end of variable names for functions when they should be considered predicates
+that return true (i.e., <code>1</code>) or false (i.e., <code>0</code>). You may recall the <code>zero?</code>
+primitive was so named for the same reason. The lexical specification of
+Languages <code>V5</code> and beyond will allow an <code>IDENT</code> to end with a question mark, but
+it is beyond the capability of PLCC to make sure language designers are
+following the convention; that is up to us.</p>
 <h2 id="exercises"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.5</span> Exercises</h2>
 <h3 id="exercise-1"><span class="enumerate-headings-plugin enumerate-heading-plugin">14.5.1</span> Exercise 1</h3>
 <p>Can you define the <code>odd?</code>/<code>even?</code> mutually recursive functions in Language V4,
