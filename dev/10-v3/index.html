@@ -352,16 +352,18 @@ in
 </code></pre></div>
 <p>produces the output <code>7</code>.</p>
 <h2 id="let-expression"><span class="enumerate-headings-plugin enumerate-heading-plugin">12.2</span> <code>let</code> expression</h2>
-<p>The <code>let</code> expression consists of a series of declarations (<code>LetDecls</code>),
-following the <code>let</code> keyword, and a body (<code>Exp</code>), following the <code>in</code> keyword.</p>
+<p>The <code>let</code> expression consists of the <code>let</code> keyword followed by a series of declarations
+(<code>LetDecls</code>), and then the <code>in</code> keyword followed by a body, which is a single <code>Exp</code>.</p>
 <p>To evaluate a <code>let</code> expression, we perform the following steps:</p>
 <ol>
-<li>
-<p>Create a set of local bindings by binding each of the identifiers to the
+<li>Create a set of local bindings by binding each of the identifiers to the
    values of their corresponding expressions in the declarations part of the
-   construct, where the expressions to the right of the equal signs are all
-   evaluated in the enclosing environment;</p>
-</li>
+   construct.</li>
+</ol>
+<p>Note that, if variables are present in any of the expressions on the
+   right-hand sides of the equals signs, they are evaluated using the enclosing
+   environment — not the new environment being created;</p>
+<ol>
 <li>
 <p>Extend the enclosing environment with these local bindings to create a new
    environment; and</p>
@@ -399,12 +401,13 @@ in
     +(x,y)
 </code></pre></div>
 <p>In the third example below, two new environments are created. The outer <code>let</code>
-binds <code>x</code> to <code>3</code>. The inner let binds <code>x</code> to the value of <code>add1(x)</code> and <code>y</code> to
-the value of <code>add1(x)</code>. Both <code>add1(x)</code> expressions in the inner let, are
+binds <code>x</code> to <code>3</code>. The inner <code>let</code> binds <code>x</code> to the value of <code>add1(x)</code> and <code>y</code> to
+the value of <code>add1(x)</code>. Both <code>add1(x)</code> expressions in the inner <code>let</code> are
 evaluated <em>using the outer (enclosing) environment</em> which has <code>x</code> bound to <code>3</code>.
 Thus <code>add1(x)</code> evaluates to <code>4</code> <em>in both cases</em>. Thus, in the inner environment,
 <code>x</code> is bound to <code>4</code> <em>and</em> <code>y</code> is bound to <code>4</code>, so that the <code>+(x,y)</code> expression
-evaluates to <code>8</code>.</p>
+evaluates to <code>8</code>. The inner body cannot see that there is an <code>x</code> bound to 3. The
+inner environment hides the outer binding of <code>x</code>. This is called <em>shadowing</em>.</p>
 <div class="highlight"><pre><span></span><code>let
   x = 3
 in
@@ -414,10 +417,11 @@ in
   in
     +(x,y)
 </code></pre></div>
-<p>Observe also that the <code>add1</code> primitive is <em>not</em> side-effecting. What this means
-is that the expression <code>add1(x)</code> does not modify the value bound to <code>x</code>.</p>
+<p>Observe also that the <code>add1</code> primitive as defined has <em>no side-effects</em>. What
+this means is that the expression <code>add1(x)</code> does not modify the value bound to
+<code>x</code>; it only returns the result.</p>
 <h3 id="eval"><span class="enumerate-headings-plugin enumerate-heading-plugin">12.3.1</span> <code>eval</code></h3>
-<p>The code for <code>eval</code> in the <code>LetExp</code> class is straight-forward.</p>
+<p>The code for <code>eval</code> in the <code>LetExp</code> class is straightforward.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
     <span class="n">nenv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">letDecls</span><span class="o">.</span><span class="n">addBindings</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">nenv</span><span class="p">)</span>
@@ -428,10 +432,11 @@ declarations. We use this extended environment to evaluate the body of the <code
 expression.</p>
 <p>A <code>LetDecls</code> object has two attributes: <code>identList</code> is a list of <code>Token</code> objects
 representing the <code>IDENT</code> part of the BNF grammar rule and <code>expList</code> is a list
-of expressions representing the <code>Exp</code> part of the BNF grammar rule.</p>
+of expressions representing the <code>Exp</code> part of the BNF grammar rule. These lists
+are created automatically by PLCC when a grammar rule using <code>**=</code> is written.</p>
 <p>Our plan for defining the <code>addBindings</code> method in the <code>LetDecls</code> class involves
 evaluating each of the expressions in <code>expList</code> in the enclosing environment and
-binding these values to their corresponding lexemes in <code>varList</code>. We then
+binding these values to their corresponding tokens' lexemes in <code>varList</code>. We then
 use these bindings to extend the enclosing environment given by the <code>env</code>
 parameter, and we return this new environment to the <code>eval</code> method in the
 <code>LetExp</code> class.</p>
@@ -443,7 +448,7 @@ the <code>Rands</code> class and its <code>evalRands</code> method here.</p>
     <span class="n">bindings</span> <span class="o">=</span> <span class="n">Bindings</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">identList</span><span class="p">,</span> <span class="n">valList</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="n">extendEnv</span><span class="p">(</span><span class="n">bindings</span><span class="p">)</span>
 </code></pre></div>
-<p>The <code>LetDecls</code> initializer throws and exception if it finds duplicate
+<p>The <code>LetDecls</code> initializer throws an exception if it finds duplicate
 identifiers in its <code>varList</code>. This means that a <code>let</code> expression cannot have two
 instances of the same LHS identifier. The code to check for duplicates is
 inserted into the <code>LetDecls</code> class initializer using the <code>:init</code> hook.</p>
@@ -481,7 +486,20 @@ from the variant's execution is different.</p>
 <p>The last occurrence of <code>x</code> in the expression evaluates to <code>3</code> because the
 variable <code>x</code> in the inner <code>let</code> has scope only through the inner <code>let</code>
 expression body. Outside of the inner <code>let</code> expression body, the binding of <code>x</code>
-to <code>3</code> remains unchanged. Thus the entire expression evaluates to <code>7</code>.</p>
+to <code>3</code> remains unchanged. Thus the entire expression evaluates to <code>7</code>. You might
+find it easier to visualize if we format the code differently:</p>
+<div class="highlight"><pre><span></span><code>let
+  x = 3
+in
+  +(
+    let
+      x = add1(x)
+    in
+      x
+    ,
+    x
+  )
+</code></pre></div>
 <p>Here is another important observation. In the <code>LetDecls</code> rule, each <code>IDENT</code>
 token is called the <em>left-hand side</em> (LHS) of the binding and the corresponding
 <code>Exp</code> is called its <em>right-hand side</em> (RHS). (Don’t confuse these definitions
@@ -502,7 +520,7 @@ in
 <h2 id="discussion"><span class="enumerate-headings-plugin enumerate-heading-plugin">12.4</span> Discussion</h2>
 <p>Scope is a very important concept in programming languages. Scoping rules will
 vary from one programming language to another. For instance, the C language
-supports <em>block scope</em> which creates a new scope for each embedding of a new
+supports <em>block scope</em>, which creates a new scope for each embedding of a new
 block. Therefore, the following function definition is valid.</p>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="p">{</span>
