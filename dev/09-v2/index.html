@@ -250,9 +250,9 @@
 <nav aria-label="if expression" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#what-is-false">
+<a class="md-nav__link" href="#what-are-true-and-false">
 <span class="md-ellipsis">
-      What is false?
+      What are true and false?
     </span>
 </a>
 </li>
@@ -369,28 +369,33 @@ following output:</p>
 <p>The <code>RHS</code> of the <code>IfExp</code> grammar rule has three occurrences of the <code>Exp</code>
 non-terminal. We disambiguate these occurrences with the suffixes <code>testExp</code>,
 <code>trueExp</code>, and <code>falseExp</code>, respectively. Note that PLCC relies on these suffixes
-to name the three attributes associated with <code>IfExp</code> class. Each of these
-objects refers to an instance of the <code>Exp</code> base class.</p>
+to name the three attributes associated with the <code>IfExp</code> class.</p>
+<p>We want to state that someone writing a <code>V2</code> program can place an <code>if</code> expression
+anywhere that an expression is called for. Therefore, in the grammar, we make
+<code>IfExp</code> a new alternative rule for <code>Exp</code>.
+That, in turn, causes PLCC to create an <code>IfExp</code> subclass whose base class is <code>Exp</code>.</p>
 <p>To evaluate an <code>if</code> expression with a given environment, we first evaluate the
 <code>testExp</code> expression. If it evaluates to true, we evaluate the <code>trueExp</code>
 expression and return its result as the value of the entire expression. If it
 evaluates to false, we evaluate the <code>falseExp</code> expression and return its result.
 Each of these expressions is evaluated in the given environment.</p>
-<h3 id="what-is-false"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.2.1</span> What is false?</h3>
+<h3 id="what-are-true-and-false"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.2.1</span> What are true and false?</h3>
 <p>Since all instances of <code>Val</code> are really <code>IntVal</code>s (for the time being), we
 regard the <code>IntVal</code> object corresponding to <code>0</code> to be false and all others to be
 true. Correspondingly, we define an <code>isTrue</code> method for an <code>IntVal</code> object as
 follows.</p>
 <div class="highlight"><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="nf">isTrue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">!=</span> <span class="mi">0</span> <span class="c1"># nonzero is true, zero is false</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">!=</span> <span class="mi">0</span> <span class="c1"># non-zero is true, zero is false</span>
 </code></pre></div>
 <p>This code is part of the <code>IntVal</code> class.</p>
 <h3 id="eval"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.2.2</span> <code>eval</code></h3>
-<p>Observe that the <code>eval</code> method in the <code>IfExp</code> class applies the <code>isTrue</code>
+<p>The <code>eval</code> method in the <code>IfExp</code> class will apply the <code>isTrue</code>
 method to a <code>Val</code> object, so we must include a definition for the <code>isTrue</code>
-method in the <code>Val</code> base class. Since we currently treat any <code>Val</code> object as
-true if it’s not an <code>IntVal</code> of zero, our default <code>isTrue</code> method in the <code>Val</code>
-class defaults to returning true.</p>
+method in the <code>Val</code> base class. How we write that method depends on a decision
+we must make about the semantics of any future language built on <code>V2</code> that
+contains data types other than integers. We decide to treat any <code>Val</code> object as
+true if it’s not an <code>IntVal</code> of zero. Therefore, our default <code>isTrue</code> method in
+the <code>Val</code> class returns true.</p>
 <div class="highlight"><pre><span></span><code>Val
 %%%
 class Val:
@@ -418,7 +423,7 @@ define the semantics of the <code>zero?</code> primitive using the <code>apply</
 <code>ZeropPrim</code> class. </p>
 <h3 id="special-form"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.2.3</span> Special form</h3>
 <p>Observe that the <code>eval</code> method in the <code>IfExp</code> class evaluates only one of the
-<code>trueExp</code> or <code>falseExp</code> expressions, never both. This is a semantic feature, not
+<code>trueExp</code> and <code>falseExp</code> expressions, never both. This is a semantic feature, not
 a syntax feature, of the definition of <code>eval</code> for an <code>if</code> expression. The term
 <em>special form</em> refers to semantic structures that look like expressions but
 that, when evaluated, don’t evaluate all of their constituent parts. An <code>if</code>
@@ -452,23 +457,23 @@ expression is an example of a special form.</p>
 <p>An <code>if</code> expression <em>is</em> an expression and therefore it evaluates to a value. It
 is entirely unlike <code>if</code> statements in imperative languages such as C, Java, or
 Python, where the purpose of an <code>if</code> statement is to <em>do</em> one thing or another,
-not to return a value. Also observe that an <code>if</code> expression in our defined
-languages must have <em>both</em> a <code>then</code> part and an <code>else</code> part, even though only
+not to return a value. Also observe that, because it must return something, an
+<code>if</code> <em>expression</em> must have <em>both</em> a <code>then</code> part and an <code>else</code> part, even though only
 one of these expressions ends up being evaluated.</p>
 <p><code>if</code> expressions are central to functional languages such as Lisp
-(<code>(if nil 1 2)</code>), Scheme (<code>(if #f 1 2)</code>), or Haskell (<code>if False then 1 else 2</code>).</p>
+(<code>(if nil 1 2)</code>), Scheme (<code>(if #f 1 2)</code>), and Haskell (<code>if False then 1 else 2</code>).</p>
 <p>Some imperative languages do support <code>if</code> expressions. For instance, C or C++
 can express our <code>if</code> expression running example as <code>0 ? 1 : 2</code>.</p>
 <p>The early implementations of the C programming language did not have a Boolean
-type. Instead, it relied on the integer type (<code>int</code>) much as our language 'V2'.
-Any context demanding a true or false value (e.g., <code>if</code> or <code>while</code>) expects an
+type. Instead, they relied on the integer type (<code>int</code>) much as our language 'V2' does.
+Any context demanding a true or false value (e.g., <code>if</code> or <code>while</code>) expected an
 expression whose type is an integer. The C language then defined false when that
 expression yields <code>0</code>, true otherwise. The language is more restrictive as to
 the integer values produced by boolean expressions (e.g., <code>==</code> or <code>&amp;&amp;</code>). Indeed,
 if the boolean expression yields false, the corresponding integer value is <code>0</code>
 (as before); if it yields true, the corresponding integer value must be <code>1</code>. In
 other words, the C language is permissive in what it considers a true value, but
-conservative in the integer value it produces as a result of evaluating a true
+conservative in the integer value it produces as a result of evaluating a Boolean
 expression.</p>
 <h2 id="exercises"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.4</span> Exercises</h2>
 <h3 id="exercise-1"><span class="enumerate-headings-plugin enumerate-heading-plugin">11.4.1</span> Exercise 1</h3>
