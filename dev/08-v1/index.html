@@ -246,6 +246,31 @@
       PrimappExp
     </span>
 </a>
+<nav aria-label="PrimappExp" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#about-names-primappexp">
+<span class="md-ellipsis">
+      About names: PrimappExp
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rands">
+<span class="md-ellipsis">
+      Rands
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pulling-it-all-together">
+<span class="md-ellipsis">
+      Pulling it all together
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#prim">
@@ -312,8 +337,8 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="language-v1"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.</span> Language V1</h1>
-<p><code>V1</code> from <code>V0</code> only in its semantic specification. In the previous chapter, we
-saw how a parse tree for <code>V0</code> can print itself. Let’s show now how a parse tree
+<p>The language <code>V1</code> differs from <code>V0</code> only in its semantic specification. In the chapter on <code>V0</code>, we
+saw how a parse tree for <code>V0</code> can print itself. Let’s now show how a parse tree
 can <em>evaluate itself</em>.</p>
 <p>As an example, the command <code>plcc-rep</code> on input <code>add1(+(2, 3))</code> produces the
 following output:</p>
@@ -329,14 +354,20 @@ of the <code>Val</code> class. In this setting, a numeric value is an instance o
 <code>IntVal</code> subclass of <code>Val</code>.)</p>
 <p>If an expression involves an identifier, we need to determine the value bound to
 that identifier to evaluate the expression. For example, suppose the identifier
-"x" is bound to the integer value <code>10</code>, then the expression <code>sub1(x)</code> would
+<code>x</code> is bound to the integer value <code>10</code>, then the expression <code>sub1(x)</code> would
 evaluate to <code>9</code>.</p>
 <p><em>The interpreter evaluates every expression in some environment. This
 environment determines how to obtain the values bound to the identifiers that
 occur in the expression</em>.</p>
 <p>Subclasses of the <code>Exp</code> class are the appropriate places to declare evaluation
 behavior, which we implement using a common method called <code>eval</code>. Three classes
-extend the <code>Exp</code> class: <code>LitExp</code>, <code>VarExp</code>, and <code>PrimappExp</code>.</p>
+extend the <code>Exp</code> class: <code>LitExp</code>, <code>VarExp</code>, and <code>PrimappExp</code>.
+Recall that all of these classes appear as non-terminals of the grammar in the syntax
+section of the PLCC specification file. This means that the rules determine the
+types of nodes that will appear in a parse tree created from programs in our
+language, and therefore that, to evaluate a program, the parse tree must be traversed.</p>
+<p>Because an environment is sometimes needed to do the evaluation, an environment must
+be passed to the <code>eval</code> method.</p>
 <h2 id="litexp"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.1</span> <code>LitExp</code></h2>
 <p>We’ll start with <code>LitExp</code>. Below is the semantic specification that defines the
 behavior of a <code>LitExp</code> object. The <code>eval</code> method coexists with the
@@ -355,9 +386,11 @@ the <code>__str__</code> method to this field, we get the string of decimal digi
 comes from the part of the program text we are parsing. The <code>IntVal</code> initializer
 converts this string into a real Python integer that becomes part of the
 <code>IntVal</code> instance. Obviously an environment bears no influence on the value of a
-numeric literal, the literal <code>10</code> evaluates to the integer value <code>10</code> no matter
+numeric literal. The literal <code>10</code> evaluates to the integer value <code>10</code> no matter
 which environment, so the <code>eval</code> method for an instance of <code>LitExp</code> simply
-returns the appropriate <code>IntVal</code> object.</p>
+returns the appropriate <code>IntVal</code> object without consulting the environment passed
+to it. <code>env</code> is still passed to the method because the code traversing the tree
+does not know which subclass of <code>Exp</code> the node belongs to.</p>
 <h2 id="varexp"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.2</span> <code>VarExp</code></h2>
 <p>Next we consider <code>VarExp</code>. Below is the semantic specification that defines the
 the <code>eval</code> method of a <code>VarExp</code> object.</p>
@@ -381,6 +414,17 @@ determined by the application of <code>applyEnv</code></em>.</p>
 <code>Prim</code> object named <code>prim</code> and a <code>Rands</code> object named <code>rands</code>. To evaluate such
 an expression, we need to apply the given primitive operation (the <code>prim</code>
 object) to the values of the expressions in the <code>rands</code> object.</p>
+<h3 id="about-names-primappexp"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.3.1</span> About names: <code>PrimappExp</code></h3>
+<p>We use the word <em>apply</em> in two related ways.</p>
+<ol>
+<li>On a variable's name, to look up its value, as seen previously.</li>
+<li>On a function: To <em>apply</em> a function is to call the function with the
+   provided operands.</li>
+</ol>
+<p>The word <em>primitive</em> is used because the functions defined in this language are <em>built in</em>.
+Their names are in the language syntax, and we are now hard-coding how they work into
+the semantics of the language. User-defined functions will be done very differently.</p>
+<h3 id="rands"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.3.2</span> <code>Rands</code></h3>
 <p>An object of type <code>Rands</code> has an attribute, named <code>expList</code>, whose type is a
 list of <code>Exp</code>. To perform the operation determined by the <code>prim</code> object, we need
 first to evaluate each of the expressions in <code>expList</code>. A utility method named
@@ -397,12 +441,13 @@ def __str__(self):
 %%%
 </code></pre></div>
 <p>The <code>evalRands</code> method returns a list of <code>Val</code>s.</p>
-<p><em>The expressions appearing in an application of a primitive are called its
-</em><em>operands</em><em> also called </em><em>actual parameters</em><em>; the values of these expressions
+<p><em>The expressions appearing in an application of a primitive can be called its
+</em><em>operands</em><em>, or its </em><em>actual parameters</em><em>; the values of these expressions
 are called its </em><em>arguments</em><em>.</em></p>
 <p>Careful readers will have observed that the class name <code>Rands</code> is derived from
 the word <strong>operands</strong>, and that the name <code>args</code> in the <code>evalRands</code> method is
 derived from the word <strong>arguments</strong>.</p>
+<h3 id="pulling-it-all-together"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.3.3</span> Pulling it all together</h3>
 <p>We now have the pieces necessary to define the <code>eval</code> method in the <code>PrimappExp</code>
 class:</p>
 <div class="highlight"><pre><span></span><code>PrimappExp
@@ -423,16 +468,17 @@ object, which returns the appropriate value.</p>
 <p>We are left to define the behavior of the <code>apply</code> methods in the various <code>Prim</code>
 subclasses. Observe that by the time a <code>Prim</code> object gets its list of arguments,
 the environment no longer plays a role, since we have already evaluated all of
-the operand expressions: only values remain.</p>
-<p>A <code>Prim</code> object (there are now seven instances of this class) has no instance
-variables. However, we can endow these objects with behavior, so that an
-<code>AddPrim</code> object knows how to add things, a <code>SubPrim</code> object knows how to
-subtract things, and so forth.</p>
-<p>Four of the <code>Prim</code> objects need two arguments (for <code>+</code>, <code>-</code>, <code>*</code>, and <code>/</code>), and
-two of them need one argument (for <code>add1</code> and <code>sub1</code>). Since <code>args</code> is a list of
-<code>Val</code> arguments, we can grab the appropriate items from this list, one or two of
-them, depending on the operation, to evaluate the result. Below is the semantic
-specification for the <code>AddPrim</code> class.</p>
+the operand expressions; only values remain.
+So this work applies to applications of primitives to operands that include
+literal values, variables, and the results of applying other primitives.</p>
+<p><code>Prim</code> objects like <code>AddPrim</code> and <code>Add1Prim</code> have no "memory", that is, no attributes.
+However, we endow these objects with behavior, so that an
+<code>AddPrim</code> object knows how to add values passed in to it,
+an <code>Add1Prim</code> object knows how to increment values, and so forth.</p>
+<p>Four of the <code>Prim</code> objects need two arguments (<code>+</code>, <code>-</code>, <code>*</code>, and <code>/</code>), and
+three of them need one argument (<code>add1</code>, <code>sub1</code>, and <code>zerop</code>). Since <code>args</code> is a list of
+<code>Val</code> arguments, we can grab the values from the list to evaluate the result.
+Below is the semantic specification for the <code>AddPrim</code> class.</p>
 <div class="highlight"><pre><span></span><code>AddPrim
 %%%
 def __str__(self):
@@ -471,8 +517,9 @@ def apply(self, args):
     return IntVal(i0 + 1)
 %%%
 </code></pre></div>
-<p>Again, the definition of apply for the <code>Sub1Prim</code> class is entirely similar. The
-definition of apply for the <code>ZeropPrim</code> class returns an <code>IntVal</code> of <code>1</code> (true)
+<p>Again, the definition of apply for the <code>Sub1Prim</code> class is entirely similar.
+Language <code>V1</code> also has a seventh primitive named <code>zerop</code>.
+The definition of apply for the <code>ZeropPrim</code> class returns an <code>IntVal</code> of <code>1</code> (true)
 for a zero argument and an <code>IntVal</code> of <code>0</code> (false) for a nonzero argument.</p>
 <h2 id="program"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.5</span> <code>Program</code></h2>
 <p>In our final implementation step, we will define the <code>_run</code> method of a
@@ -485,8 +532,9 @@ def _run(self):
     return str(self.exp.eval(Program.env))
 %%%
 </code></pre></div>
-<p>An empty environment would only allow for integer expressions with no variables,
-since every variable would be unbound. To test <code>V1</code>, we create an initial
+<p>In <code>V1</code> there is no way to "assign", or more accurately <em>bind</em>, a value to a variable.
+An empty environment would only allow for literal expressions with no variables,
+since every variable would be unbound. To test <code>V1</code>, we hard-code an initial
 environment <code>initEnv</code> specific to this language that has the following variable
 bindings (think Roman numerals!):</p>
 <div class="highlight"><pre><span></span><code>  i =&gt; 1
@@ -498,8 +546,8 @@ bindings (think Roman numerals!):</p>
   m =&gt; 1000
 </code></pre></div>
 <p>For <code>V1</code>, this environment can be obtained by a call to <code>Env.initEnv</code>. These
-bindings give us some variables to play with, though, as we will see, we
-will dispense with them later.</p>
+bindings give us some variables to play with.
+We will dispense with them in a later language.</p>
 <p>To test <code>V1</code>, run the <code>plcc-rep</code> command in the Python subdirectory and enter
 expressions at the prompt.</p>
 </article>
