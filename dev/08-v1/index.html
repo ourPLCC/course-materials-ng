@@ -249,9 +249,9 @@
 <nav aria-label="PrimappExp" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#about-names-primappexp">
+<a class="md-nav__link" href="#terminology-apply-and-primitive">
 <span class="md-ellipsis">
-      About names: PrimappExp
+      Terminology: apply and primitive
     </span>
 </a>
 </li>
@@ -414,7 +414,7 @@ determined by the application of <code>applyEnv</code></em>.</p>
 <code>Prim</code> object named <code>prim</code> and a <code>Rands</code> object named <code>rands</code>. To evaluate such
 an expression, we need to apply the given primitive operation (the <code>prim</code>
 object) to the values of the expressions in the <code>rands</code> object.</p>
-<h3 id="about-names-primappexp"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.3.1</span> About names: <code>PrimappExp</code></h3>
+<h3 id="terminology-apply-and-primitive"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.3.1</span> Terminology: <code>apply</code> and <code>primitive</code></h3>
 <p>We use the word <em>apply</em> in two related ways.</p>
 <ol>
 <li>On a variable's name, to look up its value, as seen previously.</li>
@@ -465,12 +465,11 @@ evaluate the operands (a <code>Rands</code> object) in the given environment and
 resulting argument list to the <code>apply</code> method of the primitive (a <code>Prim</code>)
 object, which returns the appropriate value.</p>
 <h2 id="prim"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.4</span> <code>Prim</code></h2>
-<p>We are left to define the behavior of the <code>apply</code> methods in the various <code>Prim</code>
-subclasses. Observe that by the time a <code>Prim</code> object gets its list of arguments,
-the environment no longer plays a role, since we have already evaluated all of
-the operand expressions; only values remain.
-So this work applies to applications of primitives to operands that include
-literal values, variables, and the results of applying other primitives.</p>
+<p>We now define the behavior of the <code>apply</code> methods in the various <code>Prim</code>
+subclasses. By the time a <code>Prim.apply</code> receives its arguments, all operand
+expressions have already been evaluated, so the arguments contain only values.
+Therefore, the <code>apply</code> method's sole responsibility is the application of
+primitives to values.</p>
 <p><code>Prim</code> objects like <code>AddPrim</code> and <code>Add1Prim</code> have no "memory", that is, no attributes.
 However, we endow these objects with behavior, so that an
 <code>AddPrim</code> object knows how to add values passed in to it,
@@ -537,14 +536,44 @@ An empty environment would only allow for literal expressions with no variables,
 since every variable would be unbound. To test <code>V1</code>, we hard-code an initial
 environment <code>initEnv</code> specific to this language that has the following variable
 bindings (think Roman numerals!):</p>
-<div class="highlight"><pre><span></span><code>  i =&gt; 1
-  v =&gt; 5
-  x =&gt; 10
-  l =&gt; 50
-  c =&gt; 100
-  d =&gt; 500
-  m =&gt; 1000
-</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>i</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>v</code></td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td><code>l</code></td>
+<td><code>50</code></td>
+</tr>
+<tr>
+<td><code>c</code></td>
+<td><code>100</code></td>
+</tr>
+<tr>
+<td><code>d</code></td>
+<td><code>500</code></td>
+</tr>
+<tr>
+<td><code>m</code></td>
+<td><code>1000</code></td>
+</tr>
+</tbody>
+</table>
 <p>For <code>V1</code>, this environment can be obtained by a call to <code>Env.initEnv</code>. These
 bindings give us some variables to play with.
 We will dispense with them in a later language.</p>
