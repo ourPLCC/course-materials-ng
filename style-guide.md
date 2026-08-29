@@ -24,3 +24,5 @@ This is the style guide for this textbook.
 - Use "`1, 2, 3`" for inlined input
 - Use ***italics bold**** for calling out something that must be really
   understood
+- Use "semantics" where context demands a noun and "semantic" where context
+  demands an adjective
