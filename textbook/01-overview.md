@@ -87,9 +87,9 @@ of tokens. For now, it suffices to say that a token adds a layer of abstraction
 over text to simplify the job of the parser.
 
 Based on the syntactical specification, PLCC generates a parser whose main
-responsibility is to generate an abstract syntax tree. The syntax tree adds
-another layer of abstraction to facilitate checking that the input corresponds
-to a well-formed program and attaching meanings to that program.
+responsibility is to generate an abstract syntax tree. The structure of the
+tree facilitates checking that the program is well formed and performing
+semantic actions in the next phase.
 
 Based on the semantic specification, PLCC generates an interpreter that performs
 the actions programmed in the input according to the meaning imbued in said
