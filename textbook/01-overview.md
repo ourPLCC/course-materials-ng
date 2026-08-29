@@ -83,7 +83,7 @@ specification.
 
 Based on the lexical specification, PLCC generates a scanner whose main
 responsibility is to convert a stream of characters (the source) into a stream
-of tokens. For now, suffices to say that a token adds a layer of abstraction
+of tokens. For now, it suffices to say that a token adds a layer of abstraction
 over text to simplify the job of the parser.
 
 Based on the syntactical specification, PLCC generates a parser whose main
