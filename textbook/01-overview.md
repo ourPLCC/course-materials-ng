@@ -79,7 +79,23 @@ stop
 The composition of the specification read by PLCC reflects the typical interpreter's
 organization. As we can see in the figure below, the specification is broken up in
 three parts: lexical specification, syntactical specification, and semantic
-specification. The next three chapters will go over each of these parts in
+specification.
+
+Based on the lexical specification, PLCC generates a scanner whose main
+responsibility is to convert a stream of characters (the source) into a stream
+of tokens. For now, suffices to say that a token adds a layer of abstraction
+over text to simplify the job of the parser.
+
+Based on the syntactical specification, PLCC generates a parser whose main
+responsibility is to generate an abstract syntax tree. The syntax tree adds
+another layer of abstraction to facilitate checking that the input corresponds
+to a well-formed program and attaching meanings to that program.
+
+Based on the semantic specification, PLCC generates an interpreter that performs
+the actions programmed in the input according to the meaning imbued in said
+specification.
+
+The next few chapters will go over each of these parts of the specification in
 greater detail.
 
 ```plantuml
