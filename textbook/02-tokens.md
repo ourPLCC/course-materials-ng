@@ -65,8 +65,8 @@ Broadly, this output says that the scanner produced by PLCC based on our
 specification recognized, in the input text (i.e., "1, 2, 3"), two kinds of
 patterns (i.e., tokens): (1) numbers (`NUM`) and (2) commas (`COMMA`).
 
-(For an overview of how to run PLCC command, please take a detour and read
-the chapter entitled "Interlude: PLCC invocation.)
+(For an overview of how to run PLCC commands, please take a detour and read
+the chapter entitled ["Interlude: PLCC invocation"](./03-plcc.md).)
 
 ## A quick tour
 
