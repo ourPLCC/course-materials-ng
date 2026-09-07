@@ -79,7 +79,7 @@ stop
 The composition of the specification read by PLCC reflects the typical interpreter's
 organization. As we can see in the figure below, the specification is broken up in
 three parts: lexical specification, syntactical specification, and semantic
-specification. The next three chapters will go over each of these parts in
+specification. Over the next several chapters, we will go over each of these parts in
 greater detail.
 
 ```plantuml
