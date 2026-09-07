@@ -329,7 +329,10 @@ example taken from a specification that we will study in a subsequent chapter:
 %include val
 ```
 
-## References
+## Reference
+
+* "Semantic section," PLCC-ng, version 2.0,
+  https://ourplcc.github.io/plcc-ng/2.0/language-guide/semantic/
 
 ## Going beyond
 

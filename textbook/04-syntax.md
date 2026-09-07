@@ -257,6 +257,9 @@ the appropriate alternative based on the information at hand.
 
 ## References
 
+* "Syntactic specification," PLCC-ng, version 2.0,
+  https://ourplcc.github.io/plcc-ng/2.0/language-guide/syntactic/
+
 * "Backus–Naur form," last modified July 5, 2026,
   https://en.wikipedia.org/wiki/Backus-Naur_form
 
