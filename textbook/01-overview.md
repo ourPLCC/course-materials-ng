@@ -51,7 +51,7 @@ programmer .> program : writes
 
 In the course of this textbook, we will take on the role of a language designer.
 
-## Language Specification
+## Language specification
 
 Most interpreters are built around three successive phases: lexical analysis,
 syntactic analysis, and semantic analysis.

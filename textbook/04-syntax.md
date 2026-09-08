@@ -258,19 +258,19 @@ the appropriate alternative based on the information at hand.
 ## References
 
 * "Syntactic specification," PLCC-ng, version 2.0,
-  https://ourplcc.github.io/plcc-ng/2.0/language-guide/syntactic/
+  [https://ourplcc.github.io/plcc-ng/2.0/language-guide/syntactic/](https://ourplcc.github.io/plcc-ng/2.0/language-guide/syntactic/)
 
 * "Backus–Naur form," last modified July 5, 2026,
-  https://en.wikipedia.org/wiki/Backus-Naur_form
+  [https://en.wikipedia.org/wiki/Backus-Naur_form](https://en.wikipedia.org/wiki/Backus-Naur_form)
 
 * "Camel case," last modified July 3, 2026,
-  https://en.wikipedia.org/wiki/Camel_case
+  [https://en.wikipedia.org/wiki/Camel_case](https://en.wikipedia.org/wiki/Camel_case)
 
 * "LL parser," last modified April 30, 2026,
-  https://en.wikipedia.org/wiki/LL_parser
+  [https://en.wikipedia.org/wiki/LL_parser](https://en.wikipedia.org/wiki/LL_parser)
 
 * "Syntactic sugar," Wikipedia, last modified April 6, 2026,
-  https://en.wikipedia.org/wiki/Syntactic_sugar
+  [https://en.wikipedia.org/wiki/Syntactic_sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)
 
 ## Going beyond
 
@@ -303,8 +303,8 @@ with Yacc. Refer to the suggested readings for more information.
 
 * Douglas Thain, "Parsing," chap. 4 in *Introduction to Compilers and Language
   Design,* 2nd ed., (Self-published, 2023),
-  https://dthain.github.io/books/compiler/chapter4.pdf
+  [https://dthain.github.io/books/compiler/chapter4.pdf](https://dthain.github.io/books/compiler/chapter4.pdf)
 
 * Douglas Thain, "Parsing in Practice," chap. 5 in *Introduction to Compilers
   and Language Design,* 2nd ed., (Self-published, 2023),
-  https://dthain.github.io/books/compiler/chapter5.pdf
+  [https://dthain.github.io/books/compiler/chapter5.pdf](https://dthain.github.io/books/compiler/chapter5.pdf)
