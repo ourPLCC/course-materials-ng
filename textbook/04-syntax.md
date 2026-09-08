@@ -41,6 +41,12 @@ seman --> behavior
 @enduml
 ```
 
+Not all sequences of tokens form valid programs for a particular language. A
+language's **syntactic specification** defines the set of token sequences that
+are valid. The syntactic specification builds on top of the language's
+lexical specification by referring to its tokens. Here is our first example of a
+valid PLCC specification for a list of comma-separated natural numbers.
+
 A language's **syntactic specification** defines the set of valid sentences for
 that language. The syntactic specification builds on top of the language's
 lexical specification by referring to its tokens. Here is our first example of a
@@ -88,24 +94,24 @@ structure more strikingly.
 
 ```plantuml
 @startuml
-object List
-object "Num@1"
-object "Some@1"
-object "Num@2"
-object "Some@2"
-object "Num@3"
-object "Zero"
+object ":List" as List
+object ":Num" as Num1
+object ":Some" as Some1
+object ":Num" as Num2
+object ":Some" as Some2
+object ":Num" as Num3
+object ":Zero" as Zero
 
-"Num@1" : num = 1
-"Num@2" : num = 2
-"Num@3" : num = 3
+Num1 : num = 1
+Num2 : num = 2
+Num3 : num = 3
 
-List -- "Num@1"
-List -- "Some@1"
-"Some@1" -- "Num@2"
-"Some@1" -- "Some@2"
-"Some@2" -- "Num@3"
-"Some@2" -- "Zero"
+List -- Num1
+List -- Some1
+Some1 -- Num2
+Some1 -- Some2
+Some2 -- Num3
+Some2 -- Zero
 @enduml
 ```
 
@@ -203,11 +209,11 @@ specification.
 
 Again we make use of alternate definitions and an empty `RHS`.
 
-### Repetition and separator: syntactic sugar
+### Repetition and separator
 
 Repetition (e.g., a list of things), possibly separated by a punctuation or
 separator (e.g., comma-separated lists), is so common that PLCC's BNF notation
-provides some *syntactic sugar* for expressing sequences. We can replace the
+provides some simplified syntax for expressing sequences. We can replace the
 entire previous specification with the single line (not counting the comment)
 below.
 
@@ -250,6 +256,9 @@ look a single token ahead leads to an ambiguity where the parser cannot choose
 the appropriate alternative based on the information at hand.
 
 ## References
+
+* "Syntactic specification," PLCC-ng, version 2.0,
+  https://ourplcc.github.io/plcc-ng/2.0/language-guide/syntactic/
 
 * "Backus–Naur form," last modified July 5, 2026,
   https://en.wikipedia.org/wiki/Backus-Naur_form

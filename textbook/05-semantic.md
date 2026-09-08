@@ -70,7 +70,7 @@ List
 def _run(self):
     n = int(str(self.num))
     sum = n + self.listTail.eval()
-    print(str(sum))
+    return str(sum)
 %%%
 
 Some
@@ -136,7 +136,7 @@ a program in a well-defined programming language (e.g., Python) that exhibits
 the meaning of any program written in the defined language (the new language we
 are designing). In short, we implement the tool for our new language in some
 existing and hopefully familiar programming language. PLCC supports multiple
-programming languages for use in the semantic specification. In this text, we
+programming languages for use in the semantic specification (e.g., Java or JavaScript). In this text, we
 will use Python. As such the first significant line of the semantic
 specification consists of a separate line containing the single word `Python`.
 
@@ -205,9 +205,10 @@ notation (e.g., `self.listTail.eval()`).
 Remember that the `LHS` of the first rule defined in the syntactic section of a
 specification becomes the start symbol (i.e., the root of the parse tree). The
 semantic associated with that node must define a method with the following
-method: `_run(self)`.
+method: `_run(self)`. This method returns the value, computed by the evaluation
+of the interpreted program, as a string.
 
-### Alternatives
+### Repeated symbols in LHS
 
 As stated earlier, PLCC generally names created classes based on the name of the
 corresponding non-terminal symbol appearing in the `LHS` of a rule. An
@@ -216,39 +217,6 @@ the same `LHS` symbol. In this case, PLCC bases the name of the class on the
 associated suffix.
 Furthermore, it is created as a subclass of the non-terminal named in the prefix
 of the `LHS` specification.
-
-### Repetition
-
-Suppose we define our list of natural numbers using the repetition metasymbol
-introduced in the previous chapter:
-
-```
-<List> **= <NUM> +COMMA
-```
-
-How must our semantic specification handle this syntactic notation?
-
-Under such situation, PLCC generates the following code (found by default under
-the folder `plcc-ng`):
-
-```python
-class List(_Start):
-
-    def __init__(self, numList):
-        super().__init__()
-        self.numList = numList
-```
-
-As we can see, PLCC defines `List` as a subclass of `_Start` and an initializer
-which, after initializing the enclosing class instance (i.e., `_Start`),
-initializes attribute `numList`. In other words, PLCC stores the lexemes
-associated with non-terminal `List` as a list of tokens. Our semantic code can
-then walk through this list as follows:
-
-```python
-for n in self.numList:
-    sum += int(str(n))
-```
 
 ### Repeated symbols in RHS
 
@@ -281,15 +249,44 @@ We fix this problem by adding suffixes, for example:
 <Pair> ::= <NUM:m> COMMA <NUM:n>
 ```
 
-Our semantic specification can then refer to these numbers as follows:
+Our semantic specification can then refer to these numbers in a method as
+follows:
 
 ```python
 def _run(self):
-    print(f'A pair containing {self.m} and {self.n}')
+    return f'A pair containing {self.m} and {self.n}'
 ```
 
 Note that the semantics associated with Python format strings implicitly calls
 `str` on its arguments.
+
+### Repetition
+
+Suppose we define our list of natural numbers using the repetition metasymbol
+introduced in the previous chapter:
+
+```
+<List> **= <NUM> +COMMA
+```
+
+For this case, PLCC associates, with the created class, a series of lists, one
+per bracketed symbol in the `RHS`. The names of all these lists have suffix
+`List`. Otherwise the base of the name of each of these lists follows the same
+conventions described in the previous sections.
+
+If the symbol in the `RHS` is a token, then the attribute becomes a list of
+instances of the class `Token`. If the symbol in the `RHS` is a non-terminal,
+then the attribute becomes of a list of instances of the class created for the
+corresponding node in the parse tree. 
+
+For the specific example above, the name of the attribute for the created class
+`List` is `numList`. Our semantic code can then walk through this list as
+follows:
+
+```python
+for n in self.numList:
+    sum += int(str(n))
+```
 
 ### Additional code
 
@@ -329,7 +326,10 @@ example taken from a specification that we will study in a subsequent chapter:
 %include val
 ```
 
-## References
+## Reference
+
+* "Semantic section," PLCC-ng, version 2.0,
+  https://ourplcc.github.io/plcc-ng/2.0/language-guide/semantic/
 
 ## Going beyond
 

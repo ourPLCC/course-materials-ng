@@ -218,8 +218,8 @@ likely what we want.
 
 ## References
 
-* "Lexical Specification," PLCC-ng, version 0.65,
-  https://ourplcc.github.io/plcc-ng/0.65/language-guide/lexical/
+* "Lexical specification," PLCC-ng, version 2.0,
+  https://ourplcc.github.io/plcc-ng/2.0/language-guide/lexical/
 
 * "Snake case," Wikipedia, last modified April 9, 2026,
   https://en.wikipedia.org/wiki/Snake_case
