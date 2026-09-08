@@ -239,16 +239,9 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#alternatives">
+<a class="md-nav__link" href="#repeated-symbols-in-lhs">
 <span class="md-ellipsis">
-      Alternatives
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#repetition">
-<span class="md-ellipsis">
-      Repetition
+      Repeated symbols in LHS
     </span>
 </a>
 </li>
@@ -256,6 +249,13 @@
 <a class="md-nav__link" href="#repeated-symbols-in-rhs">
 <span class="md-ellipsis">
       Repeated symbols in RHS
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#repetition">
+<span class="md-ellipsis">
+      Repetition
     </span>
 </a>
 </li>
@@ -277,9 +277,9 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#references">
+<a class="md-nav__link" href="#reference">
 <span class="md-ellipsis">
-      References
+      Reference
     </span>
 </a>
 </li>
@@ -410,7 +410,7 @@ List
 def _run(self):
     n = int(str(self.num))
     sum = n + self.listTail.eval()
-    print(str(sum))
+    return str(sum)
 %%%
 
 Some
@@ -465,7 +465,7 @@ a program in a well-defined programming language (e.g., Python) that exhibits
 the meaning of any program written in the defined language (the new language we
 are designing). In short, we implement the tool for our new language in some
 existing and hopefully familiar programming language. PLCC supports multiple
-programming languages for use in the semantic specification. In this text, we
+programming languages for use in the semantic specification (e.g., Java or JavaScript). In this text, we
 will use Python. As such the first significant line of the semantic
 specification consists of a separate line containing the single word <code>Python</code>.</p>
 <p>The rest of the semantic section consists of the associations of meaning to each
@@ -529,8 +529,9 @@ notation (e.g., <code>self.listTail.eval()</code>).</p>
 <p>Remember that the <code>LHS</code> of the first rule defined in the syntactic section of a
 specification becomes the start symbol (i.e., the root of the parse tree). The
 semantic associated with that node must define a method with the following
-method: <code>_run(self)</code>.</p>
-<h3 id="alternatives"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.4</span> Alternatives</h3>
+method: <code>_run(self)</code>. This method returns the value, computed by the evaluation
+of the interpreted program, as a string.</p>
+<h3 id="repeated-symbols-in-lhs"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.4</span> Repeated symbols in LHS</h3>
 <p>As stated earlier, PLCC generally names created classes based on the name of the
 corresponding non-terminal symbol appearing in the <code>LHS</code> of a rule. An
 exception to this convention occurs when a specification has more than one rule with
@@ -538,29 +539,7 @@ the same <code>LHS</code> symbol. In this case, PLCC bases the name of the class
 associated suffix.
 Furthermore, it is created as a subclass of the non-terminal named in the prefix
 of the <code>LHS</code> specification.</p>
-<h3 id="repetition"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.5</span> Repetition</h3>
-<p>Suppose we define our list of natural numbers using the repetition metasymbol
-introduced in the previous chapter:</p>
-<div class="highlight"><pre><span></span><code>&lt;List&gt; **= &lt;NUM&gt; +COMMA
-</code></pre></div>
-<p>How must our semantic specification handle this syntactic notation?</p>
-<p>Under such situation, PLCC generates the following code (found by default under
-the folder <code>plcc-ng</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">List</span><span class="p">(</span><span class="n">_Start</span><span class="p">):</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numList</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">numList</span> <span class="o">=</span> <span class="n">numList</span>
-</code></pre></div>
-<p>As we can see, PLCC defines <code>List</code> as a subclass of <code>_Start</code> and an initializer
-which, after initializing the enclosing class instance (i.e., <code>_Start</code>),
-initializes attribute <code>numList</code>. In other words, PLCC stores the lexemes
-associated with non-terminal <code>List</code> as a list of tokens. Our semantic code can
-then walk through this list as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">numList</span><span class="p">:</span>
-    <span class="nb">sum</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-</code></pre></div>
-<h3 id="repeated-symbols-in-rhs"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.6</span> Repeated symbols in RHS</h3>
+<h3 id="repeated-symbols-in-rhs"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.5</span> Repeated symbols in RHS</h3>
 <p>Our semantic specification must be able to distinguish among repeated symbols
 appearing in the <code>RHS</code> of syntactic rules. Again PLCC relies on suffixes,
 separated from the symbol's name with a colon (<code>:</code>), to achieve disambiguation.</p>
@@ -580,12 +559,32 @@ plcc-validate-syntactic: spec.plcc:9:1: error: duplicate RHS symbol name 'num' â
 <p>We fix this problem by adding suffixes, for example:</p>
 <div class="highlight"><pre><span></span><code>&lt;Pair&gt; ::= &lt;NUM:m&gt; COMMA &lt;NUM:n&gt;
 </code></pre></div>
-<p>Our semantic specification can then refer to these numbers as follows:</p>
+<p>Our semantic specification can then refer to these numbers in a method as
+follows:</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'A pair containing </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="si">}</span><span class="s1"> and </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">'A pair containing </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="si">}</span><span class="s1"> and </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s1">'</span>
 </code></pre></div>
 <p>Note that the semantics associated with Python format strings implicitly calls
 <code>str</code> on its arguments.</p>
+<h3 id="repetition"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.6</span> Repetition</h3>
+<p>Suppose we define our list of natural numbers using the repetition metasymbol
+introduced in the previous chapter:</p>
+<div class="highlight"><pre><span></span><code>&lt;List&gt; **= &lt;NUM&gt; +COMMA
+</code></pre></div>
+<p>For this case, PLCC associates, with the created class, a series of lists, one
+per bracketed symbol in the <code>RHS</code>. The names of all these lists have suffix
+<code>List</code>. Otherwise the base of the name of each of these lists follows the same
+conventions described in the previous sections.</p>
+<p>If the symbol in the <code>RHS</code> is a token, then the attribute becomes a list of
+instances of the class <code>Token</code>. If the symbol in the <code>RHS</code> is a non-terminal,
+then the attribute becomes of a list of instances of the class created for the
+corresponding node in the parse tree. </p>
+<p>For the specific example above, the name of the attribute for the created class
+<code>List</code> is <code>numList</code>. Our semantic code can then walk through this list as
+follows:</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">numList</span><span class="p">:</span>
+    <span class="nb">sum</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</code></pre></div>
 <h3 id="additional-code"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.2.7</span> Additional code</h3>
 <p>As we have seen earlier in this chapter, PLCC creates classes for each of the
 non-terminal symbols appearing in our grammar. We will want the ability to add
@@ -615,7 +614,11 @@ example taken from a specification that we will study in a subsequent chapter:</
 %include prim
 %include val
 </code></pre></div>
-<h2 id="references"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.3</span> References</h2>
+<h2 id="reference"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.3</span> Reference</h2>
+<ul>
+<li>"Semantic section," PLCC-ng, version 2.0,
+  https://ourplcc.github.io/plcc-ng/2.0/language-guide/semantic/</li>
+</ul>
 <h2 id="going-beyond"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.4</span> Going beyond</h2>
 <h3 id="suggested-readings"><span class="enumerate-headings-plugin enumerate-heading-plugin">7.4.1</span> Suggested readings</h3>
 </article>
