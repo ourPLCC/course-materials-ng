@@ -317,20 +317,22 @@ contents of other files, making them part of a single specification. In this
 way, separately created files can be combined together to form one language
 specification. The names of included files must be given in the semantic
 section of the specification file, and generally appear at its end. Here is an
-example taken from a specification that we will study in a subsequent chapter:
+excerpt taken from a specification that we will study in a subsequent chapter:
 
 ```
-%include code
-%include env
-%include prim
-%include val
+%include ../grammar.plcc
+%
+Python
+
+%include ../../Env/envRN/python/env.plcc
 ```
+
+The first include statement brings into view grammar definitions that presumably
+do not have any semantic contents. The second one includes presumably semantic
+definitions. Therefore that second statement must appear somewhere after the
+target programming language is identified (here `Python`).
 
 ## Reference
 
 * "Semantic section," PLCC-ng, version 2.0,
   https://ourplcc.github.io/plcc-ng/2.0/language-guide/semantic/
-
-## Going beyond
-
-### Suggested readings
