@@ -335,4 +335,4 @@ target programming language is identified (here `Python`).
 ## Reference
 
 * "Semantic section," PLCC-ng, version 2.0,
-  https://ourplcc.github.io/plcc-ng/2.0/language-guide/semantic/
+  [https://ourplcc.github.io/plcc-ng/2.0/language-guide/semantic/](https://ourplcc.github.io/plcc-ng/2.0/language-guide/semantic/)

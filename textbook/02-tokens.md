@@ -219,13 +219,13 @@ likely what we want.
 ## References
 
 * "Lexical specification," PLCC-ng, version 2.0,
-  https://ourplcc.github.io/plcc-ng/2.0/language-guide/lexical/
+  [https://ourplcc.github.io/plcc-ng/2.0/language-guide/lexical/](https://ourplcc.github.io/plcc-ng/2.0/language-guide/lexical/)
 
 * "Snake case," Wikipedia, last modified April 9, 2026,
-  https://en.wikipedia.org/wiki/Snake_case
+  [https://en.wikipedia.org/wiki/Snake_case](https://en.wikipedia.org/wiki/Snake_case)
 
 * "Whitespace character," Wikipedia, last modified August 13, 2026,
-  https://en.wikipedia.org/wiki/Whitespace_character
+  [https://en.wikipedia.org/wiki/Whitespace_character](https://en.wikipedia.org/wiki/Whitespace_character)
 
 ## Going beyond
 
@@ -262,9 +262,9 @@ this abstraction.**
 
 * Douglas Thain, "Scanning," chap. 3 in *Introduction to Compilers and Language
   Design,* 2nd ed., (Self-published, 2023),
-  https://dthain.github.io/books/compiler/chapter3.pdf
+  [https://dthain.github.io/books/compiler/chapter3.pdf](https://dthain.github.io/books/compiler/chapter3.pdf)
 
 ### Suggested resource
 
-Regex101 (https://regex101.com/) is a convenient website to experiment with and
+Regex101 ([https://regex101.com/](https://regex101.com/)) is a convenient website to experiment with and
 test regular expressions.

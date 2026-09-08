@@ -225,4 +225,4 @@ Invoke the scanner using all three invocation modes.
 ## Reference
 
 * "plcc-scan," PLCC Command Line Interface, version 2.0,
-  https://ourplcc.github.io/plcc-ng/2.0/cli/commands/plcc-scan/
+  [https://ourplcc.github.io/plcc-ng/2.0/cli/commands/plcc-scan/](https://ourplcc.github.io/plcc-ng/2.0/cli/commands/plcc-scan/)
