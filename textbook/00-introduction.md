@@ -50,3 +50,10 @@ To ease this process, we are going to rely on a tool: **PLCC - Programming
 Languages Compiler Compiler**. It will allow us to simplify the process of
 building languages by automating the generation of their parsers, allowing us to
 focus our efforts on implementing their semantics.
+
+## Reference
+
+* Timothy Fossum, "PLCC: A Programming Language Compiler Compiler," in
+  *Proceedings of the 45th ACM Technical Symposium on Computer Science
+  Education,* Association for Computing Machinery, March 2014, pp. 561-566,
+  [https://doi.org/10.1145/2538862.2538922](https://doi.org/10.1145/2538862.2538922)
