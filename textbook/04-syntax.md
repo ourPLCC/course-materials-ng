@@ -47,11 +47,6 @@ are valid. The syntactic specification builds on top of the language's
 lexical specification by referring to its tokens. Here is our first example of a
 valid PLCC specification for a list of comma-separated natural numbers.
 
-A language's **syntactic specification** defines the set of valid sentences for
-that language. The syntactic specification builds on top of the language's
-lexical specification by referring to its tokens. Here is our first example of a
-valid PLCC specification for a list of comma-separated natural numbers.
-
 ```
 # Lexical specification for a list of comma-separated natural numbers
 skip  WHITESPACE '\s+'
