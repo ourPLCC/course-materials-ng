@@ -330,7 +330,10 @@ do not have any semantic contents. The second one includes presumably semantic
 definitions. Therefore that second statement must appear somewhere after the
 target programming language is identified (here `Python`).
 
-## Reference
+## References
 
 * "Semantic section," PLCC-ng, version 2.0,
   [https://ourplcc.github.io/plcc-ng/2.0/language-guide/semantic/](https://ourplcc.github.io/plcc-ng/2.0/language-guide/semantic/)
+
+* "Semantics (programming languages)," Wikipedia, last modified April 15, 2026,
+  [https://en.wikipedia.org/wiki/Semantics_(programming_languages)](https://en.wikipedia.org/wiki/Semantics_(programming_languages))
