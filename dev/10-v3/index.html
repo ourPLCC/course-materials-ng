@@ -334,12 +334,9 @@
 <h2 id="a-quick-tour"><span class="enumerate-headings-plugin enumerate-heading-plugin">12.1</span> A quick tour</h2>
 <p>The purpose of a <code>let</code> expression is to create an environment with new variable
 bindings and to evaluate an expression using these variable bindings.</p>
-<p>The relevant grammar rules and abstract syntax representations are shown below.</p>
+<p>The relevant grammar rules are shown below.</p>
 <div class="highlight"><pre><span></span><code>&lt;Exp:LetExp&gt;     ::= LET &lt;LetDecls&gt; IN &lt;Exp&gt;
-__init__(self, letDecls, exp)
-
 &lt;LetDecls&gt;       **= &lt;IDENT&gt; EQUALS &lt;Exp&gt;
-__init__(self, symbolList, expList)
 </code></pre></div>
 <p>The lexical section adds the obvious definitions for the tokens <code>LET</code>, <code>IN</code>, and
 <code>EQUALS</code>.</p>
