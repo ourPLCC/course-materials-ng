@@ -393,6 +393,13 @@
 </nav>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#reference">
+<span class="md-ellipsis">
+      Reference
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#going-beyond">
 <span class="md-ellipsis">
       Going beyond
@@ -937,8 +944,13 @@ interfere with each other.</p>
 <p>However, we can now use sequence expressions to add curly braces around any
 expression without changing the meaning of that expression, possibly improving
 the readability of our programs.</p>
-<h2 id="going-beyond"><span class="enumerate-headings-plugin enumerate-heading-plugin">13.10</span> Going beyond</h2>
-<h3 id="first-class-functions"><span class="enumerate-headings-plugin enumerate-heading-plugin">13.10.1</span> First-class functions</h3>
+<h2 id="reference"><span class="enumerate-headings-plugin enumerate-heading-plugin">13.10</span> Reference</h2>
+<ul>
+<li>"Language V4," ourPLCC, version 1.0.0,
+  <a href="https://github.com/ourPLCC/languages-ng/tree/v1.0.0/src/V4">https://github.com/ourPLCC/languages-ng/tree/v1.0.0/src/V4</a></li>
+</ul>
+<h2 id="going-beyond"><span class="enumerate-headings-plugin enumerate-heading-plugin">13.11</span> Going beyond</h2>
+<h3 id="first-class-functions"><span class="enumerate-headings-plugin enumerate-heading-plugin">13.11.1</span> First-class functions</h3>
 <p>Have first-class functions any practical use? Perhaps you have written a sorting
 function for a list of integers. Then perhaps you had to write another function
 to sort lists of strings, only to realize that they share almost the same code.
@@ -947,7 +959,7 @@ caller of your sorting function could provide a comparison function appropriate
 for the type of list's elements then you could write a single sort function
 parameterized with the comparison function. In fact, this feature would let you
 sort a list in ascending or descending order without changing the sort code!</p>
-<h3 id="sections"><span class="enumerate-headings-plugin enumerate-heading-plugin">13.10.2</span> Sections</h3>
+<h3 id="sections"><span class="enumerate-headings-plugin enumerate-heading-plugin">13.11.2</span> Sections</h3>
 <p>In functional programming (most notably in Haskell), a <em>section</em> is a partially
 applied binary function to create a new unary function. One of the earlier
 examples, reproduced below, illustrates this concept.</p>
@@ -961,20 +973,20 @@ in
 </code></pre></div>
 <p>In this example, function <code>add2</code> is defined by partially applying function
 <code>add</code>.</p>
-<h3 id="static-versus-dynamic-scoping_1"><span class="enumerate-headings-plugin enumerate-heading-plugin">13.10.3</span> Static versus dynamic scoping</h3>
+<h3 id="static-versus-dynamic-scoping_1"><span class="enumerate-headings-plugin enumerate-heading-plugin">13.11.3</span> Static versus dynamic scoping</h3>
 <p>As stated earlier, most popular, modern programming languages implement static
 scoping because it is easier to reason about the behavior of programs written in
 these languages.</p>
 <p>As a counter example, <code>bash</code>, a popular Unix shell, uses dynamic scoping for its
 local variables.</p>
-<h3 id="lambda-functions"><span class="enumerate-headings-plugin enumerate-heading-plugin">13.10.4</span> Lambda functions</h3>
+<h3 id="lambda-functions"><span class="enumerate-headings-plugin enumerate-heading-plugin">13.11.4</span> Lambda functions</h3>
 <p>Another name for an anonymous function is a <em>lambda function</em>. Originally
 introduced by mathematician Alonzo Church as a mechanism to reason about
 computability. It found its way into a programming languages when Lisp first
 adopted the concept. It continues to be a central feature of many functional
 programming languages. More recently, many imperative programming languages,
 such as C++, Java, and Python, have started to support this feature.</p>
-<h3 id="separator-versus-terminator"><span class="enumerate-headings-plugin enumerate-heading-plugin">13.10.5</span> Separator versus terminator</h3>
+<h3 id="separator-versus-terminator"><span class="enumerate-headings-plugin enumerate-heading-plugin">13.11.5</span> Separator versus terminator</h3>
 <p>In <code>V4</code>, a sequence uses the semicolon as a separator. Other languages use the
 semicolon as a special marker. In some languages, such as Algol and Pascal, the
 semicolon is used as a <em>separator</em> (much like <code>V4</code>). In those languages, having
