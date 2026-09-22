@@ -207,6 +207,10 @@ package Environments {
 app --> LetBindings
 app --> decls
 
+'layout constraints
+Environments -[hidden]- Bindings
+Bindings -[hidden]- Values
+
 @enduml
 ```
 

@@ -409,6 +409,9 @@ package Bindings {
 app --> AppBindings
 app --> decls
 
+'layout constraints
+Environments -[hidden]- Bindings
+Bindings -[hidden]- Values
 
 @enduml
 ```
