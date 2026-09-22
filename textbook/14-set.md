@@ -1,8 +1,8 @@
 # Language Set
 
 In this version of our language series, we allow for assignment of values to
-variables. Languages that allow for the mutation of variables are called
-*side-effecting*. Such languages are inherently more difficult to reason about,
+variables. Languages that allow for the mutation of variables are said to permit
+*side-effects*. Such languages are inherently more difficult to reason about,
 which accounts for why functional programming has received much attention and
 also for why it is so difficult to produce high-quality software in most
 side-effecting programming languages.
@@ -28,7 +28,7 @@ last expression. In this case, our program returns `43`, the updated content of
 `x`.
 
 The ability to assign a new value to a variable makes expression sequences more
-interesting. Before introducing the capability, assignment of variables, all
+interesting. Before introducing the ability to assign values to variables, all
 expressions in a sequence but the last had no impact of the final value
 produced.
 
@@ -43,9 +43,15 @@ mutation:
 ```
 
 Semantically, the evaluation of variable assignment returns the result of
-evaluating the expression on the right-hand side of the equal sign but not
+evaluating the expression on the right-hand side of the equal sign, but not
 before assigning, as a new value, that result to the variable specified on the
 left-hand side.
+
+Be careful in how you interpret the use of the term *assignment* in this language.
+Although the first part of a `let` — the declarations part — also uses an equals
+sign, it is not what is being called "assignment" here. More accurately, we are
+speaking of the ability to assign values to variables as a way to change, or
+*reassign*, the variables to new values.
 
 ## Variable assignment
 
@@ -117,7 +123,24 @@ as described later in these notes.
 
 The ability to modify the value bound to a variable allows us to "capture" an
 environment in a function and use the function to modify its captured
-environment. For example, let us evaluate the following SET program:
+environment. To start, let us evaluate the following SET program:
+
+```
+define g = proc()
+            let
+              count = 0
+            in
+              proc() set count = add1(count)
+.g()
+.g()
+.g()
+```
+
+No matter how many times the `g` function is applied, the same answer, 1, is
+returned. That is because the environment containing the variable `count` is
+recreated (with `count` set to `0`) every time `g` is applied.
+
+Let us now evaluate a seemingly similar program in the SET language:
 
 ```
 define g = let
@@ -135,8 +158,8 @@ bindings that defines the function. The variable `count` persists from one
 invocation to the other because the function definition captures the environment
 in which it is defined, namely the one with variable `count`.
 
-In this example, the `count` variable is unbound in the top-level environment,
-so an attempt to evaluation it throws an exception.
+In both of the above examples, the `count` variable is unbound in the top-level environment,
+so an attempt to evaluate it throws an exception.
 
 ## Reference
 
@@ -258,9 +281,7 @@ def eval(self, env):
 
 Notice that a `set` expression evaluates to the value of the right-hand side of
 the assignment. This observation means that multiple `set` operations can
-appear in one expression.
-
-For example, the following expression evaluates to `12`:
+appear in one expression. For example, the following expression evaluates to `12`:
 
 ```
 let
