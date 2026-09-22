@@ -58,6 +58,8 @@ nav:
   - V4: 11-v4.md
   - V5: 12-v5.md
   - V6: 13-v6.md
+  - SET: 14-set.md
+  - REF: 15-ref.md
 
 extra:
   version:
