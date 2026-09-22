@@ -1,608 +1,368 @@
 
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-      
-        <link rel="canonical" href="https://ourplcc.github.io/course-materials-ng/dev/14-set/">
-      
-      
-      
-      
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
-    
-    
-      
-        <title>Language Set - Programming Languages with PLCC</title>
-      
-    
-    
-      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
-      
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
-      
-      
+<!DOCTYPE html>
 
-
-    
-    
-      
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-      
-    
-    
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
-
-    
-    
-    
-  </head>
-  
-  
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
-  
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#language-set" class="md-skip">
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="https://ourplcc.github.io/course-materials-ng/dev/14-set/" rel="canonical"/>
+<link href="../13-v6/" rel="prev"/>
+<link href="../15-ref/" rel="next"/>
+<link href="../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.6.15" name="generator"/>
+<title>SET - Programming Languages with PLCC</title>
+<link href="../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#language-set">
           Skip to content
         </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
-        
-      </div>
-    
-    
-      
-
-  
-
+</div>
+<div data-md-component="announce">
+</div>
+<div data-md-color-scheme="default" data-md-component="outdated" hidden="">
+</div>
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Programming Languages with PLCC" class="md-header__button md-logo" aria-label="Programming Languages with PLCC" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Programming Languages with PLCC" class="md-header__button md-logo" data-md-component="logo" href=".." title="Programming Languages with PLCC">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
             Programming Languages with PLCC
           </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
             
-              Language Set
+              SET
             
           </span>
-        </div>
-      </div>
-    </div>
-    
-      
-        <form class="md-header__option" data-md-component="palette">
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
-      </label>
-    
-  
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
 </form>
-      
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
-    
-    
-    
-      
-      
-        <label class="md-header__button md-icon" for="__search">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        </label>
-        <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+<ol class="md-search-result__list" role="presentation"></ol>
 </div>
-      
-    
-    
-      <div class="md-header__source">
-        <a href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
-  </div>
-  <div class="md-source__repository">
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
     ourPLCC/course-materials-ng
   </div>
 </a>
-      </div>
-    
-  </nav>
-  
+</div>
+</nav>
 </header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-          
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-
-  
-
-<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Programming Languages with PLCC" class="md-nav__button md-logo" aria-label="Programming Languages with PLCC" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
-
-    </a>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--integrated" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Programming Languages with PLCC" class="md-nav__button md-logo" data-md-component="logo" href=".." title="Programming Languages with PLCC">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
     Programming Languages with PLCC
   </label>
-  
-    <div class="md-nav__source">
-      <a href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
-  </div>
-  <div class="md-source__repository">
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
     ourPLCC/course-materials-ng
   </div>
 </a>
-    </div>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+<span class="md-ellipsis">
     Home
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../00-introduction/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../00-introduction/">
+<span class="md-ellipsis">
     Introduction
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../01-overview/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../01-overview/">
+<span class="md-ellipsis">
     Overview
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../02-tokens/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../02-tokens/">
+<span class="md-ellipsis">
     Tokens
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../03-plcc/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../03-plcc/">
+<span class="md-ellipsis">
     PLCC
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../04-syntax/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../04-syntax/">
+<span class="md-ellipsis">
     Syntax
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05-semantic/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../05-semantic/">
+<span class="md-ellipsis">
     Semantics
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../06-v0/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../06-v0/">
+<span class="md-ellipsis">
     V0
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07-environments/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../07-environments/">
+<span class="md-ellipsis">
     Environments
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08-v1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../08-v1/">
+<span class="md-ellipsis">
     V1
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../09-v2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../09-v2/">
+<span class="md-ellipsis">
     V2
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../10-v3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../10-v3/">
+<span class="md-ellipsis">
     V3
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../11-v4/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../11-v4/">
+<span class="md-ellipsis">
     V4
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../12-v5/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../12-v5/">
+<span class="md-ellipsis">
     V5
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13-v6/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../13-v6/">
+<span class="md-ellipsis">
     V6
     
   </span>
-  
-
-      </a>
-    </li>
-  
-
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    SET
     
-  </ul>
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    SET
+    
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#a-quick-tour">
+<span class="md-ellipsis">
+      A quick tour
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#syntax-and-semantics">
+<span class="md-ellipsis">
+      Syntax and semantics
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#variable-assignment">
+<span class="md-ellipsis">
+      Variable assignment
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#environment-capture">
+<span class="md-ellipsis">
+      Environment capture
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reference">
+<span class="md-ellipsis">
+      Reference
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#binding">
+<span class="md-ellipsis">
+      Binding
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#implementation">
+<span class="md-ellipsis">
+      Implementation
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#formal-parameter">
+<span class="md-ellipsis">
+      Formal parameter
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reference_1">
+<span class="md-ellipsis">
+      Reference
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#going-beyond">
+<span class="md-ellipsis">
+      Going beyond
+    </span>
+</a>
+</li>
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-          
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-
-  
-  
-
-
-<h1 id="language-set">Language Set</h1>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../15-ref/">
+<span class="md-ellipsis">
+    REF
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="language-set"><span class="enumerate-headings-plugin enumerate-heading-plugin">16.</span> Language Set</h1>
 <p>In this version of our language series, we allow for assignment of values to
 variables. Languages that allow for the mutation of variables are called
 <em>side-effecting</em>. Such languages are inherently more difficult to reason about,
@@ -616,7 +376,7 @@ in
   { set x = add1(x) ; x }
 </code></pre></div>
 <p>produces <code>43</code>.</p>
-<h2 id="a-quick-tour">A quick tour</h2>
+<h2 id="a-quick-tour"><span class="enumerate-headings-plugin enumerate-heading-plugin">16.1</span> A quick tour</h2>
 <p>The body of the <code>let</code> expression above is a sequence of two expressions. The
 first expression assigns <code>x</code> a new value, <code>43</code>, that is, the original content of
 <code>x</code> incremented by <code>1</code>. The second expression consists simply of the variable
@@ -627,7 +387,7 @@ last expression. In this case, our program returns <code>43</code>, the updated 
 interesting. Before introducing the capability, assignment of variables, all
 expressions in a sequence but the last had no impact of the final value
 produced.</p>
-<h2 id="syntax-and-semantics">Syntax and semantics</h2>
+<h2 id="syntax-and-semantics"><span class="enumerate-headings-plugin enumerate-heading-plugin">16.2</span> Syntax and semantics</h2>
 <p>We add variable assignment (also called mutation) with the <code>set</code> keyword as a
 new form of expression. We choose the following concrete syntax for variable
 mutation:</p>
@@ -637,7 +397,7 @@ mutation:</p>
 evaluating the expression on the right-hand side of the equal sign but not
 before assigning, as a new value, that result to the variable specified on the
 left-hand side.</p>
-<h2 id="variable-assignment">Variable assignment</h2>
+<h2 id="variable-assignment"><span class="enumerate-headings-plugin enumerate-heading-plugin">16.3</span> Variable assignment</h2>
 <p>As an example consider the use of <code>set</code> in the input listed at the beginning of
 this chapter:</p>
 <div class="highlight"><pre><span></span><code>set x = add1(x)
@@ -653,15 +413,13 @@ to an expressed value, we bind the variable to a reference which itself contains
 an expressed value.</p>
 <p>Before the Language Set, our bindings tied a name directly with an expressed
 value.</p>
-<div><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" data-diagram-type="CLASS" height="86px" preserveAspectRatio="xMaxYMax meet" style="width:214px;height:86px;background:#FFFFFF;" version="1.1" viewBox="0 0 214 86" width="214px" zoomAndPan="magnify" id="Kroki"><defs /><g><g class="entity" data-qualified-name="Binding" data-source-line="2" id="ent0001"><rect fill="#F1F1F1" height="64.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84.9033" x="7" y="7" /><ellipse cx="22" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;" /><path d="M24.9688,28.6406 Q24.3906,28.9375 23.75,29.0781 Q23.1094,29.2344 22.4063,29.2344 Q19.9063,29.2344 18.5781,27.5938 Q17.2656,25.9375 17.2656,22.8125 Q17.2656,19.6875 18.5781,18.0313 Q19.9063,16.375 22.4063,16.375 Q23.1094,16.375 23.75,16.5313 Q24.4063,16.6875 24.9688,16.9844 L24.9688,19.7031 Q24.3438,19.125 23.75,18.8594 Q23.1563,18.5781 22.5313,18.5781 Q21.1875,18.5781 20.5,19.6563 Q19.8125,20.7188 19.8125,22.8125 Q19.8125,24.9063 20.5,25.9844 Q21.1875,27.0469 22.5313,27.0469 Q23.1563,27.0469 23.75,26.7813 Q24.3438,26.5 24.9688,25.9219 L24.9688,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52.9033" x="36" y="27.8467">Binding</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.9033" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42.376" x="13" y="55.9951">id : 'x'</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.9033" y1="63.2969" y2="63.2969" /></g><g class="entity" data-qualified-name="IntVal" data-source-line="6" id="ent0002"><rect fill="#F1F1F1" height="64.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="72.5371" x="127.18" y="7" /><ellipse cx="142.18" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;" /><path d="M145.1488,28.6406 Q144.5706,28.9375 143.93,29.0781 Q143.2894,29.2344 142.5863,29.2344 Q140.0863,29.2344 138.7581,27.5938 Q137.4456,25.9375 137.4456,22.8125 Q137.4456,19.6875 138.7581,18.0313 Q140.0863,16.375 142.5863,16.375 Q143.2894,16.375 143.93,16.5313 Q144.5863,16.6875 145.1488,16.9844 L145.1488,19.7031 Q144.5238,19.125 143.93,18.8594 Q143.3363,18.5781 142.7113,18.5781 Q141.3675,18.5781 140.68,19.6563 Q139.9925,20.7188 139.9925,22.8125 Q139.9925,24.9063 140.68,25.9844 Q141.3675,27.0469 142.7113,27.0469 Q143.3363,27.0469 143.93,26.7813 Q144.5238,26.5 145.1488,25.9219 L145.1488,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="40.5371" x="156.18" y="27.8467">IntVal</text><line style="stroke:#181818;stroke-width:0.5;" x1="128.18" x2="198.7171" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.2783" x="133.18" y="55.9951">val : 3</text><line style="stroke:#181818;stroke-width:0.5;" x1="128.18" x2="198.7171" y1="63.2969" y2="63.2969" /></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0002" data-link-type="composition" data-source-line="10" id="lnk3"><path codeLine="10" d="M104.2,39.15 C115.71,39.15 115.21,39.15 126.71,39.15" fill="none" id="Binding-backto-IntVal" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="92.2,39.15,98.2,43.15,104.2,39.15,98.2,35.15,92.2,39.15" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g></g></svg></div>
-
+<div><svg contentstyletype="text/css" data-diagram-type="CLASS" height="86px" id="Kroki" preserveaspectratio="xMaxYMax meet" style="width:214px;height:86px;background:#FFFFFF;" version="1.1" viewbox="0 0 214 86" width="214px" xmlns="http://www.w3.org/2000/svg" zoomandpan="magnify"><defs></defs><g><g class="entity" data-qualified-name="Binding" data-source-line="2" id="ent0001"><rect fill="#F1F1F1" height="64.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84.9033" x="7" y="7"></rect><ellipse cx="22" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M24.9688,28.6406 Q24.3906,28.9375 23.75,29.0781 Q23.1094,29.2344 22.4063,29.2344 Q19.9063,29.2344 18.5781,27.5938 Q17.2656,25.9375 17.2656,22.8125 Q17.2656,19.6875 18.5781,18.0313 Q19.9063,16.375 22.4063,16.375 Q23.1094,16.375 23.75,16.5313 Q24.4063,16.6875 24.9688,16.9844 L24.9688,19.7031 Q24.3438,19.125 23.75,18.8594 Q23.1563,18.5781 22.5313,18.5781 Q21.1875,18.5781 20.5,19.6563 Q19.8125,20.7188 19.8125,22.8125 Q19.8125,24.9063 20.5,25.9844 Q21.1875,27.0469 22.5313,27.0469 Q23.1563,27.0469 23.75,26.7813 Q24.3438,26.5 24.9688,25.9219 L24.9688,28.6406 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="52.9033" x="36" y="27.8467">Binding</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.9033" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="42.376" x="13" y="55.9951">id : 'x'</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.9033" y1="63.2969" y2="63.2969"></line></g><g class="entity" data-qualified-name="IntVal" data-source-line="6" id="ent0002"><rect fill="#F1F1F1" height="64.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="72.5371" x="127.18" y="7"></rect><ellipse cx="142.18" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M145.1488,28.6406 Q144.5706,28.9375 143.93,29.0781 Q143.2894,29.2344 142.5863,29.2344 Q140.0863,29.2344 138.7581,27.5938 Q137.4456,25.9375 137.4456,22.8125 Q137.4456,19.6875 138.7581,18.0313 Q140.0863,16.375 142.5863,16.375 Q143.2894,16.375 143.93,16.5313 Q144.5863,16.6875 145.1488,16.9844 L145.1488,19.7031 Q144.5238,19.125 143.93,18.8594 Q143.3363,18.5781 142.7113,18.5781 Q141.3675,18.5781 140.68,19.6563 Q139.9925,20.7188 139.9925,22.8125 Q139.9925,24.9063 140.68,25.9844 Q141.3675,27.0469 142.7113,27.0469 Q143.3363,27.0469 143.93,26.7813 Q144.5238,26.5 145.1488,25.9219 L145.1488,28.6406 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="40.5371" x="156.18" y="27.8467">IntVal</text><line style="stroke:#181818;stroke-width:0.5;" x1="128.18" x2="198.7171" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="43.2783" x="133.18" y="55.9951">val : 3</text><line style="stroke:#181818;stroke-width:0.5;" x1="128.18" x2="198.7171" y1="63.2969" y2="63.2969"></line></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0002" data-link-type="composition" data-source-line="10" id="lnk3"><path codeline="10" d="M104.2,39.15 C115.71,39.15 115.21,39.15 126.71,39.15" fill="none" id="Binding-backto-IntVal" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="92.2,39.15,98.2,43.15,104.2,39.15,98.2,35.15,92.2,39.15" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g></g></svg></div>
 <p>Now a binding ties that name to a denoted value (i.e., a reference) which itself
 points to an expressed value.</p>
-<div><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" data-diagram-type="CLASS" height="86px" preserveAspectRatio="xMaxYMax meet" style="width:304px;height:86px;background:#FFFFFF;" version="1.1" viewBox="0 0 304 86" width="304px" zoomAndPan="magnify" id="Kroki"><defs /><g><g class="entity" data-qualified-name="Binding" data-source-line="2" id="ent0001"><rect fill="#F1F1F1" height="64.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84.9033" x="7" y="7" /><ellipse cx="22" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;" /><path d="M24.9688,28.6406 Q24.3906,28.9375 23.75,29.0781 Q23.1094,29.2344 22.4063,29.2344 Q19.9063,29.2344 18.5781,27.5938 Q17.2656,25.9375 17.2656,22.8125 Q17.2656,19.6875 18.5781,18.0313 Q19.9063,16.375 22.4063,16.375 Q23.1094,16.375 23.75,16.5313 Q24.4063,16.6875 24.9688,16.9844 L24.9688,19.7031 Q24.3438,19.125 23.75,18.8594 Q23.1563,18.5781 22.5313,18.5781 Q21.1875,18.5781 20.5,19.6563 Q19.8125,20.7188 19.8125,22.8125 Q19.8125,24.9063 20.5,25.9844 Q21.1875,27.0469 22.5313,27.0469 Q23.1563,27.0469 23.75,26.7813 Q24.3438,26.5 24.9688,25.9219 L24.9688,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52.9033" x="36" y="27.8467">Binding</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.9033" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42.376" x="13" y="55.9951">id : 'x'</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.9033" y1="63.2969" y2="63.2969" /></g><g class="entity" data-qualified-name="Ref" data-source-line="6" id="ent0002"><rect fill="#F1F1F1" height="48" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="55.2695" x="126.82" y="15.15" /><ellipse cx="141.82" cy="31.15" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;" /><path d="M144.7888,36.7906 Q144.2106,37.0875 143.57,37.2281 Q142.9294,37.3844 142.2263,37.3844 Q139.7263,37.3844 138.3981,35.7438 Q137.0856,34.0875 137.0856,30.9625 Q137.0856,27.8375 138.3981,26.1813 Q139.7263,24.525 142.2263,24.525 Q142.9294,24.525 143.57,24.6813 Q144.2263,24.8375 144.7888,25.1344 L144.7888,27.8531 Q144.1638,27.275 143.57,27.0094 Q142.9763,26.7281 142.3513,26.7281 Q141.0075,26.7281 140.32,27.8063 Q139.6325,28.8688 139.6325,30.9625 Q139.6325,33.0563 140.32,34.1344 Q141.0075,35.1969 142.3513,35.1969 Q142.9763,35.1969 143.57,34.9313 Q144.1638,34.65 144.7888,34.0719 L144.7888,36.7906 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="23.2695" x="155.82" y="35.9967">Ref</text><line style="stroke:#181818;stroke-width:0.5;" x1="127.82" x2="181.0895" y1="47.15" y2="47.15" /><line style="stroke:#181818;stroke-width:0.5;" x1="127.82" x2="181.0895" y1="55.15" y2="55.15" /></g><g class="entity" data-qualified-name="IntVal" data-source-line="11" id="ent0004"><rect fill="#F1F1F1" height="64.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="72.5371" x="217.18" y="7" /><ellipse cx="232.18" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;" /><path d="M235.1488,28.6406 Q234.5706,28.9375 233.93,29.0781 Q233.2894,29.2344 232.5863,29.2344 Q230.0863,29.2344 228.7581,27.5938 Q227.4456,25.9375 227.4456,22.8125 Q227.4456,19.6875 228.7581,18.0313 Q230.0863,16.375 232.5863,16.375 Q233.2894,16.375 233.93,16.5313 Q234.5863,16.6875 235.1488,16.9844 L235.1488,19.7031 Q234.5238,19.125 233.93,18.8594 Q233.3363,18.5781 232.7113,18.5781 Q231.3675,18.5781 230.68,19.6563 Q229.9925,20.7188 229.9925,22.8125 Q229.9925,24.9063 230.68,25.9844 Q231.3675,27.0469 232.7113,27.0469 Q233.3363,27.0469 233.93,26.7813 Q234.5238,26.5 235.1488,25.9219 L235.1488,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="40.5371" x="246.18" y="27.8467">IntVal</text><line style="stroke:#181818;stroke-width:0.5;" x1="218.18" x2="288.7171" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.2783" x="223.18" y="55.9951">val : 3</text><line style="stroke:#181818;stroke-width:0.5;" x1="218.18" x2="288.7171" y1="63.2969" y2="63.2969" /></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0002" data-link-type="composition" data-source-line="9" id="lnk3"><path codeLine="9" d="M104.11,39.15 C115.64,39.15 115.16,39.15 126.69,39.15" fill="none" id="Binding-backto-Ref" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="92.11,39.15,98.11,43.15,104.11,39.15,98.11,35.15,92.11,39.15" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0002" data-entity-2="ent0004" data-link-type="composition" data-source-line="15" id="lnk5"><path codeLine="15" d="M194.3,39.15 C205.78,39.15 205.27,39.15 216.76,39.15" fill="none" id="Ref-backto-IntVal" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="182.3,39.15,188.3,43.15,194.3,39.15,188.3,35.15,182.3,39.15" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g></g></svg></div>
-
+<div><svg contentstyletype="text/css" data-diagram-type="CLASS" height="86px" id="Kroki" preserveaspectratio="xMaxYMax meet" style="width:304px;height:86px;background:#FFFFFF;" version="1.1" viewbox="0 0 304 86" width="304px" xmlns="http://www.w3.org/2000/svg" zoomandpan="magnify"><defs></defs><g><g class="entity" data-qualified-name="Binding" data-source-line="2" id="ent0001"><rect fill="#F1F1F1" height="64.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84.9033" x="7" y="7"></rect><ellipse cx="22" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M24.9688,28.6406 Q24.3906,28.9375 23.75,29.0781 Q23.1094,29.2344 22.4063,29.2344 Q19.9063,29.2344 18.5781,27.5938 Q17.2656,25.9375 17.2656,22.8125 Q17.2656,19.6875 18.5781,18.0313 Q19.9063,16.375 22.4063,16.375 Q23.1094,16.375 23.75,16.5313 Q24.4063,16.6875 24.9688,16.9844 L24.9688,19.7031 Q24.3438,19.125 23.75,18.8594 Q23.1563,18.5781 22.5313,18.5781 Q21.1875,18.5781 20.5,19.6563 Q19.8125,20.7188 19.8125,22.8125 Q19.8125,24.9063 20.5,25.9844 Q21.1875,27.0469 22.5313,27.0469 Q23.1563,27.0469 23.75,26.7813 Q24.3438,26.5 24.9688,25.9219 L24.9688,28.6406 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="52.9033" x="36" y="27.8467">Binding</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.9033" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="42.376" x="13" y="55.9951">id : 'x'</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.9033" y1="63.2969" y2="63.2969"></line></g><g class="entity" data-qualified-name="Ref" data-source-line="6" id="ent0002"><rect fill="#F1F1F1" height="48" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="55.2695" x="126.82" y="15.15"></rect><ellipse cx="141.82" cy="31.15" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M144.7888,36.7906 Q144.2106,37.0875 143.57,37.2281 Q142.9294,37.3844 142.2263,37.3844 Q139.7263,37.3844 138.3981,35.7438 Q137.0856,34.0875 137.0856,30.9625 Q137.0856,27.8375 138.3981,26.1813 Q139.7263,24.525 142.2263,24.525 Q142.9294,24.525 143.57,24.6813 Q144.2263,24.8375 144.7888,25.1344 L144.7888,27.8531 Q144.1638,27.275 143.57,27.0094 Q142.9763,26.7281 142.3513,26.7281 Q141.0075,26.7281 140.32,27.8063 Q139.6325,28.8688 139.6325,30.9625 Q139.6325,33.0563 140.32,34.1344 Q141.0075,35.1969 142.3513,35.1969 Q142.9763,35.1969 143.57,34.9313 Q144.1638,34.65 144.7888,34.0719 L144.7888,36.7906 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="23.2695" x="155.82" y="35.9967">Ref</text><line style="stroke:#181818;stroke-width:0.5;" x1="127.82" x2="181.0895" y1="47.15" y2="47.15"></line><line style="stroke:#181818;stroke-width:0.5;" x1="127.82" x2="181.0895" y1="55.15" y2="55.15"></line></g><g class="entity" data-qualified-name="IntVal" data-source-line="11" id="ent0004"><rect fill="#F1F1F1" height="64.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="72.5371" x="217.18" y="7"></rect><ellipse cx="232.18" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M235.1488,28.6406 Q234.5706,28.9375 233.93,29.0781 Q233.2894,29.2344 232.5863,29.2344 Q230.0863,29.2344 228.7581,27.5938 Q227.4456,25.9375 227.4456,22.8125 Q227.4456,19.6875 228.7581,18.0313 Q230.0863,16.375 232.5863,16.375 Q233.2894,16.375 233.93,16.5313 Q234.5863,16.6875 235.1488,16.9844 L235.1488,19.7031 Q234.5238,19.125 233.93,18.8594 Q233.3363,18.5781 232.7113,18.5781 Q231.3675,18.5781 230.68,19.6563 Q229.9925,20.7188 229.9925,22.8125 Q229.9925,24.9063 230.68,25.9844 Q231.3675,27.0469 232.7113,27.0469 Q233.3363,27.0469 233.93,26.7813 Q234.5238,26.5 235.1488,25.9219 L235.1488,28.6406 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="40.5371" x="246.18" y="27.8467">IntVal</text><line style="stroke:#181818;stroke-width:0.5;" x1="218.18" x2="288.7171" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="43.2783" x="223.18" y="55.9951">val : 3</text><line style="stroke:#181818;stroke-width:0.5;" x1="218.18" x2="288.7171" y1="63.2969" y2="63.2969"></line></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0002" data-link-type="composition" data-source-line="9" id="lnk3"><path codeline="9" d="M104.11,39.15 C115.64,39.15 115.16,39.15 126.69,39.15" fill="none" id="Binding-backto-Ref" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="92.11,39.15,98.11,43.15,104.11,39.15,98.11,35.15,92.11,39.15" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0002" data-entity-2="ent0004" data-link-type="composition" data-source-line="15" id="lnk5"><path codeline="15" d="M194.3,39.15 C205.78,39.15 205.27,39.15 216.76,39.15" fill="none" id="Ref-backto-IntVal" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="182.3,39.15,188.3,43.15,194.3,39.15,188.3,35.15,182.3,39.15" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g></g></svg></div>
 <p>References will also be used to implement various parameter-passing mechanisms
 as described later in these notes.</p>
-<h2 id="environment-capture">Environment capture</h2>
+<h2 id="environment-capture"><span class="enumerate-headings-plugin enumerate-heading-plugin">16.4</span> Environment capture</h2>
 <p>The ability to modify the value bound to a variable allows us to "capture" an
 environment in a function and use the function to modify its captured
 environment. For example, let us evaluate the following SET program:</p>
@@ -680,17 +438,15 @@ invocation to the other because the function definition captures the environment
 in which it is defined, namely the one with variable <code>count</code>.</p>
 <p>In this example, the <code>count</code> variable is unbound in the top-level environment,
 so an attempt to evaluation it throws an exception.</p>
-<h2 id="reference">Reference</h2>
+<h2 id="reference"><span class="enumerate-headings-plugin enumerate-heading-plugin">16.5</span> Reference</h2>
 <p>For our purposes, we want a reference to be a Python object whose contents can
 be mutated. When we bind a variable to a reference (its denoted value), this
 binding does not change, but the contents of the reference itself — the thing it
 refers to — can change.</p>
 <p>The <code>Ref</code> abstract class embodies our notion of a reference.</p>
-<div><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" data-diagram-type="CLASS" height="100px" preserveAspectRatio="xMaxYMax meet" style="width:129px;height:100px;background:#FFFFFF;" version="1.1" viewBox="0 0 129 100" width="129px" zoomAndPan="magnify" id="Kroki"><defs /><g><g class="entity" data-qualified-name="Ref" data-source-line="2" id="ent0001"><rect fill="#F1F1F1" height="80.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="109.501" x="7" y="7" /><ellipse cx="46.4042" cy="23" fill="#A9DCDF" rx="11" ry="11" style="stroke:#181818;stroke-width:1;" /><path d="M46.5135,18.3438 L45.3573,23.4219 L47.6854,23.4219 L46.5135,18.3438 Z M45.0292,16.1094 L48.0135,16.1094 L51.3729,28.5 L48.9198,28.5 L48.1542,25.4375 L44.8729,25.4375 L44.1229,28.5 L41.6854,28.5 L45.0292,16.1094 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="23.2695" x="65.8273" y="27.8467">Ref</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="115.501" y1="39" y2="39" /><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="115.501" y1="47" y2="47" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76.4189" x="13" y="63.9951">deRef(self)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="97.501" x="13" y="80.292">setRef(self, v)</text></g></g></svg></div>
-
+<div><svg contentstyletype="text/css" data-diagram-type="CLASS" height="100px" id="Kroki" preserveaspectratio="xMaxYMax meet" style="width:129px;height:100px;background:#FFFFFF;" version="1.1" viewbox="0 0 129 100" width="129px" xmlns="http://www.w3.org/2000/svg" zoomandpan="magnify"><defs></defs><g><g class="entity" data-qualified-name="Ref" data-source-line="2" id="ent0001"><rect fill="#F1F1F1" height="80.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="109.501" x="7" y="7"></rect><ellipse cx="46.4042" cy="23" fill="#A9DCDF" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M46.5135,18.3438 L45.3573,23.4219 L47.6854,23.4219 L46.5135,18.3438 Z M45.0292,16.1094 L48.0135,16.1094 L51.3729,28.5 L48.9198,28.5 L48.1542,25.4375 L44.8729,25.4375 L44.1229,28.5 L41.6854,28.5 L45.0292,16.1094 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthadjust="spacing" textlength="23.2695" x="65.8273" y="27.8467">Ref</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="115.501" y1="39" y2="39"></line><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="115.501" y1="47" y2="47"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="76.4189" x="13" y="63.9951">deRef(self)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="97.501" x="13" y="80.292">setRef(self, v)</text></g></g></svg></div>
 <p>For now, the only subclass of <code>Ref</code> is the <code>ValRef</code> class.</p>
-<div><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" data-diagram-type="CLASS" height="116px" preserveAspectRatio="xMaxYMax meet" style="width:131px;height:116px;background:#FFFFFF;" version="1.1" viewBox="0 0 131 116" width="131px" zoomAndPan="magnify" id="Kroki"><defs /><g><g class="entity" data-qualified-name="ValRef.Ref." data-source-line="2" id="ent0001"><rect fill="#F1F1F1" height="96.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="111.5088" x="7" y="7" /><ellipse cx="22" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;" /><path d="M24.9688,28.6406 Q24.3906,28.9375 23.75,29.0781 Q23.1094,29.2344 22.4063,29.2344 Q19.9063,29.2344 18.5781,27.5938 Q17.2656,25.9375 17.2656,22.8125 Q17.2656,19.6875 18.5781,18.0313 Q19.9063,16.375 22.4063,16.375 Q23.1094,16.375 23.75,16.5313 Q24.4063,16.6875 24.9688,16.9844 L24.9688,19.7031 Q24.3438,19.125 23.75,18.8594 Q23.1563,18.5781 22.5313,18.5781 Q21.1875,18.5781 20.5,19.6563 Q19.8125,20.7188 19.8125,22.8125 Q19.8125,24.9063 20.5,25.9844 Q21.1875,27.0469 22.5313,27.0469 Q23.1563,27.0469 23.75,26.7813 Q24.3438,26.5 24.9688,25.9219 L24.9688,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="79.5088" x="36" y="27.8467">ValRef(Ref)</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="117.5088" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="51.9668" x="13" y="55.9951">val: Val</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="117.5088" y1="63.2969" y2="63.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76.4189" x="13" y="80.292">deRef(self)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="97.501" x="13" y="96.5889">setRef(self, v)</text></g></g></svg></div>
-
+<div><svg contentstyletype="text/css" data-diagram-type="CLASS" height="116px" id="Kroki" preserveaspectratio="xMaxYMax meet" style="width:131px;height:116px;background:#FFFFFF;" version="1.1" viewbox="0 0 131 116" width="131px" xmlns="http://www.w3.org/2000/svg" zoomandpan="magnify"><defs></defs><g><g class="entity" data-qualified-name="ValRef.Ref." data-source-line="2" id="ent0001"><rect fill="#F1F1F1" height="96.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="111.5088" x="7" y="7"></rect><ellipse cx="22" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M24.9688,28.6406 Q24.3906,28.9375 23.75,29.0781 Q23.1094,29.2344 22.4063,29.2344 Q19.9063,29.2344 18.5781,27.5938 Q17.2656,25.9375 17.2656,22.8125 Q17.2656,19.6875 18.5781,18.0313 Q19.9063,16.375 22.4063,16.375 Q23.1094,16.375 23.75,16.5313 Q24.4063,16.6875 24.9688,16.9844 L24.9688,19.7031 Q24.3438,19.125 23.75,18.8594 Q23.1563,18.5781 22.5313,18.5781 Q21.1875,18.5781 20.5,19.6563 Q19.8125,20.7188 19.8125,22.8125 Q19.8125,24.9063 20.5,25.9844 Q21.1875,27.0469 22.5313,27.0469 Q23.1563,27.0469 23.75,26.7813 Q24.3438,26.5 24.9688,25.9219 L24.9688,28.6406 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="79.5088" x="36" y="27.8467">ValRef(Ref)</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="117.5088" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="51.9668" x="13" y="55.9951">val: Val</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="117.5088" y1="63.2969" y2="63.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="76.4189" x="13" y="80.292">deRef(self)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="97.501" x="13" y="96.5889">setRef(self, v)</text></g></g></svg></div>
 <p>The contents of a <code>ValRef</code> object is a <code>Val</code>, and we say that such an object is
 a <em>reference to a value</em>. Recall that a <code>Val</code> object is either an <code>IntVal</code> or a
 <code>ProcVal</code> — the only two <code>Val</code> types that we currently have.</p>
@@ -699,13 +455,12 @@ the <code>deRef</code> (dereference) method simply returns the <code>Val</code> 
 object's <code>val</code> attribute, and the <code>setRef</code> (set reference) method modifies the
 <code>val</code> attribute by changing it to the <code>Val</code> parameter <code>v</code> (and returning the new
 <code>Val</code> object as well).</p>
-<h2 id="binding">Binding</h2>
+<h2 id="binding"><span class="enumerate-headings-plugin enumerate-heading-plugin">16.6</span> Binding</h2>
 <p>Our denoted values (the things the variables are bound to) are now references
 instead of values, so we need to change our <code>Binding</code> objects to bind an
 identifier to a reference. (Notice that we use the terms "variable",
 "identifier", and "symbol" interchangeably.)</p>
-<div><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" data-diagram-type="CLASS" height="100px" preserveAspectRatio="xMaxYMax meet" style="width:104px;height:100px;background:#FFFFFF;" version="1.1" viewBox="0 0 104 100" width="104px" zoomAndPan="magnify" id="Kroki"><defs /><g><g class="entity" data-qualified-name="Binding" data-source-line="2" id="ent0001"><rect fill="#F1F1F1" height="80.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84.9033" x="7" y="7" /><ellipse cx="22" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;" /><path d="M24.9688,28.6406 Q24.3906,28.9375 23.75,29.0781 Q23.1094,29.2344 22.4063,29.2344 Q19.9063,29.2344 18.5781,27.5938 Q17.2656,25.9375 17.2656,22.8125 Q17.2656,19.6875 18.5781,18.0313 Q19.9063,16.375 22.4063,16.375 Q23.1094,16.375 23.75,16.5313 Q24.4063,16.6875 24.9688,16.9844 L24.9688,19.7031 Q24.3438,19.125 23.75,18.8594 Q23.1563,18.5781 22.5313,18.5781 Q21.1875,18.5781 20.5,19.6563 Q19.8125,20.7188 19.8125,22.8125 Q19.8125,24.9063 20.5,25.9844 Q21.1875,27.0469 22.5313,27.0469 Q23.1563,27.0469 23.75,26.7813 Q24.3438,26.5 24.9688,25.9219 L24.9688,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52.9033" x="36" y="27.8467">Binding</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.9033" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="44.9326" x="13" y="55.9951">id : str</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56.1846" x="13" y="72.292">ref : Ref</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.9033" y1="79.5938" y2="79.5938" /></g></g></svg></div>
-
+<div><svg contentstyletype="text/css" data-diagram-type="CLASS" height="100px" id="Kroki" preserveaspectratio="xMaxYMax meet" style="width:104px;height:100px;background:#FFFFFF;" version="1.1" viewbox="0 0 104 100" width="104px" xmlns="http://www.w3.org/2000/svg" zoomandpan="magnify"><defs></defs><g><g class="entity" data-qualified-name="Binding" data-source-line="2" id="ent0001"><rect fill="#F1F1F1" height="80.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84.9033" x="7" y="7"></rect><ellipse cx="22" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"></ellipse><path d="M24.9688,28.6406 Q24.3906,28.9375 23.75,29.0781 Q23.1094,29.2344 22.4063,29.2344 Q19.9063,29.2344 18.5781,27.5938 Q17.2656,25.9375 17.2656,22.8125 Q17.2656,19.6875 18.5781,18.0313 Q19.9063,16.375 22.4063,16.375 Q23.1094,16.375 23.75,16.5313 Q24.4063,16.6875 24.9688,16.9844 L24.9688,19.7031 Q24.3438,19.125 23.75,18.8594 Q23.1563,18.5781 22.5313,18.5781 Q21.1875,18.5781 20.5,19.6563 Q19.8125,20.7188 19.8125,22.8125 Q19.8125,24.9063 20.5,25.9844 Q21.1875,27.0469 22.5313,27.0469 Q23.1563,27.0469 23.75,26.7813 Q24.3438,26.5 24.9688,25.9219 L24.9688,28.6406 Z " fill="#000000"></path><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="52.9033" x="36" y="27.8467">Binding</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.9033" y1="39" y2="39"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="44.9326" x="13" y="55.9951">id : str</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="56.1846" x="13" y="72.292">ref : Ref</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="90.9033" y1="79.5938" y2="79.5938"></line></g></g></svg></div>
 <p>In the <code>Env</code> class, we want <code>applyEnv</code> to continue to return a <code>Val</code> object,
 whereas the bindings now associate identifiers with references, so we split up
 the responsibilities as follows:</p>
@@ -740,7 +495,7 @@ right-hand side expression values).</p>
 <span class="k">def</span><span class="w"> </span><span class="nf">valsToRefs</span><span class="p">(</span><span class="n">valList</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">ValRef</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">valList</span><span class="p">]</span>
 </code></pre></div>
-<h2 id="implementation">Implementation</h2>
+<h2 id="implementation"><span class="enumerate-headings-plugin enumerate-heading-plugin">16.7</span> Implementation</h2>
 <p>So far, we have dealt only with the implementation details of environments. How
 do we implement the semantics of <code>set</code> expressions? Coding its behavior is now
 relatively straightforward:</p>
@@ -765,7 +520,7 @@ in
 <p>The first expression in the body of this <code>let</code> gets evaluated like this:</p>
 <div class="highlight"><pre><span></span><code>set v = { set u = { set t = add1(t) } }
 </code></pre></div>
-<h2 id="formal-parameter">Formal parameter</h2>
+<h2 id="formal-parameter"><span class="enumerate-headings-plugin enumerate-heading-plugin">16.8</span> Formal parameter</h2>
 <p>What happens if you try to mutate the value of an identifier that is one of the
 formal parameters to a function? For example, what value is returned by the
 following program?</p>
@@ -785,19 +540,17 @@ that gets modified. Thus the value of this entire expression is <code>3</code>.<
 <p>The following illustration shows the environment immediately before the function
 application <code>.p(x)</code>. In particular, the binding of <code>x</code> to a reference to the
 value <code>3</code>.</p>
-<div><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" data-diagram-type="CLASS" height="415px" preserveAspectRatio="xMaxYMax meet" style="width:428px;height:415px;background:#FFFFFF;" version="1.1" viewBox="0 0 428 415" width="428px" zoomAndPan="magnify" id="Kroki"><defs /><g><g class="cluster" data-qualified-name="Environments" data-source-line="1" id="ent0001"><path d="M51.5,6 L161.5195,6 A3.75,3.75 0 0 1 164.0195,8.5 L171.0195,28.2969 L410.5,28.2969 A2.5,2.5 0 0 1 413,30.7969 L413,90.5 A2.5,2.5 0 0 1 410.5,93 L51.5,93 A2.5,2.5 0 0 1 49,90.5 L49,8.5 A2.5,2.5 0 0 1 51.5,6" fill="none" style="stroke:#000000;stroke-width:1.5;" /><line style="stroke:#000000;stroke-width:1.5;" x1="49" x2="171.0195" y1="28.2969" y2="28.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthAdjust="spacing" textLength="109.0195" x="53" y="20.9951">Environments</text></g><g class="cluster" data-qualified-name="Bindings" data-source-line="6" id="ent0003"><path d="M8.5,117 L78.0781,117 A3.75,3.75 0 0 1 80.5781,119.5 L87.5781,139.2969 L310.5,139.2969 A2.5,2.5 0 0 1 313,141.7969 L313,233.5 A2.5,2.5 0 0 1 310.5,236 L8.5,236 A2.5,2.5 0 0 1 6,233.5 L6,119.5 A2.5,2.5 0 0 1 8.5,117" fill="none" style="stroke:#000000;stroke-width:1.5;" /><line style="stroke:#000000;stroke-width:1.5;" x1="6" x2="87.5781" y1="139.2969" y2="139.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthAdjust="spacing" textLength="68.5781" x="10" y="131.9951">Bindings</text></g><g class="cluster" data-qualified-name="Values" data-source-line="19" id="ent0008"><path d="M89.5,260 L143.376,260 A3.75,3.75 0 0 1 145.876,262.5 L152.876,282.2969 L308.5,282.2969 A2.5,2.5 0 0 1 311,284.7969 L311,397.5 A2.5,2.5 0 0 1 308.5,400 L89.5,400 A2.5,2.5 0 0 1 87,397.5 L87,262.5 A2.5,2.5 0 0 1 89.5,260" fill="none" style="stroke:#000000;stroke-width:1.5;" /><line style="stroke:#000000;stroke-width:1.5;" x1="87" x2="152.876" y1="282.2969" y2="282.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthAdjust="spacing" textLength="52.876" x="91" y="274.9951">Values</text></g><g class="entity" data-qualified-name="Environments.empty" data-source-line="2" id="ent0002"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="67.1289" x="321.5" y="49" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="53.1289" x="328.5" y="63.9951">EnvNull</text></g><g class="entity" data-qualified-name="Environments.decls" data-source-line="12" id="ent0005"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="74.1768" x="196" y="49" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60.1768" x="203" y="63.9951">LetDecls</text></g><g class="entity" data-qualified-name="Environments.body" data-source-line="35" id="ent0013"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="71.2441" x="73.5" y="49" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="57.2441" x="80.5" y="63.9951">LetBody</text></g><g class="entity" data-qualified-name="Bindings.DeclsBindings" data-source-line="7" id="ent0004"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="112.4717" x="177" y="176" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98.4717" x="184" y="190.9951">DeclsBindings</text></g><g class="entity" data-qualified-name="Bindings.LetBindings" data-source-line="28" id="ent0011"><rect fill="#F1F1F1" height="60.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="96.0996" x="30" y="156" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="82.0996" x="37" y="170.9951">LetBindings</text><line style="stroke:#181818;stroke-width:1;" x1="30" x2="126.0996" y1="176.2969" y2="176.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="8.2852" x="35" y="191.292">x</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.5791" x="53.2852" y="191.292">3 (ref)</text><line style="stroke:#181818;stroke-width:1;" x1="48.2852" x2="48.2852" y1="176.2969" y2="196.5938" /><line style="stroke:#181818;stroke-width:1;" x1="30" x2="126.0996" y1="196.5938" y2="196.5938" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.9287" x="75.5854" y="211.5889">f</text></g><g class="entity" data-qualified-name="Values.Proc" data-source-line="20" id="ent0009"><rect fill="#F1F1F1" height="81.1875" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="176.29" x="111" y="299" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30.4609" x="183.9146" y="313.9951">Proc</text><line style="stroke:#181818;stroke-width:1;" x1="111" x2="287.29" y1="319.2969" y2="319.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52.6504" x="116" y="334.292">formals</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="5.4893" x="178.6504" y="334.292">t</text><line style="stroke:#181818;stroke-width:1;" x1="173.6504" x2="173.6504" y1="319.2969" y2="339.5938" /><line style="stroke:#181818;stroke-width:1;" x1="111" x2="287.29" y1="339.5938" y2="339.5938" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34.624" x="125.0132" y="354.5889">body</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="103.6396" x="178.6504" y="354.5889">set t = add1(t)</text><line style="stroke:#181818;stroke-width:1;" x1="173.6504" x2="173.6504" y1="339.5938" y2="359.8906" /><line style="stroke:#181818;stroke-width:1;" x1="111" x2="287.29" y1="359.8906" y2="359.8906" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="25.7715" x="186.2593" y="374.8857">env</text></g><g class="link" data-entity-1="ent0005" data-entity-2="ent0002" data-link-type="dependency" data-source-line="16" id="lnk6"><path codeLine="16" d="M277.8,59 C289.76,59 296.72,59 308.68,59" fill="none" id="decls-to-empty" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="313.68,59,304.68,55,308.68,59,304.68,63,313.68,59" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0005" data-entity-2="ent0004" data-link-type="dependency" data-source-line="17" id="lnk7"><path codeLine="17" d="M233,76.86 C233,100.72 233,139.08 233,163.01" fill="none" id="decls-to-DeclsBindings" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="233,168.01,237,159.01,233,163.01,229,159.01,233,168.01" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0009" data-entity-2="ent0005" data-link-type="dependency" data-source-line="21" id="lnk10"><path d="M288,369 C404.09,369 375.2,207.02 313,109 C308.53,101.95 303.29,105.06 296,101 C282.89,93.69 273.0013,87.4668 261.5013,79.7468" fill="none" id="Proc-to-decls" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="257.35,76.96,262.593,85.2973,261.5013,79.7468,267.0519,78.6552,257.35,76.96" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0011" data-entity-2="ent0009" data-link-type="dependency" data-source-line="29" id="lnk12"><path d="M127,206 C132.17,206 156.1549,251.9974 175.4649,290.6374" fill="none" id="LetBindings-to-Proc" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="177.7,295.11,177.2548,285.2712,175.4649,290.6374,170.0987,288.8474,177.7,295.11" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0013" data-entity-2="ent0005" data-link-type="dependency" data-source-line="39" id="lnk14"><path codeLine="39" d="M152.11,59 C164.12,59 171.12,59 183.13,59" fill="none" id="body-to-decls" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="188.13,59,179.13,55,183.13,59,179.13,63,188.13,59" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0013" data-entity-2="ent0011" data-link-type="dependency" data-source-line="40" id="lnk15"><path codeLine="40" d="M104.82,76.86 C100.06,96.05 93.3728,123.0168 87.3828,147.1868" fill="none" id="body-to-LetBindings" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="86.18,152.04,92.2275,144.2665,87.3828,147.1868,84.4624,142.3421,86.18,152.04" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g></g></svg></div>
-
+<div><svg contentstyletype="text/css" data-diagram-type="CLASS" height="415px" id="Kroki" preserveaspectratio="xMaxYMax meet" style="width:428px;height:415px;background:#FFFFFF;" version="1.1" viewbox="0 0 428 415" width="428px" xmlns="http://www.w3.org/2000/svg" zoomandpan="magnify"><defs></defs><g><g class="cluster" data-qualified-name="Environments" data-source-line="1" id="ent0001"><path d="M51.5,6 L161.5195,6 A3.75,3.75 0 0 1 164.0195,8.5 L171.0195,28.2969 L410.5,28.2969 A2.5,2.5 0 0 1 413,30.7969 L413,90.5 A2.5,2.5 0 0 1 410.5,93 L51.5,93 A2.5,2.5 0 0 1 49,90.5 L49,8.5 A2.5,2.5 0 0 1 51.5,6" fill="none" style="stroke:#000000;stroke-width:1.5;"></path><line style="stroke:#000000;stroke-width:1.5;" x1="49" x2="171.0195" y1="28.2969" y2="28.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthadjust="spacing" textlength="109.0195" x="53" y="20.9951">Environments</text></g><g class="cluster" data-qualified-name="Bindings" data-source-line="6" id="ent0003"><path d="M8.5,117 L78.0781,117 A3.75,3.75 0 0 1 80.5781,119.5 L87.5781,139.2969 L310.5,139.2969 A2.5,2.5 0 0 1 313,141.7969 L313,233.5 A2.5,2.5 0 0 1 310.5,236 L8.5,236 A2.5,2.5 0 0 1 6,233.5 L6,119.5 A2.5,2.5 0 0 1 8.5,117" fill="none" style="stroke:#000000;stroke-width:1.5;"></path><line style="stroke:#000000;stroke-width:1.5;" x1="6" x2="87.5781" y1="139.2969" y2="139.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthadjust="spacing" textlength="68.5781" x="10" y="131.9951">Bindings</text></g><g class="cluster" data-qualified-name="Values" data-source-line="19" id="ent0008"><path d="M89.5,260 L143.376,260 A3.75,3.75 0 0 1 145.876,262.5 L152.876,282.2969 L308.5,282.2969 A2.5,2.5 0 0 1 311,284.7969 L311,397.5 A2.5,2.5 0 0 1 308.5,400 L89.5,400 A2.5,2.5 0 0 1 87,397.5 L87,262.5 A2.5,2.5 0 0 1 89.5,260" fill="none" style="stroke:#000000;stroke-width:1.5;"></path><line style="stroke:#000000;stroke-width:1.5;" x1="87" x2="152.876" y1="282.2969" y2="282.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthadjust="spacing" textlength="52.876" x="91" y="274.9951">Values</text></g><g class="entity" data-qualified-name="Environments.empty" data-source-line="2" id="ent0002"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="67.1289" x="321.5" y="49"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="53.1289" x="328.5" y="63.9951">EnvNull</text></g><g class="entity" data-qualified-name="Environments.decls" data-source-line="12" id="ent0005"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="74.1768" x="196" y="49"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="60.1768" x="203" y="63.9951">LetDecls</text></g><g class="entity" data-qualified-name="Environments.body" data-source-line="35" id="ent0013"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="71.2441" x="73.5" y="49"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="57.2441" x="80.5" y="63.9951">LetBody</text></g><g class="entity" data-qualified-name="Bindings.DeclsBindings" data-source-line="7" id="ent0004"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="112.4717" x="177" y="176"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="98.4717" x="184" y="190.9951">DeclsBindings</text></g><g class="entity" data-qualified-name="Bindings.LetBindings" data-source-line="28" id="ent0011"><rect fill="#F1F1F1" height="60.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="96.0996" x="30" y="156"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="82.0996" x="37" y="170.9951">LetBindings</text><line style="stroke:#181818;stroke-width:1;" x1="30" x2="126.0996" y1="176.2969" y2="176.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="8.2852" x="35" y="191.292">x</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="43.5791" x="53.2852" y="191.292">3 (ref)</text><line style="stroke:#181818;stroke-width:1;" x1="48.2852" x2="48.2852" y1="176.2969" y2="196.5938"></line><line style="stroke:#181818;stroke-width:1;" x1="30" x2="126.0996" y1="196.5938" y2="196.5938"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="4.9287" x="75.5854" y="211.5889">f</text></g><g class="entity" data-qualified-name="Values.Proc" data-source-line="20" id="ent0009"><rect fill="#F1F1F1" height="81.1875" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="176.29" x="111" y="299"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="30.4609" x="183.9146" y="313.9951">Proc</text><line style="stroke:#181818;stroke-width:1;" x1="111" x2="287.29" y1="319.2969" y2="319.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="52.6504" x="116" y="334.292">formals</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="5.4893" x="178.6504" y="334.292">t</text><line style="stroke:#181818;stroke-width:1;" x1="173.6504" x2="173.6504" y1="319.2969" y2="339.5938"></line><line style="stroke:#181818;stroke-width:1;" x1="111" x2="287.29" y1="339.5938" y2="339.5938"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="34.624" x="125.0132" y="354.5889">body</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="103.6396" x="178.6504" y="354.5889">set t = add1(t)</text><line style="stroke:#181818;stroke-width:1;" x1="173.6504" x2="173.6504" y1="339.5938" y2="359.8906"></line><line style="stroke:#181818;stroke-width:1;" x1="111" x2="287.29" y1="359.8906" y2="359.8906"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="25.7715" x="186.2593" y="374.8857">env</text></g><g class="link" data-entity-1="ent0005" data-entity-2="ent0002" data-link-type="dependency" data-source-line="16" id="lnk6"><path codeline="16" d="M277.8,59 C289.76,59 296.72,59 308.68,59" fill="none" id="decls-to-empty" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="313.68,59,304.68,55,308.68,59,304.68,63,313.68,59" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0005" data-entity-2="ent0004" data-link-type="dependency" data-source-line="17" id="lnk7"><path codeline="17" d="M233,76.86 C233,100.72 233,139.08 233,163.01" fill="none" id="decls-to-DeclsBindings" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="233,168.01,237,159.01,233,163.01,229,159.01,233,168.01" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0009" data-entity-2="ent0005" data-link-type="dependency" data-source-line="21" id="lnk10"><path d="M288,369 C404.09,369 375.2,207.02 313,109 C308.53,101.95 303.29,105.06 296,101 C282.89,93.69 273.0013,87.4668 261.5013,79.7468" fill="none" id="Proc-to-decls" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="257.35,76.96,262.593,85.2973,261.5013,79.7468,267.0519,78.6552,257.35,76.96" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0011" data-entity-2="ent0009" data-link-type="dependency" data-source-line="29" id="lnk12"><path d="M127,206 C132.17,206 156.1549,251.9974 175.4649,290.6374" fill="none" id="LetBindings-to-Proc" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="177.7,295.11,177.2548,285.2712,175.4649,290.6374,170.0987,288.8474,177.7,295.11" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0013" data-entity-2="ent0005" data-link-type="dependency" data-source-line="39" id="lnk14"><path codeline="39" d="M152.11,59 C164.12,59 171.12,59 183.13,59" fill="none" id="body-to-decls" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="188.13,59,179.13,55,183.13,59,179.13,63,188.13,59" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0013" data-entity-2="ent0011" data-link-type="dependency" data-source-line="40" id="lnk15"><path codeline="40" d="M104.82,76.86 C100.06,96.05 93.3728,123.0168 87.3828,147.1868" fill="none" id="body-to-LetBindings" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="86.18,152.04,92.2275,144.2665,87.3828,147.1868,84.4624,142.3421,86.18,152.04" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g></g></svg></div>
 <p>The following illustration show the environment during the function application
 <code>.p(x)</code>, binding the formal parameter <code>t</code> to a <em>new</em> reference containing a copy
 of the value of <code>x</code>.</p>
-<div><svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" data-diagram-type="CLASS" height="400px" preserveAspectRatio="xMaxYMax meet" style="width:797px;height:400px;background:#FFFFFF;" version="1.1" viewBox="0 0 797 400" width="797px" zoomAndPan="magnify" id="Kroki"><defs /><g><g class="cluster" data-qualified-name="Environments" data-source-line="1" id="ent0001"><path d="M173.5,32.5 L283.5195,32.5 A3.75,3.75 0 0 1 286.0195,35 L293.0195,54.7969 L531.5,54.7969 A2.5,2.5 0 0 1 534,57.2969 L534,239.5 A2.5,2.5 0 0 1 531.5,242 L173.5,242 A2.5,2.5 0 0 1 171,239.5 L171,35 A2.5,2.5 0 0 1 173.5,32.5" fill="none" style="stroke:#000000;stroke-width:1.5;" /><line style="stroke:#000000;stroke-width:1.5;" x1="171" x2="293.0195" y1="54.7969" y2="54.7969" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthAdjust="spacing" textLength="109.0195" x="175" y="47.4951">Environments</text></g><g class="cluster" data-qualified-name="Bindings" data-source-line="6" id="ent0003"><path d="M8.5,266 L78.0781,266 A3.75,3.75 0 0 1 80.5781,268.5 L87.5781,288.2969 L473.5,288.2969 A2.5,2.5 0 0 1 476,290.7969 L476,382.5 A2.5,2.5 0 0 1 473.5,385 L8.5,385 A2.5,2.5 0 0 1 6,382.5 L6,268.5 A2.5,2.5 0 0 1 8.5,266" fill="none" style="stroke:#000000;stroke-width:1.5;" /><line style="stroke:#000000;stroke-width:1.5;" x1="6" x2="87.5781" y1="288.2969" y2="288.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthAdjust="spacing" textLength="68.5781" x="10" y="280.9951">Bindings</text></g><g class="cluster" data-qualified-name="Values" data-source-line="19" id="ent0008"><path d="M560.5,6 L614.376,6 A3.75,3.75 0 0 1 616.876,8.5 L623.876,28.2969 L779.5,28.2969 A2.5,2.5 0 0 1 782,30.7969 L782,143.5 A2.5,2.5 0 0 1 779.5,146 L560.5,146 A2.5,2.5 0 0 1 558,143.5 L558,8.5 A2.5,2.5 0 0 1 560.5,6" fill="none" style="stroke:#000000;stroke-width:1.5;" /><line style="stroke:#000000;stroke-width:1.5;" x1="558" x2="623.876" y1="28.2969" y2="28.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthAdjust="spacing" textLength="52.876" x="562" y="20.9951">Values</text></g><g class="entity" data-qualified-name="Environments.empty" data-source-line="2" id="ent0002"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="67.1289" x="442.5" y="198" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="53.1289" x="449.5" y="212.9951">EnvNull</text></g><g class="entity" data-qualified-name="Environments.decls" data-source-line="12" id="ent0005"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="74.1768" x="195" y="198" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60.1768" x="202" y="212.9951">LetDecls</text></g><g class="entity" data-qualified-name="Environments.body" data-source-line="35" id="ent0013"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="71.2441" x="320.5" y="198" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="57.2441" x="327.5" y="212.9951">LetBody</text></g><g class="entity" data-qualified-name="Environments.app" data-source-line="43" id="ent0016"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="41.3506" x="203.5" y="75.5" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="27.3506" x="210.5" y="90.4951">App</text></g><g class="entity" data-qualified-name="Bindings.DeclsBindings" data-source-line="7" id="ent0004"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="112.4717" x="193" y="325" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98.4717" x="200" y="339.9951">DeclsBindings</text></g><g class="entity" data-qualified-name="Bindings.LetBindings" data-source-line="28" id="ent0011"><rect fill="#F1F1F1" height="60.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="96.0996" x="356" y="305" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="82.0996" x="363" y="319.9951">LetBindings</text><line style="stroke:#181818;stroke-width:1;" x1="356" x2="452.0996" y1="325.2969" y2="325.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="8.2852" x="361" y="340.292">x</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.5791" x="379.2852" y="340.292">3 (ref)</text><line style="stroke:#181818;stroke-width:1;" x1="374.2852" x2="374.2852" y1="325.2969" y2="345.5938" /><line style="stroke:#181818;stroke-width:1;" x1="356" x2="452.0996" y1="345.5938" y2="345.5938" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.9287" x="401.5854" y="360.5889">f</text></g><g class="entity" data-qualified-name="Bindings.AppBindings" data-source-line="48" id="ent0017"><rect fill="#F1F1F1" height="40.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="111.4033" x="30.5" y="315" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87.5479" x="42.4277" y="329.9951">AppBindings</text><line style="stroke:#181818;stroke-width:1;" x1="30.5" x2="141.9033" y1="335.2969" y2="335.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="5.4893" x="35.5" y="350.292">t</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="85.9141" x="50.9893" y="350.292">3 (ref, copy)</text><line style="stroke:#181818;stroke-width:1;" x1="45.9893" x2="45.9893" y1="335.2969" y2="355.5938" /></g><g class="entity" data-qualified-name="Values.Proc" data-source-line="20" id="ent0009"><rect fill="#F1F1F1" height="81.1875" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="176.29" x="582" y="45" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30.4609" x="654.9146" y="59.9951">Proc</text><line style="stroke:#181818;stroke-width:1;" x1="582" x2="758.29" y1="65.2969" y2="65.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52.6504" x="587" y="80.292">formals</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="5.4893" x="649.6504" y="80.292">t</text><line style="stroke:#181818;stroke-width:1;" x1="644.6504" x2="644.6504" y1="65.2969" y2="85.5938" /><line style="stroke:#181818;stroke-width:1;" x1="582" x2="758.29" y1="85.5938" y2="85.5938" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34.624" x="596.0132" y="100.5889">body</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="103.6396" x="649.6504" y="100.5889">set t = add1(t)</text><line style="stroke:#181818;stroke-width:1;" x1="644.6504" x2="644.6504" y1="85.5938" y2="105.8906" /><line style="stroke:#181818;stroke-width:1;" x1="582" x2="758.29" y1="105.8906" y2="105.8906" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="25.7715" x="657.2593" y="120.8857">env</text></g><g class="link" data-entity-1="ent0005" data-entity-2="ent0002" data-link-type="dependency" data-source-line="16" id="lnk6"><path codeLine="16" d="M263.84,190.04 C278.23,182.92 295.73,175.58 312.5,172 C350.32,163.93 361.76,163.56 399.5,172 C415.54,175.59 427.7568,180.6176 441.4068,187.7376" fill="none" id="decls-to-empty" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="445.84,190.05,439.7102,182.3412,441.4068,187.7376,436.0104,189.4342,445.84,190.05" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0005" data-entity-2="ent0004" data-link-type="dependency" data-source-line="17" id="lnk7"><path codeLine="17" d="M234.29,225.86 C237.54,249.72 242.7671,288.1255 246.0171,312.0555" fill="none" id="decls-to-DeclsBindings" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="246.69,317.01,249.4424,307.5536,246.0171,312.0555,241.5152,308.6302,246.69,317.01" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0009" data-entity-2="ent0005" data-link-type="dependency" data-source-line="21" id="lnk10"><path d="M581,115 C553.86,115 558.77,142.91 534,154 C435.96,197.91 400.14,167.97 295,190 C289.12,191.23 287.8274,191.4541 281.7774,192.9841" fill="none" id="Proc-to-decls" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="276.93,194.21,286.636,195.8813,281.7774,192.9841,284.6746,188.1255,276.93,194.21" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0011" data-entity-2="ent0009" data-link-type="dependency" data-source-line="29" id="lnk12"><path d="M453,355 C567.33,355 630.1738,210.6717 655.5938,134.6817" fill="none" id="LetBindings-to-Proc" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="657.18,129.94,650.5315,137.2062,655.5938,134.6817,658.1182,139.7441,657.18,129.94" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0013" data-entity-2="ent0005" data-link-type="dependency" data-source-line="39" id="lnk14"><path codeLine="39" d="M312.56,208 C300.56,208 293.56,208 281.56,208" fill="none" id="body-to-decls" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="276.56,208,285.56,212,281.56,208,285.56,204,276.56,208" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0013" data-entity-2="ent0011" data-link-type="dependency" data-source-line="40" id="lnk15"><path codeLine="40" d="M362.47,225.86 C369.84,245.05 380.2678,272.2022 389.5478,296.3722" fill="none" id="body-to-LetBindings" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="391.34,301.04,391.8483,291.2043,389.5478,296.3722,384.3799,294.0718,391.34,301.04" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0016" data-entity-2="ent0017" data-link-type="dependency" data-source-line="53" id="lnk18"><path codeLine="53" d="M214.73,103.12 C190.68,146.26 128.6646,257.4728 101.1646,306.8028" fill="none" id="app-to-AppBindings" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="98.73,311.17,106.6061,305.2567,101.1646,306.8028,99.6185,301.3613,98.73,311.17" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g><g class="link" data-entity-1="ent0016" data-entity-2="ent0005" data-link-type="dependency" data-source-line="54" id="lnk19"><path codeLine="54" d="M225.11,103.26 C226.64,126.28 229.0374,162.4511 230.5674,185.4011" fill="none" id="app-to-decls" style="stroke:#181818;stroke-width:1;" /><polygon fill="#181818" points="230.9,190.39,234.2925,181.1439,230.5674,185.4011,226.3102,181.676,230.9,190.39" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;" /></g></g></svg></div>
-
-<h2 id="reference_1">Reference</h2>
+<div><svg contentstyletype="text/css" data-diagram-type="CLASS" height="400px" id="Kroki" preserveaspectratio="xMaxYMax meet" style="width:797px;height:400px;background:#FFFFFF;" version="1.1" viewbox="0 0 797 400" width="797px" xmlns="http://www.w3.org/2000/svg" zoomandpan="magnify"><defs></defs><g><g class="cluster" data-qualified-name="Environments" data-source-line="1" id="ent0001"><path d="M173.5,32.5 L283.5195,32.5 A3.75,3.75 0 0 1 286.0195,35 L293.0195,54.7969 L531.5,54.7969 A2.5,2.5 0 0 1 534,57.2969 L534,239.5 A2.5,2.5 0 0 1 531.5,242 L173.5,242 A2.5,2.5 0 0 1 171,239.5 L171,35 A2.5,2.5 0 0 1 173.5,32.5" fill="none" style="stroke:#000000;stroke-width:1.5;"></path><line style="stroke:#000000;stroke-width:1.5;" x1="171" x2="293.0195" y1="54.7969" y2="54.7969"></line><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthadjust="spacing" textlength="109.0195" x="175" y="47.4951">Environments</text></g><g class="cluster" data-qualified-name="Bindings" data-source-line="6" id="ent0003"><path d="M8.5,266 L78.0781,266 A3.75,3.75 0 0 1 80.5781,268.5 L87.5781,288.2969 L473.5,288.2969 A2.5,2.5 0 0 1 476,290.7969 L476,382.5 A2.5,2.5 0 0 1 473.5,385 L8.5,385 A2.5,2.5 0 0 1 6,382.5 L6,268.5 A2.5,2.5 0 0 1 8.5,266" fill="none" style="stroke:#000000;stroke-width:1.5;"></path><line style="stroke:#000000;stroke-width:1.5;" x1="6" x2="87.5781" y1="288.2969" y2="288.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthadjust="spacing" textlength="68.5781" x="10" y="280.9951">Bindings</text></g><g class="cluster" data-qualified-name="Values" data-source-line="19" id="ent0008"><path d="M560.5,6 L614.376,6 A3.75,3.75 0 0 1 616.876,8.5 L623.876,28.2969 L779.5,28.2969 A2.5,2.5 0 0 1 782,30.7969 L782,143.5 A2.5,2.5 0 0 1 779.5,146 L560.5,146 A2.5,2.5 0 0 1 558,143.5 L558,8.5 A2.5,2.5 0 0 1 560.5,6" fill="none" style="stroke:#000000;stroke-width:1.5;"></path><line style="stroke:#000000;stroke-width:1.5;" x1="558" x2="623.876" y1="28.2969" y2="28.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="700" lengthadjust="spacing" textlength="52.876" x="562" y="20.9951">Values</text></g><g class="entity" data-qualified-name="Environments.empty" data-source-line="2" id="ent0002"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="67.1289" x="442.5" y="198"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="53.1289" x="449.5" y="212.9951">EnvNull</text></g><g class="entity" data-qualified-name="Environments.decls" data-source-line="12" id="ent0005"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="74.1768" x="195" y="198"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="60.1768" x="202" y="212.9951">LetDecls</text></g><g class="entity" data-qualified-name="Environments.body" data-source-line="35" id="ent0013"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="71.2441" x="320.5" y="198"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="57.2441" x="327.5" y="212.9951">LetBody</text></g><g class="entity" data-qualified-name="Environments.app" data-source-line="43" id="ent0016"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="41.3506" x="203.5" y="75.5"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="27.3506" x="210.5" y="90.4951">App</text></g><g class="entity" data-qualified-name="Bindings.DeclsBindings" data-source-line="7" id="ent0004"><rect fill="#F1F1F1" height="20.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="112.4717" x="193" y="325"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="98.4717" x="200" y="339.9951">DeclsBindings</text></g><g class="entity" data-qualified-name="Bindings.LetBindings" data-source-line="28" id="ent0011"><rect fill="#F1F1F1" height="60.8906" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="96.0996" x="356" y="305"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="82.0996" x="363" y="319.9951">LetBindings</text><line style="stroke:#181818;stroke-width:1;" x1="356" x2="452.0996" y1="325.2969" y2="325.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="8.2852" x="361" y="340.292">x</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="43.5791" x="379.2852" y="340.292">3 (ref)</text><line style="stroke:#181818;stroke-width:1;" x1="374.2852" x2="374.2852" y1="325.2969" y2="345.5938"></line><line style="stroke:#181818;stroke-width:1;" x1="356" x2="452.0996" y1="345.5938" y2="345.5938"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="4.9287" x="401.5854" y="360.5889">f</text></g><g class="entity" data-qualified-name="Bindings.AppBindings" data-source-line="48" id="ent0017"><rect fill="#F1F1F1" height="40.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="111.4033" x="30.5" y="315"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="87.5479" x="42.4277" y="329.9951">AppBindings</text><line style="stroke:#181818;stroke-width:1;" x1="30.5" x2="141.9033" y1="335.2969" y2="335.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="5.4893" x="35.5" y="350.292">t</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="85.9141" x="50.9893" y="350.292">3 (ref, copy)</text><line style="stroke:#181818;stroke-width:1;" x1="45.9893" x2="45.9893" y1="335.2969" y2="355.5938"></line></g><g class="entity" data-qualified-name="Values.Proc" data-source-line="20" id="ent0009"><rect fill="#F1F1F1" height="81.1875" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="176.29" x="582" y="45"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="30.4609" x="654.9146" y="59.9951">Proc</text><line style="stroke:#181818;stroke-width:1;" x1="582" x2="758.29" y1="65.2969" y2="65.2969"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="52.6504" x="587" y="80.292">formals</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="5.4893" x="649.6504" y="80.292">t</text><line style="stroke:#181818;stroke-width:1;" x1="644.6504" x2="644.6504" y1="65.2969" y2="85.5938"></line><line style="stroke:#181818;stroke-width:1;" x1="582" x2="758.29" y1="85.5938" y2="85.5938"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="34.624" x="596.0132" y="100.5889">body</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="103.6396" x="649.6504" y="100.5889">set t = add1(t)</text><line style="stroke:#181818;stroke-width:1;" x1="644.6504" x2="644.6504" y1="85.5938" y2="105.8906"></line><line style="stroke:#181818;stroke-width:1;" x1="582" x2="758.29" y1="105.8906" y2="105.8906"></line><text fill="#000000" font-family="sans-serif" font-size="14" lengthadjust="spacing" textlength="25.7715" x="657.2593" y="120.8857">env</text></g><g class="link" data-entity-1="ent0005" data-entity-2="ent0002" data-link-type="dependency" data-source-line="16" id="lnk6"><path codeline="16" d="M263.84,190.04 C278.23,182.92 295.73,175.58 312.5,172 C350.32,163.93 361.76,163.56 399.5,172 C415.54,175.59 427.7568,180.6176 441.4068,187.7376" fill="none" id="decls-to-empty" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="445.84,190.05,439.7102,182.3412,441.4068,187.7376,436.0104,189.4342,445.84,190.05" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0005" data-entity-2="ent0004" data-link-type="dependency" data-source-line="17" id="lnk7"><path codeline="17" d="M234.29,225.86 C237.54,249.72 242.7671,288.1255 246.0171,312.0555" fill="none" id="decls-to-DeclsBindings" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="246.69,317.01,249.4424,307.5536,246.0171,312.0555,241.5152,308.6302,246.69,317.01" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0009" data-entity-2="ent0005" data-link-type="dependency" data-source-line="21" id="lnk10"><path d="M581,115 C553.86,115 558.77,142.91 534,154 C435.96,197.91 400.14,167.97 295,190 C289.12,191.23 287.8274,191.4541 281.7774,192.9841" fill="none" id="Proc-to-decls" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="276.93,194.21,286.636,195.8813,281.7774,192.9841,284.6746,188.1255,276.93,194.21" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0011" data-entity-2="ent0009" data-link-type="dependency" data-source-line="29" id="lnk12"><path d="M453,355 C567.33,355 630.1738,210.6717 655.5938,134.6817" fill="none" id="LetBindings-to-Proc" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="657.18,129.94,650.5315,137.2062,655.5938,134.6817,658.1182,139.7441,657.18,129.94" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0013" data-entity-2="ent0005" data-link-type="dependency" data-source-line="39" id="lnk14"><path codeline="39" d="M312.56,208 C300.56,208 293.56,208 281.56,208" fill="none" id="body-to-decls" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="276.56,208,285.56,212,281.56,208,285.56,204,276.56,208" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0013" data-entity-2="ent0011" data-link-type="dependency" data-source-line="40" id="lnk15"><path codeline="40" d="M362.47,225.86 C369.84,245.05 380.2678,272.2022 389.5478,296.3722" fill="none" id="body-to-LetBindings" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="391.34,301.04,391.8483,291.2043,389.5478,296.3722,384.3799,294.0718,391.34,301.04" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0016" data-entity-2="ent0017" data-link-type="dependency" data-source-line="53" id="lnk18"><path codeline="53" d="M214.73,103.12 C190.68,146.26 128.6646,257.4728 101.1646,306.8028" fill="none" id="app-to-AppBindings" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="98.73,311.17,106.6061,305.2567,101.1646,306.8028,99.6185,301.3613,98.73,311.17" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g><g class="link" data-entity-1="ent0016" data-entity-2="ent0005" data-link-type="dependency" data-source-line="54" id="lnk19"><path codeline="54" d="M225.11,103.26 C226.64,126.28 229.0374,162.4511 230.5674,185.4011" fill="none" id="app-to-decls" style="stroke:#181818;stroke-width:1;"></path><polygon fill="#181818" points="230.9,190.39,234.2925,181.1439,230.5674,185.4011,226.3102,181.676,230.9,190.39" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"></polygon></g></g></svg></div>
+<h2 id="reference_1"><span class="enumerate-headings-plugin enumerate-heading-plugin">16.9</span> Reference</h2>
 <ul>
 <li>"Language SET," ourPLCC, version 1.0.0,
   <a href="https://github.com/ourPLCC/languages-ng/tree/v1.0.0/src/SET">https://github.com/ourPLCC/languages-ng/tree/v1.0.0/src/SET</a></li>
 </ul>
-<h2 id="going-beyond">Going beyond</h2>
+<h2 id="going-beyond"><span class="enumerate-headings-plugin enumerate-heading-plugin">16.10</span> Going beyond</h2>
 <p><code>SET</code> is not the only language where assignments return a value. The C
 programming language specifies similar semantics for its assignments. Here is
 an example of a loop written in C where reading a character from standard input
@@ -806,72 +559,38 @@ and checking an end-of-file condition occurs simultaneously:</p>
 <span class="w">    </span><span class="p">...</span>
 <span class="p">}</span>
 </code></pre></div>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-              </article>
-            </div>
-          
-          
-  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
-
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-        </div>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-    <div class="md-copyright__highlight">
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
       Textbook content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
 
     </div>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
       Material for MkDocs
     </a>
-  
 </div>
-      
-    </div>
-  </div>
+</div>
+</div>
 </footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    
-      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
-    
-    
-    
-      
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.sections", "navigation.tracking", "toc.integrate", "search.suggest", "content.tabs", "content.tabs.link"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
-    
-    
-      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
-      
-        <script src="../javascripts/mathjax.js"></script>
-      
-        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-    
-  </body>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<div class="md-progress" data-md-component="progress" role="progressbar"></div>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.sections", "navigation.tracking", "toc.integrate", "search.suggest", "content.tabs", "content.tabs.link"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+<script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+<script src="../javascripts/mathjax.js"></script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
 </html>
