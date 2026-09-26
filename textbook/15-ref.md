@@ -10,7 +10,7 @@ in
   { .p(x) ; x }
 ```
 
-Running this program with `REF` yields `4` while the same program yield `3`
+Running this program with `REF` yields `4` while the same program yields `3`
 under `SET`, the language we studied in the previous chapter. What is different?
 
 ## A quick tour
@@ -152,7 +152,7 @@ in
   { .p(x) ; x }
 ```
 
-returns the value `4`, since `t` denotes the same reference as `x`. The
+returns the value `4`, since `t` refers to the same value as `x`. The
 following figure illustrates the bindings active during evaluation of the
 application `p(x)` (just prior to evaluating the function body):
 
@@ -187,7 +187,7 @@ package Values {
 package Bindings {
     map "LetBindings" as LetBindings {
         x => 3 (ref)
-        f *--> Values.Proc
+        p *--> Values.Proc
     }
 }
 
