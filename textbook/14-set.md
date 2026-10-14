@@ -56,7 +56,7 @@ this chapter:
 set x = add1(x)
 ```
 
-The mean of `x` on the left-hand side is different from its meaning on the
+The meaning of `x` on the left-hand side is different from its meaning on the
 right-hand side. The expression `x` in the right-hand side of this "assignment"
 represents an *expressed* value, whereas `x` on the left-hand side represents
 a denoted value that can be modified. To implement variable assignment, we need
@@ -334,7 +334,7 @@ package Values {
 package Bindings {
     map "LetBindings" as LetBindings {
         x => 3 (ref)
-        f *--> Values.Proc
+        p *--> Values.Proc
     }
 }
 
