@@ -136,7 +136,7 @@ invocation to the other because the function definition captures the environment
 in which it is defined, namely the one with variable `count`.
 
 In this example, the `count` variable is unbound in the top-level environment,
-so an attempt to evaluation it throws an exception.
+so an attempt to evaluation it raises an exception.
 
 ## Reference
 
@@ -211,7 +211,7 @@ def applyEnv(self, sym):
 ```
 
 The `applyEnvRef` method behaves exactly like the previous `applyEnv` method
-(but returns a `Ref` instead) and throws an exception if there is no reference
+(but returns a `Ref` instead) and raises an exception if there is no reference
 bound to the given symbol. The `applyEnv` method simply gets the `Ref` object
 using `applyEnvRef` and dereferences it to return the corresponding value.
 
