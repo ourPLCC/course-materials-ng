@@ -777,7 +777,7 @@ def eval(self, env):
 </ol>
 <p>The only thing we have left is to implement the behavior of the apply method in
 the <code>Val</code> class. Since we want apply only to be meaningful for a <code>ProcVal</code>
-object, we define a default behavior in the (abstract) <code>Val</code> class to throw an
+object, we define a default behavior in the (abstract) <code>Val</code> class to raise an
 exception for anything but a <code>ProcVal</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Val</span><span class="p">:</span>
 
@@ -801,7 +801,7 @@ exception for anything but a <code>ProcVal</code>:</p>
 <p>These steps are as follows:</p>
 <ol>
 <li>Check that the number of actual parameters matches the number of formal
-   parameters. If there is mismatch, throw an exception.</li>
+   parameters. If there is mismatch, raise an exception.</li>
 <li>Create bindings of the function’s list of formal parameters (formals) to
    the list of actual parameters passed as an argument (<code>args</code>).</li>
 <li>Use these bindings to extend the environment (<code>env</code>) captured by the

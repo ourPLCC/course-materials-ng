@@ -414,7 +414,7 @@ def eval(self, env):
     return IntVal(self.lit.lexeme)
 %%%
 </code></pre></div>
-<p>Remember that a <code>LitExp</code> instance has a <code>Token</code> field named <code>lit</code>. We can access
+<p>Remember that a <code>LitExp</code> instance has a <code>Token</code> attribute named <code>lit</code>. We can access
 the string that matched the token's pattern with the <code>lexeme</code> attribute
 (<code>self.lit.lexeme</code>). The <code>IntVal</code> initializer
 converts this string into a real Python integer that becomes part of the
@@ -517,11 +517,11 @@ def apply(self, args):
 objects, in turn, have <code>int</code> attributes named <code>val</code>. So both <code>i0</code> and <code>i1</code> are
 legitimate Python integers that can be added together to return the resulting
 <code>IntVal</code> object. The <code>Val</code> class also defines the <code>intVal</code> method: an attempt to
-apply the <code>intVal</code> method to a <code>Val</code> object that is not an <code>IntVal</code> throws an
+apply the <code>intVal</code> method to a <code>Val</code> object that is not an <code>IntVal</code> raises an
 exception.</p>
 <p>The definitions of <code>apply</code> for the classes <code>SubPrim</code>, <code>MulPrim</code>, and <code>DivPrim</code>
 (the latter two are added in V1) have obvious implementations, except that in
-<code>DivPrim</code>, the <code>apply</code> method throws an exception if it detects a division by
+<code>DivPrim</code>, the <code>apply</code> method raises an exception if it detects a division by
 zero.</p>
 <p>For the <code>Add1Prim</code> class, the <code>apply</code> method expects only one value, which is
 passed as element zero of the <code>args</code> list.</p>

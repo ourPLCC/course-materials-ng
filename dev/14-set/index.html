@@ -437,7 +437,7 @@ bindings that defines the function. The variable <code>count</code> persists fro
 invocation to the other because the function definition captures the environment
 in which it is defined, namely the one with variable <code>count</code>.</p>
 <p>In this example, the <code>count</code> variable is unbound in the top-level environment,
-so an attempt to evaluation it throws an exception.</p>
+so an attempt to evaluation it raises an exception.</p>
 <h2 id="reference"><span class="enumerate-headings-plugin enumerate-heading-plugin">16.5</span> Reference</h2>
 <p>For our purposes, we want a reference to be a Python object whose contents can
 be mutated. When we bind a variable to a reference (its denoted value), this
@@ -472,7 +472,7 @@ the responsibilities as follows:</p>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">applyEnvRef</span><span class="p">(</span><span class="n">sym</span><span class="p">)</span><span class="o">.</span><span class="n">deRef</span><span class="p">()</span>
 </code></pre></div>
 <p>The <code>applyEnvRef</code> method behaves exactly like the previous <code>applyEnv</code> method
-(but returns a <code>Ref</code> instead) and throws an exception if there is no reference
+(but returns a <code>Ref</code> instead) and raises an exception if there is no reference
 bound to the given symbol. The <code>applyEnv</code> method simply gets the <code>Ref</code> object
 using <code>applyEnvRef</code> and dereferences it to return the corresponding value.</p>
 <p>In our semantics code, we need to modify all of the instances of <code>Binding</code> or

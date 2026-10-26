@@ -461,7 +461,7 @@ the <code>Rands</code> class and its <code>evalRands</code> method here.</p>
     <span class="n">bindings</span> <span class="o">=</span> <span class="n">Bindings</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">identList</span><span class="p">,</span> <span class="n">valList</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="n">extendEnv</span><span class="p">(</span><span class="n">bindings</span><span class="p">)</span>
 </code></pre></div>
-<p>The <code>LetDecls</code> initializer throws an exception if it finds duplicate
+<p>The <code>LetDecls</code> initializer raises an exception if it finds duplicate
 identifiers in its <code>varList</code>. This means that a <code>let</code> expression cannot have two
 instances of the same LHS identifier. The code to check for duplicates is
 inserted into the <code>LetDecls</code> class initializer using the <code>:init</code> hook.</p>
