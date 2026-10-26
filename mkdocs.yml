@@ -60,6 +60,8 @@ nav:
   - V6: 13-v6.md
   - SET: 14-set.md
   - REF: 15-ref.md
+  - NAME: 16-name.md
+  - NEED: 17-need.md
 
 extra:
   version:
