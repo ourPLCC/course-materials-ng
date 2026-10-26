@@ -209,7 +209,8 @@ The hypothetical function `f` is defined in the declarations of the `let`
 expression. It take four arguments (`p`, `q`, `r`, and `s`). The body of the
 function is not relevant for this discussion and therefore left unspecified
 (`...`). The body of the `let` expression calls this function with the four
-possible cases: literal, variable, function, and other.
+possible cases: literal, variable, function, and a more complicated expression --
+in this case, a primitive application.
 
 The following drawing shows an environment diagram corresponding to the state
 of evaluation just prior to invoking the function `f`. It shows the two bindings
