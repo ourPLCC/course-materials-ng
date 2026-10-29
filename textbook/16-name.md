@@ -219,30 +219,27 @@ variable `f` to its closure.
 
 ```plantuml
 @startuml
-object "closure" as ProcVal {
-  formals : p, q, r, s
-  body : ...
-  env
+together {
+
+  map empty
+
+  map "Env (let)" as env1 {
+    x => 3
+    f =>
+  }
+
+  env1 -> empty
+
 }
 
-object Bindings {
-  x : 3
-  f
+map closure {
+  formals => p,q,r,s
+  body => ...
+  env =>
 }
 
-object "Env (let)" as Env {
-  bindings
-}
-
-object "Env" as Prev {
-  bindings
-}
-
-Env -> Prev
-
-Env::bindings --> Bindings
-Bindings::f -> ProcVal
-ProcVal::env -> Prev
+env1::f --> closure
+closure::env --> empty
 @enduml
 ```
 
@@ -254,59 +251,51 @@ finally, parameter `s` is bound to a thunk capturing the expression `add1(x)`.
 
 ```plantuml
 @startuml
-object "closure" as ProcVal {
-  formals : p, q, r, s
-  body : ...
-  env
+together {
+
+  map empty
+
+  map "Env (let)" as env1 {
+    x => 3
+    f =>
+  }
+
+  map "BindingsCall" as call {
+    p => 5
+    q =>
+    r =>
+    s =>
+  }
+
+  call -[hidden]> env1
+  call -> empty
+  env1 -> empty
+
 }
 
-object Bindings {
-  x : 3
-  f
+map closure {
+  formals => p,q,r,s
+  body => ...
+  env =>
 }
 
-object BindingsCall {
-  p : 5
-  q
-  r
-  s
+map "closure" as closure2 {
+  formals => w
+  body => +(x, w)
+  env =>
 }
 
-object "Env (call)" as Call {
-  bindings
+map thunk {
+  exp => add1(x)
+  env =>
 }
 
-object "Env (let)" as Env {
-  bindings
-}
-
-object "Env" as Prev {
-  bindings
-}
-
-object "closure" as r {
-  formals : w
-  body : +(x, w)
-  env
-}
-
-object thunk {
-  exp : add1(x)
-  env
-}
-Call -> Env
-Env -> Prev
-
-Env::bindings --> Bindings
-Call::bindings --> BindingsCall
-Bindings::f -> ProcVal
-ProcVal::env -> Prev
-
-BindingsCall::q -> Bindings::x
-BindingsCall::r --> r
-BindingsCall::s --> thunk
-
-r::env --> Prev
+env1::f --> closure
+closure::env --> empty
+call::s --> thunk
+call::r --> closure2
+closure2::env --> env1
+thunk::env --> env1
 @enduml
 ```
 
