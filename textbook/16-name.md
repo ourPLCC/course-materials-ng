@@ -221,7 +221,7 @@ variable `f` to its closure.
 @startuml
 together {
 
-  map empty
+  map "EnvNull" as empty
 
   map "Env (let)" as env1 {
     x => 3
@@ -253,7 +253,7 @@ finally, parameter `s` is bound to a thunk capturing the expression `add1(x)`.
 @startuml
 together {
 
-  map empty
+  map "EnvNull" as empty
 
   map "Env (let)" as env1 {
     x => 3
