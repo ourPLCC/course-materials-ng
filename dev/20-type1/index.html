@@ -1,0 +1,1338 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ourplcc.github.io/course-materials-ng/dev/20-type1/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Language TYPE1 - Programming Languages with PLCC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#language-type1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Programming Languages with PLCC" class="md-header__button md-logo" aria-label="Programming Languages with PLCC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Programming Languages with PLCC
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Language TYPE1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ourPLCC/course-materials-ng
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Programming Languages with PLCC" class="md-nav__button md-logo" aria-label="Programming Languages with PLCC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Programming Languages with PLCC
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ourPLCC/course-materials-ng" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ourPLCC/course-materials-ng
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-tokens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tokens
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-plcc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PLCC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-syntax/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Syntax
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-semantic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-v0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    V0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-environments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environments
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-v1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    V1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    V2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-v3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    V3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-v4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    V4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-v5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    V5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-v6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    V6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SET
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-ref/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    REF
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-name/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    NAME
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-need/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    NEED
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="language-type1">Language TYPE1</h1>
+<h2 id="type-of-an-expression">Type of an expression</h2>
+<p>Now that we have built the syntax for type expressions and incorporated it into
+our grammar, we begin to implement type checking. Our strategy is to determine
+the type of any expression, making type checks along the way.</p>
+<p>Our first step is to define <code>Type</code> as a <em>semantic</em> entity in our implementation.
+We implement <code>Type</code> as an abstract class with three subclasses:</p>
+<ul>
+<li><code>IntType</code></li>
+<li><code>BoolType</code></li>
+<li><code>ProcType</code></li>
+</ul>
+<p>These correspond to the three classes that extend the <code>Val</code> class. Observe that
+<code>Val</code> objects are used to evaluate expressions, whereas <code>Type</code> objects are used
+for type checking. They serve similar purposes but are used in different ways.</p>
+<p>Neither <code>BoolType</code> nor <code>IntType</code> has any attributes. A <code>ProcType</code> object has two
+attributes:</p>
+<ul>
+<li><code>paramTypeList</code></li>
+<li><code>returnType</code></li>
+</ul>
+<p>An expression is of type <code>IntType</code> if it evaluates to an integer. A similar reasoning applies for
+a <code>BoolType</code>.</p>
+<p>When we evaluate an expression, we use an environment to determine its expressed
+value. When we are doing type checking, we do not care what the expressed value
+actually is: only its type matters.</p>
+<h2 id="type-environment">Type environment</h2>
+<p>Our approach is to evaluate the type <code>Type</code> of an expression, doing type checks
+of sub-expressions along the way. If there are no type errors, we can then
+evaluate the value (<code>Val</code>) of the expression and return this value as we have
+done before.</p>
+<p>First, when we encounter a variable in an expression, we want to determine the
+type of that variable. If the variable is a formal parameter in the body of a
+function, its type is determined by the type declaration of the formal parameter.
+For any other variable, its type can be determined using static scope rules.
+This strategy suggests that we have a way of binding the variable to its type
+during type checking in a way that is similar to binding the variable to its
+value during expression evaluation. We achieve this by creating a <em>type
+environment</em> that is almost identical to a value environment that we have been
+using so far, except that our type environment binds variables to types rather
+than to values.</p>
+<p>The definitions of the classes relating to type environments are given in the
+specification.</p>
+<p>Since most of our type checking rules relate to type equality, we must define
+what it means for two types to be equal. There are only three basic types,
+and for each of them we define a <code>checkEquals</code> method. This method silently
+returns if the types are the same, otherwise it calls the static <code>typeMismatch</code>
+method in the <code>Type</code> class; this method raises a runtime exception with an
+appropriate message.</p>
+<h2 id="primitive-types">Primitive types</h2>
+<p>The two primitive types are simple. For the <code>BoolType</code> class, the <code>checkEquals</code>
+method is defined as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">checkEquals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">checkIntType</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">checkBoolType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="k">pass</span>    <span class="c1"># this BoolType equals any other BoolType</span>
+</code></pre></div>
+<p>The default <code>checkBoolType</code> method in the <code>Type</code> class — defined for all other
+types except for <code>BoolType</code> — raises a type mismatch exception.</p>
+<p>A similar definition works for the <code>IntType</code>.</p>
+<h2 id="function-types">Function types</h2>
+<p>We are left to define <code>checkEquals</code> for the <code>ProcType</code> class. This is easy: two
+<code>ProcType</code> objects are equal if they both have the same number of formal
+parameter types and these formal parameter types are pairwise equal (in the
+proper order), and if they both have the same return type.</p>
+<p>Here is the definition of <code>checkEquals</code> in the <code>ProcType</code> class:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">checkEquals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">checkProcType</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">checkProcType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">returnType</span><span class="o">.</span><span class="n">checkEquals</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">returnType</span><span class="p">)</span>
+    <span class="n">Type</span><span class="o">.</span><span class="n">checkEqualTypes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paramTypeList</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">paramTypeList</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>checkEqualTypes</code> static method in the <code>Type</code> class is straight-forward:
+first check for equal sizes; then iterate through both of the lists, checking
+pairwise for type equality.</p>
+<div class="highlight"><pre><span></span><code>@staticmethod
+def checkEqualTypes(typeList1, typeList2):
+    if len(typeList1) != len(typeList2):
+        raise LanguageError("argument number mismatch")
+    for t1, t2 in zip(typeList1, typeList2):
+        t1.checkEquals(t2)
+</code></pre></div>
+<h2 id="logical-primitives">Logical primitives</h2>
+<p>At this point we can also add primitives operations for <code>and</code>, <code>or</code>, and <code>not</code>.</p>
+<div class="highlight"><pre><span></span><code>&lt;Prim:AndPrim&gt;          ::= ANDOP
+&lt;Prim:OrPrim&gt;           ::= OROP
+&lt;Prim:NotPrim&gt;          ::= NOTOP
+</code></pre></div>
+<p>Here is the <code>apply</code> method for an <code>AndPrim</code> object:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">LanguageError</span><span class="p">(</span><span class="s2">"two arguments expected"</span><span class="p">)</span>
+    <span class="n">b0</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">boolVal</span><span class="p">()</span><span class="o">.</span><span class="n">val</span>
+    <span class="n">b1</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">boolVal</span><span class="p">()</span><span class="o">.</span><span class="n">val</span>
+    <span class="k">return</span> <span class="n">BoolVal</span><span class="p">(</span><span class="n">b0</span> <span class="ow">and</span> <span class="n">b1</span><span class="p">)</span>
+</code></pre></div>
+<p>It is easy to see how the <code>apply</code> method should be implemented for the other two
+primitives <code>or</code> and <code>not</code>.</p>
+<h2 id="primitive-types_1">Primitive types</h2>
+<p>Although primitives are not functions (you cannot bind a variable to <code>add1</code>, for
+example), they do have specific type behaviors that can be described in terms of
+function types. The <code>+</code> primitive behaves like <code>[ int, int =&gt; int ]</code>, and the
+<code>add1</code> primitive behaves like <code>[ int =&gt; int ]</code>. Each of the primitives are
+associated with a <code>ProcType</code> that is used for type checking. We define these
+types in the <code>Type</code> class as static instance variables.</p>
+<p>Rather than building each of these types by hand with constructors, we define,
+in the <code>Type</code> class, a series of static methods that returns each of needed
+type signatures. The table below displays the method names and the
+interpretations of the type signature they each return:</p>
+<table>
+<thead>
+<tr>
+<th>Method name</th>
+<th>Type interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ii_i</code></td>
+<td><code>[ int, int =&gt; int ]</code></td>
+</tr>
+<tr>
+<td><code>i_i</code></td>
+<td><code>[ int =&gt; int ]</code></td>
+</tr>
+<tr>
+<td><code>ii_b</code></td>
+<td><code>[ int, int =&gt; bool ]</code></td>
+</tr>
+<tr>
+<td><code>i_b</code></td>
+<td><code>[ int =&gt; bool ]</code></td>
+</tr>
+<tr>
+<td><code>bb_b</code></td>
+<td><code>[ bool, bool =&gt; bool ]</code></td>
+</tr>
+<tr>
+<td><code>b_b</code></td>
+<td><code>[ bool =&gt; bool ]</code></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>definedType</code> method in the <code>Prim</code> class asks the primitive object what its
+function type is, and the object calls the appropriate static method from among
+the ones defined in the <code>Type</code> class. For example, in the <code>AddPrim</code> class,
+<code>definedType</code> returns the signature defined by <code>ii_i</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">definedType</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Type</span><span class="o">.</span><span class="n">ii_i</span><span class="p">()</span>
+</code></pre></div>
+<p>When declaring the formal parameter types of functions and processing <code>let</code> and
+<code>letrec</code> expressions, we ensure that there are no duplicate variable names using
+the <code>init</code> hook during parsing.</p>
+<h2 id="implementation">Implementation</h2>
+<p>While the type environment classes are similar to those for expression
+environments, it is unnecessary to use references, since we never modify the
+type of a variable. Therefore type environments are similar to the environment
+implementation in language <code>V6</code>. The essential changes are to replace <code>Var</code> with
+<code>Type</code>, <code>Env</code> with <code>TypeEnv</code>, and <code>Binding</code> with <code>TypeBinding</code>.</p>
+<h2 id="type-check-expressions">Type-check expressions</h2>
+<p>We are now prepared to write the code to type-check expressions. We need to
+initialize a top-level type environment, which we call <code>initTypeEnv</code>.
+This happens in the <code>Program</code> class, where we also define the top-level
+expression environment.</p>
+<div class="highlight"><pre><span></span><code><span class="n">tenv</span> <span class="o">=</span> <span class="n">TypeEnv</span><span class="o">.</span><span class="n">initTypeEnv</span><span class="p">()</span>
+</code></pre></div>
+<p>In the <code>Eval</code> class's <code>_run</code> method, we type-check by applying the <code>evalType</code>
+method on the <code>exp</code> object — the "program" that we are to evaluate. The actual
+return value of this call is irrelevant, since its purpose is simply to carry
+out type checking prior to expression evaluation. If the type checking succeeds,
+the `_run' method returns the string representation of the value of the
+expression.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">exp</span><span class="o">.</span><span class="n">evalType</span><span class="p">(</span><span class="n">Program</span><span class="o">.</span><span class="n">tenv</span><span class="p">)</span>     <span class="c1"># type check first</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exp</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">Program</span><span class="o">.</span><span class="n">env</span><span class="p">))</span>
+</code></pre></div>
+<p>The type of a <code>LitExp</code> is straightforward:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evalType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenv</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Type</span><span class="o">.</span><span class="n">intType</span><span class="p">()</span>
+</code></pre></div>
+<p>So are the types of a <code>TrueExp</code> and a <code>FalseExp</code>. For both the <code>TrueExp</code> and
+<code>FalseExp</code> classes, we have:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evalType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenv</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Type</span><span class="o">.</span><span class="n">boolType</span><span class="p">()</span>
+</code></pre></div>
+<p>The type of a <code>VarExp</code> looks up the type of the variable in the type environment
+and returns the result:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evalType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenv</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tenv</span><span class="o">.</span><span class="n">applyTypeEnv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">lexeme</span><span class="p">)</span>
+</code></pre></div>
+<p>The type of a <code>LetExp</code> involves checking the left-hand side variable list for
+duplicates (done during parsing), determining the types of the right-hand side
+expressions using the current type environment, extending the current type
+environment by binding the variables to the types of the right-hand side
+expressions, and evaluating the type of the <code>let</code> body using this extended
+environment:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evalType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenv</span><span class="p">):</span>
+    <span class="n">ntenv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">letDecls</span><span class="o">.</span><span class="n">addTypeBindings</span><span class="p">(</span><span class="n">tenv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp</span><span class="o">.</span><span class="n">evalType</span><span class="p">(</span><span class="n">ntenv</span><span class="p">)</span>
+</code></pre></div>
+<p>Most of the work is done in the <code>addTypeBindings</code> method in the <code>LetDecls</code>
+class, which we show here:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">addTypeBindings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenv</span><span class="p">):</span>
+    <span class="n">typeList</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">evalType</span><span class="p">(</span><span class="n">tenv</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">expList</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">tenv</span><span class="o">.</span><span class="n">extendTypeEnv</span><span class="p">(</span><span class="n">TypeBindings</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbolList</span><span class="p">,</span> <span class="n">typeList</span><span class="p">))</span>
+</code></pre></div>
+<p>To determine the defined type of a function, we need to give semantic meaning to
+the type expressions used to declare the types of a function's formal parameters
+and return type. Specifically, we need to take a type expression given by the
+<code>&lt;typeExp&gt;</code> grammar rules and evaluate its <code>Type</code>: in other words, the semantics
+of a type expression is its <code>Type</code>. This is parallel to taking a value
+expression given by <code>&lt;exp&gt;</code> grammar rules and evaluating its <code>Val</code>. Both of
+these evaluations are examples of semantics.</p>
+<p>For each type expression, we implement a <code>toType</code> method that returns the
+corresponding instance of <code>Type</code>. One thing to observe is that a type expression
+does not involve any variables, so there is no need to keep track of a type
+environment.</p>
+<p>For example, a type expression of the form <code>[ int =&gt; bool ]</code> would evaluate to a
+<code>ProcType</code>, and a type expression of the form <code>int</code> would evaluate to a
+<code>IntType</code>.</p>
+<p>Here is the definition of <code>toType</code> for the <code>PrimTypeExp</code> class (representing
+either an <code>int</code> or a <code>bool</code>) in the specification:</p>
+<div class="highlight"><pre><span></span><code>PrimTypeExp
+%%%
+def toType(self):
+    return self.primType.toType()
+%%%
+</code></pre></div>
+<p>For the <code>BoolPrimType</code> class, which corresponds to grammar rules for the <code>true</code>
+and <code>false</code> tokens, we simply return <code>boolType</code>.</p>
+<div class="highlight"><pre><span></span><code>BoolPrimType
+%%%
+def toType(self):
+    return Type.boolType()
+%%%
+</code></pre></div>
+<p>Similar remarks apply to <code>IntPrimType</code>.</p>
+<p>For a \verb'ProcTypeExp', we</p>
+<ol>
+<li>
+<p>determine the types (using the <code>toType</code> method) of the (formal parameter)
+   type expressions that appear to the left of the "<code>=&gt;</code>" token and insert them
+   into a list of <code>Type</code> objects,</p>
+</li>
+<li>
+<p>determine the type of the (return) type expression that appears to the right
+   of the "<code>=&gt;</code>" token, and then</p>
+</li>
+<li>
+<p>construct the appropriate <code>ProcType</code> object:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>ProcTypeExp
+%%%
+def toType(self):
+    return ProcType(self.typeExps.toTypes(), self.typeExp.toType())
+%%%
+</code></pre></div>
+<p>The <code>toTypes</code> method in the <code>TypeExps</code> class is straightforward, iterating over
+its <code>typeExpList</code> and calling <code>toType</code> on each of its type expressions:</p>
+<div class="highlight"><pre><span></span><code>TypeExps
+%%%
+def toTypes(self):
+    return [te.toType() for te in self.typeExpList]
+%%%
+</code></pre></div>
+<p>We are now in a position to determine the <em>defined type</em> of a <code>proc</code> expression.
+By defined type, we mean the type of the function (a <code>ProcType</code>) as determined
+by the declared types of each of the formal parameters and the declared return
+type. For example,</p>
+<div class="highlight"><pre><span></span><code>proc(x : int) : bool ...
+</code></pre></div>
+<p>has a formal parameter of declared type <code>int</code> and a declared return type of
+<code>bool</code>, so the defined type of this function is <code>[ int =&gt; bool ]</code>. <strong>The defined
+type of a function is not dependent on the type environment in which the
+function expression appears, nor on the names of the formal parameters.</strong></p>
+<p>However, the type of the function <em>body</em> is dependent on the type environment in
+which the function is evaluated, since the function body may have variables that
+are free with respect to the function's formal parameters but that are bound to
+types defined in an enclosing environment. One of our type checks is to ensure
+that the function's declared return type is the same as the type of the function
+body.</p>
+<p>The <code>Formals</code> class defines the <code>formalTypeList</code> method:</p>
+<div class="highlight"><pre><span></span><code>Formals
+%%%
+def formalTypeList(self):
+    return [texp.toType() for texp in self.typeExpList]
+%%%
+</code></pre></div>
+<p>We are now ready to define <code>evalType</code> in the <code>Proc</code> class:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evalType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenv</span><span class="p">):</span>
+    <span class="c1"># the declared return type of the proc</span>
+    <span class="n">declaredReturnType</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">typeExp</span><span class="o">.</span><span class="n">toType</span><span class="p">()</span>
+    <span class="c1"># bind the formal parameters to their declared types</span>
+    <span class="n">ntenv</span> <span class="o">=</span> <span class="n">tenv</span><span class="o">.</span><span class="n">extendTypeEnv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">formals</span><span class="o">.</span><span class="n">declaredTypeBindings</span><span class="p">())</span>
+    <span class="c1"># type the body in that extended type environment</span>
+    <span class="n">expType</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp</span><span class="o">.</span><span class="n">evalType</span><span class="p">(</span><span class="n">ntenv</span><span class="p">)</span>
+    <span class="c1"># and check that the declared return type matches the body's</span>
+    <span class="n">declaredReturnType</span><span class="o">.</span><span class="n">checkEquals</span><span class="p">(</span><span class="n">expType</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ProcType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">formals</span><span class="o">.</span><span class="n">formalTypeList</span><span class="p">(),</span> <span class="n">declaredReturnType</span><span class="p">)</span>
+</code></pre></div>
+<p>Type checking an <code>if</code> expression involves making sure that the controlling
+expression has type <code>bool</code> and that the true part and the false part have the
+same types. Thus, for a <code>IfExp</code>, we have:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evalType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenv</span><span class="p">):</span>
+    <span class="n">testType</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">testExp</span><span class="o">.</span><span class="n">evalType</span><span class="p">(</span><span class="n">tenv</span><span class="p">)</span>
+    <span class="n">testType</span><span class="o">.</span><span class="n">checkBoolType</span><span class="p">(</span><span class="n">Type</span><span class="o">.</span><span class="n">boolType</span><span class="p">())</span>
+    <span class="n">trueExpType</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trueExp</span><span class="o">.</span><span class="n">evalType</span><span class="p">(</span><span class="n">tenv</span><span class="p">)</span>
+    <span class="n">falseExpType</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">falseExp</span><span class="o">.</span><span class="n">evalType</span><span class="p">(</span><span class="n">tenv</span><span class="p">)</span>
+    <span class="n">trueExpType</span><span class="o">.</span><span class="n">checkEquals</span><span class="p">(</span><span class="n">falseExpType</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trueExpType</span>
+</code></pre></div>
+<p>What is the type of a sequence expression? Since the purpose of this expression
+is normally to perform side-effects and to return only the value of the last
+sub-expression, we assume that the type of "<code>{ ... }</code>" is the type of the last
+sub-expression. The types of the previous sub-expressions are ignored except
+that they must not have type errors.</p>
+<p>Thus the expression</p>
+<div class="highlight"><pre><span></span><code>let
+  x = 1
+  double = proc(t : int) : int set t = *(2, t)
+in
+  { if zero?(x) then 0 else set x = add1(x)
+  ; .double(x)
+  ; proc() : int x
+  }
+</code></pre></div>
+<p>has type <code>[ =&gt; int ]</code>.</p>
+<p>The following method implements type checking in the <code>SeqExp</code> class:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evalType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenv</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp</span><span class="o">.</span><span class="n">evalType</span><span class="p">(</span><span class="n">tenv</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seqExps</span><span class="o">.</span><span class="n">expList</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">evalType</span><span class="p">(</span><span class="n">tenv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">t</span>
+</code></pre></div>
+<p>In a <code>set</code> expression, we look up the type of the left-hand side variable and
+make sure that it matches the type of the right-hand side expression. The
+following method is defined in the <code>SetExp</code> class:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evalType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenv</span><span class="p">):</span>
+    <span class="n">varType</span> <span class="o">=</span> <span class="n">tenv</span><span class="o">.</span><span class="n">applyTypeEnv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">lexeme</span><span class="p">)</span>
+    <span class="n">expType</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp</span><span class="o">.</span><span class="n">evalType</span><span class="p">(</span><span class="n">tenv</span><span class="p">)</span>
+    <span class="n">varType</span><span class="o">.</span><span class="n">checkEquals</span><span class="p">(</span><span class="n">expType</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">varType</span>
+</code></pre></div>
+<p>A <code>letrec</code> expression is treated similarly to a <code>let</code> expression, except that
+the types of the right-hand side functions must be evaluated in an environment
+that has type bindings for the left-hand side variables. Since the defined type
+of a right-hand side function can be determined solely by declared types of its
+parameters and return type, the types of the left-hand side variables can be
+determined independent of any environment. So we can use these left-hand side
+variables to extend the type environment and then evaluate the types of the
+right-hand side function <em>bodies</em> using this extended environment, for the
+purpose of type checking with their declared return types. The
+<code>addLetrecTypeBindings</code> method in the <code>LetDecls</code> class does all the work.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">addLetrecTypeBindings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenv</span><span class="p">):</span>
+    <span class="n">tenv</span> <span class="o">=</span> <span class="n">tenv</span><span class="o">.</span><span class="n">extendTypeEnv</span><span class="p">(</span><span class="n">TypeBindings</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">sym</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbolList</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">expList</span><span class="p">):</span>
+        <span class="n">typ</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">evalType</span><span class="p">(</span><span class="n">tenv</span><span class="p">)</span>
+        <span class="n">tenv</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">TypeBinding</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">lexeme</span><span class="p">,</span> <span class="n">typ</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">tenv</span>
+</code></pre></div>
+<p>Once we have type checked the right-hand side entries and built the extended
+type environment with bindings for the left-hand side variables, we can evaluate
+the type of the <code>letrec</code> body using this extended environment.</p>
+<div class="highlight"><pre><span></span><code>LetrecExp
+%%%
+def evalType(self, tenv):
+    ntenv = self.letDecls.addLetrecTypeBindings(tenv)
+    return self.exp.evalType(ntenv)
+%%%
+</code></pre></div>
+<p>We two more types of expressions to cover: <code>AppExp</code> and <code>PrimappExp</code>. Both of
+them are similar in that we need to check if the formal parameter types of the
+operator agree in number and type with the actual parameter (operand) types.</p>
+<p>For an <code>AppExp</code>, we must ensure that the thing we are applying is actually a
+function — it must evaluate to a <code>ProcType</code>. We then check that the actual
+parameter expression types match the declared types of the formal parameters.
+Because a <code>ProcType</code> object already knows (and has checked the validity of) its
+return type, the type of an application is simply the return type of the
+function:</p>
+<div class="highlight"><pre><span></span><code>AppExp
+%%%
+def evalType(self, tenv):
+    pt = self.exp.evalType(tenv).procType()
+    argTypeList = self.rands.evalTypeRands(tenv)
+    Type.checkEqualTypes(pt.paramTypeList, argTypeList)
+    return pt.returnType
+%%%
+</code></pre></div>
+<p>For <code>PrimappExp</code>, we perform the same steps, except that we simply ask the
+primitive to identify its type using its <code>definedType</code> method:</p>
+<div class="highlight"><pre><span></span><code>PrimappExp
+%%%
+def evalType(self, tenv):
+    pt = self.prim.definedType()
+    argTypeList = self.rands.evalTypeRands(tenv)
+    Type.checkEqualTypes(pt.paramTypeList, argTypeList)
+    return pt.returnType
+%%%
+</code></pre></div>
+<p>Notice that the type of a primitive is defined statically. The primitive's
+<code>definedType</code> method just retrieves the type, which must be a <code>ProcType</code>.</p>
+<h2 id="type-check-defines">Type-check defines</h2>
+<p>We are left to handle top-level <code>define</code>s. While their handling seems to be
+straightforward, we are faced with problems of unbound variables. For example,
+suppose we attempt to make the following definitions:</p>
+<div class="highlight"><pre><span></span><code>define odd? =
+  proc(x : int) : bool if zero?(x) then false else .even?(sub1(x))
+define even? =
+  proc(x : int) : bool if zero?(x) then true else .odd?(sub1(x))
+</code></pre></div>
+<p>When the function body of <code>odd?</code> is first encountered, the variable <code>even?</code> is
+unbound, so the type of the body of the function cannot be evaluated. Any
+attempt to type-check <code>odd?</code> fails with a type error.</p>
+<p>We can remedy this situation in two ways:</p>
+<ul>
+<li>forbid top-level <code>define</code>s altogether; or</li>
+<li>create a mechanism to deal with unbound variables that makes top-level
+  <code>define</code>s work.</li>
+</ul>
+<h3 id="declarations">Declarations</h3>
+<p>We choose the second approach, with some restrictions.</p>
+<p>First, we create a new top-level operator <code>declare</code> that has a syntax similar to
+how we declare the type of a formal parameter in a function. This technique
+allows us to bind a type to an identifier without actually creating a value
+binding for the identifier.</p>
+<p>Pascal provides such a mechanism with <code>forward</code> declarations, as does C/C++ with
+function declarations. Java does not suffer from this problem, in part because
+the order of declaration of fields and methods is not significant.</p>
+<p>A declaration has the following syntax:</p>
+<div class="highlight"><pre><span></span><code>&lt;Program:Declare&gt;       ::= DECLARE &lt;SYMBOL&gt; COLON &lt;TypeExp&gt;
+</code></pre></div>
+<p>The rules for top-level <code>define</code>s and <code>declare</code>s are:</p>
+<ol>
+<li>
+<p>A top-level identifier definition serves as a declaration for the purpose of
+   determining the type of the identifier.</p>
+</li>
+<li>
+<p>It is an error for a top-level identifier to be declared (hence defined) more
+   than once.</p>
+</li>
+<li>
+<p>If an identifier declaration precedes its definition, it is an error if the
+   declared and defined types are not identical.</p>
+</li>
+<li>
+<p>It is an error for a declaration not to have a subsequent definition,
+   although this error need not be checked.</p>
+</li>
+</ol>
+<p>Although you cannot <code>define</code> a top-level variable more than once, you can
+<em>redefine</em> a top-level variable using <code>set</code> if the variable has been previously
+<code>define</code>d. The type rule for variable assignment still requires that the
+right-hand side type of the <code>set</code> must agree with the declared type of the
+variable.</p>
+<p>Below are examples of top-level declarations/definitions:</p>
+<div class="highlight"><pre><span></span><code>% example 1
+define x = 3 % type int
+define x = 4 % error - multiple definitions for x
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>% example 2
+define x = 3 % type int
+set x = 4    % ok - types agree
+set x = true % error - type of RHS must be int
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>% example 3
+define fact = proc(x : int) : int
+  if zero?(x) then 1 else *(x, .fact(sub1(x)))
+  % error - fact on the RHS has no type binding!
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>% example 4
+declare fact : [ int =&gt; int ]
+define fact = proc(x : int) : int
+  if zero?(x) then 1 else *(x, .fact(sub1(x))) % ok
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>% example 5
+declare f : [ =&gt; bool ]
+define y = 2
+define f = proc() : int y
+  % error - defined type of f does not match declared type
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>% example 6
+declare f : [ =&gt; bool ]
+define y = 2
+define f = proc() : bool y
+  % error - body type y does not match declared return type
+</code></pre></div>
+<p>As a final example, consider</p>
+<div class="highlight"><pre><span></span><code>declare f : [ =&gt; int ]
+declare y : int
+define f = proc() : int y
+.f() % error - no binding for y
+</code></pre></div>
+<p>The definition for <code>f</code> is type valid, but <code>y</code> has no defined value binding, so
+the function application <code>.f()</code> results in a run-time error.</p>
+<p>If we subsequently give a value definition for <code>y</code>, the function application
+succeeds, as the following shows:</p>
+<div class="highlight"><pre><span></span><code>declare f : [ =&gt; int ]
+declare y : int
+define f = proc() : int y
+define y = 3
+.f() % ok - returns 3
+</code></pre></div>
+<p>We implement top-level declarations as follows:</p>
+<div class="highlight"><pre><span></span><code>Declare
+%%%
+def _run(self):
+    tenv = Program.tenv
+    sym = self.symbol.lexeme
+    try:
+        tenv.applyTypeEnv(sym)
+    except LanguageError:
+        # no type binding -- a new type declaration, which we add
+        # to the top-level type environment
+        varType = self.typeExp.toType()
+        tenv.add(TypeBinding(sym, varType))
+        return f"{sym}:{varType}"
+    raise LanguageError(f"{sym}: duplicate variable declaration")
+%%%
+</code></pre></div>
+<p>If a type binding (either through a declaration of definition) already exists,
+it is flagged as a duplicate declaration. Otherwise a top-level binding is made
+between the identifier and the type represented by its type expression. The
+<code>_run</code> behavior of a variable declaration/definition is to return the variable
+being declared/defined along with its declared type.</p>
+<p>We expand on top-level definitions as follows. Notice that this code is in two
+parts: the first part is where the variable hasn't been declared/defined before
+(i.e., the first <code>try</code> block) and the second part is where the variable has a
+declaration but possibly not a definition (i.e., the second <code>try</code> block):</p>
+<div class="highlight"><pre><span></span><code>Define
+%%%
+def _run(self):
+    env = Program.env
+    tenv = Program.tenv
+    sym = self.symbol.lexeme
+    try:
+        lhsVarType = tenv.applyTypeEnv(sym)
+    except LanguageError:
+        # no type binding -- a new variable definition
+        rhsExpType = self.exp.evalType(tenv)
+        tenv.add(TypeBinding(sym, rhsExpType))
+        rhsExpVal = self.exp.eval(env)
+        env.add(Binding(sym, ValRef(rhsExpVal)))
+        return f"{sym}:{rhsExpType}"
+    # the variable has a declared type -- see if it still needs a value
+    try:
+        env.applyEnv(sym)
+    except LanguageError:
+        rhsExpType = self.exp.evalType(tenv)
+        # the declared and defined types must be the same
+        lhsVarType.checkEquals(rhsExpType)
+        rhsExpVal = self.exp.eval(env)
+        env.add(Binding(sym, ValRef(rhsExpVal)))
+        return f"{sym}:{rhsExpType}"
+    # the variable has a value too -- can't redefine it
+    raise LanguageError(f"{sym}: duplicate variable definition")
+%%%
+</code></pre></div>
+<p>The code above implements a top-level definition, binding a value to an
+identifier in the initial environment. According to our type rules, if a value
+binding already exists, it is flagged as an error. If a declared type binding
+exists without a value binding, the expression type is checked for conformance
+with the declared type. If a declared type binding does not exist, the top-level
+type environment is extended to include the type binding. In case there are no
+errors, the top-level value environment is extended to include the value
+binding.</p>
+<p>Armed with both <code>declare</code> and <code>define</code>, we can now implement our <code>odd?</code> and
+<code>even?</code> functions:</p>
+<div class="highlight"><pre><span></span><code>declare odd? : [ int =&gt; bool ]
+define even? =
+    proc(t : int) : bool if zero?(t) then true else .odd?(sub1(t))
+define odd? =
+    proc(t : int) : bool if zero?(t) then false else .even?(sub1(t))
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Textbook content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.sections", "navigation.tracking", "toc.integrate", "search.suggest", "content.tabs", "content.tabs.link"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
