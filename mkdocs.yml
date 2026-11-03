@@ -62,6 +62,9 @@ nav:
   - REF: 15-ref.md
   - NAME: 16-name.md
   - NEED: 17-need.md
+  - Types: 18-type.md
+  - TYPE0: 19-type0.md
+  - TYPE1: 20-type1.md
 
 extra:
   version:
