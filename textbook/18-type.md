@@ -19,12 +19,12 @@ and all expressions must conform to type rules.
 Our typed language is based on the `REF` language. In the `REF` language, only
 the integer value `0` is considered false, and all other values — including
 `ProcVal`s — are true when used in conditional expressions. The Java programming
-language, which is statically typed, requires that the test expression in an
+language, which is statically typed, requires that the controlling expression in an
 `if` statement evaluates to a boolean. We follow this example in our typed
 language by introducing *primitive types*, `int` and `bool`, corresponding to
 integer and boolean expressed values, respectively. To implement this feature,
 we add a new `BoolVal` subclass of the `Val` class. With this addition, we can
-require that the test expression in an `if` expression be an instance of
+require that the controlling expression in an `if` expression be an instance of
 `BoolVal`.
 
 Observe that the `int` and `bool` types in our (as yet unnamed) language are
