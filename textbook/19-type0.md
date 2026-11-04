@@ -2,13 +2,13 @@
 
 ## Type syntax for function definitions
 
-We define a language named `TYPE0` that is based on the `SET` language and that
+We define a language named `TYPE0` that is based on the `REF` language and that
 implements type syntax. We first require that a function definition — in the
 `<proc>` grammar rule — declare the types of each of its formal parameters and
 the return type of the function. Each of these declarations are given by a type
 expression, described in the previous chapter, in the following grammar rules
 related to a `<proc>`. Notice that these grammar rules are similar to the
-original grammar rules for the `SET` language, with the exception that they
+original grammar rules for the `REF` language, with the exception that they
 include type declarations.
 
 ```
@@ -17,8 +17,8 @@ include type declarations.
 ```
 
 These changes do *not* affect the behavior of the `eval` methods that define the
-semantics of the `SET` language. Thus the resulting `TYPE0` language has the
-same semantics as the `SET` language, except for the presence of `bool` values:
+semantics of the `REF` language. Thus the resulting `TYPE0` language has the
+same semantics as the `REF` language, except for the presence of `bool` values:
 the type information in a program is simply ignored during evaluation.
 
 A function definition in our `TYPE0` language now looks like as follows:
@@ -33,7 +33,7 @@ This definition says that the *declared type* of the formal parameter `x` is
 
 Since we have made changes to our syntax, our expression parse trees have
 additional structure, but because our `eval` methods are not affected by the
-type information, the `eval` methods in the specification for the `SET` language
+type information, the `eval` methods in the specification for the `REF` language
 are entirely unchanged.
 
 Notice, however, that we have not implemented any of our type rules, so no type
@@ -49,7 +49,7 @@ obvious concrete and abstract syntax:
 <Exp:FalseExp>          ::= FALSE
 ```
 
-What should the `eval` method return for these classes? In Language `SET`, we
+What should the `eval` method return for these classes? In Language `REF`, we
 used an `IntVal` of zero to be false and everything else to be true. Once we
 have syntax for `true` and `false` expressions in Language `TYPE0`, we introduce
 corresponding semantics using the `Val` type `BoolVal` that represent the values

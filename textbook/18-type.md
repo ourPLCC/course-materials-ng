@@ -16,7 +16,7 @@ and all expressions must conform to type rules.
 
 ## Primitive types
 
-Our typed language is based on the `SET` language. In the `SET` language, only
+Our typed language is based on the `REF` language. In the `REF` language, only
 the integer value `0` is considered false, and all other values — including
 `ProcVal`s — are true when used in conditional expressions. The Java programming
 language, which is statically typed, requires that the test expression in an
@@ -87,12 +87,12 @@ formal parameter types* — and a type expression for the function's return valu
 the function's type, called (not surprisingly) the *defined type* of the
 function.
 
-The following examples show how to modify a function expression in the `SET`
+The following examples show how to modify a function expression in the `REF`
 language by adding type annotations so that it conforms to the `TYPE0` language
 rules (refer to the next chapter for the start of the discussion of the `TYPE0`
 language):
 
-Consider the following function defined the `SET` language without any type
+Consider the following function defined the `REF` language without any type
 annotations:
 
 ```
@@ -108,7 +108,7 @@ proc(t : int) : int +(t, 5) % defined type [ int => int ], return type int
 This function has defined type `[ int => int ]` and returns a value of type
 `int`.
 
-Next, consider the function below defined in `SET` without type annotations:
+Next, consider the function below defined in `REF` without type annotations:
 
 ```
 proc(f, x) .f(x)
@@ -206,7 +206,7 @@ can no longer be an `IntVal`, so an expression like
 if 0 then 3 else 4
 ```
 
-that we have seen in Language `SET` will not work in our typed language.
+that we have seen in Language `REF` will not work in our typed language.
 
 Since the type of a variable is determined by static scope rules, the only
 "interesting" types are those of functions. We need to add syntax rules for
