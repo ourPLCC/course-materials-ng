@@ -665,7 +665,7 @@ expressions at the prompt.</p>
 </tr>
 </tbody>
 </table>
-<p>Notice that the <code>zero?</code> operator returns a boolean even while languages
+<p>Notice that the <code>zero?</code> operator returns a Boolean even while languages
 described so far only support integers. <code>V1</code> solves this problem by considering
 integer value of zero to be false and any non-zero values to be true. We
 formalize this treatment by adding the method <code>isTrue</code> in the <code>IntVal</code> subclass:</p>
@@ -679,9 +679,9 @@ formalize this treatment by adding the method <code>isTrue</code> in the <code>I
   <a href="https://github.com/ourPLCC/languages-ng/tree/v1.0.0/src/V1">https://github.com/ourPLCC/languages-ng/tree/v1.0.0/src/V1</a></li>
 </ul>
 <h2 id="going-beyond"><span class="enumerate-headings-plugin enumerate-heading-plugin">10.8</span> Going beyond</h2>
-<p><code>V1</code> is not the first language that does not have a boolean type but still
+<p><code>V1</code> is not the first language that does not have a Boolean type but still
 defines a notion of true or false. For instance, the C programming language
-as defined in the ANSI C89 standard does not have a distinct boolean type. In
+as defined in the ANSI C89 standard does not have a distinct Boolean type. In
 any version of the C programming language, it is legal to have an integer (type
 <code>int</code>) in the controlling expression of an if statement. An integer value of
 zero in that expression is treated as false, any other values are treated as

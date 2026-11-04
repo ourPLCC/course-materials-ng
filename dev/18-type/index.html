@@ -387,15 +387,15 @@ symbol (a variable or function parameter) dictates the types of the values that
 can be bound to the symbol. Everything is type checked, without exception,
 and all expressions must conform to type rules.</p>
 <h2 id="primitive-types"><span class="enumerate-headings-plugin enumerate-heading-plugin">20.2</span> Primitive types</h2>
-<p>Our typed language is based on the <code>SET</code> language. In the <code>SET</code> language, only
+<p>Our typed language is based on the <code>REF</code> language. In the <code>REF</code> language, only
 the integer value <code>0</code> is considered false, and all other values — including
 <code>ProcVal</code>s — are true when used in conditional expressions. The Java programming
-language, which is statically typed, requires that the test expression in an
-<code>if</code> statement evaluates to a boolean. We follow this example in our typed
+language, which is statically typed, requires that the controlling expression in an
+<code>if</code> statement evaluates to a Boolean. We follow this example in our typed
 language by introducing <em>primitive types</em>, <code>int</code> and <code>bool</code>, corresponding to
-integer and boolean expressed values, respectively. To implement this feature,
+integer and Boolean expressed values, respectively. To implement this feature,
 we add a new <code>BoolVal</code> subclass of the <code>Val</code> class. With this addition, we can
-require that the test expression in an <code>if</code> expression be an instance of
+require that the controlling expression in an <code>if</code> expression be an instance of
 <code>BoolVal</code>.</p>
 <p>Observe that the <code>int</code> and <code>bool</code> types in our (as yet unnamed) language are
 <em>not</em> the same as the corresponding types in Python, even though they are
@@ -413,7 +413,7 @@ formal parameters and the function's return type.</p>
 <p>to represent the type of a function that has <span class="arithmatex">\(n\)</span> formal parameters of types
 <span class="arithmatex">\(t_1\)</span>, <span class="arithmatex">\(t_2\)</span>, ... <span class="arithmatex">\(t_n\)</span>, respectively, and that returns a value of type <span class="arithmatex">\(t\)</span>.</p>
 <p>For simplification, we do not permit the creation of new (named) types, so every
-type is either an integer, boolean, or function.</p>
+type is either an integer, Boolean, or function.</p>
 <h2 id="syntax"><span class="enumerate-headings-plugin enumerate-heading-plugin">20.4</span> Syntax</h2>
 <p>A <em>type expression</em> is a syntactic category in our typed language that describes
 a type:</p>
@@ -445,20 +445,20 @@ formal parameter types</em> — and a type expression for the function's return 
 — its <em>(declared) return type</em>. Together, these annotations completely define
 the function's type, called (not surprisingly) the <em>defined type</em> of the
 function.</p>
-<p>The following examples show how to modify a function expression in the <code>SET</code>
+<p>The following examples show how to modify a function expression in the <code>REF</code>
 language by adding type annotations so that it conforms to the <code>TYPE0</code> language
 rules (refer to the next chapter for the start of the discussion of the <code>TYPE0</code>
 language):</p>
-<p>Consider the following function defined the <code>SET</code> language without any type
+<p>Consider the following function defined the <code>REF</code> language without any type
 annotations:</p>
-<div class="highlight"><pre><span></span><code>proc(t) +(t,5)
+<div class="highlight"><pre><span></span><code>proc(t) +(t, 5)
 </code></pre></div>
 <p>The same function in the <code>TYPE0</code> language with type annotations is:</p>
 <div class="highlight"><pre><span></span><code>proc(t : int) : int +(t, 5) % defined type [ int =&gt; int ], return type int
 </code></pre></div>
 <p>This function has defined type <code>[ int =&gt; int ]</code> and returns a value of type
 <code>int</code>.</p>
-<p>Next, consider the function below defined in <code>SET</code> without type annotations:</p>
+<p>Next, consider the function below defined in <code>REF</code> without type annotations:</p>
 <div class="highlight"><pre><span></span><code>proc(f, x) .f(x)
 </code></pre></div>
 <p>The same function in the <code>TYPE0</code> language with type annotations is written:</p>
@@ -471,7 +471,7 @@ type equal to the <em>return type</em> of the function. For example, the type of
 following function application is <code>int</code>:</p>
 <div class="highlight"><pre><span></span><code>.proc(t : int) : int +(t, 5) (4)
 </code></pre></div>
-<p>The previous expression evaluations to <code>9</code>, an <code>int</code>.</p>
+<p>The previous expression evaluates to <code>9</code>, an <code>int</code>.</p>
 <p>We will shortly define grammar rules for the <code>TYPE0</code> language that parse such
 expressions.</p>
 <h2 id="type-error"><span class="enumerate-headings-plugin enumerate-heading-plugin">20.5</span> Type error</h2>
@@ -495,7 +495,7 @@ must have a type binding.</p>
   the declared types of the corresponding formal parameters;</p>
 </li>
 <li>
-<p>an attempt to use a non-boolean as the controlling expression of an <code>if</code>
+<p>an attempt to use a non-Boolean as the controlling expression of an <code>if</code>
   expression;</p>
 </li>
 <li>
@@ -536,15 +536,15 @@ defined type using static scope rules.</p>
 <p>Notice that static scope rules make it possible to determine the types of
 variables that appear free in a function body — in other words, variables that
 do not appear as function formal parameters.</p>
-<p>Numeric literals all have type <code>int</code>. We predefine the identifiers <code>true</code> and
-<code>false</code> to have type <code>bool</code>, with the obvious semantics in controlling
+<p>Numeric literals all have type <code>int</code>. We also add the Boolean literals <code>true</code> and
+<code>false</code> of type <code>bool</code>, with the obvious semantics in controlling
 expressions of <code>if</code> expressions.</p>
 <p>The type of a <code>let</code> or <code>letrec</code> expression is the type of the expression's body.</p>
 <p>Observe that the expressed value of controlling expression in an <code>if</code> expression
 can no longer be an <code>IntVal</code>, so an expression like</p>
 <div class="highlight"><pre><span></span><code>if 0 then 3 else 4
 </code></pre></div>
-<p>that we have seen in Language <code>SET</code> will not work in our typed language.</p>
+<p>that we have seen in Language <code>REF</code> will not work in our typed language.</p>
 <p>Since the type of a variable is determined by static scope rules, the only
 "interesting" types are those of functions. We need to add syntax rules for
 function definitions that permit us to declare the types of its formal

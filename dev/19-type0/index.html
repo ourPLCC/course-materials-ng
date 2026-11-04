@@ -355,20 +355,20 @@
 <article class="md-content__inner md-typeset">
 <h1 id="language-type0"><span class="enumerate-headings-plugin enumerate-heading-plugin">21.</span> Language TYPE0</h1>
 <h2 id="type-syntax-for-function-definitions"><span class="enumerate-headings-plugin enumerate-heading-plugin">21.1</span> Type syntax for function definitions</h2>
-<p>We define a language named <code>TYPE0</code> that is based on the <code>SET</code> language and that
+<p>We define a language named <code>TYPE0</code> that is based on the <code>REF</code> language and that
 implements type syntax. We first require that a function definition — in the
 <code>&lt;proc&gt;</code> grammar rule — declare the types of each of its formal parameters and
 the return type of the function. Each of these declarations are given by a type
 expression, described in the previous chapter, in the following grammar rules
 related to a <code>&lt;proc&gt;</code>. Notice that these grammar rules are similar to the
-original grammar rules for the <code>SET</code> language, with the exception that they
+original grammar rules for the <code>REF</code> language, with the exception that they
 include type declarations.</p>
 <div class="highlight"><pre><span></span><code>&lt;Proc&gt;                  ::= PROC LPAREN &lt;Formals&gt; RPAREN COLON &lt;TypeExp&gt; &lt;Exp&gt;
 &lt;Formals&gt;               **= &lt;SYMBOL&gt; COLON &lt;TypeExp&gt; +COMMA
 </code></pre></div>
 <p>These changes do <em>not</em> affect the behavior of the <code>eval</code> methods that define the
-semantics of the <code>SET</code> language. Thus the resulting <code>TYPE0</code> language has the
-same semantics as the <code>SET</code> language, except for the presence of <code>bool</code> values:
+semantics of the <code>REF</code> language. Thus the resulting <code>TYPE0</code> language has the
+same semantics as the <code>REF</code> language, except for the presence of <code>bool</code> values:
 the type information in a program is simply ignored during evaluation.</p>
 <p>A function definition in our <code>TYPE0</code> language now looks like as follows:</p>
 <div class="highlight"><pre><span></span><code>define add2 = proc(x : int) : int add1(add1(x))
@@ -378,7 +378,7 @@ the type information in a program is simply ignored during evaluation.</p>
 <em>defined type</em> of <code>add2</code> is <code>[ int =&gt; int ]</code>.</p>
 <p>Since we have made changes to our syntax, our expression parse trees have
 additional structure, but because our <code>eval</code> methods are not affected by the
-type information, the <code>eval</code> methods in the specification for the <code>SET</code> language
+type information, the <code>eval</code> methods in the specification for the <code>REF</code> language
 are entirely unchanged.</p>
 <p>Notice, however, that we have not implemented any of our type rules, so no type
 checking is taking place.</p>
@@ -388,7 +388,7 @@ obvious concrete and abstract syntax:</p>
 <div class="highlight"><pre><span></span><code>&lt;Exp:TrueExp&gt;           ::= TRUE
 &lt;Exp:FalseExp&gt;          ::= FALSE
 </code></pre></div>
-<p>What should the <code>eval</code> method return for these classes? In Language <code>SET</code>, we
+<p>What should the <code>eval</code> method return for these classes? In Language <code>REF</code>, we
 used an <code>IntVal</code> of zero to be false and everything else to be true. Once we
 have syntax for <code>true</code> and <code>false</code> expressions in Language <code>TYPE0</code>, we introduce
 corresponding semantics using the <code>Val</code> type <code>BoolVal</code> that represent the values

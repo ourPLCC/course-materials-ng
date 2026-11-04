@@ -476,7 +476,7 @@ def eval(self, env):
         return self.falseExp.eval(env)
 %%%
 </code></pre></div>
-<p>The <code>isTrue</code> boolean method applies to any instance of <code>Val</code>. It is a Python
+<p>The <code>isTrue</code> Boolean method applies to any instance of <code>Val</code>. It is a Python
 helper method used only to implement the semantics of the <code>if</code> expression; it is
 not part of the source language. On the other hand, <code>zero?</code> is a primitive in
 the source language (starting with Language <code>V1</code>), not a method in Python. The
@@ -531,8 +531,8 @@ type. Instead, they relied on the integer type (<code>int</code>) much as our la
 Any context demanding a true or false value (e.g., <code>if</code> or <code>while</code>) expected an
 expression whose type is an integer. The C language then defined false when that
 expression yields <code>0</code>, true otherwise. The language is more restrictive as to
-the integer values produced by boolean expressions (e.g., <code>==</code> or <code>&amp;&amp;</code>). Indeed,
-if the boolean expression yields false, the corresponding integer value is <code>0</code>
+the integer values produced by Boolean expressions (e.g., <code>==</code> or <code>&amp;&amp;</code>). Indeed,
+if the Boolean expression yields false, the corresponding integer value is <code>0</code>
 (as before); if it yields true, the corresponding integer value must be <code>1</code>. In
 other words, the C language is permissive in what it considers a true value, but
 conservative in the integer value it produces as a result of evaluating a Boolean
