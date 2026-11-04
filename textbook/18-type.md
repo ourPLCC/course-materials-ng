@@ -16,15 +16,15 @@ and all expressions must conform to type rules.
 
 ## Primitive types
 
-Our typed language is based on the `SET` language. In the `SET` language, only
+Our typed language is based on the `REF` language. In the `REF` language, only
 the integer value `0` is considered false, and all other values — including
 `ProcVal`s — are true when used in conditional expressions. The Java programming
-language, which is statically typed, requires that the test expression in an
-`if` statement evaluates to a boolean. We follow this example in our typed
+language, which is statically typed, requires that the controlling expression in an
+`if` statement evaluates to a Boolean. We follow this example in our typed
 language by introducing *primitive types*, `int` and `bool`, corresponding to
-integer and boolean expressed values, respectively. To implement this feature,
+integer and Boolean expressed values, respectively. To implement this feature,
 we add a new `BoolVal` subclass of the `Val` class. With this addition, we can
-require that the test expression in an `if` expression be an instance of
+require that the controlling expression in an `if` expression be an instance of
 `BoolVal`.
 
 Observe that the `int` and `bool` types in our (as yet unnamed) language are
@@ -48,7 +48,7 @@ to represent the type of a function that has $n$ formal parameters of types
 $t_1$, $t_2$, ... $t_n$, respectively, and that returns a value of type $t$.
 
 For simplification, we do not permit the creation of new (named) types, so every
-type is either an integer, boolean, or function.
+type is either an integer, Boolean, or function.
 
 ## Syntax
 
@@ -87,16 +87,16 @@ formal parameter types* — and a type expression for the function's return valu
 the function's type, called (not surprisingly) the *defined type* of the
 function.
 
-The following examples show how to modify a function expression in the `SET`
+The following examples show how to modify a function expression in the `REF`
 language by adding type annotations so that it conforms to the `TYPE0` language
 rules (refer to the next chapter for the start of the discussion of the `TYPE0`
 language):
 
-Consider the following function defined the `SET` language without any type
+Consider the following function defined the `REF` language without any type
 annotations:
 
 ```
-proc(t) +(t,5)
+proc(t) +(t, 5)
 ```
 
 The same function in the `TYPE0` language with type annotations is:
@@ -108,7 +108,7 @@ proc(t : int) : int +(t, 5) % defined type [ int => int ], return type int
 This function has defined type `[ int => int ]` and returns a value of type
 `int`.
 
-Next, consider the function below defined in `SET` without type annotations:
+Next, consider the function below defined in `REF` without type annotations:
 
 ```
 proc(f, x) .f(x)
@@ -131,7 +131,7 @@ following function application is `int`:
 .proc(t : int) : int +(t, 5) (4)
 ```
 
-The previous expression evaluations to `9`, an `int`.
+The previous expression evaluates to `9`, an `int`.
 
 We will shortly define grammar rules for the `TYPE0` language that parse such
 expressions.
@@ -154,7 +154,7 @@ A *type error* is one of the following:
 * an attempt to apply a function to actual parameters whose types do not match
   the declared types of the corresponding formal parameters;
 
-* an attempt to use a non-boolean as the controlling expression of an `if`
+* an attempt to use a non-Boolean as the controlling expression of an `if`
   expression;
 
 * an attempt to have expressions of different types in the `then` and `else`
@@ -193,8 +193,8 @@ Notice that static scope rules make it possible to determine the types of
 variables that appear free in a function body — in other words, variables that
 do not appear as function formal parameters.
 
-Numeric literals all have type `int`. We predefine the identifiers `true` and
-`false` to have type `bool`, with the obvious semantics in controlling
+Numeric literals all have type `int`. We also add the Boolean literals `true` and
+`false` of type `bool`, with the obvious semantics in controlling
 expressions of `if` expressions.
 
 The type of a `let` or `letrec` expression is the type of the expression's body.
@@ -206,7 +206,7 @@ can no longer be an `IntVal`, so an expression like
 if 0 then 3 else 4
 ```
 
-that we have seen in Language `SET` will not work in our typed language.
+that we have seen in Language `REF` will not work in our typed language.
 
 Since the type of a variable is determined by static scope rules, the only
 "interesting" types are those of functions. We need to add syntax rules for
