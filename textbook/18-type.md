@@ -193,8 +193,8 @@ Notice that static scope rules make it possible to determine the types of
 variables that appear free in a function body — in other words, variables that
 do not appear as function formal parameters.
 
-Numeric literals all have type `int`. We predefine the identifiers `true` and
-`false` to have type `bool`, with the obvious semantics in controlling
+Numeric literals all have type `int`. We also add the Boolean literals `true` and
+`false` of type `bool`, with the obvious semantics in controlling
 expressions of `if` expressions.
 
 The type of a `let` or `letrec` expression is the type of the expression's body.
