@@ -20,9 +20,9 @@ Our typed language is based on the `REF` language. In the `REF` language, only
 the integer value `0` is considered false, and all other values — including
 `ProcVal`s — are true when used in conditional expressions. The Java programming
 language, which is statically typed, requires that the controlling expression in an
-`if` statement evaluates to a boolean. We follow this example in our typed
+`if` statement evaluates to a Boolean. We follow this example in our typed
 language by introducing *primitive types*, `int` and `bool`, corresponding to
-integer and boolean expressed values, respectively. To implement this feature,
+integer and Boolean expressed values, respectively. To implement this feature,
 we add a new `BoolVal` subclass of the `Val` class. With this addition, we can
 require that the controlling expression in an `if` expression be an instance of
 `BoolVal`.
@@ -48,7 +48,7 @@ to represent the type of a function that has $n$ formal parameters of types
 $t_1$, $t_2$, ... $t_n$, respectively, and that returns a value of type $t$.
 
 For simplification, we do not permit the creation of new (named) types, so every
-type is either an integer, boolean, or function.
+type is either an integer, Boolean, or function.
 
 ## Syntax
 
@@ -154,7 +154,7 @@ A *type error* is one of the following:
 * an attempt to apply a function to actual parameters whose types do not match
   the declared types of the corresponding formal parameters;
 
-* an attempt to use a non-boolean as the controlling expression of an `if`
+* an attempt to use a non-Boolean as the controlling expression of an `if`
   expression;
 
 * an attempt to have expressions of different types in the `then` and `else`
