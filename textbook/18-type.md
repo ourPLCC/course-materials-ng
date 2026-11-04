@@ -131,7 +131,7 @@ following function application is `int`:
 .proc(t : int) : int +(t, 5) (4)
 ```
 
-The previous expression evaluations to `9`, an `int`.
+The previous expression evaluates to `9`, an `int`.
 
 We will shortly define grammar rules for the `TYPE0` language that parse such
 expressions.
