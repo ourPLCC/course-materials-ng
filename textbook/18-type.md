@@ -96,7 +96,7 @@ Consider the following function defined the `REF` language without any type
 annotations:
 
 ```
-proc(t) +(t,5)
+proc(t) +(t, 5)
 ```
 
 The same function in the `TYPE0` language with type annotations is:
