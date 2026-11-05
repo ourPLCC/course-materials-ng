@@ -8,7 +8,8 @@ This is the style guide for this textbook.
 - Format paragraphs in 80 columns
 - Explicitly number items in ordered lists (i.e., do let markdown applications
   do that work for you)
-- Use PlantUML for drawings
+- Use PlantUML for drawings. For environment diagrams, see
+  **docs/environment-diagrams/style-guide.md**
 - Format references according to the Chicago Manual of Style
 - Give every heading you link to an explicit id (`## Environments {#environments}`)
   and link to it by id (`[environments][]` or `[text][environments]`), never by
