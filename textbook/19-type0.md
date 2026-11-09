@@ -3,7 +3,10 @@
 ## Type syntax for function definitions
 
 We define a language named `TYPE0` that is based on the `REF` language and that
-implements type syntax. We first require that a function definition — in the
+implements type *syntax*. The type-checking semantics associated with the new syntax
+will *not* be implemented in TYPE0.
+
+We first require that a function definition — in the
 `<proc>` grammar rule — declare the types of each of its formal parameters and
 the return type of the function. Each of these declarations are given by a type
 expression, described in the previous chapter, in the following grammar rules
@@ -21,7 +24,7 @@ semantics of the `REF` language. Thus the resulting `TYPE0` language has the
 same semantics as the `REF` language, except for the presence of `bool` values:
 the type information in a program is simply ignored during evaluation.
 
-A function definition in our `TYPE0` language now looks like as follows:
+A function definition in our `TYPE0` language now looks as follows:
 
 ```
 define add2 = proc(x : int) : int add1(add1(x))
@@ -54,8 +57,8 @@ used an `IntVal` of zero to be false and everything else to be true. Once we
 have syntax for `true` and `false` expressions in Language `TYPE0`, we introduce
 corresponding semantics using the `Val` type `BoolVal` that represent the values
 of these expressions. The `BoolVal` class is simply a Python wrapper class for
-Python `bool` values. The code for the `BoolVal` class is in the Python's
-specific specification file.
+Python `bool` values. The code for the `BoolVal` class is in the
+Python-specific specification file.
 
 Once we have the `BoolVal` class, we can define the `eval` behavior for the
 `TrueExp` and `FalseExp` classes. Here's the code for `TrueExp` — the code for
@@ -67,7 +70,7 @@ def eval(self, env):
 ```
 
 Obviously the `isTrue` Python method applied to a `BoolVal` object constructed
-with `True` must return true (in Python), and similarly the `isTrue` Java method applied to a `BoolVal` object constructed with `False` must return false. The
+with `True` must return true (in Python), and similarly the `isTrue` method applied to a `BoolVal` object constructed with `False` must return false. The
 `isTrue` method applied to *any* other value (either an `IntVal` or a `ProcVal`)
 must throw an exception.
 
