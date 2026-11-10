@@ -773,17 +773,12 @@ let
   c1 = .&lt;new complex&gt;init(1, 0)
   c2 = .&lt;new complex&gt;init(1, 3)
 in
-  let
-    c3 = .&lt;c1&gt;cadd(c2)
-  in
-    .&lt;c3&gt;get_real()
+  .&lt;.&lt;c1&gt;cadd(c2)&gt;get_real()
 </code></pre></div>
-<p>The outer <code>let</code> expression creates two new instances of the <code>complex</code> class
-using the <code>new</code> keyword. These instances are initialized with values <span class="arithmatex">\(1 + i\)</span>
-and <span class="arithmatex">\(1 + 3i\)</span>, respectively. The inner <code>let</code> expression computes the sum of the
-two instances creating a third instance and storing the result in a third
-variable. The body of the inner <code>let</code> expression returns the real part of that
-third instance.</p>
+<p>The body of the <code>let</code> expression chains methods <code>cadd</code> and <code>get_real</code> to
+produce the real part of the sum of two complex numbers. The declaration part
+of the <code>let</code> expression initializes the two complex numbers with values <span class="arithmatex">\(1 + i\)</span>
+and <span class="arithmatex">\(1 + 3i\)</span>, respectively. The entire program evaluates to <code>2</code>.</p>
 <h2 id="classes-and-objects">Classes and objects</h2>
 <p>Compared to most object-oriented programming languages such as Java and C++, our
 classes and objects are <em>first class</em> — that is, they are values that can be
@@ -809,17 +804,12 @@ bound to the name <code>c</code>.</p>
 <p>We can create a new instance of this class with the <code>new</code> keyword:</p>
 <div class="highlight"><pre><span></span><code>define o = new c
 </code></pre></div>
-<p>Access to the fields of our instance requires bringing about an appropriate
-environment. One possibility is to bring about the environment associated with
-our instance. Language <code>OBJ</code> uses angular brackets to refer to an environment
-associated with an object:</p>
-<div class="highlight"><pre><span></span><code>&lt;o&gt;
-</code></pre></div>
-<p>Any expression following that notation will be evaluated in that environment.
-For instance, to access field <code>x</code>, we can write:</p>
-<div class="highlight"><pre><span></span><code>&lt;o&gt;x
-</code></pre></div>
-<p>To mutate that field, we can write:</p>
+<p>The expressions <code>&lt;o&gt;x</code> and <code>&lt;o&gt;y</code> evaluate to the values bound to <code>x</code> and <code>y</code>,
+respectively, in object <code>o</code>. In languages such Python, C++, and Java, such
+expressions would be written instead as <code>o.x</code> and <code>o.y</code>.</p>
+<p>In Language <code>OBJ</code>, <code>&lt;o&gt;</code> denotes the environment associated with instance <code>o</code>.
+Then, any expression following that notation will be evaluated in that
+environment. For instance, to mutate field <code>x</code> in <code>o</code>, we can write:</p>
 <div class="highlight"><pre><span></span><code>&lt;o&gt;set x = 3
 </code></pre></div>
 <h2 id="class-hierarchy">Class hierarchy</h2>
