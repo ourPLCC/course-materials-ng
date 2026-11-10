@@ -18,18 +18,13 @@ let
   c1 = .<new complex>init(1, 0)
   c2 = .<new complex>init(1, 3)
 in
-  let
-    c3 = .<c1>cadd(c2)
-  in
-    .<c3>get_real()
+  .<.<c1>cadd(c2)>get_real()
 ```
 
-The outer `let` expression creates two new instances of the `complex` class
-using the `new` keyword. These instances are initialized with values $1 + i$
-and $1 + 3i$, respectively. The inner `let` expression computes the sum of the
-two instances creating a third instance and storing the result in a third
-variable. The body of the inner `let` expression returns the real part of that
-third instance.
+The body of the `let` expression chains methods `cadd` and `get_real` to
+produce the real part of the sum of two complex numbers. The declaration part
+of the `let` expression initializes the two complex numbers with values $1 + i$
+and $1 + 3i$, respectively. The entire program evaluates to `2`.
 
 ## Classes and objects
 
@@ -68,23 +63,13 @@ We can create a new instance of this class with the `new` keyword:
 define o = new c
 ```
 
-Access to the fields of our instance requires bringing about an appropriate
-environment. One possibility is to bring about the environment associated with
-our instance. Language `OBJ` uses angular brackets to refer to an environment
-associated with an object:
+The expressions `<o>x` and `<o>y` evaluate to the values bound to `x` and `y`,
+respectively, in object `o`. In languages such Python, C++, and Java, such
+expressions would be written instead as `o.x` and `o.y`.
 
-```
-<o>
-```
-
-Any expression following that notation will be evaluated in that environment.
-For instance, to access field `x`, we can write:
-
-```
-<o>x
-```
-
-To mutate that field, we can write:
+In Language `OBJ`, `<o>` denotes the environment associated with instance `o`.
+Then, any expression following that notation will be evaluated in that
+environment. For instance, to mutate field `x` in `o`, we can write:
 
 ```
 <o>set x = 3
