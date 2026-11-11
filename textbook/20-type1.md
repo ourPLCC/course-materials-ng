@@ -49,7 +49,7 @@ using so far, except that our type environment binds variables to types rather
 than to values.
 
 The definitions of the classes relating to type environments are given in the
-specification.
+specification of the TYPE1 language.
 
 Since most of our type checking rules relate to type equality, we must define
 what it means for two types to be equal. There are only three basic types,
@@ -65,7 +65,7 @@ method is defined as follows:
 
 ```python
 def checkEquals(self, t):
-    t.checkIntType(self)
+    t.checkBoolType(self)
 
 def checkBoolType(self, t):
     pass    # this BoolType equals any other BoolType
@@ -187,12 +187,14 @@ expression environment.
 tenv = TypeEnv.initTypeEnv()
 ```
 
-In the `Eval` class's `_run` method, we type-check by applying the `evalType`
+In the `Eval` class's `_run` method, we type-check by adding a new first phase
+to the `_run`  wherein we apply the `evalType`
 method on the `exp` object — the "program" that we are to evaluate. The actual
 return value of this call is irrelevant, since its purpose is simply to carry
-out type checking prior to expression evaluation. If the type checking succeeds,
-the `_run' method returns the string representation of the value of the
-expression.
+out type checking prior to expression evaluation. If the type checking fails at
+any level, an exception is raised. If the type checking succeeds,
+the `_run` method continues into the second phase by returning the string
+representation of the value of the expression.
 
 ```python
 def _run(self):
@@ -286,7 +288,7 @@ def toType(self):
 
 Similar remarks apply to `IntPrimType`.
 
-For a \verb'ProcTypeExp', we
+For a `ProcTypeExp`, we
 
 1. determine the types (using the `toType` method) of the (formal parameter)
    type expressions that appear to the left of the "`=>`" token and insert them
@@ -452,7 +454,7 @@ def evalType(self, tenv):
 %%%
 ```
 
-We two more types of expressions to cover: `AppExp` and `PrimappExp`. Both of
+We have two more types of expressions to cover: `AppExp` and `PrimappExp`. Both of
 them are similar in that we need to check if the formal parameter types of the
 operator agree in number and type with the actual parameter (operand) types.
 
@@ -641,7 +643,7 @@ def _run(self):
 %%%
 ```
 
-If a type binding (either through a declaration of definition) already exists,
+If a type binding (either through a declaration or definition) already exists,
 it is flagged as a duplicate declaration. Otherwise a top-level binding is made
 between the identifier and the type represented by its type expression. The
 `_run` behavior of a variable declaration/definition is to return the variable
