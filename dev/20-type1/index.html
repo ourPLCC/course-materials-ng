@@ -689,6 +689,18 @@ are free with respect to the function's formal parameters but that are bound to
 types defined in an enclosing environment. One of our type checks is to ensure
 that the function's declared return type is the same as the type of the function
 body.</p>
+<p>The <code>definedType</code> method in the <code>Proc</code> class evaluates the function's defined
+type, which must be a <code>ProcType</code>: it gets the declared types of the formal
+parameters from the <code>Formals</code> object and the declared return type from the
+function's <code>typeExp</code>. The defined type is determined exclusively by the declared
+types of the formal parameters and the function's declared return type.</p>
+<div class="highlight"><pre><span></span><code>Proc
+%%%
+def definedType(self):
+    # the type from the annotations alone; the body is not checked
+    return ProcType(self.formals.formalTypeList(), self.typeExp.toType())
+%%%
+</code></pre></div>
 <p>The <code>Formals</code> class defines the <code>formalTypeList</code> method:</p>
 <div class="highlight"><pre><span></span><code>Formals
 %%%
@@ -762,10 +774,17 @@ right-hand side function <em>bodies</em> using this extended environment, for th
 purpose of type checking with their declared return types. The
 <code>addLetrecTypeBindings</code> method in the <code>LetDecls</code> class does all the work.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">addLetrecTypeBindings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenv</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ProcExp</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcExp</span>
     <span class="n">tenv</span> <span class="o">=</span> <span class="n">tenv</span><span class="o">.</span><span class="n">extendTypeEnv</span><span class="p">(</span><span class="n">TypeBindings</span><span class="p">())</span>
+    <span class="c1"># a proc's type comes from its annotations alone,</span>
+    <span class="c1"># so bind the procs first, before checking any body</span>
+    <span class="k">for</span> <span class="n">sym</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbolList</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">expList</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">ProcExp</span><span class="p">):</span>
+            <span class="n">tenv</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">TypeBinding</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">lexeme</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">proc</span><span class="o">.</span><span class="n">definedType</span><span class="p">()))</span>
     <span class="k">for</span> <span class="n">sym</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbolList</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">expList</span><span class="p">):</span>
         <span class="n">typ</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">evalType</span><span class="p">(</span><span class="n">tenv</span><span class="p">)</span>
-        <span class="n">tenv</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">TypeBinding</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">lexeme</span><span class="p">,</span> <span class="n">typ</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">ProcExp</span><span class="p">):</span>
+            <span class="n">tenv</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">TypeBinding</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">lexeme</span><span class="p">,</span> <span class="n">typ</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">tenv</span>
 </code></pre></div>
 <p>Once we have type checked the right-hand side entries and built the extended
@@ -778,6 +797,23 @@ def evalType(self, tenv):
     return self.exp.evalType(ntenv)
 %%%
 </code></pre></div>
+<p>At first glance, we might imagine that <code>addLetrecTypeBindings</code> should be able to
+process all bindings in one pass. Unfortunately that hope is misplaced for
+<code>letrec</code> declarations containing definitions of recursive functions (which was
+the entire motivation for introducing the <code>letrec</code> construct in the first
+place). In those cases, the type checker will fail with an error. Consider the
+following example:</p>
+<div class="highlight"><pre><span></span><code>letrec
+  fact = proc(n : int) : int if zero?(n) then 1 else *(n, .fact(sub1(n)))
+in
+  .fact(5)
+</code></pre></div>
+<p>With a naive implementation of <code>addLetrecTypeBindings</code>, its processing would
+end with the error message <code>no type binding for fact</code>. The reason for this error
+is that when analyzing the right-hand side of the declaration in environment
+<code>tenv</code>, that environment does not yet include the type signature for <code>fact</code>.
+Without that signature the checker cannot verify that the function's argument
+and return value are of acceptable types.</p>
 <p>We two more types of expressions to cover: <code>AppExp</code> and <code>PrimappExp</code>. Both of
 them are similar in that we need to check if the formal parameter types of the
 operator agree in number and type with the actual parameter (operand) types.</p>
