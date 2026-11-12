@@ -337,6 +337,21 @@ types defined in an enclosing environment. One of our type checks is to ensure
 that the function's declared return type is the same as the type of the function
 body.
 
+The `definedType` method in the `Proc` class evaluates the function's defined
+type, which must be a `ProcType`: it gets the declared types of the formal
+parameters from the `Formals` object and the declared return type from the
+function's `typeExp`. The defined type is determined exclusively by the declared
+types of the formal parameters and the function's declared return type.
+
+```
+Proc
+%%%
+def definedType(self):
+    # the type from the annotations alone; the body is not checked
+    return ProcType(self.formals.formalTypeList(), self.typeExp.toType())
+%%%
+```
+
 The `Formals` class defines the `formalTypeList` method:
 
 ```
@@ -432,10 +447,17 @@ purpose of type checking with their declared return types. The
 
 ```python
 def addLetrecTypeBindings(self, tenv):
+    from ProcExp import ProcExp
     tenv = tenv.extendTypeEnv(TypeBindings())
+    # a proc's type comes from its annotations alone,
+    # so bind the procs first, before checking any body
+    for sym, e in zip(self.symbolList, self.expList):
+        if isinstance(e, ProcExp):
+            tenv.add(TypeBinding(sym.lexeme, e.proc.definedType()))
     for sym, e in zip(self.symbolList, self.expList):
         typ = e.evalType(tenv)
-        tenv.add(TypeBinding(sym.lexeme, typ))
+        if not isinstance(e, ProcExp):
+            tenv.add(TypeBinding(sym.lexeme, typ))
     return tenv
 ```
 
@@ -451,6 +473,27 @@ def evalType(self, tenv):
     return self.exp.evalType(ntenv)
 %%%
 ```
+
+At first glance, we might imagine that `addLetrecTypeBindings` should be able to
+process all bindings in one pass. Unfortunately that hope is misplaced for
+`letrec` declarations containing definitions of recursive functions (which was
+the entire motivation for introducing the `letrec` construct in the first
+place). In those cases, the type checker will fail with an error. Consider the
+following example:
+
+```
+letrec
+  fact = proc(n : int) : int if zero?(n) then 1 else *(n, .fact(sub1(n)))
+in
+  .fact(5)
+```
+
+With a naive implementation of `addLetrecTypeBindings`, its processing would
+end with the error message `no type binding for fact`. The reason for this error
+is that when analyzing the right-hand side of the declaration in environment
+`tenv`, that environment does not yet include the type signature for `fact`.
+Without that signature the checker cannot verify that the function's argument
+and return value are of acceptable types.
 
 We two more types of expressions to cover: `AppExp` and `PrimappExp`. Both of
 them are similar in that we need to check if the formal parameter types of the
