@@ -16,16 +16,18 @@ and all expressions must conform to type rules.
 
 ## Primitive types
 
-Our typed language is based on the `REF` language. In the `REF` language, only
-the integer value `0` is considered false, and all other values — including
-`ProcVal`s — are true when used in conditional expressions. The Java programming
+Our typed language is based on the `REF` language. In the `REF` language,
+the only types we had were integers and functions (`proc`s). In the conditions
+contained in `if` expressions,
+the integer value `0` was considered false, and all other values — including
+`ProcVal`s — were true. The Java programming
 language, which is statically typed, requires that the controlling expression in an
 `if` statement evaluates to a Boolean. We follow this example in our typed
 language by introducing *primitive types*, `int` and `bool`, corresponding to
 integer and Boolean expressed values, respectively. To implement this feature,
 we add a new `BoolVal` subclass of the `Val` class. With this addition, we can
 require that the controlling expression in an `if` expression be an instance of
-`BoolVal`.
+`BoolVal`. We also add new tokens to represent the values `true` and `false`.
 
 Observe that the `int` and `bool` types in our (as yet unnamed) language are
 *not* the same as the corresponding types in Python, even though they are
@@ -75,7 +77,7 @@ Type expressions 1 and 2 describe primitive `int` and `bool` types,
 respectively. Type expression 3 describes a function type that takes two
 parameters of type `bool` and `int`, respectively, and that returns an `int`.
 Type expression 4 describes a function type that takes two function parameters
-of type `[ int => bool ]` and `[ int, int => int ]`, respectively, and that
+of type `[ int => bool ]` and `[ int, int => int ]`, and that
 returns a function of type `[ int, int => bool ]`. Type expression 5 describes a
 function type that takes no parameters and that returns an `int`. Observe that
 **any type expression that starts with a `[` must be a function type**.
@@ -105,8 +107,8 @@ The same function in the `TYPE0` language with type annotations is:
 proc(t : int) : int +(t, 5) % defined type [ int => int ], return type int
 ```
 
-This function has defined type `[ int => int ]` and returns a value of type
-`int`.
+This function has defined type `[ int => int ]`, meaning that it requires a
+single argument of type `int`, and returns a result value of type `int`.
 
 Next, consider the function below defined in `REF` without type annotations:
 
@@ -120,8 +122,19 @@ The same function in the `TYPE0` language with type annotations is written:
 proc(f : [ int => int ], x : int) : int .f(x)
 ```
 
-This function has defined type `[ [ int => int ], int => int ]` and returns a
-value of type `int`.
+This function has defined type `[ [ int => int ], int => int ]`, meaning that it
+requires two arguments, the first being a unary integer function, and the second
+being an `int`, and returns a value of type `int`.
+
+Important: Based on the original untyped function definition, we do not actually
+know what type of argument `f` takes nor what type it returns. What if `f` were,
+for example,
+a function that decided whether or not its integer argument was even? Then for
+things to work out the new function would have to be declared as follows.
+
+```
+proc(f : [ int => bool ], x : int) : bool .f(x)
+```
 
 When used in an expression, a function *application* is considered to have a
 type equal to the *return type* of the function. For example, the type of the
@@ -140,7 +153,7 @@ expressions.
 
 **Every expression has a type. The type of a variable (**`VarExp`**) is the type
 that is bound to the variable in the current type environment.** All variables
-must have a type binding.
+must have a type binding. (We will talk about how to do that in the next chapter.)
 
 A *type error* is one of the following:
 
@@ -165,7 +178,7 @@ A *type error* is one of the following:
   right-hand side expression.
 
 In the above, we consider primitive functions such as `+`, `add1`, and `zero?`
-as functions for the purposes of type checking. These primitive functions have
+as functions for the purposes of type checking. These primitive functions will have
 pre-defined function types.
 
 Our static type checking implementation also detects errors where an identifier
