@@ -7,11 +7,13 @@ that a thunk is called at most once, and its value is remembered (*memoized*).
 
 Suppose a function with formal parameter `x` is invoked with actual parameter
 `set z = add1(z)`, using call-by-need semantics. As with call-by-name, the
-formal parameter `x` is bound to the thunk with `set z = add1(z)` as its body,
-in an enclosing environment that we will assume has `z` bound to (a reference
+formal parameter `x` is bound to the thunk with `set z = add1(z)` as its body.
+As an example, let's assume that there is
+an enclosing environment that has `z` bound to (a reference
 to) the value `8`. When `x` is referenced in the body of calling function, its
-corresponding thunk is dereferenced, producing a result of `9` for `set z =
-add1(z)`. The thunk now remembers (*memoizes*) the value `9`, and any further
+corresponding thunk is dereferenced, so that 
+evaluating its body `set z = add1(z)` modifies `z` to refer to `9`, and
+before producing a result of `9`. The thunk now remembers (*memoizes*) the value `9`, and any further
 references to the formal parameter `x` in the body of the function will
 continue to evaluate to `9` without making any further changes to the variable
 `z`.
@@ -23,9 +25,12 @@ thunk for each such evaluation, further modifying `z` and yielding values `10`,
 
 In both call-by-need and call-by-name (and unlike call-by-reference), if the
 formal parameter is never referenced in the body of the function, the thunk is
-never evaluated. Compared to call-by-name, call-by-need reduces the
+never evaluated. Unlike the above example, if the actual argument expression has no
+side effects, then compared to call-by-name, call-by-need simply reduces the
 *inefficiencies* of repeatedly evaluating a thunk when evaluating the
-corresponding formal parameter.
+corresponding formal parameter. But if the argument expression does produce
+side effects, the NAME and NEED languages could produce different results for
+the same code.
 
 ## Implementation
 
@@ -137,7 +142,16 @@ define natno = .seq(0)       % all the natural numbers!!
 The above never terminates with call-by-reference. With call-by-name or
 call-by-need, a call to `.first(natno)` returns `0`, a call to
 `.first(.rest(natno))` returns `1`, `.first(.rest(.rest(natno)))` returns `2`,
-and so forth. A call `.nth(100, natno)` returns `100`.
+and so forth. A call `.nth(100, natno)` returns `100`. Let's follow the
+execution of that call to see what happens.
+
+1. Defining `natno` involves applying `seq` with argument 0.
+2. Applying `seq` involves applying `pair` with arguments `0` and `.seq(add1(n))`.
+   Remember, the second expression will not be evaluated until it's *need*ed.
+3. Applying `pair` returns the `proc` with the `if` expression without ever
+   evaluating the parameters `x` and `y`. This was not true in REF.
+4. Returning to the original call to `nth`, that will now proceed to make
+   100 recursive calls to produce the answer of `100`.
 
 ## Order of evaluation
 
@@ -159,7 +173,7 @@ written inside curly braces for clarity) are evaluated before their values are
 bound to the left-hand variables. But our languages do not specify the order in
 which the right-hand side expressions are evaluated.
 
-In the absence of side-effects, that is, in our earlier languages without `set`
+In the absence of side-effects, i.e. in our earlier languages without `set`,
 the order of evaluation of the right-hand side expressions would not matter.
 However, when side-effects are possible, as in our interpreters such as `SET`
 and `REF`, the order of evaluation does matter.
@@ -184,7 +198,10 @@ in
 When the actual parameters are evaluated left-to-right as specified in our
 languages, `t` would be bound to `4` and `u` to `5`, so the entire expression
 evaluates to `4`. If the evaluation order had been right-to-left, the entire
-expression would evaluate to `5`.
+expression would evaluate to `5`. (Note that the fact that we are discussing
+the language NEED in this chapter makes no difference. The two
+`set x = add1(x)` expressions are distinct, and create distinct thunks,
+each of which must be evaluated separately.)
 
 You can see that both `evalRands` and `evalRandsRef` use `foreach` loops to
 traverse and evaluate the expressions in the list of actual parameters.
@@ -227,7 +244,7 @@ in
       .p(a, b)
 ```
 
-Order of evaluation does not matter in languages with side-effects, which makes
+Order of evaluation does not matter in languages without side-effects, which makes
 functional languages immune to order of evaluation issues.
 
 ## Currying
