@@ -35,7 +35,7 @@ they can be passed as arguments to functions, and they can be returned as values
 of function applications.
 
 A *class* is an expressed value that captures a collection of variables
-(*fields* or *attributes*) and functions (*methods*), and that serves as a
+(*fields* or *attributes*) and function definitions (*methods*), and that serves as a
 template to create expressed values called *instances* of the class.
 
 The instances are called *objects*, to distinguish them from classes. You can
@@ -67,7 +67,8 @@ The expressions `<o>x` and `<o>y` evaluate to the values bound to `x` and `y`,
 respectively, in object `o`. In languages such Python, C++, and Java, such
 expressions would be written instead as `o.x` and `o.y`.
 
-In Language `OBJ`, `<o>` denotes the environment associated with instance `o`.
+In Language `OBJ`, `<o>` denotes the environment, that is, bindings, associated
+with instance `o`.
 Then, any expression following that notation will be evaluated in that
 environment. For instance, to mutate field `x` in `o`, we can write:
 
@@ -114,5 +115,5 @@ define o2 = new c2
 ```
 
 In this example, `c1` extends the unnamed top-level class and `c2` is a subclass
-of `c1`. Object `o2` is an instance of `c2` and `<o2>super` corresponds to an
-instance of `c1`
+of `c1`. Object `o2` is an instance of `c2` and `<o2>super` corresponds to the
+instance of `c1` that is part of `o2`.
