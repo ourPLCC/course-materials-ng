@@ -194,7 +194,9 @@ arrow such as `g_ProcVal -[hidden]> f_ProcVal` reordered two boxes once, and had
 no effect another time.
 
 We accepted some flaws, such as arrows that overlap at one end or cross once,
-when every arrow could still be followed.
+when every arrow could still be followed. In "After `define b`, with method
+`ProcVal`s", one bindings box is to the left of its environment, and changing
+the `env` arrow did not move it.
 
 ## Drawing class diagrams
 

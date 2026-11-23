@@ -731,6 +731,158 @@ a_A_methods_EnvNode <-[norank]- g_ProcVal::env
 @enduml
 ```
 
+### After `define b`, with method `ProcVal`s
+
+Each method's `ProcVal` captures the methods environment of its own part. So `g`
+can use everything in both parts, but `f` can directly use only what is in
+`b::A` and above, even though it is part of the same object as `g`.
+
+```plantuml
+@startuml
+skinparam fileFontName monospaced
+
+file source [
+define A = class
+  static x = 3
+  field y
+  method f = proc() 0
+end
+define B = class extends A
+  static u = 5
+  field v
+  method g = proc() 1
+end
+define b = new B
+]
+
+map "empty:EnvNull" as empty_EnvNull {
+}
+
+map "init:EnvNode" as init_EnvNode {
+}
+
+map "init:Bindings" as init_Bindings {
+  A => ...
+  B => ...
+  b => ...
+}
+
+init_EnvNode -> init_Bindings
+
+empty_EnvNull <-- init_EnvNode
+
+package "A" {
+  map "statics:EnvNode" as A_statics_EnvNode {
+  }
+
+  map "statics:Bindings" as A_statics_Bindings {
+    x => 3
+  }
+
+  A_statics_EnvNode -> A_statics_Bindings
+  init_EnvNode <-- A_statics_EnvNode
+}
+
+package "B" {
+  map "statics:EnvNode" as B_statics_EnvNode {
+  }
+
+  map "statics:Bindings" as B_statics_Bindings {
+    u => 5
+  }
+
+  B_statics_EnvNode -> B_statics_Bindings
+  A_statics_EnvNode <-- B_statics_EnvNode
+}
+
+package "b" {
+
+  package "b::Root" {
+    map "root:EnvNode" as b_root_EnvNode {
+    }
+
+    map "root:Bindings" as b_root_Bindings {
+    }
+
+    b_root_EnvNode -> b_root_Bindings
+    init_EnvNode <-- b_root_EnvNode
+  }
+
+  package "b::A" {
+    map "statics:EnvNode" as b_A_statics_EnvNode {
+    }
+
+    b_A_statics_EnvNode -> A_statics_Bindings
+    b_root_EnvNode <-- b_A_statics_EnvNode
+
+    map "fields:EnvNode" as b_A_fields_EnvNode {
+    }
+
+    map "fields:Bindings" as b_A_fields_Bindings {
+      y => nil
+    }
+
+    b_A_statics_EnvNode <-- b_A_fields_EnvNode
+    b_A_fields_EnvNode -> b_A_fields_Bindings
+
+    map "methods:EnvNode" as b_A_methods_EnvNode {
+    }
+
+    map "f:ProcVal" as f_ProcVal {
+      formals =>
+      body => 0
+      env =>
+    }
+
+    map "methods:Bindings" as b_A_methods_Bindings {
+      f *--> f_ProcVal
+    }
+
+    b_A_methods_EnvNode -> b_A_methods_Bindings
+    b_A_fields_EnvNode <-- b_A_methods_EnvNode
+  }
+
+  package "b::B" {
+    map "statics:EnvNode" as b_B_statics_EnvNode {
+    }
+
+    b_B_statics_EnvNode -> B_statics_Bindings
+    b_A_methods_EnvNode <--- b_B_statics_EnvNode
+
+    map "fields:EnvNode" as b_B_fields_EnvNode {
+    }
+
+    map "fields:Bindings" as b_B_fields_Bindings {
+      v => nil
+    }
+
+    b_B_statics_EnvNode <-- b_B_fields_EnvNode
+    b_B_fields_EnvNode -> b_B_fields_Bindings
+
+    map "methods:EnvNode" as b_B_methods_EnvNode {
+    }
+
+    map "g:ProcVal" as g_ProcVal {
+      formals =>
+      body => 1
+      env =>
+    }
+
+    map "methods:Bindings" as b_B_methods_Bindings {
+      g *--> g_ProcVal
+    }
+
+    b_B_methods_EnvNode -> b_B_methods_Bindings
+    b_B_fields_EnvNode <-- b_B_methods_EnvNode
+  }
+}
+
+b_A_methods_EnvNode <-[norank]- f_ProcVal::env
+b_B_methods_EnvNode <-[norank]- g_ProcVal::env
+
+@enduml
+```
+
 ### After `define c`, with predefined symbols
 
 The predefined symbols let code reach names that are shadowed in its scope. In
