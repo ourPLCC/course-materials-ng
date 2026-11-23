@@ -10,7 +10,8 @@ produces a poor layout, and we describe adjustments to try. What a diagram
 includes depends on its purpose.
 
 The **diagrams-*.md** files in this directory hold worked examples for Languages
-`V3`, `V4`, `V5`, `SET`, `REF`, `NAME`, and `NEED`.
+`V3`, `V4`, `V5`, `SET`, `REF`, `NAME`, `NEED`, and `OBJ`. For `OBJ`, also see
+**style-guide-obj.md**, which covers what differs.
 
 ## A complete example
 
