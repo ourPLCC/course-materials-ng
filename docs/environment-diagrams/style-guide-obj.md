@@ -29,9 +29,14 @@ made from `B`:
 
 ## What a diagram shows
 
-`OBJ` is based on `SET`, so references exist, but diagrams leave them out and
-show values inline, such as `x => 3` and `y => nil`. `OBJ` passes parameters by
-value only, so no diagram needs to show two variables sharing a reference.
+`OBJ` is based on `SET`, so references exist. By default, diagrams leave them
+out and show values inline, such as `x => 3` and `y => nil`, because which
+variables share a reference is rarely the point. A function call never makes two
+variables share one, because `OBJ` passes parameters by value only. But `new`
+does: `self` is bound to the same reference in the root and in every other part,
+while each part's `this` and `super` have references of their own. When such
+sharing is the point of a diagram, draw the references, as **style-guide.md**
+describes. We have no worked example of this.
 
 `...` stands for a value whose box or arrow is not drawn.
 
