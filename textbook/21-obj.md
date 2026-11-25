@@ -1,30 +1,30 @@
 # Language OBJ
 
 `OBJ` is an object-oriented programming language. The following program
-is a partial implementation of a type supporting complex numbers.
+is a partial implementation of a type supporting pairs of numbers.
 
 ```
-define complex =
+define pair =
   class
-    field r
-    field i
-    method init = proc(r_init, i_init) { set r = r_init ; set i = i_init ; self }
-    method cadd = proc(o) { .<new complex>init(+(r, <o>r), +(i, <o>i)) }
-    method get_real = proc() { r }
-    method get_imag = proc() { i }
+    field a
+    field b
+    method init = proc(a0, b0) { set a = a0 ; set b = b0 ; self }
+    method plus = proc(o) { .<new pair>init(+(a, <o>a), +(b, <o>b)) }
+    method fst = proc() { a }
+    method snd = proc() { b }
   end
 
 let
-  c1 = .<new complex>init(1, 0)
-  c2 = .<new complex>init(1, 3)
+  p1 = .<new pair>init(1, 0)
+  p2 = .<new pair>init(1, 3)
 in
-  .<.<c1>cadd(c2)>get_real()
+  .<.<p1>plus(p2)>fst()
 ```
 
-The body of the `let` expression chains methods `cadd` and `get_real` to
-produce the real part of the sum of two complex numbers. The declaration part
-of the `let` expression initializes the two complex numbers with values $1 + i$
-and $1 + 3i$, respectively. The entire program evaluates to `2`.
+The body of the `let` expression chains methods `plus` and `fst` to produce the
+first part of the sum of two pairs of numbers. The declaration part of the `let`
+expression initializes the two pair of numbers with values $(1, 0)$ and
+$(1, 3)$, respectively. The entire program evaluates to `2`.
 
 ## Classes and objects
 
