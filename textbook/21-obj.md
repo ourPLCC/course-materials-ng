@@ -28,12 +28,6 @@ $(1, 3)$, respectively. The entire program evaluates to `2`.
 
 ## Classes and objects
 
-Compared to most object-oriented programming languages such as Java and C++, our
-classes and objects are *first class* — that is, they are values that can be
-created at any time and in any environment, they can be bound to variables,
-they can be passed as arguments to functions, and they can be returned as values
-of function applications.
-
 A *class* is an expressed value that captures a collection of variables
 (*fields* or *attributes*) and functions (*methods*), and that serves as a
 template to create expressed values called *instances* of the class.
@@ -41,6 +35,12 @@ template to create expressed values called *instances* of the class.
 The instances are called *objects*, to distinguish them from classes. You can
 think of a class as a factory that identifies how to churn out an arbitrary
 number of instances (objects) of the class.
+
+Compared to most object-oriented programming languages such as Java and C++, our
+classes and objects are *first class* — that is, they are values that can be
+created at any time and in any environment, they can be bound to variables,
+they can be passed as arguments to functions, and they can be returned as values
+of function applications.
 
 ## A simple example
 
