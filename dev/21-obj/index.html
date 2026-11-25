@@ -845,6 +845,27 @@ define o2 = new c2
 <p>In this example, <code>c1</code> extends the unnamed top-level class and <code>c2</code> is a subclass
 of <code>c1</code>. Object <code>o2</code> is an instance of <code>c2</code> and <code>&lt;o2&gt;super</code> corresponds to an
 instance of <code>c1</code></p>
+<h2 id="grammar">Grammar</h2>
+<p>We define the syntax of classes and objects as an extension of Language <code>SET</code>.
+We also add the additional reserved word <code>nil</code> to our language, which represents
+a separate expressed value not shared by any other data type. When used in
+conditional expressions, <code>nil</code> is considered false. (The only other such value
+is the <code>IntVal</code> of zero.)</p>
+<div class="highlight"><pre><span></span><code>&lt;Exp:NilExp&gt;     ::= NIL
+&lt;Exp:ClassExp&gt;   ::= &lt;ClassDecl&gt;
+&lt;ClassDecl&gt;      ::= CLASS &lt;Ext&gt; &lt;Statics&gt; &lt;Fields&gt; &lt;Methods&gt; END
+&lt;Ext:Ext1&gt;       ::= EXTENDS &lt;Exp&gt;
+&lt;Ext:Ext0&gt;       ::=
+&lt;Statics&gt;        **= STATIC &lt;SYMBOL&gt; EQUALS &lt;Exp&gt;
+&lt;Fields&gt;         **= FIELD &lt;SYMBOL&gt;
+&lt;Methods&gt;        **= METHOD &lt;SYMBOL&gt; EQUALS &lt;Proc&gt;
+</code></pre></div>
+<p>Every <code>Exp</code> expression evaluates to a <code>Val</code> object, and a <code>ClassExp</code> is no
+exception. So evaluating a <code>ClassExp</code> (i.e., calling its <code>eval</code> method) returns
+a <code>Val</code> object. Looking at the syntax, it seems reasonable that such an object
+has a superclass (the <code>ext</code> part), a set of static identifiers and associated
+values, a set of field names, and a set of method names and associated
+definitions.</p>
 
 
 
