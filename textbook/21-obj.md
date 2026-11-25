@@ -1,38 +1,32 @@
 # Language OBJ
 
 `OBJ` is an object-oriented programming language. The following program
-is a partial implementation of a type supporting complex numbers.
+is a partial implementation of a type supporting pairs of numbers.
 
 ```
-define complex =
+define pair =
   class
-    field r
-    field i
-    method init = proc(r_init, i_init) { set r = r_init ; set i = i_init ; self }
-    method cadd = proc(o) { .<new complex>init(+(r, <o>r), +(i, <o>i)) }
-    method get_real = proc() { r }
-    method get_imag = proc() { i }
+    field a
+    field b
+    method init = proc(a0, b0) { set a = a0 ; set b = b0 ; self }
+    method plus = proc(o) { .<new pair>init(+(a, <o>a), +(b, <o>b)) }
+    method fst = proc() { a }
+    method snd = proc() { b }
   end
 
 let
-  c1 = .<new complex>init(1, 0)
-  c2 = .<new complex>init(1, 3)
+  p1 = .<new pair>init(1, 0)
+  p2 = .<new pair>init(1, 3)
 in
-  .<.<c1>cadd(c2)>get_real()
+  .<.<p1>plus(p2)>fst()
 ```
 
-The body of the `let` expression chains methods `cadd` and `get_real` to
-produce the real part of the sum of two complex numbers. The declaration part
-of the `let` expression initializes the two complex numbers with values $1 + i$
-and $1 + 3i$, respectively. The entire program evaluates to `2`.
+The body of the `let` expression chains methods `plus` and `fst` to produce the
+first part of the sum of two pairs of numbers. The declaration part of the `let`
+expression initializes the two pair of numbers with values $(1, 0)$ and
+$(1, 3)$, respectively. The entire program evaluates to `2`.
 
 ## Classes and objects
-
-Compared to most object-oriented programming languages such as Java and C++, our
-classes and objects are *first class* — that is, they are values that can be
-created at any time and in any environment, they can be bound to variables,
-they can be passed as arguments to functions, and they can be returned as values
-of function applications.
 
 A *class* is an expressed value that captures a collection of variables
 (*fields* or *attributes*) and functions (*methods*), and that serves as a
@@ -41,6 +35,12 @@ template to create expressed values called *instances* of the class.
 The instances are called *objects*, to distinguish them from classes. You can
 think of a class as a factory that identifies how to churn out an arbitrary
 number of instances (objects) of the class.
+
+Compared to most object-oriented programming languages such as Java and C++, our
+classes and objects are *first class* — that is, they are values that can be
+created at any time and in any environment, they can be bound to variables,
+they can be passed as arguments to functions, and they can be returned as values
+of function applications.
 
 ## A simple example
 
