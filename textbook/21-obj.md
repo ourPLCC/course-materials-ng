@@ -116,3 +116,29 @@ define o2 = new c2
 In this example, `c1` extends the unnamed top-level class and `c2` is a subclass
 of `c1`. Object `o2` is an instance of `c2` and `<o2>super` corresponds to an
 instance of `c1`
+
+## Grammar
+
+We define the syntax of classes and objects as an extension of Language `SET`.
+We also add the additional reserved word `nil` to our language, which represents
+a separate expressed value not shared by any other data type. When used in
+conditional expressions, `nil` is considered false. (The only other such value
+is the `IntVal` of zero.)
+
+```
+<Exp:NilExp>     ::= NIL
+<Exp:ClassExp>   ::= <ClassDecl>
+<ClassDecl>      ::= CLASS <Ext> <Statics> <Fields> <Methods> END
+<Ext:Ext1>       ::= EXTENDS <Exp>
+<Ext:Ext0>       ::=
+<Statics>        **= STATIC <SYMBOL> EQUALS <Exp>
+<Fields>         **= FIELD <SYMBOL>
+<Methods>        **= METHOD <SYMBOL> EQUALS <Proc>
+```
+
+Every `Exp` expression evaluates to a `Val` object, and a `ClassExp` is no
+exception. So evaluating a `ClassExp` (i.e., calling its `eval` method) returns
+a `Val` object. Looking at the syntax, it seems reasonable that such an object
+has a superclass (the `ext` part), a set of static identifiers and associated
+values, a set of field names, and a set of method names and associated
+definitions.
