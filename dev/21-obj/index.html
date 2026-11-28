@@ -786,11 +786,11 @@ template to create expressed values called <em>instances</em> of the class.</p>
 <p>The instances are called <em>objects</em>, to distinguish them from classes. You can
 think of a class as a factory that identifies how to churn out an arbitrary
 number of instances (objects) of the class.</p>
-<p>Compared to most object-oriented programming languages such as Java and C++, our
-classes and objects are <em>first class</em> — that is, they are values that can be
-created at any time and in any environment, they can be bound to variables,
-they can be passed as arguments to functions, and they can be returned as values
-of function applications.</p>
+<p>Compared to most object-oriented programming languages such as Python, Java and
+C++, our classes and objects are <em>first class</em> — that is, they are values that
+can be created at any time and in any environment, they can be bound to
+variables, they can be passed as arguments to functions, and they can be
+returned as values of function applications.</p>
 <h2 id="a-simple-example">A simple example</h2>
 <p>Consider the class definition below.</p>
 <div class="highlight"><pre><span></span><code>define c =
@@ -805,7 +805,7 @@ bound to the name <code>c</code>.</p>
 <div class="highlight"><pre><span></span><code>define o = new c
 </code></pre></div>
 <p>The expressions <code>&lt;o&gt;x</code> and <code>&lt;o&gt;y</code> evaluate to the values bound to <code>x</code> and <code>y</code>,
-respectively, in object <code>o</code>. In languages such Python, C++, and Java, such
+respectively, in object <code>o</code>. In languages such as Python, C++, and Java, such
 expressions would be written instead as <code>o.x</code> and <code>o.y</code>.</p>
 <p>In Language <code>OBJ</code>, <code>&lt;o&gt;</code> denotes the environment associated with instance <code>o</code>.
 Then, any expression following that notation will be evaluated in that
