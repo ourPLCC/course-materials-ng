@@ -36,11 +36,11 @@ The instances are called *objects*, to distinguish them from classes. You can
 think of a class as a factory that identifies how to churn out an arbitrary
 number of instances (objects) of the class.
 
-Compared to most object-oriented programming languages such as Java and C++, our
-classes and objects are *first class* — that is, they are values that can be
-created at any time and in any environment, they can be bound to variables,
-they can be passed as arguments to functions, and they can be returned as values
-of function applications.
+Compared to most object-oriented programming languages such as Python, Java and
+C++, our classes and objects are *first class* — that is, they are values that
+can be created at any time and in any environment, they can be bound to
+variables, they can be passed as arguments to functions, and they can be
+returned as values of function applications.
 
 ## A simple example
 
@@ -64,7 +64,7 @@ define o = new c
 ```
 
 The expressions `<o>x` and `<o>y` evaluate to the values bound to `x` and `y`,
-respectively, in object `o`. In languages such Python, C++, and Java, such
+respectively, in object `o`. In languages such as Python, C++, and Java, such
 expressions would be written instead as `o.x` and `o.y`.
 
 In Language `OBJ`, `<o>` denotes the environment associated with instance `o`.
